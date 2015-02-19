@@ -1,0 +1,22 @@
+{
+  "name": "Company",
+  "plural": "Companies",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
