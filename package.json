@@ -21,8 +21,8 @@
     "jshint": "^2.5.6"
   },
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "git",
+    "url": "http://github.com/craigcabrey/ratemycoop.git"
   },
   "description": "ratemycoop"
 }
