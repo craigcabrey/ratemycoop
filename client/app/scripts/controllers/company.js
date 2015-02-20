@@ -10,6 +10,5 @@
 angular.module('ratemycoopApp')
   .controller('CompanyCtrl', function ($scope) {
     $("#rating").rating();
-    $("#moneyRating").rating()
 
   });
