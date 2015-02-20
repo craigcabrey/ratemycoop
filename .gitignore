@@ -1,3 +1,6 @@
+# OS X Files
+*DS_Store
+
 # Logs
 logs
 *.log
@@ -30,3 +33,6 @@ bower_compontents
 # WebStorm 
 *.iml
 .idea/
+
+# loopback
+server/datasources.json
