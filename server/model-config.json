@@ -29,5 +29,25 @@
   "Company": {
     "dataSource": "db",
     "public": true
+  },
+  "Review": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Rating": {
+    "dataSource": "db",
+    "public": true
+  },
+  "RatingType": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Major": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Perk": {
+    "dataSource": "db",
+    "public": false
   }
 }

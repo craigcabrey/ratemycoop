@@ -1,0 +1,25 @@
+{
+  "name": "Review",
+  "plural": "Reviews",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "anonymous": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "ratings": {
+      "type": "hasMany",
+      "model": "Rating",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}

@@ -16,7 +16,23 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "reviews": {
+      "type": "hasMany",
+      "model": "Review",
+      "foreignKey": ""
+    },
+    "majors": {
+      "type": "hasMany",
+      "model": "Major",
+      "foreignKey": ""
+    },
+    "perks": {
+      "type": "hasMany",
+      "model": "Perk",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": []
 }

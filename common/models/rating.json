@@ -1,0 +1,22 @@
+{
+  "name": "Rating",
+  "plural": "Ratings",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "value": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "ratingType": {
+      "type": "hasOne",
+      "model": "RatingType",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}
