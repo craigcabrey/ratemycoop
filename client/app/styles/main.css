@@ -1,7 +1,29 @@
+body, html {
+  height: 100%;
+}
+
 /* Space out content a bit */
 body {
   padding-bottom: 40px;
-  background: url("../images/notebook.png") repeat;
+  background: url("../images/brickwall.png") repeat;
+
+}
+
+#mainWelcome {
+  height: 100vh;
+  background-image: url("../images/city-background-18299-18763-hd-wallpapers.jpg");
+}
+
+.Absolute-Center {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 

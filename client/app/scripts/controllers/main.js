@@ -10,5 +10,6 @@
 angular.module('ratemycoopApp')
   .controller('MainCtrl', function ($scope) {
 
+    $("#bgvid").dimmer('show');
 
   });
