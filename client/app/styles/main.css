@@ -12,6 +12,12 @@ body {
 #mainWelcome {
   height: 100vh;
   background-image: url("../images/city-background-18299-18763-hd-wallpapers.jpg");
+
+}
+
+#mainWelcomeColumn {
+  height: 100%;
+  position: relative;
 }
 
 #mainSearch {
