@@ -36,3 +36,5 @@ bower_compontents
 
 # loopback
 server/datasources.json
+
+*.mp4
