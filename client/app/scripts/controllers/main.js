@@ -35,7 +35,7 @@ angular.module('ratemycoopApp')
       ];
 
       // Search trigger
-      $("#mainSearchBar").search({source: dummyCompanies});
+      $("#searchInput").search({source: dummyCompanies});
     });
 
 
