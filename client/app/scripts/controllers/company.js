@@ -9,6 +9,22 @@
  */
 angular.module('ratemycoopApp')
   .controller('CompanyCtrl', function ($scope) {
-    $("#rating").rating();
+
+    // Semantic Triggers .ready() block.
+    $(document).ready(function () {
+
+      var ratingIDs = ["#rating", "#overallRating", "#difficultyRating", "#cultureRating"];
+      $("#rating").rating();
+
+      for (var i = 0 ; i < ratingIDs.length; i++){
+        var id = ratingIDs[i];
+        $(id).rating({
+          maxRating:5
+        });
+        $(id).rating('disable');
+      }
+    });
+
+
 
   });
