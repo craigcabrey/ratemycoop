@@ -8,9 +8,16 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, Company) {
 
-
+    // OMG API TO ACCESS STUFF SO EASY
+    $scope.comp = Company.findOne({
+      filter: {
+        where: {
+          name: 'Datto, Inc.'
+        }
+      }
+    });
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
