@@ -30,13 +30,9 @@ build/Release
 node_modules
 bower_compontents
 
-# WebStorm 
+# WebStorm
 *.iml
 .idea/
 
-# loopback
-server/datasources.json
-
 # videos & mac
 *.mp4
-.DS_Store

@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "pretest": "jshint .",
-    "postinstall": "scripts/postinstall.sh"
+    "pretest": "jshint ."
   },
   "dependencies": {
     "compression": "^1.0.3",
