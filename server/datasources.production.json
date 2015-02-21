@@ -1,0 +1,11 @@
+{
+    "db": {
+        "name": "db",
+        "connector": "mysql",
+        "host": "localhost",
+        "port": 3306,
+        "database": "ratemycoop",
+        "username": "prod",
+        "password": "ekqLCSEFJBeFkV9Y8mh2P8azPje9Xu4b"
+    }
+}

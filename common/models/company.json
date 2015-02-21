@@ -19,18 +19,15 @@
   "relations": {
     "reviews": {
       "type": "hasMany",
-      "model": "Review",
-      "foreignKey": ""
+      "model": "Review"
     },
     "majors": {
-      "type": "hasMany",
-      "model": "Major",
-      "foreignKey": ""
+      "type": "hasManyThrough",
+      "model": "Major"
     },
     "perks": {
-      "type": "hasMany",
-      "model": "Perk",
-      "foreignKey": ""
+      "type": "hasManyThrough",
+      "model": "Perk"
     }
   },
   "acls": [],

@@ -44,7 +44,7 @@
   },
   "Major": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "Perk": {
     "dataSource": "db",
