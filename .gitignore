@@ -37,4 +37,6 @@ bower_compontents
 # loopback
 server/datasources.json
 
+# videos & mac
 *.mp4
+.DS_Store
