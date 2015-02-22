@@ -16,13 +16,11 @@
   "relations": {
     "college": {
       "type": "belongsTo",
-      "model": "College",
-      "foreignKey": ""
+      "model": "College"
     },
     "companies": {
       "type": "hasMany",
       "model": "Company",
-      "foreignKey": "companyId",
       "through": "CompanyMajor"
     }
   },
