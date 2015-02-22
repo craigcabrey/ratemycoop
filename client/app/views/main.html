@@ -3,27 +3,29 @@
 </video>
 
 <!-- Login button and popup -->
-<div class="loginButton">
-  <a href="" class="ui inverted orange icon button">
+<div class="loginButtonContainer">
+  <a id="loginButton" href="" class="ui inverted orange icon button">
     Login
     <i class="caret down icon"></i>
   </a>
 </div>
 <div class="ui flowing popup" id="loginPopup">
-  <div class="ui two column divided equal height center aligned grid">
+  <div class="ui one column grid">
     <div class="column">
-      <h4 class="ui header">Basic Plan</h4>
 
-      <p><b>2</b> projects, $10 a month</p>
+      <!-- Login Form -->
+      <div class="ui vertically padded form">
+        <div class="inline field">
+          <input type="text" placeholder="Email">
+        </div>
+        <div class="inline field">
+          <input type="password" placeholder="Password">
+        </div>
+        <div class="ui submit icon fluid orange button">
+          <i class="checkmark icon"></i>
+        </div>
 
-      <div class="ui button">Choose</div>
-    </div>
-    <div class="column">
-      <h4 class="ui header">Business Plan</h4>
-
-      <p><b>5</b> projects, $20 a month</p>
-
-      <div class="ui button">Choose</div>
+      </div>
     </div>
   </div>
 </div>
