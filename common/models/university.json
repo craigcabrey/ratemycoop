@@ -7,6 +7,10 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "shortName": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
