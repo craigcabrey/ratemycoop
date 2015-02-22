@@ -1,0 +1,21 @@
+{
+  "name": "CompanyMajor",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "company": {
+      "type": "belongsTo",
+      "model": "Company",
+      "foreignKey": "companyId"
+    },
+    "major": {
+      "type": "belongsTo",
+      "model": "Major",
+      "foreignKey": "majorId"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

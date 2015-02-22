@@ -21,13 +21,17 @@
       "type": "hasMany",
       "model": "Review"
     },
-    "majors": {
-      "type": "hasManyThrough",
-      "model": "Major"
-    },
     "perks": {
-      "type": "hasManyThrough",
-      "model": "Perk"
+      "type": "hasMany",
+      "model": "Perk",
+      "foreignKey": "perkId",
+      "through": "CompanyPerk"
+    },
+    "majors": {
+      "type": "hasMany",
+      "model": "Major",
+      "foreignKey": "majorId",
+      "through": "CompanyMajor"
     }
   },
   "acls": [],

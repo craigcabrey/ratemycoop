@@ -1,0 +1,21 @@
+{
+  "name": "CompanyPerk",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "company": {
+      "type": "belongsTo",
+      "model": "Company",
+      "foreignKey": "companyId"
+    },
+    "perk": {
+      "type": "belongsTo",
+      "model": "Perk",
+      "foreignKey": "perkId"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

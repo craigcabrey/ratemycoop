@@ -13,7 +13,14 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "companies": {
+      "type": "hasMany",
+      "model": "Company",
+      "foreignKey": "companyId",
+      "through": "CompanyMajor"
+    }
+  },
   "acls": [],
   "methods": []
 }

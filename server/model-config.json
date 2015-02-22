@@ -40,13 +40,21 @@
   },
   "RatingType": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "Major": {
     "dataSource": "db",
     "public": true
   },
   "Perk": {
+    "dataSource": "db",
+    "public": true
+  },
+  "CompanyMajor": {
+    "dataSource": "db",
+    "public": false
+  },
+  "CompanyPerk": {
     "dataSource": "db",
     "public": false
   }
