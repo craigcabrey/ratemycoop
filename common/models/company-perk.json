@@ -7,13 +7,11 @@
   "relations": {
     "company": {
       "type": "belongsTo",
-      "model": "Company",
-      "foreignKey": "companyId"
+      "model": "Company"
     },
     "perk": {
       "type": "belongsTo",
-      "model": "Perk",
-      "foreignKey": "perkId"
+      "model": "Perk"
     }
   },
   "acls": [],

@@ -17,12 +17,10 @@
     "college": {
       "type": "belongsTo",
       "model": "College",
-      "foreignKey": ""
     },
     "companies": {
       "type": "hasMany",
       "model": "Company",
-      "foreignKey": "companyId",
       "through": "CompanyMajor"
     }
   },

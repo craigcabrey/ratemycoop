@@ -7,13 +7,11 @@
   "relations": {
     "company": {
       "type": "belongsTo",
-      "model": "Company",
-      "foreignKey": "companyId"
+      "model": "Company"
     },
     "major": {
       "type": "belongsTo",
-      "model": "Major",
-      "foreignKey": "majorId"
+      "model": "Major"
     }
   },
   "acls": [],

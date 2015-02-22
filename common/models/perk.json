@@ -17,7 +17,6 @@
     "companies": {
       "type": "hasMany",
       "model": "Company",
-      "foreignKey": "companyId",
       "through": "CompanyPerk"
     }
   },
