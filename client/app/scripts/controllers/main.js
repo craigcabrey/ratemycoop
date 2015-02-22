@@ -28,9 +28,6 @@ angular.module('ratemycoopApp')
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
-      console.log("ready!");
-
-
       var dummyCompanies = [
         {title: 'Google'},
         {title: 'Apple'},
@@ -47,10 +44,6 @@ angular.module('ratemycoopApp')
         {title: 'UTC aerospace'},
         {title: 'Potato land'}
       ];
-
-
     });
-
-
   });
 
