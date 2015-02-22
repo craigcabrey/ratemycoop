@@ -16,7 +16,7 @@
   "relations": {
     "college": {
       "type": "belongsTo",
-      "model": "College",
+      "model": "College"
     },
     "companies": {
       "type": "hasMany",
