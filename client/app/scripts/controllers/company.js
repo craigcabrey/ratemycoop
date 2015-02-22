@@ -12,7 +12,11 @@ angular.module('ratemycoopApp')
 
     // Given the route, set the main company stuff
     $scope.selectedCompany = Company.findOne(
-      {filter: {where: {name: $routeParams.companyname}}},
+      {
+        filter: {
+          where: {name: $routeParams.companyname}
+        }
+      },
       function (success_data) {
         $scope.selectedCompany['logo_url'] = "http://api.scrapelogo.com/" + success_data.url.replace(/.*?:\/\//g, "") + "/nlogo"
       }
