@@ -28,6 +28,10 @@ angular.module('ratemycoopApp')
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
+      $(".loginButton").popup({
+        on: "click"
+      });
+
       var dummyCompanies = [
         {title: 'Google'},
         {title: 'Apple'},
