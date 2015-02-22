@@ -44,3 +44,6 @@ video#mainVideo {
   transform: translateY(-50%);
 }
 
+.footerContainer {
+  overflow:hidden;
+}
