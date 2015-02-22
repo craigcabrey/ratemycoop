@@ -16,7 +16,9 @@ video#mainVideo {
   background-size: cover;
 }
 
-#mainLogo {
+#logoTitle {
+  font-family: 'Lobster', cursive;
+  font-size: 4em;
   text-shadow: 0px 0px 15px rgba(150, 150, 150, 1);
 }
 
@@ -27,7 +29,6 @@ video#mainVideo {
   z-index: 1;
   background: transparent;
 }
-
 
 #mainWelcomeColumn {
   height: 100vh;
