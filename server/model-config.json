@@ -57,5 +57,13 @@
   "CompanyPerk": {
     "dataSource": "db",
     "public": false
+  },
+  "University": {
+    "dataSource": "db",
+    "public": true
+  },
+  "College": {
+    "dataSource": "db",
+    "public": true
   }
 }

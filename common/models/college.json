@@ -1,29 +1,24 @@
 {
-  "name": "Major",
+  "name": "College",
+  "plural": "Colleges",
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
-    "code": {
+    "name": {
       "type": "string",
       "required": true
     },
-    "name": {
+    "code": {
       "type": "string",
       "required": true
     }
   },
   "validations": [],
   "relations": {
-    "college": {
+    "university": {
       "type": "belongsTo",
-      "model": "College",
+      "model": "University",
       "foreignKey": ""
-    },
-    "companies": {
-      "type": "hasMany",
-      "model": "Company",
-      "foreignKey": "companyId",
-      "through": "CompanyMajor"
     }
   },
   "acls": [],
