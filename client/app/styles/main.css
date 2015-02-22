@@ -28,13 +28,9 @@ video#mainVideo {
   background: transparent;
 }
 
-#mainWelcome {
-  height: 100vh;
-}
 
 #mainWelcomeColumn {
-  height: 100%;
-  position: relative;
+  height: 100vh;
 }
 
 #mainSearch {
