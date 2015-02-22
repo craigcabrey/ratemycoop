@@ -1,0 +1,26 @@
+{
+  "name": "College",
+  "plural": "Colleges",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "code": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "university": {
+      "type": "belongsTo",
+      "model": "University",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}
