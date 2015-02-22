@@ -2,12 +2,34 @@
   <source src="../videos/video.mp4" type="video/mp4">
 </video>
 
-<div class="loginButton">
-  <a href="/#/company" class="ui inverted orange icon button">
+<!-- Login button and popup -->
+<div class="loginButtonContainer">
+  <a id="loginButton" href="" class="ui inverted orange icon button">
     Login
     <i class="caret down icon"></i>
   </a>
 </div>
+<div class="ui flowing popup" id="loginPopup">
+  <div class="ui one column grid">
+    <div class="column">
+
+      <!-- Login Form -->
+      <div class="ui vertically padded form">
+        <div class="inline field">
+          <input type="text" placeholder="Email">
+        </div>
+        <div class="inline field">
+          <input type="password" placeholder="Password">
+        </div>
+        <div class="ui submit icon fluid orange button">
+          <i class="checkmark icon"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Login button and popup END -->
 
 <!-- This centers amazingly -->
 <div class="ui one column stackable center aligned page vertically padded grid">
