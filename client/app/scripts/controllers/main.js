@@ -17,6 +17,7 @@ angular.module('ratemycoopApp')
         angular.forEach(success, function (value) {
           var newVal = value;
           newVal['title'] = value.name;
+          newVal['url'] = "/#/company/" + value.name;
           searchable.push(newVal);
         });
         $("#searchInput").search({
