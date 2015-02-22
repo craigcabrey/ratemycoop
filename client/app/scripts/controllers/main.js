@@ -11,13 +11,19 @@ angular.module('ratemycoopApp')
   .controller('MainCtrl', function ($scope, Company) {
 
     // OMG API TO ACCESS STUFF SO EASY
-    $scope.comp = Company.findOne({
-      filter: {
-        where: {
-          name: 'Datto, Inc.'
-        }
+    $scope.companies = Company.find({},
+      function (success) {// Search trigger
+        var searchable = [];
+        angular.forEach(success, function (value) {
+          var newVal = value;
+          newVal['title'] = value.name;
+          searchable.push(newVal);
+        });
+        $("#searchInput").search({
+          source: searchable
+        });
       }
-    });
+    );
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
@@ -41,8 +47,7 @@ angular.module('ratemycoopApp')
         {title: 'Potato land'}
       ];
 
-      // Search trigger
-      $("#searchInput").search({source: dummyCompanies});
+
     });
 
 
