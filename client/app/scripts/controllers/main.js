@@ -65,6 +65,7 @@ angular.module('ratemycoopApp')
         position: "bottom right",
         onVisible: function () {
           $("#loginButton").removeClass('inverted');
+          $("#emailField").focus();
         },
         onHide: function () {
           $("#loginButton").addClass('inverted');
