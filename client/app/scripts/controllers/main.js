@@ -26,6 +26,11 @@ angular.module('ratemycoopApp')
       }
     );
 
+
+    /**
+     *
+     * @type {string}
+     */
     $scope.searchCompanyField = '';
 
     $scope.handleSearchChange = function () {
@@ -54,18 +59,19 @@ angular.module('ratemycoopApp')
           password: $scope.loginForm.pass
         },
         function (success) {
+          // On Login Success
           // Change login button (including icon)
           $scope.loginForm.error = false;
 
-          // hide the popover
-          console.log("potato success");
         },
         function (err) {
-          // Hightlight forms for error
+          // On Error Login
           $scope.loginForm.error = true;
-          console.log("potato");
+          $("#passwordField").val("");
+          $("#emailField").select();
         });
     };
+
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
