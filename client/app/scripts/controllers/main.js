@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('MainCtrl', function ($scope, Company) {
+  .controller('MainCtrl', function ($scope, Company, User) {
 
     // OMG API TO ACCESS STUFF SO EASY
     $scope.companies = Company.find({},
@@ -25,6 +25,38 @@ angular.module('ratemycoopApp')
         });
       }
     );
+
+    /**
+     * Login initializer
+     * @type {{email: string, pass: string}}
+     */
+    $scope.loginForm = {
+      error: false,
+      email: "",
+      pass: ""
+    };
+
+    $scope.login = function () {
+      User.login({
+          rememberMe: true
+        }, {
+          email: $scope.loginForm.email,
+          password: $scope.loginForm.pass
+        },
+        function (success) {
+          // Change login button (including icon)
+          $scope.loginForm.error = false;
+
+          // hide the popover
+          console.log("potato success");
+        },
+        function (err) {
+          // Hightlight forms for error
+          $scope.loginForm.error = true;
+          console.log("potato");
+        });
+    };
+
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
