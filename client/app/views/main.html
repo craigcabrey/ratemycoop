@@ -40,9 +40,14 @@
           <input id="passwordField" ng-model="loginForm.pass" type="password" placeholder="Password"
                  ng-focus="loginForm.error = false">
         </div>
+        <div class="inline field" ng-show="loginForm.registerMode">
+          <input id="passwordConfirmField" ng-model="loginForm.pass" type="password" placeholder="Confirm Password"
+                 ng-focus="loginForm.error = false">
+        </div>
         <div class="two fields">
           <div class="field" style="margin-bottom: 0em;">
-            <button data-content="Register" class="ui icon fluid secondary button">
+            <button class="ui icon fluid secondary button" type="button"
+                    ng-click="toggleRegisterMode();">
               <i class="add user icon"></i>
             </button>
           </div>

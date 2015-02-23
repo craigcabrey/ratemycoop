@@ -55,7 +55,7 @@ angular.module('ratemycoopApp')
     };
 
     /**
-     * Login Functionality
+     * Login/Register Functionality
      * @type {{email: string, pass: string}}
      */
     $scope.userButton = {
@@ -64,7 +64,9 @@ angular.module('ratemycoopApp')
     $scope.loginForm = {
       error: false,
       email: "",
-      pass: ""
+      pass: "",
+      registerMode: false,
+      confirmPass: ""
     };
     $scope.login = function () {
       User.login({
@@ -95,6 +97,10 @@ angular.module('ratemycoopApp')
           $scope.userButton.text = "Login";
           $scope.user = null;
         });
+    };
+    $scope.toggleRegisterMode = function () {
+      $scope.loginForm.registerMode = !$scope.loginForm.registerMode; // Used for ui change
+
     };
 
 
