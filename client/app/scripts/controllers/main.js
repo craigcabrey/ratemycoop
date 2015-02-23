@@ -79,6 +79,7 @@ angular.module('ratemycoopApp')
           $scope.loginForm.error = false;
           $scope.userButton.text = usernameFromEmail(success.user.email);
           $(".loginButtonContainer").popup('hide');
+          $scope.user = User.getCurrent();
         },
         function (err) {
           // On Error Login
@@ -88,7 +89,12 @@ angular.module('ratemycoopApp')
         });
     };
     $scope.logout = function () {
-      User.logout();
+      User.logout({},
+        function (success) {
+          $("#loggedInPopup").popup('hide');
+          $scope.userButton.text = "Login";
+          $scope.user = null;
+        });
     };
 
 
