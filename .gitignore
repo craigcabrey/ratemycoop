@@ -1,6 +1,9 @@
 # OS X Files
 *DS_Store
 
+# vim .swp files
+*.swp
+
 # Logs
 logs
 *.log
