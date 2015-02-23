@@ -1,0 +1,26 @@
+{
+  "name": "Region",
+  "plural": "Regions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "code": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "country": {
+      "type": "belongsTo",
+      "model": "Country",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}

@@ -69,5 +69,9 @@
   "Country": {
     "dataSource": "db",
     "public": true
+  },
+  "Region": {
+    "dataSource": "db",
+    "public": true
   }
 }
