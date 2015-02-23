@@ -30,15 +30,15 @@ angular.module('ratemycoopApp')
      * Initialize Session
      */
     if (User.isAuthenticated()) {
-      var user = User.getCurrent(
+      $scope.user = User.getCurrent(
         function (success) {
-          console.log(success);
+          // Get user data
           $scope.userButton.text = usernameFromEmail(success.email);
-        },
-        function (err) {
-
+          console.log(success);
         }
       );
+    } else {
+      $scope.user = null;
     }
 
 
@@ -87,6 +87,9 @@ angular.module('ratemycoopApp')
           $("#emailField").select();
         });
     };
+    $scope.logout = function () {
+      User.logout();
+    };
 
 
     /**
@@ -119,6 +122,8 @@ angular.module('ratemycoopApp')
           $("#loginButton").addClass('inverted');
         }
       });
+
+      $("")
     });
   });
 

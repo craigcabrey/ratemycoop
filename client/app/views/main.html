@@ -9,9 +9,10 @@
     <i class="caret down icon"></i>
   </a>
 </div>
-<div class="ui flowing popup" id="loginPopup">
+<div class="ui flowing popup" id="loginPopup" ng-if="user === null">
   <div class="ui one column grid">
     <div class="column">
+
       <!-- Login Form -->
       <form class="ui vertically padded form" ng-submit="login()" ng-class="{error: loginForm.error}">
         <div class="ui error message centered aligned">
@@ -37,6 +38,16 @@
           </div>
         </div>
       </form>
+
+    </div>
+  </div>
+</div>
+<div class="ui flowing popup" id="loggedInPopup" ng-if="user !== null">
+  <div class="ui one column grid">
+    <div class="column">
+      <div class="ui icon button" ng-click="logout()">
+        <i class="sign out"></i>Logout
+      </div>
     </div>
   </div>
 </div>
@@ -63,31 +74,6 @@
         </div>
         <div class="ui results segment"></div>
       </div>
-
-      <!-- To be results -->
-      <!--<div class="ui left aligned segment">-->
-      <!--<div class="ui divided list">-->
-      <!--<div class="item">-->
-      <!--<i class="map marker icon"></i>-->
-
-      <!--<div class="content">-->
-      <!--<a class="header">Krowlewskie Jadlo</a>-->
-
-      <!--<div class="description">An excellent polish restaurant, quick delivery and hearty, filling meals.</div>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--<div class="item">-->
-      <!--<i class="map marker icon"></i>-->
-
-      <!--<div class="content">-->
-      <!--<a class="header">Sapporo Haru</a>-->
-
-      <!--<div class="description">Greenpoint's best choice for quick and delicious sushi.</div>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
-
     </div>
 
   </div>
