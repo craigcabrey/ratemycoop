@@ -45,12 +45,14 @@ video#mainVideo {
 
 #mainSearch {
   position: relative;
+  transform: translateY(-50%);
   top: 50%;
 
   -webkit-transition-property: top;
   -webkit-transition-duration: .5s;
-  transform: translateY(-50%);
-
+  transition-property: top;
+  -moz-transition-property: top;
+  -o-transition-property: top;
 }
 
 #mainSearch:hover {
