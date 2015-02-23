@@ -17,8 +17,11 @@
   "relations": {
     "university": {
       "type": "belongsTo",
-      "model": "University",
-      "foreignKey": ""
+      "model": "University"
+    },
+    "majors": {
+      "type": "hasMany",
+      "model": "Major"
     }
   },
   "acls": [
