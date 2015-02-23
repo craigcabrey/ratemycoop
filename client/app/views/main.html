@@ -5,7 +5,7 @@
 <!-- Login button and popup -->
 <div class="loginButtonContainer">
   <a id="loginButton" href="" class="ui inverted orange icon button">
-    Login
+    {{userButton.text}}
     <i class="caret down icon"></i>
   </a>
 </div>
@@ -18,8 +18,7 @@
           Invalid credentials.
         </div>
         <div class="inline field" ng-class="{error: loginForm.error}">
-          <input id="emailField" ng-model="loginForm.email" type="text" placeholder="Email"
-                 ng-focus="loginForm.error = false;">
+          <input id="emailField" ng-model="loginForm.email" type="text" placeholder="Email">
         </div>
         <div class="inline field" ng-class="{error: loginForm.error}">
           <input id="passwordField" ng-model="loginForm.pass" type="password" placeholder="Password"
@@ -49,7 +48,8 @@
       <!-- Search bar -->
       <div class="ui fluid search" id="searchInput">
         <div class="ui massive fluid icon input search">
-          <input class="prompt" type="text" ng-change="handleSearchChange()" ng-model="searchCompanyField" placeholder="Search Companies">
+          <input class="prompt" type="text" ng-change="handleSearchChange()" ng-model="searchCompanyField"
+                 placeholder="Search Companies">
           <i class="search icon"></i>
         </div>
         <div class="ui results segment"></div>

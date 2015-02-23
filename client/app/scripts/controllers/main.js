@@ -28,11 +28,9 @@ angular.module('ratemycoopApp')
 
 
     /**
-     *
-     * @type {string}
+     * Searching Functionality
      */
     $scope.searchCompanyField = '';
-
     $scope.handleSearchChange = function () {
       if ($scope.searchCompanyField === '') {
         $('#mainSearch').css({'top': '50%'});
@@ -42,15 +40,17 @@ angular.module('ratemycoopApp')
     };
 
     /**
-     * Login initializer
+     * Login Functionality
      * @type {{email: string, pass: string}}
      */
+    $scope.userButton = {
+      text: "Login"
+    };
     $scope.loginForm = {
       error: false,
       email: "",
       pass: ""
     };
-
     $scope.login = function () {
       User.login({
           rememberMe: true
@@ -62,7 +62,8 @@ angular.module('ratemycoopApp')
           // On Login Success
           // Change login button (including icon)
           $scope.loginForm.error = false;
-
+          $scope.userButton.text = success.user.email.substring(0, success.user.email.indexOf('@'));
+          $(".loginButtonContainer").popup('hide');
         },
         function (err) {
           // On Error Login
@@ -73,7 +74,9 @@ angular.module('ratemycoopApp')
     };
 
 
-    // Semantic Triggers .ready() block.
+    /**
+     * Semantic Triggers .ready() block.
+     */
     $(document).ready(function () {
       $(".loginButtonContainer").popup({
         on: "click",
