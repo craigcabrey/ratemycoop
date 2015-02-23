@@ -69,6 +69,8 @@ angular.module('ratemycoopApp')
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
+      $('#searchField').focus();
+
       $(".loginButtonContainer").popup({
         on: "click",
         position: "bottom right",
@@ -80,23 +82,6 @@ angular.module('ratemycoopApp')
           $("#loginButton").addClass('inverted');
         }
       });
-
-      var dummyCompanies = [
-        {title: 'Google'},
-        {title: 'Apple'},
-        {title: 'Amazon'},
-        {title: 'RedHat'},
-        {title: 'Reddit'},
-        {title: 'Unicef'},
-        {title: 'RIT'},
-        {title: 'Rochester Software Associates'},
-        {title: 'Datto'},
-        {title: 'Constant Contact'},
-        {title: 'Nuggies Land'},
-        {title: 'Mars Chocolate'},
-        {title: 'UTC aerospace'},
-        {title: 'Potato land'}
-      ];
     });
   });
 
