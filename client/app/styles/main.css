@@ -14,9 +14,14 @@ body {
 }
 
 video#mainVideo {
-  position: fixed; right: 0; bottom: 0;
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto; z-index: -100;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
   background-size: cover;
 }
 
@@ -41,9 +46,17 @@ video#mainVideo {
 #mainSearch {
   position: relative;
   top: 50%;
+
+  -webkit-transition-property: top;
+  -webkit-transition-duration: .5s;
   transform: translateY(-50%);
+
+}
+
+#mainSearch:hover {
+  top: 10%;
 }
 
 .footerContainer {
-  overflow:hidden;
+  overflow: hidden;
 }
