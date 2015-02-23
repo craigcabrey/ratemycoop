@@ -26,6 +26,16 @@ angular.module('ratemycoopApp')
       }
     );
 
+    $scope.searchCompanyField = '';
+
+    $scope.handleSearchChange = function () {
+      if ($scope.searchCompanyField === '') {
+        $('#mainSearch').css({'top': '50%'});
+      } else {
+        $('#mainSearch').css({'top': '10%'});
+      }
+    };
+
     /**
      * Login initializer
      * @type {{email: string, pass: string}}
@@ -56,7 +66,6 @@ angular.module('ratemycoopApp')
           console.log("potato");
         });
     };
-
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {

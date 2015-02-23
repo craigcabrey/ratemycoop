@@ -43,14 +43,13 @@
       <div class="ui basic center aligned segment">
         <div class="ui inverted huge header" id="logoTitle">
           rate my coop
-
         </div>
       </div>
 
       <!-- Search bar -->
       <div class="ui fluid search" id="searchInput">
         <div class="ui massive fluid icon input search">
-          <input class="prompt" type="text" placeholder="Search Companies">
+          <input class="prompt" type="text" ng-change="handleSearchChange()" ng-model="searchCompanyField" placeholder="Search Companies">
           <i class="search icon"></i>
         </div>
         <div class="ui results segment"></div>

@@ -49,14 +49,10 @@ video#mainVideo {
   top: 50%;
 
   -webkit-transition-property: top;
-  -webkit-transition-duration: .5s;
+  -webkit-transition-duration: .75s;
   transition-property: top;
   -moz-transition-property: top;
   -o-transition-property: top;
-}
-
-#mainSearch:hover {
-  top: 10%;
 }
 
 .footerContainer {
