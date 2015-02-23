@@ -129,7 +129,9 @@ angular.module('ratemycoopApp')
         }
       });
 
-      $("")
+      $("#logoutDropdown").dropdown();
+
+
     });
   });
 

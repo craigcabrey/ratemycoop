@@ -2,14 +2,28 @@
   <source src="../videos/video.mp4" type="video/mp4">
 </video>
 
+<!-- Logout -->
+<div class="loginButtonContainer" ng-hide="user === null">
+  <div class="ui dropdown" id="logoutDropdown">
+    <div class="ui inverted orange icon button">
+      Logout
+      <i class="caret down icon"></i>
+    </div>
+    <div class="menu">
+      <div class="item" ng-click="logout()">Logout</div>
+    </div>
+  </div>
+
+</div>
+
 <!-- Login button and popup -->
-<div class="loginButtonContainer">
+<div class="loginButtonContainer" ng-show="user === null">
   <a id="loginButton" href="" class="ui inverted orange icon button">
     {{userButton.text}}
     <i class="caret down icon"></i>
   </a>
 </div>
-<div class="ui flowing popup" id="loginPopup" ng-if="user === null">
+<div class="ui flowing popup" id="loginPopup">
   <div class="ui one column grid">
     <div class="column">
 
@@ -42,15 +56,15 @@
     </div>
   </div>
 </div>
-<div class="ui flowing popup" id="loggedInPopup" ng-if="user !== null">
-  <div class="ui one column grid">
-    <div class="column">
-      <div class="ui icon button" ng-click="logout()">
-        <i class="sign out"></i>Logout
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="ui flowing popup" id="loggedInPopup">-->
+<!--<div class="ui one column grid">-->
+<!--<div class="column">-->
+<!--<div class="ui icon button" ng-click="logout()">-->
+<!--<i class="sign out"></i>Logout-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <!-- Login button and popup END -->
 
 <!-- This centers amazingly -->
