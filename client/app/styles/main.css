@@ -45,17 +45,22 @@ video#mainVideo {
 
 #mainSearch {
   position: relative;
+  top: 50%;
+
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  top: 50%;
 
   -webkit-transition-property: top;
-  -webkit-transition-duration: .75s;
-  transition-property: top;
   -moz-transition-property: top;
   -o-transition-property: top;
+  transition-property: top;
+
+  -webkit-transition-duration: 0.75s;
+  -moz-transition-duration: 0.75s;
+  -o-transition-duration: 0.75s;
+  transition-duration: 0.75s;
 }
 
 .footerContainer {
