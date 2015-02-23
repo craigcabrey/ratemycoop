@@ -19,10 +19,10 @@
           Invalid credentials.
         </div>
         <div class="inline field" ng-class="{error: loginForm.error}">
-          <input ng-model="loginForm.email" type="text" placeholder="Email">
+          <input ng-model="loginForm.email" type="text" placeholder="Email" ng-focus="loginForm.error = false;">
         </div>
         <div class="inline field" ng-class="{error: loginForm.error}">
-          <input ng-model="loginForm.pass" type="password" placeholder="Password">
+          <input ng-model="loginForm.pass" type="password" placeholder="Password" ng-focus="loginForm.error = false">
         </div>
         <div ng-click="login()" class="ui submit icon fluid orange button">
           <i class="checkmark icon"></i>

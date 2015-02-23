@@ -26,6 +26,7 @@ angular.module('ratemycoopApp')
       }
     );
 
+
     /**
      * Login initializer
      * @type {{email: string, pass: string}}
@@ -47,19 +48,23 @@ angular.module('ratemycoopApp')
           // Change login button (including icon)
           $scope.loginForm.error = false;
 
-          // hide the popover
-          console.log("potato success");
+          // TODO: hide the popover
         },
         function (err) {
           // Hightlight forms for error
           $scope.loginForm.error = true;
-          console.log("potato");
+          $scope.loginForm.email = "";
+          $scope.loginForm.pass = "";
+
         });
     };
 
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
+      /**
+       * Setup popup for login
+       */
       $(".loginButtonContainer").popup({
         on: "click",
         position: "bottom right",
@@ -71,22 +76,6 @@ angular.module('ratemycoopApp')
         }
       });
 
-      var dummyCompanies = [
-        {title: 'Google'},
-        {title: 'Apple'},
-        {title: 'Amazon'},
-        {title: 'RedHat'},
-        {title: 'Reddit'},
-        {title: 'Unicef'},
-        {title: 'RIT'},
-        {title: 'Rochester Software Associates'},
-        {title: 'Datto'},
-        {title: 'Constant Contact'},
-        {title: 'Nuggies Land'},
-        {title: 'Mars Chocolate'},
-        {title: 'UTC aerospace'},
-        {title: 'Potato land'}
-      ];
     });
   });
 
