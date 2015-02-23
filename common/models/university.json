@@ -14,7 +14,12 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "colleges": {
+      "type": "hasMany",
+      "model": "College"
+    }
+  },
   "acls": [
     {
       "accessType": "*",
