@@ -16,6 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'angular.filter',
     'lbServices'
   ])
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
