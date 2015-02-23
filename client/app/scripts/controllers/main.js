@@ -78,6 +78,8 @@ angular.module('ratemycoopApp')
      * Semantic Triggers .ready() block.
      */
     $(document).ready(function () {
+      $('button').popup({position : 'bottom center'});
+
       $('#searchField').focus();
 
       $(".loginButtonContainer").popup({
