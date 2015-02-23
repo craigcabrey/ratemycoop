@@ -32,11 +32,11 @@
   },
   "Review": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "Rating": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "RatingType": {
     "dataSource": "db",
