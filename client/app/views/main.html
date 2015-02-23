@@ -12,9 +12,8 @@
 <div class="ui flowing popup" id="loginPopup">
   <div class="ui one column grid">
     <div class="column">
-
       <!-- Login Form -->
-      <div class="ui vertically padded form" ng-class="{error: loginForm.error}">
+      <form class="ui vertically padded form" ng-submit="login()" ng-class="{error: loginForm.error}">
         <div class="ui error message">
           Invalid credentials.
         </div>
@@ -24,11 +23,10 @@
         <div class="inline field" ng-class="{error: loginForm.error}">
           <input ng-model="loginForm.pass" type="password" placeholder="Password">
         </div>
-        <div ng-click="login()" class="ui submit icon fluid orange button">
+        <button type="submit" class="ui submit icon fluid orange button">
           <i class="checkmark icon"></i>
-        </div>
-
-      </div>
+        </button>
+      </form>
     </div>
   </div>
 </div>

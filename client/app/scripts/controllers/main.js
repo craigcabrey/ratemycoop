@@ -36,7 +36,7 @@ angular.module('ratemycoopApp')
       pass: ""
     };
 
-    $scope.login = function () {
+    $scope.login = function() {
       User.login({
           rememberMe: true
         }, {
@@ -46,14 +46,10 @@ angular.module('ratemycoopApp')
         function (success) {
           // Change login button (including icon)
           $scope.loginForm.error = false;
-
-          // hide the popover
-          console.log("potato success");
         },
         function (err) {
           // Hightlight forms for error
           $scope.loginForm.error = true;
-          console.log("potato");
         });
     };
 
