@@ -26,6 +26,21 @@ angular.module('ratemycoopApp')
       }
     );
 
+    /**
+     * Initialize Session
+     */
+    if (User.isAuthenticated()) {
+      var user = User.getCurrent(
+        function (success) {
+          console.log(success);
+          $scope.userButton.text = usernameFromEmail(success.email);
+        },
+        function (err) {
+
+        }
+      );
+    }
+
 
     /**
      * Searching Functionality
@@ -62,7 +77,7 @@ angular.module('ratemycoopApp')
           // On Login Success
           // Change login button (including icon)
           $scope.loginForm.error = false;
-          $scope.userButton.text = success.user.email.substring(0, success.user.email.indexOf('@'));
+          $scope.userButton.text = usernameFromEmail(success.user.email);
           $(".loginButtonContainer").popup('hide');
         },
         function (err) {
@@ -75,10 +90,21 @@ angular.module('ratemycoopApp')
 
 
     /**
+     * Simple helper function to get the xxx portion of xxx@yolo.com
+     * @param email
+     * @returns {string}
+     */
+    function usernameFromEmail(email) {
+      if (email.indexOf('@') >= 1) {
+        return email.substring(0, email.indexOf('@'));
+      }
+    }
+
+    /**
      * Semantic Triggers .ready() block.
      */
     $(document).ready(function () {
-      $('button').popup({position : 'bottom center'});
+      $('button').popup({position: 'bottom center'});
 
       $('#searchField').focus();
 
