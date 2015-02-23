@@ -63,6 +63,17 @@ video#mainVideo {
   transition-duration: 0.75s;
 }
 
+#coopDefinition {
+  cursor: default;
+}
+
+.searchResultsContainer {
+  overflow: auto;
+  height: 100%;
+  margin-bottom: 80px;
+  background-color: red;
+}
+
 .footerContainer {
   overflow: hidden;
 }
