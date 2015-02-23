@@ -29,7 +29,8 @@
 
       <!-- Login Form -->
       <form class="ui vertically padded form" ng-submit="login()" ng-class="{error: loginForm.error}">
-        <div class="ui error message centered aligned">
+        <div class="ui small error message centered aligned">
+          <i class="warning sign icon"></i>
           Invalid credentials.
         </div>
         <div class="inline field" ng-class="{error: loginForm.error}">
@@ -47,7 +48,7 @@
           </div>
           <div class="field" style="margin-bottom: 0em;">
             <button data-content="Login" type="submit" class="ui icon fluid orange button">
-              <i class="checkmark icon"></i>
+              <i class="sign in icon"></i>
             </button>
           </div>
         </div>
