@@ -99,7 +99,7 @@ angular.module('ratemycoopApp')
         });
     };
     $scope.toggleRegisterMode = function () {
-      $scope.loginForm.registerMode = !loginForm.registerMode // Used for ui change
+      $scope.loginForm.registerMode = !$scope.loginForm.registerMode; // Used for ui change
 
     };
 
