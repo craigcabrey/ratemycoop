@@ -43,21 +43,21 @@
       "permission": "DENY"
     },
     {
-      "accessType": "EXECUTE",
+      "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "find"
     },
     {
-      "accessType": "EXECUTE",
+      "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "findOne"
     },
     {
-      "accessType": "EXECUTE",
+      "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW",
