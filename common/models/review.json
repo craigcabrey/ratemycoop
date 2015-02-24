@@ -18,6 +18,11 @@
       "type": "hasMany",
       "model": "Rating",
       "foreignKey": ""
+    },
+    "payType": {
+      "type": "hasOne",
+      "model": "PayType",
+      "foreignKey": ""
     }
   },
   "acls": [],
