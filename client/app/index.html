@@ -25,17 +25,23 @@
 <!-- Add your site or application content here -->
 <div class="container">
 
+  <!-- Header/navbar -->
   <div class="check-element animate-show" ng-controller="NavCtrl" ng-hide="inHome('/')">
     <nav class="ui fixed menu inverted navbar">
       <a href="#/" class="brand item">
         <i class="smile icon"></i>
         rate my coop
       </a>
+      <div class="item">
+        <div login-directive=""></div>
+      </div>
     </nav>
   </div>
 
+  <!-- Main content -->
   <div ng-view=""></div>
 
+  <!-- Footer -->
   <div class="footerContainer">
     <div class="ui grid">
       <div class="column footer tablet only computer only">
@@ -104,6 +110,9 @@
 <script src="scripts/controllers/about.js"></script>
 <script src="scripts/controllers/company.js"></script>
 <script src="scripts/controllers/navcontroller.js"></script>
+<script src="scripts/directives/logindirective.js"></script>
+<script src="scripts/controllers/logincontroller.js"></script>
+<script src="scripts/controllers/login.js"></script>
 <!-- endbuild -->
 <script src="scripts/lb-services.js"></script>
 </body>
