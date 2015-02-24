@@ -13,8 +13,7 @@
   "relations": {
     "ratingType": {
       "type": "hasOne",
-      "model": "RatingType",
-      "foreignKey": ""
+      "model": "RatingType"
     }
   },
   "acls": [],
