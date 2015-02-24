@@ -10,7 +10,12 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "review": {
+      "type": "belongsTo",
+      "model": "Review"
+    }
+  },
   "acls": [],
   "methods": []
 }

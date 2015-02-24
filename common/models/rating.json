@@ -10,12 +10,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "ratingType": {
-      "type": "hasOne",
-      "model": "RatingType"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": []
 }
