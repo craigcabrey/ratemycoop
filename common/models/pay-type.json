@@ -1,22 +1,19 @@
 {
-  "name": "Review",
-  "plural": "Reviews",
+  "name": "PayType",
+  "plural": "PayTypes",
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
-    "anonymous": {
-      "type": "boolean"
-    },
-    "description": {
+    "name": {
       "type": "string",
       "required": true
     }
   },
   "validations": [],
   "relations": {
-    "ratings": {
-      "type": "hasMany",
-      "model": "Rating"
+    "review": {
+      "type": "belongsTo",
+      "model": "Review"
     }
   },
   "acls": [],

@@ -18,9 +18,9 @@
   "acls": [
     {
       "accessType": "*",
-      "principtalType": "ROLE",
       "principalId": "$everyone",
-      "permission": "DENY"
+      "permission": "DENY",
+      "principtalType": "ROLE"
     },
     {
       "accessType": "EXECUTE",

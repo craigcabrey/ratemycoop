@@ -73,5 +73,9 @@
   "Region": {
     "dataSource": "db",
     "public": true
+  },
+  "PayType": {
+    "dataSource": "db",
+    "public": true
   }
 }
