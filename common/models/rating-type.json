@@ -9,12 +9,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "ratings": {
-      "type": "hasMany",
-      "model": "Rating"
-    }
-  },
+  "relations": {},
   "acls": [
     {
       "accessType": "*",
