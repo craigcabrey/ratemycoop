@@ -5,7 +5,16 @@
   "idInjection": true,
   "properties": {
     "anonymous": {
-      "type": "boolean"
+      "type": "boolean",
+      "required": "true"
+    },
+    "returnOffer": {
+      "type": "boolean",
+      "required": "true"
+    },
+    "recommend": {
+      "type": "boolean",
+      "required": "true"
     },
     "description": {
       "type": "string",
