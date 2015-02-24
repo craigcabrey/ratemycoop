@@ -11,14 +11,16 @@ angular.module('ratemycoopApp')
   .controller('CompanyCtrl', function ($scope, $routeParams, Company) {
 
     // Given the route, set the main company stuff
-    $scope.selectedCompany = Company.findOne(
+    $scope.company = Company.findOne(
       {
         filter: {
           where: {name: $routeParams.companyname}
         }
       },
       function (success_data) {
-        $scope.selectedCompany['logo_url'] = "http://api.scrapelogo.com/" + success_data.url.replace(/.*?:\/\//g, "") + "/nlogo"
+        $scope.company['logo_url'] = "http://api.scrapelogo.com/" + success_data.url.replace(/.*?:\/\//g, "") + "/nlogo";
+        console.log(success_data);
+
       }
     );
 
