@@ -3,7 +3,7 @@
     <div class="column">
 
       <!-- Main overview content segment -->
-      <div class="ui fluid segment">
+      <div class="ui fluid stackable segment">
 
         <!-- Company Image, title, and overview -->
         <div class="ui vertical segment">
@@ -14,7 +14,8 @@
             <div class="twelve wide column">
               <h1 class="ui header">
                 <div class="content">
-                  {{company.name}}
+                  <a href="{{company.url}}" target="_blank">{{company.name}}</a>
+
                   <div class="sub header">
                     {{company.description}}
                   </div>
@@ -27,24 +28,49 @@
         <!-- Overview one -->
         <div class="ui vertical segment">
           <div class="ui grid">
-            <div class="four wide column">
+            <div class="five wide column">
 
-              <div class="ui list">
+              <div class="ui vertical menu">
                 <div class="item">
                   <div class="header">Overall Rating</div>
                   <div class="ui huge star rating" data-rating="4" id="rating" data-max-rating="5"></div>
-
                 </div>
                 <div class="item">
-                  <div class="ui green circular icon labels">
-                    <i class="dollar icon label"></i>
+                  <div class="ui labels">
                     <i class="dollar icon"></i>
                     <i class="dollar icon"></i>
                     <i class="dollar icon"></i>
-                    21 - 30
+                    <i class="disabled dollar icon"></i>
                   </div>
                 </div>
               </div>
+
+            </div>
+            <div class="eleven wide column">
+
+              <div class="ui segment">
+                <div class="ui top left attached label">Perks</div>
+                <!-- Perks -->
+                <div class="ui labels">
+                  <div class="ui black label">
+                    <i class="home icon"></i>
+                    Housing
+                  </div>
+                  <div class="ui green label">
+                    <i class="plane icon"></i>
+                    Relocation
+                  </div>
+                  <div class="ui red label">
+                    <i class="food icon"></i>
+                    Food
+                  </div>
+                  <div class="ui teal label">
+                    <i class="handicap icon"></i>
+                    Insurance
+                  </div>
+                </div>
+              </div>
+
 
             </div>
           </div>
