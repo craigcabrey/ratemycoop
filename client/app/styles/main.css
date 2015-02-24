@@ -31,14 +31,6 @@ video#mainVideo {
   text-shadow: 0px 0px 15px rgba(150, 150, 150, 1);
 }
 
-.loginButtonContainer {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1;
-  background: transparent;
-}
-
 #mainWelcomeColumn {
   height: 100vh;
 }
@@ -77,7 +69,6 @@ video#mainVideo {
 .footerContainer {
   overflow: hidden;
 }
-
 
 .animate-show {
   line-height: 20px;

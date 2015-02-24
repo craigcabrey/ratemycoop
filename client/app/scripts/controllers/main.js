@@ -26,21 +26,6 @@ angular.module('ratemycoopApp')
       }
     );
 
-    /**
-     * Initialize Session
-     */
-    if (User.isAuthenticated()) {
-      $scope.user = User.getCurrent(
-        function (success) {
-          // Get user data
-          $scope.userButton.text = usernameFromEmail(success.email);
-          console.log(success);
-        }
-      );
-    } else {
-      $scope.user = null;
-    }
-
 
     /**
      * Searching Functionality
@@ -50,94 +35,19 @@ angular.module('ratemycoopApp')
       if ($scope.searchCompanyField === '') {
         $('#mainSearch').css({'top': '50%'});
       } else {
-        $('#mainSearch').css({'top': '10%'});
+        $('#mainSearch').css({'top': '20%'});
       }
     };
 
-    /**
-     * Login/Register Functionality
-     * @type {{email: string, pass: string}}
-     */
-    $scope.userButton = {
-      text: "Login"
-    };
-    $scope.loginForm = {
-      error: false,
-      email: "",
-      pass: "",
-      registerMode: false,
-      confirmPass: ""
-    };
-    $scope.login = function () {
-      User.login({
-          rememberMe: true
-        }, {
-          email: $scope.loginForm.email,
-          password: $scope.loginForm.pass
-        },
-        function (success) {
-          // On Login Success
-          // Change login button (including icon)
-          $scope.loginForm.error = false;
-          $scope.userButton.text = usernameFromEmail(success.user.email);
-          $(".loginButtonContainer").popup('hide');
-          $scope.user = User.getCurrent();
-        },
-        function (err) {
-          // On Error Login
-          $scope.loginForm.error = true;
-          $("#passwordField").val("");
-          $("#emailField").select();
-        });
-    };
-    $scope.logout = function () {
-      User.logout({},
-        function (success) {
-          $("#loggedInPopup").popup('hide');
-          $scope.userButton.text = "Login";
-          $scope.user = null;
-        });
-    };
-    $scope.toggleRegisterMode = function () {
-      $scope.loginForm.registerMode = !$scope.loginForm.registerMode; // Used for ui change
-
-    };
-
-
-    /**
-     * Simple helper function to get the xxx portion of xxx@yolo.com
-     * @param email
-     * @returns {string}
-     */
-    function usernameFromEmail(email) {
-      if (email.indexOf('@') >= 1) {
-        return email.substring(0, email.indexOf('@'));
-      }
-    }
 
     /**
      * Semantic Triggers .ready() block.
      */
     $(document).ready(function () {
-      $('#coopDefinition').popup({ position: 'bottom center' });
-      $('button').popup({ position: 'bottom center' });
+      $('#coopDefinition').popup({position: 'bottom center'});
+      $('button').popup({position: 'bottom center'});
 
       $('#searchField').focus();
-
-      $(".loginButtonContainer").popup({
-        on: "click",
-        position: "bottom right",
-        onVisible: function () {
-          $("#loginButton").removeClass('inverted');
-          $("#emailField").focus();
-        },
-        onHide: function () {
-          $("#loginButton").addClass('inverted');
-        }
-      });
-
-      $("#logoutDropdown").dropdown();
-
 
     });
   });
