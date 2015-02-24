@@ -35,7 +35,7 @@ angular.module('ratemycoopApp')
       if ($scope.searchCompanyField === '') {
         $('#mainSearch').css({'top': '50%'});
       } else {
-        $('#mainSearch').css({'top': '10%'});
+        $('#mainSearch').css({'top': '20%'});
       }
     };
 
