@@ -18,7 +18,9 @@ angular.module('ratemycoopApp')
         }
       },
       function (success_data) {
-        $scope.company['logo_url'] = "http://api.scrapelogo.com/" + success_data.url.replace(/.*?:\/\//g, "") + "/nlogo";
+        //$scope.company['logo_url'] = "/logos/" + success_data.logo;
+        $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + success_data.logo;
+
         console.log(success_data);
 
       }
