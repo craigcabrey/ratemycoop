@@ -15,7 +15,7 @@ angular.module('ratemycoopApp')
       {
         filter: {
           where: {name: $routeParams.companyname},
-          include: ['perks']
+          include: ['perks', ['majors']]
         }
       },
       function (successData) {
