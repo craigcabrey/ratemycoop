@@ -27,7 +27,7 @@ angular.module('ratemycoopApp')
 
 
     /**
-     * Login/Register Functionality
+     * Sets scope to control user flow
      * @type {{email: string, pass: string}}
      */
     $scope.userButton = {
@@ -35,23 +35,47 @@ angular.module('ratemycoopApp')
     };
     $scope.loginForm = {
       error: false,
+      errorMessage: "Invalid credentials. ",
       email: "",
       pass: "",
       registerMode: false,
       confirmPass: ""
     };
-    $scope.login = function () {
+    /**
+     * POSTCONDITION:
+     * All fields and errors are clear, register mode is OFF
+     */
+    $scope.clearLoginFormData = function () {
+      $scope.loginForm = {
+        error: false,
+        errorMessage: "Invalid credentials. ",
+        email: "",
+        pass: "",
+        registerMode: false,
+        confirmPass: ""
+      };
+    };
+
+    /**
+     * Log in or Register action
+     */
+    $scope.submitLoginForm = function () {
       // First, check if register
       if ($scope.loginForm.registerMode) {
         var form = $scope.loginForm;
-        if (form.confirmPass === form.pass) { //TODO: add email validation
+        if (form.confirmPass === form.pass && /(.+)@(.+){2,}\.(.+){2,}/.test(form.email)) {
           Users.create({
             email: form.email,
             password: form.pass
           });
 
         } else {
-          // TODO: Handle unmatching passwords
+          // Clear everything
+          $scope.loginForm.email = "";
+          $scope.loginForm.pass = "";
+          $scope.loginForm.error = false;
+          $scope.loginForm.confirmPass = "";
+          setLoginError("Invalid data.");
         }
 
       } else {
@@ -71,8 +95,9 @@ angular.module('ratemycoopApp')
             $scope.user = User.getCurrent();
           },
           function (err) {
+            console.log('oops');
             // On Error Login
-            $scope.loginForm.error = true;
+            setLoginError("Invalid credentials.");
             $("#passwordField").val("");
             $("#emailField").select();
           });
@@ -90,26 +115,22 @@ angular.module('ratemycoopApp')
     $scope.toggleRegisterMode = function () {
       // Reset all data, make sure we are clean for register
       $scope.loginForm.registerMode = !$scope.loginForm.registerMode; // Used for ui change
-      if ($scope.loginForm.registerMode) {
-        $scope.loginForm.email = "";
-        $scope.loginForm.pass = "";
-        $scope.loginForm.error = false;
-        $scope.loginForm.confirmPass = "";
-      }
+      $scope.loginForm.email = "";
+      $scope.loginForm.pass = "";
+      $scope.loginForm.error = false;
+      $scope.loginForm.confirmPass = "";
 
 
     };
 
-
-    $scope.clearLoginFormData = function () {
-      $scope.loginForm = {
-        error: false,
-        email: "",
-        pass: "",
-        registerMode: false,
-        confirmPass: ""
-      };
-    };
+    /**
+     * Sets an error in login form.
+     * @param message - message to display to user
+     */
+    function setLoginError(message) {
+      $scope.loginForm.error = true;
+      $scope.loginForm.errorMessage = message;
+    }
 
 
     /**

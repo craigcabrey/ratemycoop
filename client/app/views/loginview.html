@@ -23,10 +23,10 @@
     <div class="column">
 
       <!-- Login Form -->
-      <form class="ui vertically padded form" ng-submit="login()" ng-class="{error: loginForm.error}">
+      <form class="ui vertically padded form" ng-submit="submitLoginForm()" ng-class="{error: loginForm.error}">
         <div class="ui small error message centered aligned">
           <i class="warning sign icon"></i>
-          Invalid credentials.
+          {{loginForm.errorMessage}}
         </div>
         <div class="inline field" ng-class="{error: loginForm.error}">
           <input id="emailField" ng-model="loginForm.email" type="text" placeholder="Email">
