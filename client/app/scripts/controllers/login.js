@@ -41,26 +41,43 @@ angular.module('ratemycoopApp')
       confirmPass: ""
     };
     $scope.login = function () {
-      User.login({
-          rememberMe: true
-        }, {
-          email: $scope.loginForm.email,
-          password: $scope.loginForm.pass
-        },
-        function (success) {
-          // On Login Success
-          // Change login button (including icon)
-          $scope.loginForm.error = false;
-          $scope.userButton.text = usernameFromEmail(success.user.email);
-          $(".loginButtonContainer").popup('hide');
-          $scope.user = User.getCurrent();
-        },
-        function (err) {
-          // On Error Login
-          $scope.loginForm.error = true;
-          $("#passwordField").val("");
-          $("#emailField").select();
-        });
+      // First, check if register
+      if ($scope.loginForm.registerMode) {
+        var form = $scope.loginForm;
+        if (form.confirmPass === form.pass) { //TODO: add email validation
+          Users.create({
+            email: form.email,
+            password: form.pass
+          });
+
+        } else {
+          // TODO: Handle unmatching passwords
+        }
+
+      } else {
+        // Else, login
+        User.login({
+            rememberMe: true
+          }, {
+            email: $scope.loginForm.email,
+            password: $scope.loginForm.pass
+          },
+          function (success) {
+            // On Login Success
+            // Change login button (including icon)
+            $scope.clearLoginFormData();
+            $scope.userButton.text = usernameFromEmail(success.user.email);
+            $(".loginButtonContainer").popup('hide');
+            $scope.user = User.getCurrent();
+          },
+          function (err) {
+            // On Error Login
+            $scope.loginForm.error = true;
+            $("#passwordField").val("");
+            $("#emailField").select();
+          });
+      }
+
     };
     $scope.logout = function () {
       User.logout({},
@@ -71,13 +88,27 @@ angular.module('ratemycoopApp')
         });
     };
     $scope.toggleRegisterMode = function () {
+      // Reset all data, make sure we are clean for register
       $scope.loginForm.registerMode = !$scope.loginForm.registerMode; // Used for ui change
-      $scope.loginForm.email = "";
-      $scope.loginForm.pass = "";
-      $scope.loginForm.error = false;
-      $scope.loginForm.confirmPass = "";
+      if ($scope.loginForm.registerMode) {
+        $scope.loginForm.email = "";
+        $scope.loginForm.pass = "";
+        $scope.loginForm.error = false;
+        $scope.loginForm.confirmPass = "";
+      }
 
 
+    };
+
+
+    $scope.clearLoginFormData = function () {
+      $scope.loginForm = {
+        error: false,
+        email: "",
+        pass: "",
+        registerMode: false,
+        confirmPass: ""
+      };
     };
 
 

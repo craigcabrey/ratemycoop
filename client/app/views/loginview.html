@@ -12,7 +12,7 @@
 </div>
 
 <!-- Login button and popup -->
-<div class="loginButtonContainer" ng-show="user === null">
+<div class="loginButtonContainer" ng-show="user === null" ng-click="clearLoginFormData()">
   <a id="loginButton" href="" class="ui inverted orange icon button">
     Login
     <i class="caret down icon"></i>
@@ -35,20 +35,37 @@
           <input id="passwordField" ng-model="loginForm.pass" type="password" placeholder="Password"
                  ng-focus="loginForm.error = false">
         </div>
-        <div class="inline field" ng-show="loginForm.registerMode">
-          <input id="passwordConfirmField" ng-model="loginForm.pass" type="password" placeholder="Confirm Password"
+        <div class="inline field" ng-show="loginForm.registerMode" ng-class="{error: loginForm.error}">
+          <input id="passwordConfirmField" ng-model="loginForm.confirmPass" type="password"
+                 placeholder="Confirm Password"
                  ng-focus="loginForm.error = false">
         </div>
-        <div class="two fields">
-          <div class="field" style="margin-bottom: 0em;">
+
+        <!-- Submit buttons -->
+        <div class="two fields" ng-hide="loginForm.registerMode">
+          <div class="field" style="margin-bottom: 0;">
             <button class="ui icon fluid secondary button" type="button"
                     ng-click="toggleRegisterMode();">
               <i class="add user icon"></i>
             </button>
           </div>
-          <div class="field" style="margin-bottom: 0em;">
+          <div class="field" style="margin-bottom: 0;">
             <button data-content="Login" type="submit" class="ui icon fluid orange button">
               <i class="sign in icon"></i>
+            </button>
+          </div>
+        </div>
+        <!-- buttons showing different things -->
+        <div class="two fields" ng-show="loginForm.registerMode">
+          <div class="field" style="margin-bottom: 0;">
+            <button class="ui icon fluid red button" type="button"
+                    ng-click="toggleRegisterMode();">
+              <i class="remove icon"></i>
+            </button>
+          </div>
+          <div class="field" style="margin-bottom: 0;">
+            <button data-content="Login" type="submit" class="ui icon fluid green button">
+              <i class="add user icon"></i>
             </button>
           </div>
         </div>
