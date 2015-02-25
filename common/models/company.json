@@ -15,7 +15,10 @@
       "type": "string"
     },
     "overallRating": {
-      "type": "number"
+      "type": "number",
+      "dataType": "decimal",
+      "precision": "1",
+      "scale": "2"
     },
     "description": {
       "type": "string"
