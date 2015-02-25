@@ -1,0 +1,19 @@
+{
+  "name": "Location",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "company": {
+      "type": "belongsTo",
+      "model": "Company"
+    },
+    "city": {
+      "type": "belongsTo",
+      "model": "City"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

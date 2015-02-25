@@ -14,7 +14,12 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "regions": {
+      "type": "hasMany",
+      "model": "Region"
+    }
+  },
   "acls": [
     {
       "accessType": "*",

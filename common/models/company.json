@@ -39,6 +39,12 @@
       "type": "hasMany",
       "model": "Major",
       "through": "CompanyMajor"
+    },
+    "cities": {
+      "type": "hasMany",
+      "model": "City",
+      "foreignKey": "",
+      "through": "Location"
     }
   },
   "acls": [

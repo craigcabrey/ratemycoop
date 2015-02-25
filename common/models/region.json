@@ -19,6 +19,10 @@
       "type": "belongsTo",
       "model": "Country",
       "foreignKey": ""
+    },
+    "cities": {
+      "type": "hasMany",
+      "model": "City"
     }
   },
   "acls": [
