@@ -11,6 +11,10 @@
     "shortName": {
       "type": "string",
       "required": false
+    },
+    "domain": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
