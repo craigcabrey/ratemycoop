@@ -14,17 +14,24 @@ angular.module('ratemycoopApp')
     $scope.company = Company.findOne(
       {
         filter: {
-          where: {name: $routeParams.companyname}
+          where: {name: $routeParams.companyname},
+          include: ['perks', ['majors']]
         }
       },
-      function (success_data) {
-        //$scope.company['logo_url'] = "/logos/" + success_data.logo;
-        $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + success_data.logo;
-
-        console.log(success_data);
-
+      function (successData) {
+        onCompanySuccess(successData);
       }
     );
+
+    /**
+     * Runs when company gets retrieved successfully
+     * @param companyData
+     */
+    function onCompanySuccess(companyData) {
+      $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+      console.log(companyData);
+
+    }
 
 
     // Semantic Triggers .ready() block.

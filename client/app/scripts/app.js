@@ -19,7 +19,7 @@ angular
     'angular.filter',
     'lbServices'
   ])
-  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+  .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', function ($routeProvider, $locationProvider, LoopBackResourceProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -37,5 +37,8 @@ angular
         redirectTo: '/'
       });
 
-      //$locationProvider.html5Mode({ enabled: true, requireBase: false });
+    //$locationProvider.html5Mode({ enabled: true, requireBase: false });
+
+    // Set url base
+    LoopBackResourceProvider.setUrlBase('https://ratemycoop.io/api');
   }]);

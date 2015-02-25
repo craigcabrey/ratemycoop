@@ -9,7 +9,7 @@
         <div class="ui vertical segment">
           <div class="ui stackable grid">
             <div class="four wide column">
-              <img class="ui image" src="{{company.logo_url}}">
+              <img class="ui image" ng-src="{{company.logo_url}}">
             </div>
             <div class="twelve wide column">
               <h1 class="ui header">
@@ -21,7 +21,7 @@
                   </div>
                   <div class="ui right floated inverted green icon button">
                     <i class="write icon"></i>
-                    Review
+                    Write a review
                   </div>
                 </div>
               </h1>
@@ -68,7 +68,7 @@
             <div class="eleven wide column">
 
               <div class="ui top attached segment">
-                <div class="ui teal ribbon label">Pay & Compensation</div>
+                <div class="ui black ribbon label">Pay & Compensation</div>
 
                 <div class="ui fluid list">
                   <div class="item">
@@ -87,45 +87,50 @@
               <div class="ui attached segment">
                 <div class="ui orange ribbon label">Perks</div>
                 <div class="ui labels" style="margin-top: 10px">
-                  <div class="ui black label">
-                    <i class="home icon"></i>
-                    Housing
+
+                  <div class="ui label" ng-repeat="perk in company.perks">
+                    <i class="icon" ng-class="perk.icon"></i>
+                    {{perk.name}}
                   </div>
-                  <div class="ui green label">
-                    <i class="plane icon"></i>
-                    Relocation
-                  </div>
-                  <div class="ui red label">
-                    <i class="food icon"></i>
-                    Food
-                  </div>
-                  <div class="ui teal label">
-                    <i class="handicap icon"></i>
-                    Insurance
-                  </div>
-                  <div class="ui blue label">
-                    <i class="car icon"></i>
-                    Parking
-                  </div>
+
+                  <!--<div class="ui black label">-->
+                  <!--<i class="home icon"></i>-->
+                  <!--Housing-->
+                  <!--</div>-->
+                  <!--<div class="ui green label">-->
+                  <!--<i class="plane icon"></i>-->
+                  <!--Relocation-->
+                  <!--</div>-->
+                  <!--<div class="ui red label">-->
+                  <!--<i class="food icon"></i>-->
+                  <!--Food-->
+                  <!--</div>-->
+                  <!--<div class="ui teal label">-->
+                  <!--<i class="handicap icon"></i>-->
+                  <!--Insurance-->
+                  <!--</div>-->
+                  <!--<div class="ui blue label">-->
+                  <!--<i class="car icon"></i>-->
+                  <!--Parking-->
+                  <!--</div>-->
                 </div>
               </div>
               <!-- Majors -->
               <div class="ui bottom attached segment">
                 <div class="ui blue ribbon label">Desired Majors</div>
 
-                <div class="ui black circular label">
-                  SWEN
+                <div class="ui circular label" ng-repeat="major in company.majors">
+                  {{major.code}}
                 </div>
-                <div class="ui green circular label">
-                  CSSI
-                </div>
-                <div class="ui red circular label">
-                  EEEN
-                </div>
-                <div class="ui teal circular label">
-                  PACK
-                </div>
-
+                <!--<div class="ui green circular label">-->
+                <!--CSCI-->
+                <!--</div>-->
+                <!--<div class="ui red circular label">-->
+                <!--EEEN-->
+                <!--</div>-->
+                <!--<div class="ui teal circular label">-->
+                <!--PACK-->
+                <!--</div>-->
 
               </div>
 
