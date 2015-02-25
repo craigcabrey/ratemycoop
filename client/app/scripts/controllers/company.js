@@ -14,7 +14,8 @@ angular.module('ratemycoopApp')
     $scope.company = Company.findOne(
       {
         filter: {
-          where: {name: $routeParams.companyname}
+          where: {name: $routeParams.companyname},
+          include: ['perks']
         }
       },
       function (successData) {
@@ -30,15 +31,6 @@ angular.module('ratemycoopApp')
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
       console.log(companyData);
 
-
-      //Get perks
-      $scope.perks = Company.perks({
-          id: $scope.company.id,
-          filter: {}
-        },
-        function (success) {
-          console.log(success);
-        });
     }
 
 
