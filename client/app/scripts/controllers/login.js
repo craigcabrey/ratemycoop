@@ -72,6 +72,11 @@ angular.module('ratemycoopApp')
     };
     $scope.toggleRegisterMode = function () {
       $scope.loginForm.registerMode = !$scope.loginForm.registerMode; // Used for ui change
+      $scope.loginForm.email = "";
+      $scope.loginForm.pass = "";
+      $scope.loginForm.error = false;
+      $scope.loginForm.confirmPass = "";
+
 
     };
 
@@ -88,12 +93,11 @@ angular.module('ratemycoopApp')
     }
 
 
-
     /**
      * Semantic Triggers .ready() block.
      */
     $(document).ready(function () {
-      $('button').popup({ position: 'bottom center' });
+      $('button').popup({position: 'bottom center'});
 
       $(".loginButtonContainer").popup({
         on: "click",
