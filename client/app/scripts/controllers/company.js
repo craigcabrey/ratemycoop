@@ -17,14 +17,29 @@ angular.module('ratemycoopApp')
           where: {name: $routeParams.companyname}
         }
       },
-      function (success_data) {
-        //$scope.company['logo_url'] = "/logos/" + success_data.logo;
-        $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + success_data.logo;
-
-        console.log(success_data);
-
+      function (successData) {
+        onCompanySuccess(successData);
       }
     );
+
+    /**
+     * Runs when company gets retrieved successfully
+     * @param companyData
+     */
+    function onCompanySuccess(companyData) {
+      $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+      console.log(companyData);
+
+
+      //Get perks
+      $scope.perks = Company.perks({
+          id: $scope.company.id,
+          filter: {}
+        },
+        function (success) {
+          console.log(success);
+        });
+    }
 
 
     // Semantic Triggers .ready() block.
