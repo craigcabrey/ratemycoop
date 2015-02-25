@@ -1,19 +1,20 @@
 {
-  "name": "Rating",
-  "plural": "Ratings",
+  "name": "City",
+  "plural": "Cities",
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
-    "value": {
-      "type": "number",
+    "name": {
+      "type": "string",
       "required": true
     }
   },
   "validations": [],
   "relations": {
-    "ratingType": {
+    "region": {
       "type": "belongsTo",
-      "model": "RatingType"
+      "model": "Region",
+      "foreignKey": ""
     }
   },
   "acls": [],
