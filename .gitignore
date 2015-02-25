@@ -1,6 +1,9 @@
 # OS X Files
 *DS_Store
 
+# Don't include any production configuration files
+*.production.*
+
 # vim .swp files
 *.swp
 
