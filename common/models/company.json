@@ -40,7 +40,7 @@
       "model": "Major",
       "through": "CompanyMajor"
     },
-    "cities": {
+    "locations": {
       "type": "hasMany",
       "model": "City",
       "foreignKey": "",
