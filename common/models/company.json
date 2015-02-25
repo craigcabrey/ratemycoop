@@ -14,6 +14,9 @@
     "logo": {
       "type": "string"
     },
+    "overallRating": {
+      "type": "number"
+    },
     "description": {
       "type": "string"
     }
