@@ -104,7 +104,7 @@
               <div class="ui attached segment">
                 <div class="ui orange ribbon label">Perks</div>
                 <div class="ui labels" style="margin-top: 10px">
-                  <div class="ui label" ng-if="company.perks.length === 0">
+                  <div class="ui label" ng-show="company.perks.length <= 0">
                     No perks yet
                   </div>
                   <div class="ui label" ng-repeat="perk in company.perks">
@@ -117,7 +117,7 @@
               <!-- Majors -->
               <div class="ui bottom attached segment">
                 <div class="ui blue ribbon label">Desired Majors</div>
-                <div class="ui label" ng-if="company.perks.length === 0">
+                <div class="ui label" ng-show="company.majors.length <= 0">
                   No majors yet
                 </div>
                 <div class="ui circular label" ng-repeat="major in company.majors">

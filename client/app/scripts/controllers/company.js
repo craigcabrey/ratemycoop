@@ -57,7 +57,7 @@ angular.module('ratemycoopApp')
           maxRating: 5,
           interactive: true,
           onRate: function () {
-            $scope.gotoReview();
+            //$scope.gotoReview();
           }
         });
       }
