@@ -19,7 +19,11 @@
                   <div class="sub header">
                     {{company.description}}
                   </div>
-                  <div class="ui right floated inverted green icon button">
+                  <div class="sub header" ng-show="company.description === null">
+                    <i class="warning icon"></i>
+                    Woah! It seems like no one has written a review yet. Be the first one.
+                  </div>
+                  <div class="ui right bottom floated inverted green icon button">
                     <i class="write icon"></i>
                     Write a review
                   </div>
