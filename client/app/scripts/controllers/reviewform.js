@@ -8,8 +8,23 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('ReviewformCtrl', function ($scope) {
+  .controller('ReviewformCtrl', function ($scope, Company, $routeParams) {
+    $scope.loading = true;
 
+    /**
+     * Get company info on-load
+     */
+    $scope.company = Company.findOne(
+      {
+        filter: {
+          where: {name: $routeParams.companyname},
+          include: ['perks', 'majors', 'reviews', {'locations': 'region'}]
+        }
+      },
+      function (successData) {
+        $scope.loading = false;
+      }
+    );
 
     $scope.formData = {
       overallRating: 0,
