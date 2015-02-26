@@ -33,6 +33,10 @@ angular
         templateUrl: 'views/company.html',
         controller: 'CompanyCtrl'
       })
+      .when('/company/:companyname/review', {
+        templateUrl: 'views/reviewform.html',
+        controller: 'ReviewformCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
