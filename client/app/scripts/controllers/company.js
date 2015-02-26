@@ -15,10 +15,13 @@ angular.module('ratemycoopApp')
       {
         filter: {
           where: {name: $routeParams.companyname},
-          include: ['perks', ['majors']]
+          include: ['perks', 'majors', {'locations': 'region'}]
         }
       },
       function (successData) {
+        $scope.company.overallRating = $scope.company.overallRating / 2;
+        $scope.company.difficultyRating = $scope.company.difficultyRating / 2;
+        $scope.company.cultureRating = $scope.company.cultureRating / 2;
         onCompanySuccess(successData);
       }
     );
@@ -29,24 +32,32 @@ angular.module('ratemycoopApp')
      */
     function onCompanySuccess(companyData) {
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+      setUpReviews();
       console.log(companyData);
 
     }
 
+    function setUpReviews() {
+      var ratings = ["overallRating", "difficultyRating", "cultureRating"];
+
+      for (var i = 0; i < ratings.length; i++) {
+        var id = ratings[i];
+        $('#' + id).rating({
+          initialRating: Math.floor($scope.company[id]),
+          maxRating: 5,
+          interactive: true,
+          onRate: function () {
+            console.log('nigger');
+          }
+        });
+        $(id).rating('disable');
+      }
+    }
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
 
-      var ratingIDs = ["#rating", "#overallRating", "#difficultyRating", "#cultureRating"];
-      $("#rating").rating();
 
-      for (var i = 0; i < ratingIDs.length; i++) {
-        var id = ratingIDs[i];
-        $(id).rating({
-          maxRating: 5
-        });
-        $(id).rating('disable');
-      }
     });
 
 
