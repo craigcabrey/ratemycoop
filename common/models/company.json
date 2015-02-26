@@ -17,20 +17,20 @@
     "overallRating": {
       "type": "number",
       "dataType": "decimal",
-      "precision": "1",
-      "scale": "2"
+      "precision": "3",
+      "scale": "1"
     },
     "cultureRating": {
       "type": "number",
       "dataType": "decimal",
-      "precision": "1",
-      "scale": "2"
+      "precision": "3",
+      "scale": "1"
     },
     "difficultyRating": {
       "type": "number",
       "dataType": "decimal",
-      "precision": "1",
-      "scale": "2"
+      "precision": "3",
+      "scale": "1"
     },
     "description": {
       "type": "string"
