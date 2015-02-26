@@ -14,6 +14,8 @@
           rate my co-op
         </div>
       </div>
+
+      <!-- Blurb about the service -->
       <div class="ui inverted header" style="font-size: 1.5em; text-shadow: 0px 0px 15px rgba(150, 150, 150, 1);">
         <div>
           Find the perfect <span id="coopDefinition" data-title="Cooperative Education"
@@ -25,14 +27,14 @@
       </div>
 
       <!-- Search bar -->
-      <div class="ui fluid search" id="searchInput">
+      <form class="ui fluid search" id="searchInput" ng-submit="search()">
         <div class="ui massive fluid icon input search">
           <input class="prompt" type="text" ng-change="handleSearchChange()" id="searchField"
                  ng-model="searchCompanyField" placeholder="Search Companies">
           <i class="search icon"></i>
         </div>
         <div class="ui left aligned results segment"></div>
-      </div>
+      </form>
     </div>
 
   </div>

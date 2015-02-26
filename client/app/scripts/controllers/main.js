@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('MainCtrl', function ($scope, Company, User) {
+  .controller('MainCtrl', function ($scope, Company, $location) {
 
     // OMG API TO ACCESS STUFF SO EASY
     $scope.companies = Company.find({},
@@ -39,6 +39,15 @@ angular.module('ratemycoopApp')
       }
     };
 
+    /**
+     * When pressing enter or submitting the form, this gets called
+     */
+    $scope.search = function () {
+      var searchQuery = $('#searchField').val();
+      var path = "/company/" + searchQuery;
+      $location.path(path);
+    };
+
 
     /**
      * Semantic Triggers .ready() block.
@@ -48,6 +57,7 @@ angular.module('ratemycoopApp')
       $('button').popup({position: 'bottom center'});
 
       $('#searchField').focus();
+
 
     });
   });
