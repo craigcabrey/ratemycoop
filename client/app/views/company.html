@@ -30,7 +30,7 @@
                   <div class="sub header" ng-show="company.description === null">
                     Woah! It seems like no one has written a review yet. Be the first one.
                   </div>
-                  <div class="ui right bottom floated inverted green icon button">
+                  <div class="ui right bottom floated inverted green icon button" ng-click="gotoReview()">
                     <i class="write icon"></i>
                     Write a review
                   </div>
@@ -199,7 +199,7 @@
 
 
           <div class="event">
-            <div class="ui fluid inverted green icon button">
+            <div class="ui fluid inverted green icon button" ng-click="gotoReview()">
               <i class="write icon"></i>
               Write a review
             </div>

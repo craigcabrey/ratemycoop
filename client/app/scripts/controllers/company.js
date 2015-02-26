@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('CompanyCtrl', function ($scope, $routeParams, Company) {
+  .controller('CompanyCtrl', function ($scope, $routeParams, Company, $location) {
     $scope.loading = true;
 
     // Given the route, set the main company stuff
@@ -30,25 +30,37 @@ angular.module('ratemycoopApp')
      * @param companyData
      */
     function onCompanySuccess(companyData) {
-      setUpRatings()
+      setUpRatings();
       // Company stat's computation
       setUpStatistics();
       // Logo setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
-      // Review & poups setup
-      setUpReviews();
       // Debug compnay data print TODO: remove for prod
       console.log(companyData);
     }
 
     /**
-     * Ratings to change display
+     * Set up ratings and pay scale
      */
     function setUpRatings() {
       // Stars Ratings setup
       $scope.company.overallRating = $scope.company.overallRating / 2;
       $scope.company.difficultyRating = $scope.company.difficultyRating / 2;
       $scope.company.cultureRating = $scope.company.cultureRating / 2;
+
+      var ratings = ["overallRating", "difficultyRating", "cultureRating"];
+
+      for (var i = 0; i < ratings.length; i++) {
+        var id = ratings[i];
+        $('#' + id).rating({
+          initialRating: Math.floor($scope.company[id]),
+          maxRating: 5,
+          interactive: true,
+          onRate: function () {
+            $scope.gotoReview();
+          }
+        });
+      }
 
       // Pay Rating setup
       $scope.payScale = [15, 20, 31];
@@ -71,21 +83,15 @@ angular.module('ratemycoopApp')
       });
     }
 
-    function setUpReviews() {
-      var ratings = ["overallRating", "difficultyRating", "cultureRating"];
+    $scope.gotoReview = function () {
+      var path = "/company/" + $scope.company.name + "/review";
+      $location.path(path);
+    };
 
-      for (var i = 0; i < ratings.length; i++) {
-        var id = ratings[i];
-        $('#' + id).rating({
-          initialRating: Math.floor($scope.company[id]),
-          maxRating: 5,
-          interactive: true,
-          onRate: function () {
-            console.log('GO TO RATE');
-          }
-        });
-      }
-    }
+    // Semantic Triggers .ready() block.
+    $(document).ready(function () {
+      setTimeout(setupMajorsPopups, 1000);
+    });
 
     function setupMajorsPopups() {
       $('.majorLabel').popup({
@@ -94,11 +100,6 @@ angular.module('ratemycoopApp')
         transition: 'vertical flip'
       });
     }
-
-    // Semantic Triggers .ready() block.
-    $(document).ready(function () {
-      setTimeout(setupMajorsPopups, 1000);
-    });
 
 
   });
