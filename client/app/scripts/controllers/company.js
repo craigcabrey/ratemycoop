@@ -87,21 +87,26 @@ angular.module('ratemycoopApp')
       }
     }
 
-    var flip = false;
-    $scope.setupMajorsPopups = function () {
-      if (!flip) {
-        $('.majorLabel').popup({
-          position: 'bottom center',
-          inline: true,
-          transition: 'vertical flip'
-        });
-        flip = true;
-      }
-    };
+    function setupMajorsPopups() {
+      $('.majorLabel').popup({
+        position: 'bottom center',
+        inline: true,
+        transition: 'vertical flip'
+      });
+    }
+
+    angular.element(document).ready(function () {
+      console.log('nigguh');
+      $('.majorLabel').popup({
+        position: 'bottom center',
+        inline: true,
+        transition: 'vertical flip'
+      });
+    });
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
-
+      setTimeout(setupMajorsPopups, 1000);
     });
 
 
