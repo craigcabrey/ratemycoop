@@ -34,6 +34,18 @@
     },
     "description": {
       "type": "string"
+    },
+    "minPay": {
+      "type": "number",
+      "dataType": "decimal",
+      "precision": "10",
+      "scale": "2"
+    },
+    "maxPay": {
+      "type": "number",
+      "dataType": "decimal",
+      "precision": "10",
+      "scale": "2"
     }
   },
   "validations": [],
