@@ -34,10 +34,14 @@ angular.module('ratemycoopApp')
       $scope.company.cultureRating = $scope.company.cultureRating / 2;
 
       $scope.company.recommend = 0;
+      $scope.company.returners = 0;
       var reviews = $scope.company.reviews;
       angular.forEach(reviews, function (review) {
         if (review.recommend) {
           $scope.company.recommend++;
+        }
+        if (review.returnOffer) {
+          $scope.company.returners++;
         }
       });
 

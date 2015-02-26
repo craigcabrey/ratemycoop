@@ -81,7 +81,7 @@
                     <i class="disabled dollar icon"></i>
                   </div>
                   <div class="item">
-                    <div class="ui medium green label">$25 - $30 hourly</div>
+                    <div class="ui medium green label">${{company.minPay}} - ${{company.maxPay}} hourly</div>
                   </div>
                 </div>
 
@@ -178,10 +178,13 @@
               <div class="ui tall stacked secondary raised segment">
                 <div class="ui statistic">
                   <div class="value">
-                    <i class="smile icon"></i> 20
+                    <i class="smile icon"></i>
+                    {{company.returners}}
                   </div>
                   <div class="label">
-                    Return Offer
+
+                    <div ng-hide="company.returners == 0">Return Offer</div>
+                    <div ng-show="company.returners == 0">Return Offers</div>
                   </div>
                 </div>
               </div>
