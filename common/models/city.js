@@ -7,7 +7,10 @@ module.exports = function(City) {
           name: {
             like: '%' + query + '%'
           }
-        }
+        },
+        include: [
+          'region'
+        ]
       }, function (err, results) {
         callback(null, results);
       }
