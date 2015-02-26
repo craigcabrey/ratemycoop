@@ -114,7 +114,7 @@
         <!-- Statistics one -->
         <div class="ui vertical segment" ng-class="{loading: loading}">
 
-          <div class="ui three column center aligned grid">
+          <div class="ui three column center aligned stackable grid">
             <div class="column">
               <div class="ui tall stacked secondary  raised segment">
                 <div class="ui statistic">
@@ -123,15 +123,15 @@
                     {{company.reviews.length}}
                   </div>
                   <div class="label">
-                    <div ng-hide="company.reviews.length == 0">Review</div>
-                    <div ng-show="company.reviews.length == 0">Reviews</div>
+                    <div ng-hide="company.reviews.length != 0">Review</div>
+                    <div ng-show="company.reviews.length != 0">Reviews</div>
                   </div>
                 </div>
               </div>
 
             </div>
             <div class="column">
-              <div class="ui tall stacked secondary  raised segment">
+              <div class="ui tall stacked secondary raised segment">
                 <div class="ui statistic">
                   <div class="value">
                     <i class="thumbs up icon"></i>
@@ -153,8 +153,8 @@
                   </div>
                   <div class="label">
 
-                    <div ng-hide="company.returners == 0">Return Offer</div>
-                    <div ng-show="company.returners == 0">Return Offers</div>
+                    <div ng-hide="company.returners != 0">Return Offer</div>
+                    <div ng-show="company.returners != 0">Return Offers</div>
                   </div>
                 </div>
               </div>
