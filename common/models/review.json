@@ -25,9 +25,12 @@
       "dataType": "decimal",
       "precision": "10",
       "scale": "2"
+    },
+    "created": {
+      "type": "date",
+      "required": "true"
     }
   },
-  "hidden": [ "userId", "user" ],
   "validations": [],
   "relations": {
     "user": {
