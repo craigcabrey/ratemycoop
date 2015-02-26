@@ -6,7 +6,7 @@
       <div class="ui fluid stackable segment">
 
         <!-- Company Image, title, and overview -->
-        <div class="ui vertical segment">
+        <div class="ui vertical segment" ng-class="{loading: loading}">
           <div class="ui stackable grid">
             <div class="four wide column">
               <img class="ui image" ng-src="{{company.logo_url}}">
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Overview one -->
-        <div class="ui vertical segment">
+        <div class="ui vertical segment" ng-class="{loading: loading}">
           <div class="ui stackable grid">
             <div class="five wide column">
 
@@ -112,7 +112,7 @@
         </div>
 
         <!-- Statistics one -->
-        <div class="ui vertical segment">
+        <div class="ui vertical segment" ng-class="{loading: loading}">
 
           <div class="ui three column center aligned grid">
             <div class="column">
@@ -175,7 +175,7 @@
 
   <div class="row">
     <div class="column">
-      <div class="ui huge segment">
+      <div class="ui huge segment" ng-class="{loading: loading}">
         <div class="ui fluid feed">
 
           <div class="event" ng-show="company.reviews.length == 0">

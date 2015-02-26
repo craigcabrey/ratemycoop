@@ -9,6 +9,7 @@
  */
 angular.module('ratemycoopApp')
   .controller('CompanyCtrl', function ($scope, $routeParams, Company) {
+    $scope.loading = true;
 
     // Given the route, set the main company stuff
     $scope.company = Company.findOne(
@@ -19,7 +20,7 @@ angular.module('ratemycoopApp')
         }
       },
       function (successData) {
-
+        $scope.loading = false;
         onCompanySuccess(successData);
       }
     );
