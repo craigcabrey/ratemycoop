@@ -85,13 +85,16 @@
                 <div class="ui black ribbon label">Pay & Compensation</div>
 
                 <div class="ui fluid list">
-                  <div class="item">
+                  <div class="item" ng-if="company.maxPay === null">
+                    <div class="ui medium green label">No pay yet</div>
+                  </div>
+                  <div class="item" ng-hide="company.maxPay === null">
                     <i class="dollar icon"></i>
                     <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[0]}"></i>
                     <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[1]}"></i>
                     <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[2]}"></i>
                   </div>
-                  <div class="item">
+                  <div class="item" ng-hide="company.maxPay === null">
                     <div class="ui medium green label">${{company.minPay}} - ${{company.maxPay}} hourly</div>
                   </div>
                 </div>
