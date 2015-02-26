@@ -19,6 +19,9 @@
     "description": {
       "type": "string",
       "required": true
+    },
+    "pay": {
+      "type": "number"
     }
   },
   "validations": [],
