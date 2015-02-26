@@ -28,7 +28,6 @@
                     {{company.description}}
                   </div>
                   <div class="sub header" ng-show="company.description === null">
-                    <i class="warning icon"></i>
                     Woah! It seems like no one has written a review yet. Be the first one.
                   </div>
                   <div class="ui right bottom floated inverted green icon button">
@@ -115,9 +114,13 @@
               <!-- Majors -->
               <div class="ui bottom attached segment">
                 <div class="ui blue ribbon label">Desired Majors</div>
-
+                <div class="ui label" ng-if="company.perks.length === 0">
+                  No majors yet
+                </div>
                 <div class="ui circular label" ng-repeat="major in company.majors">
-                  {{major.code}}
+                  <div class="majorLabel" data-content="{{major.name}}" ng-mouseover="setupMajorsPopups()">
+                    {{major.code}}
+                  </div>
                 </div>
 
               </div>

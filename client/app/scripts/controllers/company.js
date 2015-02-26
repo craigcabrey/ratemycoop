@@ -35,7 +35,7 @@ angular.module('ratemycoopApp')
       setUpStatistics();
       // Logo setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
-      // Review setup
+      // Review & poups setup
       setUpReviews();
       // Debug compnay data print TODO: remove for prod
       console.log(companyData);
@@ -87,9 +87,20 @@ angular.module('ratemycoopApp')
       }
     }
 
+    var flip = false;
+    $scope.setupMajorsPopups = function () {
+      if (!flip) {
+        $('.majorLabel').popup({
+          position: 'bottom center',
+          inline: true,
+          transition: 'vertical flip'
+        });
+        flip = true;
+      }
+    };
+
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
-
 
     });
 
