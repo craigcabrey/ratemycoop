@@ -21,7 +21,10 @@
       "required": true
     },
     "pay": {
-      "type": "number"
+      "type": "number",
+      "dataType": "decimal",
+      "precision": "10",
+      "scale": "2"
     }
   },
   "validations": [],
