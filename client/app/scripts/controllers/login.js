@@ -64,11 +64,13 @@ angular.module('ratemycoopApp')
       if ($scope.loginForm.registerMode) {
         var form = $scope.loginForm;
         if (form.confirmPass === form.pass && /(.+)@(.+){2,}\.(.+){2,}/.test(form.email)) {
-          Users.create({
-            email: form.email,
-            password: form.pass
-          });
-
+          User.create({
+              email: form.email,
+              password: form.pass
+            },
+            function (success) {
+              loginAction()
+            });
         } else {
           // Clear everything
           $scope.loginForm.email = "";
@@ -79,31 +81,40 @@ angular.module('ratemycoopApp')
         }
 
       } else {
-        // Else, login
-        User.login({
-            rememberMe: true
-          }, {
-            email: $scope.loginForm.email,
-            password: $scope.loginForm.pass
-          },
-          function (success) {
-            // On Login Success
-            // Change login button (including icon)
-            $scope.clearLoginFormData();
-            $scope.userButton.text = usernameFromEmail(success.user.email);
-            $(".loginButtonContainer").popup('hide');
-            $scope.user = User.getCurrent();
-          },
-          function (err) {
-            console.log('oops');
-            // On Error Login
-            setLoginError("Invalid credentials.");
-            $("#passwordField").val("");
-            $("#emailField").select();
-          });
+        loginAction()
       }
 
     };
+
+    /**
+     * private class that actually performs the logging in.
+     * Called from register after register success and when
+     * logging in.
+     */
+    function loginAction() {
+      // Else, login
+      User.login({
+          rememberMe: true
+        }, {
+          email: $scope.loginForm.email,
+          password: $scope.loginForm.pass
+        },
+        function (success) {
+          // On Login Success
+          // Change login button (including icon)
+          $scope.clearLoginFormData();
+          $scope.userButton.text = usernameFromEmail(success.user.email);
+          $(".loginButtonContainer").popup('hide');
+          $scope.user = User.getCurrent();
+        },
+        function () {
+          // On Error Login
+          setLoginError("Invalid credentials.");
+          $("#passwordField").val("");
+          $("#emailField").select();
+        });
+    }
+
     $scope.logout = function () {
       User.logout({},
         function (success) {
