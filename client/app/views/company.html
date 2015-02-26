@@ -126,9 +126,9 @@
                     <i class="book icon"></i>
                     {{company.reviews.length}}
                   </div>
-                  <div class="label">
-                    <div ng-hide="company.reviews.length != 0">Review</div>
-                    <div ng-show="company.reviews.length != 0">Reviews</div>
+                  <div class="label" ng-switch="company.reviews.length === 1">
+                    <div ng-switch-when="true">Review</div>
+                    <div ng-switch-default="">Reviews</div>
                   </div>
                 </div>
               </div>
@@ -151,14 +151,14 @@
             <div class="column">
               <div class="ui tall stacked secondary raised segment">
                 <div class="ui statistic">
-                  <div class="value">
-                    <i class="smile icon"></i>
+                  <div class="value" ng-switch="company.returners === 0">
+                    <i class="frown icon" ng-switch-when="true"></i>
+                    <i class="smile icon" ng-switch-default=""></i>
                     {{company.returners}}
                   </div>
-                  <div class="label">
-
-                    <div ng-hide="company.returners != 0">Return Offer</div>
-                    <div ng-show="company.returners != 0">Return Offers</div>
+                  <div class="label" ng-switch="company.returners === 1">
+                    <div ng-switch-when="true">Return Offer</div>
+                    <div ng-switch-default="">Return Offers</div>
                   </div>
                 </div>
               </div>
