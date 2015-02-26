@@ -150,10 +150,11 @@
                 <div class="ui statistic">
                   <div class="value">
                     <i class="book icon"></i>
-                    55
+                    {{company.reviews.length}}
                   </div>
                   <div class="label">
-                    Reviews
+                    <div ng-hide="company.reviews.length == 0">Review</div>
+                    <div ng-show="company.reviews.length == 0">Reviews</div>
                   </div>
                 </div>
               </div>
@@ -163,10 +164,11 @@
               <div class="ui tall stacked secondary  raised segment">
                 <div class="ui statistic">
                   <div class="value">
-                    <i class="thumbs up icon"></i> 48
+                    <i class="thumbs up icon"></i>
+                    {{company.recommend}}
                   </div>
                   <div class="label">
-                    Enjoyed Google
+                    Enjoyed {{company.name}}
                   </div>
                 </div>
               </div>

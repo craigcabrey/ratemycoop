@@ -15,13 +15,11 @@ angular.module('ratemycoopApp')
       {
         filter: {
           where: {name: $routeParams.companyname},
-          include: ['perks', 'majors', {'locations': 'region'}]
+          include: ['perks', 'majors', 'reviews', {'locations': 'region'}]
         }
       },
       function (successData) {
-        $scope.company.overallRating = $scope.company.overallRating / 2;
-        $scope.company.difficultyRating = $scope.company.difficultyRating / 2;
-        $scope.company.cultureRating = $scope.company.cultureRating / 2;
+
         onCompanySuccess(successData);
       }
     );
@@ -31,6 +29,19 @@ angular.module('ratemycoopApp')
      * @param companyData
      */
     function onCompanySuccess(companyData) {
+      $scope.company.overallRating = $scope.company.overallRating / 2;
+      $scope.company.difficultyRating = $scope.company.difficultyRating / 2;
+      $scope.company.cultureRating = $scope.company.cultureRating / 2;
+
+      $scope.company.recommend = 0;
+      var reviews = $scope.company.reviews;
+      angular.forEach(reviews, function (review) {
+        if (review.recommend) {
+          $scope.company.recommend++;
+        }
+      });
+
+
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
       setUpReviews();
       console.log(companyData);
@@ -50,7 +61,6 @@ angular.module('ratemycoopApp')
             console.log('GO TO RATE');
           }
         });
-        $(id).rating('disable');
       }
     }
 
