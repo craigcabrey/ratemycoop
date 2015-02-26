@@ -29,6 +29,10 @@
   },
   "validations": [],
   "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "User"
+    },
     "ratings": {
       "type": "hasMany",
       "model": "Rating"
