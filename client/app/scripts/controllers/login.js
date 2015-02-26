@@ -64,7 +64,7 @@ angular.module('ratemycoopApp')
       if ($scope.loginForm.registerMode) {
         var form = $scope.loginForm;
         if (form.confirmPass === form.pass && /(.+)@(.+){2,}\.(.+){2,}/.test(form.email)) {
-          Users.create({
+          User.create({
             email: form.email,
             password: form.pass
           });
@@ -94,8 +94,7 @@ angular.module('ratemycoopApp')
             $(".loginButtonContainer").popup('hide');
             $scope.user = User.getCurrent();
           },
-          function (err) {
-            console.log('oops');
+          function () {
             // On Error Login
             setLoginError("Invalid credentials.");
             $("#passwordField").val("");
