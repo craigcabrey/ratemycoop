@@ -102,7 +102,9 @@
               <div class="ui attached segment">
                 <div class="ui orange ribbon label">Perks</div>
                 <div class="ui labels" style="margin-top: 10px">
-
+                  <div class="ui label" ng-if="company.perks.length === 0">
+                    No perks yet
+                  </div>
                   <div class="ui label" ng-repeat="perk in company.perks">
                     <i class="icon" ng-class="perk.icon"></i>
                     {{perk.name}}
