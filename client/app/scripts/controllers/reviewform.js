@@ -9,9 +9,26 @@
  */
 angular.module('ratemycoopApp')
   .controller('ReviewformCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
+
+    $scope.formData = {
+      overallRating: 0,
+      difficultyRating: 0,
+      cultureRating: 0,
+
+      descriptionGood: "",
+      descriptionBad: "",
+      descriptionOverall: "",
+
+      payTypes: ['Hourly', 'Salary', 'Stipend'],
+      perks: [],
+
+      returnOffer: false,
+      recommend: false,
+      anonymous: false
+
+    };
+
+    var pushData = {};
+
   });
