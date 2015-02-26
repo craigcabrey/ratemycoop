@@ -177,6 +177,29 @@
     <div class="column">
       <div class="ui huge segment">
         <div class="ui fluid feed">
+
+          <div class="event" ng-repeat="review in company.reviews">
+            <div class="label"><i class="user icon"></i></div>
+            <div class="content">
+              <div class="summary">
+                Someone's review
+                <div class="date">
+                  3 days ago
+                </div>
+              </div>
+              <div class="extra text">
+                {{review.description}}
+              </div>
+              <div class="meta">
+                <a class="like">
+                  <i class="like icon"></i> 5 Likes
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+
           <div class="event">
             <div class="label">
               <i class="user icon"></i>
@@ -194,31 +217,6 @@
                 living.
 
                 I was in the California office.
-              </div>
-              <div class="meta">
-                <a class="like">
-                  <i class="like icon"></i> 5 Likes
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="event">
-            <div class="label">
-              <i class="user icon"></i>
-            </div>
-            <div class="content">
-              <div class="summary">
-                <a>Joe Henderson</a> review
-                <div class="date">
-                  3 days ago
-                </div>
-              </div>
-              <div class="extra text">
-                What can I say, I loved working there. <strike>Penis penis</strike>.
-                I worked in the Chrome team, writing some tools. It really is as awesome
-                as they think. The free food was awesome and housing was ok.
-
-                I was in the NY office.
               </div>
               <div class="meta">
                 <a class="like">
