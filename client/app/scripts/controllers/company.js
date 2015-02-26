@@ -30,10 +30,31 @@ angular.module('ratemycoopApp')
      * @param companyData
      */
     function onCompanySuccess(companyData) {
+      setUpRatings()
+      // Company stat's computation
+      setUpStatistics();
+      // Logo setup
+      $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+      // Review setup
+      setUpReviews();
+      // Debug compnay data print TODO: remove for prod
+      console.log(companyData);
+    }
+
+    /**
+     * Ratings to change display
+     */
+    function setUpRatings() {
+      // Stars & Ratings setup
       $scope.company.overallRating = $scope.company.overallRating / 2;
       $scope.company.difficultyRating = $scope.company.difficultyRating / 2;
       $scope.company.cultureRating = $scope.company.cultureRating / 2;
+    }
 
+    /**
+     * Sets up the $recommend and $returners variable to be shown in statistics page.
+     */
+    function setUpStatistics() {
       $scope.company.recommend = 0;
       $scope.company.returners = 0;
       var reviews = $scope.company.reviews;
@@ -45,12 +66,6 @@ angular.module('ratemycoopApp')
           $scope.company.returners++;
         }
       });
-
-
-      $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
-      setUpReviews();
-      console.log(companyData);
-
     }
 
     function setUpReviews() {
