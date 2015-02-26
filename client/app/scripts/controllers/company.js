@@ -47,7 +47,7 @@ angular.module('ratemycoopApp')
           maxRating: 5,
           interactive: true,
           onRate: function () {
-            console.log('nigger');
+            console.log('GO TO RATE');
           }
         });
         $(id).rating('disable');
