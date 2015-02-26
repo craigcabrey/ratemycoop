@@ -95,7 +95,8 @@ module.exports = function (app) {
         companyId: 1,
         anonymous: true,
         description: "Full of potatoes.",
-        payTypeId: 1
+        payTypeId: 1,
+        userId: 1
       }
     );
     app.models.CompanyMajor.create(

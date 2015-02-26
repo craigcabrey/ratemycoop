@@ -21,11 +21,19 @@
       "required": true
     },
     "pay": {
-      "type": "number"
+      "type": "number",
+      "dataType": "decimal",
+      "precision": "10",
+      "scale": "2"
     }
   },
+  "hidden": [ "userId", "user" ],
   "validations": [],
   "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "User"
+    },
     "ratings": {
       "type": "hasMany",
       "model": "Rating"
