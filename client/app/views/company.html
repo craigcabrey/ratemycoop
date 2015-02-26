@@ -8,8 +8,16 @@
         <!-- Company Image, title, and overview -->
         <div class="ui vertical segment" ng-class="{loading: loading}">
           <div class="ui stackable grid">
-            <div class="four wide column">
-              <img class="ui image" ng-src="{{company.logo_url}}">
+            <div class="four wide column" ng-switch="company.logo !== null">
+              <img class="ui image" ng-src="{{company.logo_url}}" ng-switch-when="true">
+
+              <h1 ng-switch-default="" class="ui fluid center aligned icon header">
+                <i class="massive building outline icon"></i>
+
+                <div class="content">
+                </div>
+
+              </h1>
             </div>
             <div class="twelve wide column">
               <h1 class="ui header">
