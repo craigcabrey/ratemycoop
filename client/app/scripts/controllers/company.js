@@ -45,10 +45,13 @@ angular.module('ratemycoopApp')
      * Ratings to change display
      */
     function setUpRatings() {
-      // Stars & Ratings setup
+      // Stars Ratings setup
       $scope.company.overallRating = $scope.company.overallRating / 2;
       $scope.company.difficultyRating = $scope.company.difficultyRating / 2;
       $scope.company.cultureRating = $scope.company.cultureRating / 2;
+
+      // Pay Rating setup
+      $scope.payScale = [15, 20, 31];
     }
 
     /**
