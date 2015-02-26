@@ -41,10 +41,36 @@
 
     </div>
   </div>
+  <div class="ui inverted horizontal divider"><i class="anchor icon"></i> Meet the Team <i class="anchor icon"></i>
+  </div>
+
   <div class="row">
     <div class="column">
-      <div class="segment">
-        potato
+      <!-- About page and authors -->
+      <div class="ui fluid stackable segment">
+
+
+        <div class="ui cards">
+
+          <div class="card" ng-repeat="person in contributors">
+            <a class="image">
+              <img ng-src="{{person.gravatar_link}}">
+            </a>
+
+            <div class="content">
+              <a class="header">{{person.name}}</a>
+
+              <div class="meta">
+                <a>RIT</a>
+              </div>
+              <div class="description">
+                {{person.role}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
