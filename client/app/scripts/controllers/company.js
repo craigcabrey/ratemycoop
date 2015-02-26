@@ -95,15 +95,6 @@ angular.module('ratemycoopApp')
       });
     }
 
-    angular.element(document).ready(function () {
-      console.log('nigguh');
-      $('.majorLabel').popup({
-        position: 'bottom center',
-        inline: true,
-        transition: 'vertical flip'
-      });
-    });
-
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
       setTimeout(setupMajorsPopups, 1000);
