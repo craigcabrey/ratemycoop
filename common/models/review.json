@@ -26,6 +26,10 @@
     "ratings": {
       "type": "hasMany",
       "model": "Rating"
+    },
+    "payType": {
+      "type": "belongsTo",
+      "model": "PayType"
     }
   },
   "acls": [],
