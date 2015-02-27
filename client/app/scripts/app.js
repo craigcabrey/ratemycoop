@@ -19,7 +19,7 @@ angular
     'angular.filter',
     'lbServices'
   ])
-  .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', function ($routeProvider, $locationProvider, LoopBackResourceProvider) {
+  .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -49,4 +49,20 @@ angular
 
     // Set url base
     LoopBackResourceProvider.setUrlBase('https://ratemycoop.io/api');
+
+    /**
+     * Set http interceptor for 40x unauthorized
+     */
+
+    $httpProvider.interceptors.push(function ($q, $location) {
+      return {
+        responseError: function (rejection) {
+          if (rejection.status == 401) {
+            $location.nextAfterLogin = $location.path();
+            $location.path('/404');
+          }
+          return $q.reject(rejection);
+        }
+      };
+    });
   }]);

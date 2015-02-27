@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('LoginCtrl', function ($scope, User) {
+  .controller('LoginCtrl', function ($scope, User, $location) {
 
 
     /**
@@ -106,6 +106,11 @@ angular.module('ratemycoopApp')
           $scope.userButton.text = usernameFromEmail(success.user.email);
           $(".loginButtonContainer").popup('hide');
           $scope.user = User.getCurrent();
+
+          // Redirect home, or to originally intended path
+          var next = $location.nextAfterLogin || '/';
+          $location.nextAfterLogin = null;
+          $location.path(next);
         },
         function () {
           // On Error Login
