@@ -46,4 +46,9 @@ angular.module('ratemycoopApp')
 
     var pushData = {};
 
+    angular.element(document).ready(function () {
+      $('.ui.accordion').accordion();
+      $('.ui.selection.dropdown').dropdown();
+    });
+
   });

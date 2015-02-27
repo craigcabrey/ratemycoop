@@ -4,54 +4,170 @@
 
 
       <div class="ui fluid segment" ng-class="{loading: loading}">
-        <form class="ui form">
-          <h1 class="ui dividing header">Review {{company.name}}</h1>
+
+        <h1 class="ui dividing header">Review {{company.name}}</h1>
 
 
-          <div class="field">
-            <label>What were some of the good things?</label>
-            <textarea rows="1" cols="1"></textarea>
-          </div>
+        <div class="ui vertical segment">
 
-          <div class="field">
-            <label>What were some of the bad things?</label>
-            <textarea rows="99"></textarea>
-          </div>
+          <div class="ui fluid steps">
+            <div class="active step">
+              <i class="building outline icon"></i>
 
-          <div class="field">
-            <label>Finish off with some summarizing details.</label>
-            <textarea></textarea>
-          </div>
-
-          <!-- Anonymous -->
-          <h4 class="ui dividing header"><i class="spy icon"></i>Anonymity</h4>
-
-          <div class="field">
-            <div class="ui yellow message">
-              We take this matter very seriously
-              - for more information check out our <a>privacy policy</a>.
+              <div class="content">
+                <div class="title">Co-op Info</div>
+                <div class="description">Getting started</div>
+              </div>
             </div>
-            <div class="ui slider checkbox">
-              <input type="checkbox" name="privacy">
-              <label>Would you like to remain anonymous?</label>
-            </div>
-          </div>
+            <div class="step">
+              <i class="star icon"></i>
 
-          <div class="ui hidden divider"></div>
-          <div class="field">
-            <div class="ui checkbox">
-              <input type="checkbox" name="hot-deals">
-              <label>I agree to the <a href="#">Terms of Service</a>.</label>
+              <div class="content">
+                <div class="title">Your Experience</div>
+                <div class="description">Rate it</div>
+              </div>
+            </div>
+            <div class="step">
+              <i class="info icon"></i>
+
+              <div class="content">
+                <div class="title">Last Thoughts</div>
+              </div>
             </div>
           </div>
-          <div class="ui error message">
-            <div class="header">We noticed some issues</div>
-          </div>
-          <div class="ui submit inverted fluid green icon button">
-            <i class="send outline icon"></i>
-            Submit Review
-          </div>
-        </form>
+
+
+          <form class="ui error attached form segment">
+            <!-- Error stuff -->
+            <div class="ui error message">
+              <div class="header">This portion is under development</div>
+            </div>
+
+
+            <div class="ui accordion">
+              <div class="active title">
+                <i class="dropdown icon"></i>
+                Co-op Info
+              </div>
+              <div class="active content">
+
+
+                <div class="two fields">
+                  <div class="ui search field">
+                    <label>Major</label>
+
+                    <div class="ui icon input">
+                      <input class="prompt" type="text" placeholder="Major: i.e. Software...">
+                      <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                  </div>
+                  <div class="field">
+                    <label>City/Town</label>
+
+                    <div class="ui icon input">
+                      <input class="prompt" type="text" placeholder="Norwalk">
+                      <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>Perks</label>
+                  What kind of cool benefits did you receive?
+                  <div class="ui icon input">
+                    <input class="prompt" type="text" placeholder="Relocation, housing, free food...">
+                    <i class="search icon"></i>
+                  </div>
+                  <div class="results"></div>
+                </div>
+
+                <div class="ui segment">
+                  Here add the perks
+                </div>
+
+                <div class="inline fields">
+                  <label><i class="green dollar icon"></i>Pay & Compensation</label>
+
+                  <div class="five wide field">
+                    <div class="ui icon input">
+                      <input class="prompt" type="text" placeholder="$ 00.00">
+                      <i class="search icon"></i>
+                    </div>
+                  </div>
+                  <div class="two wide field">
+                    <div class="ui selection dropdown">
+                      <input type="hidden" name="gender">
+
+                      <div class="default text">Pay Type</div>
+                      <i class="dropdown icon"></i>
+
+                      <div class="menu">
+                        <div class="item" data-value="hourly">Hourly</div>
+                        <div class="item" data-value="salary">Salary</div>
+                        <div class="item" data-value="stipend">Stipend</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="title">
+                <i class="dropdown icon"></i>
+                Your Experience
+              </div>
+              <div class="content">
+                <p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a
+                  breed
+                  of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+              </div>
+              <div class="title">
+                <i class="dropdown icon"></i>
+                Last Thoughts
+              </div>
+              <div class="content">
+                <div class="field">
+                  <label>Anything else?</label>
+                  <textarea></textarea>
+                </div>
+
+                <!-- Anonymous -->
+                <h4 class="ui dividing header"><i class="spy icon"></i>Anonymity</h4>
+
+                <div class="field">
+                  <div class="ui yellow message">
+                    We take this matter very seriously
+                    - for more information check out our <a>privacy policy</a>.
+                  </div>
+                  <div class="ui slider checkbox">
+                    <input type="checkbox" name="privacy">
+                    <label>Would you like to remain anonymous?</label>
+                  </div>
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" name="hot-deals">
+                    <label>I agree to the <a href="#">Terms of Service</a>.</label>
+                  </div>
+                </div>
+
+                <div class="ui submit inverted fluid green icon button">
+                  <i class="send outline icon"></i>
+                  Submit Review
+                </div>
+              </div>
+            </div>
+
+
+          </form>
+
+
+        </div>
+
+
       </div>
 
 
