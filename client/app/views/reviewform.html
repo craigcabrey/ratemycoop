@@ -8,6 +8,15 @@
         <h1 class="ui dividing header">Review {{company.name}}</h1>
 
 
+        <!-- Error stuff -->
+        <div class="ui error massive icon message">
+          <i class="spy icon"></i>
+
+          <div class="content">
+            This portion is under development. Use at your own risk, all actions are being tracked
+          </div>
+        </div>
+
         <div class="ui vertical segment">
 
           <div class="ui fluid steps">
@@ -38,17 +47,9 @@
 
 
           <form class="ui error attached form segment">
-            <!-- Error stuff -->
-            <div class="ui error massive icon message">
-              <i class="spy icon"></i>
-
-              <div class="content">
-                This portion is under development. Use at your own risk, all actions are being tracked
-              </div>
-            </div>
 
 
-            <wizard on-finish="finishedWizard()">
+            <wizard on-finish="finishedWizard()" hide-indicators="true">
               <wz-step title="Starting">
                 <!-- WIZARD 1/3 -->
 
@@ -113,7 +114,7 @@
                   </div>
                 </div>
 
-                <div class="ui right labeled icon button" type="submit" wz-next value="Continue">
+                <div class="ui inverted green right labeled icon button" type="submit" wz-next value="Continue">
                   <i class="right arrow icon"></i>
                   Rate
                 </div>
@@ -167,8 +168,9 @@
 
                 </div>
 
+                <div class="ui hidden form divider"></div>
 
-                <div class="ui right labeled icon button" wz-next value="Go on">
+                <div class="ui inverted green right labeled icon button" wz-next value="Go on">
                   <i class="right arrow icon"></i>
                   Almost Done
                 </div>
