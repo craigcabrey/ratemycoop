@@ -89,5 +89,9 @@
   "Industry": {
     "dataSource": "db",
     "public": true
+  },
+  "CompanyIndustry": {
+    "dataSource": "db",
+    "public": false
   }
 }
