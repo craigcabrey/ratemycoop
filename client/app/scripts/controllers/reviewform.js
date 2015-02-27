@@ -49,6 +49,7 @@ angular.module('ratemycoopApp')
     angular.element(document).ready(function () {
       $('.ui.accordion').accordion();
       $('.ui.selection.dropdown').dropdown();
+      $('.rating').rating();
     });
 
   });

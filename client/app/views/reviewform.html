@@ -39,25 +39,31 @@
 
           <form class="ui error attached form segment">
             <!-- Error stuff -->
-            <div class="ui error message">
-              <div class="header">This portion is under development</div>
+            <div class="ui error massive icon message">
+              <i class="spy icon"></i>
+
+              <div class="content">
+                This portion is under development. Use at your own risk, all actions are being tracked
+              </div>
             </div>
 
 
             <div class="ui accordion">
-              <div class="active title">
+
+
+              <!-- WIZARD 1/3 -->
+              <div class="title">
                 <i class="dropdown icon"></i>
                 Co-op Info
               </div>
-              <div class="active content">
-
+              <div class="content">
 
                 <div class="two fields">
                   <div class="ui search field">
                     <label>Major</label>
 
                     <div class="ui icon input">
-                      <input class="prompt" type="text" placeholder="Major: i.e. Software...">
+                      <input class="prompt" type="text" placeholder="Bioinformatics, Software ...">
                       <i class="search icon"></i>
                     </div>
                     <div class="results"></div>
@@ -83,17 +89,16 @@
                   <div class="results"></div>
                 </div>
 
-                <div class="ui segment">
+                <div class="ui raised blue segment">
                   Here add the perks
                 </div>
 
                 <div class="inline fields">
                   <label><i class="green dollar icon"></i>Pay & Compensation</label>
 
-                  <div class="five wide field">
-                    <div class="ui icon input">
+                  <div class="four wide field">
+                    <div class="ui input">
                       <input class="prompt" type="text" placeholder="$ 00.00">
-                      <i class="search icon"></i>
                     </div>
                   </div>
                   <div class="two wide field">
@@ -113,21 +118,67 @@
                 </div>
               </div>
 
-
-              <div class="title">
+              <!-- WIZARD 2/3 -->
+              <div class="active title">
                 <i class="dropdown icon"></i>
                 Your Experience
               </div>
-              <div class="content">
-                <p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a
-                  breed
-                  of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+              <div class="active content">
+
+                <!-- Overall -->
+                <div class="ui header">
+                  <i class="green history icon"></i>
+
+                  <div class="content">
+                    Overall
+                    <div class="sub header">Remember the first day, all the way to the last step out that door. How was
+                      your experience overall?
+                    </div>
+                  </div>
+                </div>
+                <div class="ui massive star rating"></div>
+
+                <!-- Culture -->
+                <div class="ui header">
+                  <i class="blue users icon"></i>
+
+                  <div class="content">
+                    Culture
+                    <div class="sub header">How well did you like the people and the culture at {company name}?
+                    </div>
+                  </div>
+                </div>
+                <div class="ui massive star rating"></div>
+
+                <!-- Difficulty -->
+                <div class="ui header">
+                  <i class="orange cubes icon"></i>
+
+                  <div class="content">
+                    Difficulty
+                    <div class="sub header">Think about the interview process, how many interviews and how challenging
+                      was it?
+                    </div>
+                  </div>
+                </div>
+                <div class="ui horizontal list">
+                  <div class="item"><i class="huge green plane icon"></i></div>
+                  <div class="item"><i class="huge green military icon item"></i></div>
+                  <div class="item"><i class="huge red space shuttle icon item"></i></div>
+                  <div class="item"><i class="huge red rocket icon item"></i></div>
+
+                </div>
+
               </div>
+
+
+              <!-- WIZARD 3/3 -->
               <div class="title">
                 <i class="dropdown icon"></i>
                 Last Thoughts
               </div>
               <div class="content">
+                <!-- Final Thoughts area -->
                 <div class="field">
                   <label>Anything else?</label>
                   <textarea></textarea>
