@@ -46,10 +46,14 @@ angular.module('ratemycoopApp')
 
     var pushData = {};
 
-    angular.element(document).ready(function () {
+    function setupSemantic() {
       $('.ui.accordion').accordion();
       $('.ui.selection.dropdown').dropdown();
       $('.rating').rating();
+    }
+
+    angular.element(document).ready(function () {
+      setTimeout(setupSemantic, 1000);
     });
 
   });

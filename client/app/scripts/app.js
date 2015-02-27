@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'angular.filter',
-    'lbServices'
+    'lbServices',
+    'mgo-angular-wizard'
   ])
   .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider) {
     $routeProvider

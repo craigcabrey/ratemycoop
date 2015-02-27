@@ -48,15 +48,11 @@
             </div>
 
 
-            <div class="ui accordion">
+            <wizard on-finish="finishedWizard()">
+              <wz-step title="Starting">
+                <!-- WIZARD 1/3 -->
 
-
-              <!-- WIZARD 1/3 -->
-              <div class="title">
-                <i class="dropdown icon"></i>
-                Co-op Info
-              </div>
-              <div class="content">
+                <h1>Co-op Info</h1>
 
                 <div class="two fields">
                   <div class="ui search field">
@@ -116,14 +112,16 @@
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- WIZARD 2/3 -->
-              <div class="active title">
-                <i class="dropdown icon"></i>
-                Your Experience
-              </div>
-              <div class="active content">
+                <div class="ui right labeled icon button" type="submit" wz-next value="Continue">
+                  <i class="right arrow icon"></i>
+                  Rate
+                </div>
+              </wz-step>
+              <wz-step title="Continuing">
+                <!-- WIZARD 2/3 -->
+                <h1>Your experience</h1>
+
 
                 <!-- Overall -->
                 <div class="ui header">
@@ -169,15 +167,16 @@
 
                 </div>
 
-              </div>
+
+                <div class="ui right labeled icon button" wz-next value="Go on">
+                  <i class="right arrow icon"></i>
+                  Almost Done
+                </div>
 
 
-              <!-- WIZARD 3/3 -->
-              <div class="title">
-                <i class="dropdown icon"></i>
-                Last Thoughts
-              </div>
-              <div class="content">
+              </wz-step>
+              <wz-step title="More steps">
+
                 <!-- Final Thoughts area -->
                 <div class="field">
                   <label>Anything else?</label>
@@ -205,12 +204,176 @@
                   </div>
                 </div>
 
-                <div class="ui submit inverted fluid green icon button">
+                <div class="ui submit inverted fluid green icon button" wz-next value="Finish now">
                   <i class="send outline icon"></i>
                   Submit Review
                 </div>
-              </div>
-            </div>
+              </wz-step>
+            </wizard>
+
+
+            <!--<div class="ui accordion">-->
+
+
+            <!--&lt;!&ndash; WIZARD 1/3 &ndash;&gt;-->
+            <!--<div class="title">-->
+            <!--<i class="dropdown icon"></i>-->
+            <!--Co-op Info-->
+            <!--</div>-->
+            <!--<div class="content">-->
+
+            <!--<div class="two fields">-->
+            <!--<div class="ui search field">-->
+            <!--<label>Major</label>-->
+
+            <!--<div class="ui icon input">-->
+            <!--<input class="prompt" type="text" placeholder="Bioinformatics, Software ...">-->
+            <!--<i class="search icon"></i>-->
+            <!--</div>-->
+            <!--<div class="results"></div>-->
+            <!--</div>-->
+            <!--<div class="field">-->
+            <!--<label>City/Town</label>-->
+
+            <!--<div class="ui icon input">-->
+            <!--<input class="prompt" type="text" placeholder="Norwalk">-->
+            <!--<i class="search icon"></i>-->
+            <!--</div>-->
+            <!--<div class="results"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="field">-->
+            <!--<label>Perks</label>-->
+            <!--What kind of cool benefits did you receive?-->
+            <!--<div class="ui icon input">-->
+            <!--<input class="prompt" type="text" placeholder="Relocation, housing, free food...">-->
+            <!--<i class="search icon"></i>-->
+            <!--</div>-->
+            <!--<div class="results"></div>-->
+            <!--</div>-->
+
+            <!--<div class="ui raised blue segment">-->
+            <!--Here add the perks-->
+            <!--</div>-->
+
+            <!--<div class="inline fields">-->
+            <!--<label><i class="green dollar icon"></i>Pay & Compensation</label>-->
+
+            <!--<div class="four wide field">-->
+            <!--<div class="ui input">-->
+            <!--<input class="prompt" type="text" placeholder="$ 00.00">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="two wide field">-->
+            <!--<div class="ui selection dropdown">-->
+            <!--<input type="hidden" name="gender">-->
+
+            <!--<div class="default text">Pay Type</div>-->
+            <!--<i class="dropdown icon"></i>-->
+
+            <!--<div class="menu">-->
+            <!--<div class="item" data-value="hourly">Hourly</div>-->
+            <!--<div class="item" data-value="salary">Salary</div>-->
+            <!--<div class="item" data-value="stipend">Stipend</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--&lt;!&ndash; WIZARD 2/3 &ndash;&gt;-->
+            <!--<div class="title">-->
+            <!--<i class="dropdown icon"></i>-->
+            <!--Your Experience-->
+            <!--</div>-->
+            <!--<div class="content">-->
+
+            <!--&lt;!&ndash; Overall &ndash;&gt;-->
+            <!--<div class="ui header">-->
+            <!--<i class="green history icon"></i>-->
+
+            <!--<div class="content">-->
+            <!--Overall-->
+            <!--<div class="sub header">Remember the first day, all the way to the last step out that door. How was-->
+            <!--your experience overall?-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ui massive star rating"></div>-->
+
+            <!--&lt;!&ndash; Culture &ndash;&gt;-->
+            <!--<div class="ui header">-->
+            <!--<i class="blue users icon"></i>-->
+
+            <!--<div class="content">-->
+            <!--Culture-->
+            <!--<div class="sub header">How well did you like the people and the culture at {company name}?-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ui massive star rating"></div>-->
+
+            <!--&lt;!&ndash; Difficulty &ndash;&gt;-->
+            <!--<div class="ui header">-->
+            <!--<i class="orange cubes icon"></i>-->
+
+            <!--<div class="content">-->
+            <!--Difficulty-->
+            <!--<div class="sub header">Think about the interview process, how many interviews and how challenging-->
+            <!--was it?-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ui horizontal list">-->
+            <!--<div class="item"><i class="huge green plane icon"></i></div>-->
+            <!--<div class="item"><i class="huge green military icon item"></i></div>-->
+            <!--<div class="item"><i class="huge red space shuttle icon item"></i></div>-->
+            <!--<div class="item"><i class="huge red rocket icon item"></i></div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+
+
+            <!--&lt;!&ndash; WIZARD 3/3 &ndash;&gt;-->
+            <!--<div class="title">-->
+            <!--<i class="dropdown icon"></i>-->
+            <!--Last Thoughts-->
+            <!--</div>-->
+            <!--<div class="content">-->
+            <!--&lt;!&ndash; Final Thoughts area &ndash;&gt;-->
+            <!--<div class="field">-->
+            <!--<label>Anything else?</label>-->
+            <!--<textarea></textarea>-->
+            <!--</div>-->
+
+            <!--&lt;!&ndash; Anonymous &ndash;&gt;-->
+            <!--<h4 class="ui dividing header"><i class="spy icon"></i>Anonymity</h4>-->
+
+            <!--<div class="field">-->
+            <!--<div class="ui yellow message">-->
+            <!--We take this matter very seriously-->
+            <!--- for more information check out our <a>privacy policy</a>.-->
+            <!--</div>-->
+            <!--<div class="ui slider checkbox">-->
+            <!--<input type="checkbox" name="privacy">-->
+            <!--<label>Would you like to remain anonymous?</label>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ui hidden divider"></div>-->
+            <!--<div class="field">-->
+            <!--<div class="ui checkbox">-->
+            <!--<input type="checkbox" name="hot-deals">-->
+            <!--<label>I agree to the <a href="#">Terms of Service</a>.</label>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="ui submit inverted fluid green icon button">-->
+            <!--<i class="send outline icon"></i>-->
+            <!--Submit Review-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
 
 
           </form>
