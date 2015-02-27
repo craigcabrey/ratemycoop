@@ -20,37 +20,38 @@
         <div class="ui vertical segment">
 
           <div class="ui fluid steps">
-            <div class="active step">
+            <a class="step" ng-class="{active: wizard.currStep=== wizard.s1}" ng-click="wizard.currStep = wizard.s1">
               <i class="building outline icon"></i>
 
               <div class="content">
                 <div class="title">Co-op Info</div>
                 <div class="description">Getting started</div>
               </div>
-            </div>
-            <div class="step">
+            </a>
+            <a class="step" ng-class="{active: wizard.currStep=== wizard.s2}" ng-click="wizard.currStep = wizard.s2">
               <i class="star icon"></i>
 
               <div class="content">
                 <div class="title">Your Experience</div>
                 <div class="description">Rate it</div>
               </div>
-            </div>
-            <div class="step">
+            </a>
+            <a class="step" ng-class="{active: wizard.currStep=== wizard.s3}" ng-click="wizard.currStep = wizard.s3">
               <i class="info icon"></i>
 
               <div class="content">
                 <div class="title">Last Thoughts</div>
               </div>
-            </div>
+            </a>
           </div>
+          {{wizard.currStep}}
 
 
           <form class="ui error attached form segment">
 
 
-            <wizard on-finish="finishedWizard()" hide-indicators="true">
-              <wz-step title="Starting">
+            <wizard on-finish="finishedWizard()" hide-indicators="true" current-step="wizard.currStep">
+              <wz-step title="wizardStepOne">
                 <!-- WIZARD 1/3 -->
 
                 <h1>Co-op Info</h1>
@@ -119,7 +120,7 @@
                   Rate
                 </div>
               </wz-step>
-              <wz-step title="Continuing">
+              <wz-step title="wizardStepTwo">
                 <!-- WIZARD 2/3 -->
                 <h1>Your experience</h1>
 
@@ -177,7 +178,7 @@
 
 
               </wz-step>
-              <wz-step title="More steps">
+              <wz-step title="wizardStepThree">
 
                 <!-- Final Thoughts area -->
                 <div class="field">
@@ -209,6 +210,12 @@
                 <div class="ui submit inverted fluid green icon button" wz-next value="Finish now">
                   <i class="send outline icon"></i>
                   Submit Review
+                </div>
+                <div class="ui hidden divider"></div>
+
+                <div class="ui submit inverted fluid yellow icon button" wz-cancel>
+                  <i class="erase icon"></i>
+                  Start Over
                 </div>
               </wz-step>
             </wizard>

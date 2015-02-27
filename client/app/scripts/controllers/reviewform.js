@@ -14,8 +14,7 @@ angular.module('ratemycoopApp')
     /**
      * Get company info on-load
      */
-    $scope.company = Company.findOne(
-      {
+    $scope.company = Company.findOne({
         filter: {
           where: {name: $routeParams.companyname},
           include: ['perks', 'majors', 'reviews', {'locations': 'region'}]
@@ -25,6 +24,14 @@ angular.module('ratemycoopApp')
         $scope.loading = false;
       }
     );
+
+    $scope.wizard = {
+      currStep: "wizardStepOne",
+      s1: "wizardStepOne",
+      s2: "wizardStepTwo",
+      s3: "wizardStepThree"
+    };
+
 
     $scope.formData = {
       overallRating: 0,
@@ -46,6 +53,11 @@ angular.module('ratemycoopApp')
 
     var pushData = {};
 
+
+    angular.element(document).ready(function () {
+      setTimeout(setupSemantic, 1000);
+    });
+
     function setupSemantic() {
       $('.ui.accordion').accordion();
       $('.ui.selection.dropdown').dropdown();
@@ -53,8 +65,5 @@ angular.module('ratemycoopApp')
       $('.ui.checkbox').checkbox();
     }
 
-    angular.element(document).ready(function () {
-      setTimeout(setupSemantic, 1000);
-    });
 
   });
