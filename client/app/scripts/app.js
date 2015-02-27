@@ -37,6 +37,10 @@ angular
         templateUrl: 'views/reviewform.html',
         controller: 'ReviewformCtrl'
       })
+      .when('/privacy', {
+        templateUrl: 'views/privacy.html',
+        controller: 'PrivacyCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
