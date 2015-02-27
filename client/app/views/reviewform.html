@@ -19,6 +19,7 @@
 
         <div class="ui vertical segment">
 
+          {{wizard.currStep}}
           <div class="ui fluid steps">
             <a class="step" ng-class="{active: wizard.currStep=== wizard.s1}" ng-click="wizard.currStep = wizard.s1">
               <i class="building outline icon"></i>
@@ -44,7 +45,6 @@
               </div>
             </a>
           </div>
-          {{wizard.currStep}}
 
 
           <form class="ui error attached form segment">
@@ -125,7 +125,7 @@
               </wz-step>
               <wz-step title="wizardStepTwo">
                 <!-- WIZARD 2/3 -->
-                <h1>Your experience</h1>
+                <h1 class="ui header">Your experience</h1>
 
 
                 <!-- Overall -->
