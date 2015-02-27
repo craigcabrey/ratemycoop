@@ -64,6 +64,11 @@
       "model": "Major",
       "through": "CompanyMajor"
     },
+    "industries": {
+      "type": "hasMany",
+      "model": "Industry",
+      "through": "CompanyIndustry"
+    },
     "locations": {
       "type": "hasMany",
       "model": "City",

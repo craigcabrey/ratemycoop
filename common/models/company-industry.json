@@ -1,0 +1,19 @@
+{
+  "name": "CompanyIndustry",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "company": {
+      "type": "belongsTo",
+      "model": "Company"
+    },
+    "industry": {
+      "type": "belongsTo",
+      "model": "Indsutry"
+    }
+  },
+  "acls": [],
+  "methods": []
+}
