@@ -85,5 +85,9 @@
   "Location": {
     "dataSource": "db",
     "public": false
+  },
+  "Industry": {
+    "dataSource": "db",
+    "public": true
   }
 }
