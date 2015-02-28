@@ -21,7 +21,6 @@
 <div class="ui flowing popup" id="loginPopup">
   <div class="ui one column grid">
     <div class="column">
-
       <!-- Login Form -->
       <form class="ui vertically padded form" ng-submit="submitLoginForm()" ng-class="{error: loginForm.error}">
         <div class="ui small error message centered aligned">
@@ -44,15 +43,13 @@
         <!-- Submit buttons -->
         <div class="two fields" ng-hide="loginForm.registerMode">
           <div class="field" style="margin-bottom: 0;">
-            <button class="ui icon fluid secondary button" type="button"
+            <button data-content="Register" class="ui icon fluid secondary button" type="button"
                     ng-click="toggleRegisterMode();">
               <i class="add user icon"></i>
             </button>
           </div>
           <div class="field" style="margin-bottom: 0;">
-            <button data-content="Login" type="submit" class="ui icon fluid orange button">
-              <i class="sign in icon"></i>
-            </button>
+            <button type="submit" class="ui icon fluid orange button">Login</button>
           </div>
         </div>
         <!-- buttons showing different things -->
