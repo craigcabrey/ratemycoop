@@ -5,6 +5,10 @@
   "properties": {},
   "validations": [],
   "relations": {
+    "review": {
+      "type": "belongsTo",
+      "model": "Review"
+    },
     "user": {
       "type": "belongsTo",
       "model": "User",
