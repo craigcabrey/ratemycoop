@@ -65,17 +65,20 @@
                 <div class="two fields">
                   <div class="ui field">
 
-                    <div class="ui left action input">
-                      <div class="ui teal labeled icon button">
-                        <i class="university icon"></i>
-                        Major
+
+                    <div class="ui left aligned category search" id="majorSearch">
+                      <div class="ui labeled input">
+                        <div class="ui teal label"><i class="graduation icon"></i>Major</div>
+                        <input type="text" class="prompt" placeholder="1. Software, Biomedical, Mechanical...">
                       </div>
-                      <input type="text" value="" placeholder="1. Software, Biomedical, Mechanical...">
+                      <div class="results"></div>
+
                     </div>
 
-                  </div>
-                  <div class="field">
 
+                  </div>
+
+                  <div class="field">
 
                     <div class="ui action input">
                       <input type="text" placeholder="New York City, San Francisco...">
@@ -101,7 +104,10 @@
                   <label><i class="green money icon"></i>Pay & Compensation </label>
 
                   <div class="ui right action input">
-                    <input type="text" value="$00.00" placeholder="$ 00.00">
+                    <div class="ui labeled input">
+                      <div class="ui green label">$</div>
+                      <input type="text" value="$00.00" placeholder="00.00">
+                    </div>
 
                     <div class="ui labeled selection dropdown button">
                       <input type="hidden" name="gender">

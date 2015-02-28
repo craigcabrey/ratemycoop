@@ -27,6 +27,16 @@ angular.module('ratemycoopApp')
 
     $scope.majors = Major.find({},
       function (successData) {
+        angular.forEach(successData, function (result) {
+          result.title = result.name;
+          result.description = result.code;
+        });
+
+        $('#majorSearch').search({
+          source: $scope.majors,
+          maxResults: 4,
+          searchFields: ['code', 'name']
+        })
       }
     );
 
@@ -68,6 +78,7 @@ angular.module('ratemycoopApp')
       $('.ui.selection.dropdown').dropdown();
       $('.rating').rating();
       $('.ui.checkbox').checkbox();
+
     }
 
 
