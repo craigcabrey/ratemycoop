@@ -18,6 +18,7 @@
     },
     "description": {
       "type": "string",
+      "dataType": "text",
       "required": true
     },
     "pay": {
