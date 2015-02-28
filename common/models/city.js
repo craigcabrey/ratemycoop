@@ -1,6 +1,5 @@
 module.exports = function(City) {
   City.search = function(query, callback) {
-    // TODO: sanitize query
     City.find(
       {
         where: {
@@ -10,7 +9,8 @@ module.exports = function(City) {
         },
         include: [
           'region'
-        ]
+        ],
+        limit: 50
       }, function (err, results) {
         callback(null, results);
       }
