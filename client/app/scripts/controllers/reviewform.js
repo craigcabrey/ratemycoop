@@ -48,23 +48,9 @@ angular.module('ratemycoopApp')
 
 
     $scope.searchCity = function (query) {
-      $scope.cities = City.find({
-          filter: {
-            limit: 50,
-            where: {
-              query: query
-            }
-          }
-        },
+      $scope.cities = City.search({query: query},
         function (successData) {
-          //$('#locationSearch').search({
-          //  source: $scope.cities,
-          //  searchFields: ['name'],
-          //  onSearchQuery: function (query) {
-          //    console.log('searching query');
-          //    $scope.searchCity(query);
-          //  }
-          //});
+          console.log("seems you searched something");
         }
       );
     };
@@ -109,12 +95,10 @@ angular.module('ratemycoopApp')
       $('.rating').rating();
       $('.ui.checkbox').checkbox();
       $('#locationSearch').search({
-        source: $scope.cities,
-        searchFields: ['name'],
-        onSearchQuery: function (query) {
-          console.log('searching query');
-          $scope.searchCity(query);
-        }
+        apiSettings: {
+          url: "https://ratemycoop.io/api/Cities/search?query={query}"
+        },
+        searchFields: ['name']
 
       });
 
