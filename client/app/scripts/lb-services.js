@@ -1249,6 +1249,42 @@ module.factory(
           method: "HEAD"
         },
 
+        // INTERNAL. Use Company.industries.findById() instead.
+        "prototype$__findById__industries": {
+          url: urlBase + "/Companies/:id/industries/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Company.industries.destroyById() instead.
+        "prototype$__destroyById__industries": {
+          url: urlBase + "/Companies/:id/industries/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Company.industries.updateById() instead.
+        "prototype$__updateById__industries": {
+          url: urlBase + "/Companies/:id/industries/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Company.industries.link() instead.
+        "prototype$__link__industries": {
+          url: urlBase + "/Companies/:id/industries/rel/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Company.industries.unlink() instead.
+        "prototype$__unlink__industries": {
+          url: urlBase + "/Companies/:id/industries/rel/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Company.industries.exists() instead.
+        "prototype$__exists__industries": {
+          url: urlBase + "/Companies/:id/industries/rel/:fk",
+          method: "HEAD"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Company#prototype$__get__reviews
@@ -1458,6 +1494,31 @@ module.factory(
         // INTERNAL. Use Company.locations.count() instead.
         "prototype$__count__locations": {
           url: urlBase + "/Companies/:id/locations/count",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Company.industries() instead.
+        "prototype$__get__industries": {
+          isArray: true,
+          url: urlBase + "/Companies/:id/industries",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Company.industries.create() instead.
+        "prototype$__create__industries": {
+          url: urlBase + "/Companies/:id/industries",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Company.industries.destroyAll() instead.
+        "prototype$__delete__industries": {
+          url: urlBase + "/Companies/:id/industries",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Company.industries.count() instead.
+        "prototype$__count__industries": {
+          url: urlBase + "/Companies/:id/industries/count",
           method: "GET"
         },
 
@@ -3173,6 +3234,378 @@ module.factory(
         R.locations.updateById = function() {
           var TargetResource = $injector.get("City");
           var action = TargetResource["::updateById::Company::locations"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Company.industries
+     * @header lbServices.Company.industries
+     * @object
+     * @description
+     *
+     * The object `Company.industries` groups methods
+     * manipulating `Industry` instances related to `Company`.
+     *
+     * Call {@link lbServices.Company#industries Company.industries()}
+     * to query all related instances.
+     */
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company#industries
+         * @methodOf lbServices.Company
+         *
+         * @description
+         *
+         * Queries industries of Company.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        R.industries = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::get::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#count
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Counts industries of Company.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        R.industries.count = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::count::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#create
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Creates a new instance in industries of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        R.industries.create = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::create::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#destroyAll
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Deletes all industries of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.industries.destroyAll = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::delete::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#destroyById
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Delete a related item by id for industries
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for industries
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.industries.destroyById = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::destroyById::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#exists
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Check the existence of industries relation to an item by id
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for industries
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        R.industries.exists = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::exists::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#findById
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Find a related item by id for industries
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for industries
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        R.industries.findById = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::findById::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#link
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Add a related item by id for industries
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for industries
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        R.industries.link = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::link::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#unlink
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Remove the industries relation to an item by id
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for industries
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R.industries.unlink = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::unlink::Company::industries"];
+          return action.apply(R, arguments);
+        };
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company.industries#updateById
+         * @methodOf lbServices.Company.industries
+         *
+         * @description
+         *
+         * Update a related item by id for industries
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for industries
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        R.industries.updateById = function() {
+          var TargetResource = $injector.get("Industry");
+          var action = TargetResource["::updateById::Company::industries"];
           return action.apply(R, arguments);
         };
 
@@ -10391,6 +10824,572 @@ module.factory(
           var action = TargetResource["::get::City::region"];
           return action.apply(R, arguments);
         };
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.Industry
+ * @header lbServices.Industry
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Industry` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "Industry",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/Industries/:id",
+      { 'id': '@id' },
+      {
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#create
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Create a new instance of the model and persist it into the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        "create": {
+          url: urlBase + "/Industries",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#upsert
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        "upsert": {
+          url: urlBase + "/Industries",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#exists
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Check whether a model instance exists in the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `exists` – `{boolean=}` - 
+         */
+        "exists": {
+          url: urlBase + "/Industries/:id/exists",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#findById
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Find a model instance by id from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        "findById": {
+          url: urlBase + "/Industries/:id",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#find
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Find all instances of the model matched by filter from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, orderBy, offset, and limit
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        "find": {
+          isArray: true,
+          url: urlBase + "/Industries",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#findOne
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Find first instance of the model matched by filter from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `filter` – `{object=}` - Filter defining fields, where, orderBy, offset, and limit
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        "findOne": {
+          url: urlBase + "/Industries/findOne",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#updateAll
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        "updateAll": {
+          url: urlBase + "/Industries/update",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#deleteById
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        "deleteById": {
+          url: urlBase + "/Industries/:id",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#count
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Count instances of the model matched by where from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "count": {
+          url: urlBase + "/Industries/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#prototype$updateAttributes
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Update attributes for a model instance and persist it into the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        "prototype$updateAttributes": {
+          url: urlBase + "/Industries/:id",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Company.industries.findById() instead.
+        "::findById::Company::industries": {
+          url: urlBase + "/Companies/:id/industries/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Company.industries.destroyById() instead.
+        "::destroyById::Company::industries": {
+          url: urlBase + "/Companies/:id/industries/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Company.industries.updateById() instead.
+        "::updateById::Company::industries": {
+          url: urlBase + "/Companies/:id/industries/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Company.industries.link() instead.
+        "::link::Company::industries": {
+          url: urlBase + "/Companies/:id/industries/rel/:fk",
+          method: "PUT"
+        },
+
+        // INTERNAL. Use Company.industries.unlink() instead.
+        "::unlink::Company::industries": {
+          url: urlBase + "/Companies/:id/industries/rel/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Company.industries.exists() instead.
+        "::exists::Company::industries": {
+          url: urlBase + "/Companies/:id/industries/rel/:fk",
+          method: "HEAD"
+        },
+
+        // INTERNAL. Use Company.industries() instead.
+        "::get::Company::industries": {
+          isArray: true,
+          url: urlBase + "/Companies/:id/industries",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Company.industries.create() instead.
+        "::create::Company::industries": {
+          url: urlBase + "/Companies/:id/industries",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Company.industries.destroyAll() instead.
+        "::delete::Company::industries": {
+          url: urlBase + "/Companies/:id/industries",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Company.industries.count() instead.
+        "::count::Company::industries": {
+          url: urlBase + "/Companies/:id/industries/count",
+          method: "GET"
+        },
+      }
+    );
+
+
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#updateOrCreate
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Update an existing model instance or insert a new one into the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Industry` object.)
+         * </em>
+         */
+        R["updateOrCreate"] = R["upsert"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#update
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Update instances of the model matched by where from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R["update"] = R["updateAll"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#destroyById
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R["destroyById"] = R["deleteById"];
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Industry#removeById
+         * @methodOf lbServices.Industry
+         *
+         * @description
+         *
+         * Delete a model instance by id from the data source
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - Model id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        R["removeById"] = R["deleteById"];
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.Industry#modelName
+    * @propertyOf lbServices.Industry
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `Industry`.
+    */
+    R.modelName = "Industry";
+
 
     return R;
   }]);

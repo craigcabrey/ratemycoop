@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('ReviewformCtrl', function ($scope, Company, Major, $routeParams) {
+  .controller('ReviewformCtrl', function ($scope, Company, Major, City, $routeParams) {
     $scope.loading = true;
 
     /**
@@ -25,6 +25,9 @@ angular.module('ratemycoopApp')
       }
     );
 
+    /**
+     * Get major info on-load
+     */
     $scope.majors = Major.find({},
       function (successData) {
         angular.forEach(successData, function (result) {
@@ -40,6 +43,25 @@ angular.module('ratemycoopApp')
       }
     );
 
+    $scope.cities = [];
+
+
+    $scope.searchCity = function (query) {
+      $scope.cities = City.find({
+          filter: {
+            limit: 50,
+            where: {
+              name: query
+            }
+          }
+        }
+      );
+    };
+
+    /**
+     * Wizard variables.
+     * @type {{currStep: string, s1: string, s2: string, s3: string}}
+     */
     $scope.wizard = {
       currStep: "wizardStepOne",
       s1: "wizardStepOne",
@@ -66,9 +88,6 @@ angular.module('ratemycoopApp')
 
     };
 
-    var pushData = {};
-
-
     angular.element(document).ready(function () {
       setTimeout(setupSemantic, 1000);
     });
@@ -78,6 +97,15 @@ angular.module('ratemycoopApp')
       $('.ui.selection.dropdown').dropdown();
       $('.rating').rating();
       $('.ui.checkbox').checkbox();
+      console.log('hey');
+      $('#locationSearch').search({
+        searchFields: ['name'],
+        source: $scope.cities,
+        onSearchQuery: function () {
+          console.log("you are searching for something")
+        }
+
+      });
 
     }
 
