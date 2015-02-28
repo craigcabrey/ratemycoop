@@ -56,7 +56,7 @@ angular.module('ratemycoopApp')
     );
 
     $scope.addPerk = function (perk) {
-      $scope.perkSearchQuery = " ";
+      $scope.perkSearchQuery = "";
       perk.isSelected = true;
       console.log(perk);
       $scope.formData.perks.push(perk);

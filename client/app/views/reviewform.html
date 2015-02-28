@@ -26,23 +26,21 @@
               <i class="building outline icon"></i>
 
               <div class="content">
-                <div class="title">Co-op Info</div>
-                <div class="description">Getting started</div>
+                <div class="title">1. Co-op Info</div>
               </div>
             </a>
             <a class="step" ng-class="{active: wizard.currStep=== wizard.s2}" ng-click="wizard.currStep = wizard.s2">
               <i class="star icon"></i>
 
               <div class="content">
-                <div class="title">Your Experience</div>
-                <div class="description">Rate it</div>
+                <div class="title">2. Your Experience</div>
               </div>
             </a>
             <a class="step" ng-class="{active: wizard.currStep=== wizard.s3}" ng-click="wizard.currStep = wizard.s3">
-              <i class="info icon"></i>
+              <i class="comment icon"></i>
 
               <div class="content">
-                <div class="title">Last Thoughts</div>
+                <div class="title">3. Last Thoughts</div>
               </div>
             </a>
           </div>
@@ -92,32 +90,69 @@
                   </div>
                 </div>
 
-                <div class="field">
-                  <label>Perks</label>
+
+                <div class="ten wide field">
+                  <h4 class="ui header">
+                    <i class="game icon"></i>
+                    Perks
+                  </h4>
                   What kind of cool benefits did you receive?
-                  {{perkSearchQuery}}
                   <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Relocation, housing, free food..."
+                    <input class="prompt" type="text" placeholder="Search for perks like relocation, parking or food..."
                            ng-model="perkSearchQuery">
                     <i class="search icon"></i>
                   </div>
                 </div>
+
                 <div class="field">
-                  <div class="ui labels">
-                    <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery | limitTo : 4"
-                         ng-click="addPerk(perk)"
-                         ng-hide="perk.isSelected">
-                      <i class="{{perk.icon}} icon"></i>
-                      {{perk.name}}
-                      <div class="green detail">
-                        <i class="green add square icon"></i>
+
+                  <div class="ui two column stackable grid">
+                    <div class="column">
+                      <div class="ui horizontal segment">
+                        <h5 class="ui header">
+                          Available Perks
+                        </h5>
+
+                        <div class="ui labels">
+                          <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery | limitTo : 6"
+                               ng-click="addPerk(perk)"
+                               ng-hide="perk.isSelected">
+                            <i class="{{perk.icon}} icon"></i>
+                            {{perk.name}}
+                            <div class="green detail">
+                              <i class="green add square icon"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="ui horizontal segment" ng-show="formData.perks.length > 0">
+                        <h5 class="ui header">
+                          <i class="user icon"></i>
+                          Your Perks
+                        </h5>
+
+                        <div class="ui labels">
+                          <div class="ui blue label" ng-repeat="perk in formData.perks">
+                            <i class="{{perk.icon}} icon"></i>
+                            {{perk.name}}
+                            <i class="delete icon" ng-click="unselectPerk(perk)"></i>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
+
+
                 </div>
 
-                <div class="six wide field">
-                  <label><i class="green money icon"></i>Pay & Compensation </label>
+
+                <div class="eight wide field">
+                  <h4 class="ui header">
+                    <i class="green money icon"></i>Pay & Compensation
+                  </h4>
 
                   <div class="ui right action input">
                     <div class="ui labeled input">
