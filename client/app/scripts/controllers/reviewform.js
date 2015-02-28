@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('ReviewformCtrl', function ($scope, Company, Major, City, $routeParams) {
+  .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, $routeParams) {
     $scope.loading = true;
 
     /**
@@ -43,6 +43,35 @@ angular.module('ratemycoopApp')
         })
       }
     );
+
+
+    $scope.allPerks = Perk.find({},
+      function (successData) {
+        console.log(successData);
+        angular.forEach(successData, function (value) {
+          value['isSelected'] = false;
+        });
+        // Success allperks
+      }
+    );
+
+    $scope.addPerk = function (perk) {
+      console.log("adding perk");
+      perk.isSelected = true;
+      console.log(perk);
+      $scope.formData.perks.push(perk);
+    };
+
+    $scope.unselectPerk = function (perk) {
+      console.log('removing perk');
+      perk.isSelected = false;
+      var i = $scope.formData.perks.indexOf(perk);
+      if (i > -1) {
+        $scope.formData.perks.splice(index, 1)
+      }
+
+
+    };
 
     $scope.cities = [];
 

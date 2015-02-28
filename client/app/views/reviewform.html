@@ -95,9 +95,24 @@
                 <div class="field">
                   <label>Perks</label>
                   What kind of cool benefits did you receive?
+                  {{perkSearchQuery}}
                   <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Relocation, housing, free food...">
+                    <input class="prompt" type="text" placeholder="Relocation, housing, free food..."
+                           ng-model="perkSearchQuery">
                     <i class="search icon"></i>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui labels">
+                    <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery | limitTo : 4"
+                         ng-click="addPerk(perk)"
+                         ng-hide="perk.isSelected">
+                      <i class="{{perk.icon}} icon"></i>
+                      {{perk.name}}
+                      <div class="green detail">
+                        <i class="green add square icon"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
