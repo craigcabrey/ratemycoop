@@ -93,5 +93,9 @@
   "CompanyIndustry": {
     "dataSource": "db",
     "public": false
+  },
+  "ReviewLike": {
+    "dataSource": "db",
+    "public": false
   }
 }

@@ -49,6 +49,14 @@
         <img src="images/cooper/cooper_coop_cat.svg" height="36px"/>
       </a>
 
+      <form class="ui search item" id="navSearchInput" ng-submit="search()" ng-hide="isHome" ng-cloak>
+        <div class="ui icon input search">
+          <input class="prompt" type="text" ng-change="handleSearchChange()" id="navSearchField"
+                 ng-model="searchCompanyField" placeholder="Search" autocomplete="off">
+          <!--<i class="search icon"></i>-->
+        </div>
+        <div class="ui left aligned results segment"></div>
+      </form>
       <div class="right menu">
         <div class="item">
           <div login-directive=""></div>
