@@ -23,7 +23,7 @@ module.exports = function(Company) {
       if (instance.reviews) {
         var reviews = instance.reviews();
         if (reviews) {
-          reviews().forEach(
+          reviews.forEach(
             function(review) {
               if (review.anonymous) {
                 review.userId = null;
