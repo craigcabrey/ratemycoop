@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'angular.filter',
     'lbServices',
-    'mgo-angular-wizard'
+    'mgo-angular-wizard',
+    'btford.markdown'
   ])
   .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider) {
     $routeProvider
