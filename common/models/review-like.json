@@ -1,17 +1,18 @@
 {
-  "name": "CompanyIndustry",
+  "name": "ReviewLike",
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {},
   "validations": [],
   "relations": {
-    "company": {
+    "review": {
       "type": "belongsTo",
-      "model": "Company"
+      "model": "Review"
     },
-    "industry": {
+    "user": {
       "type": "belongsTo",
-      "model": "Industry"
+      "model": "User",
+      "foreignKey": ""
     }
   },
   "acls": [],

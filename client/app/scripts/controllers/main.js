@@ -23,6 +23,7 @@ angular.module('ratemycoopApp')
         $("#searchInput").search({
           source: searchable
         });
+
       }
     );
 
