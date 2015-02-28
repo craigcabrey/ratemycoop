@@ -21,3 +21,12 @@ node server/server.js
 ```
 The result is an in memory local databse with limited data on port `:3000`.
 Head to `http://localhost:3000/explorer` to see what's up. 
+
+##Troubleshooting
+
+#### Grunt serve fails with an infinite loop on the watch command:
+Known Issue on Ubuntu
+
+Fix: Increase the number of files allowed to be watched by a user
+
+    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
