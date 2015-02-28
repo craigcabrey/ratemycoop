@@ -26,6 +26,15 @@ angular.module('ratemycoopApp')
       }
     );
 
+    /**
+     * When pressing enter or submitting the form, this gets called
+     */
+    $scope.search = function () {
+      var searchQuery = $('#navSearchField').val();
+      var path = "/company/" + searchQuery;
+      $location.path(path);
+    };
+
 
     $scope.isHome = $location.path() === '/';
     $rootScope.$on("$locationChangeStart",function (event,next,current){
