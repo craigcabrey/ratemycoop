@@ -38,7 +38,8 @@ angular.module('ratemycoopApp')
         $('#majorSearch').search({
           source: $scope.majors,
           maxResults: 4,
-          searchFields: ['code', 'name']
+          searchFields: ['code', 'name'],
+
         })
       }
     );
@@ -51,9 +52,19 @@ angular.module('ratemycoopApp')
           filter: {
             limit: 50,
             where: {
-              name: query
+              query: query
             }
           }
+        },
+        function (successData) {
+          //$('#locationSearch').search({
+          //  source: $scope.cities,
+          //  searchFields: ['name'],
+          //  onSearchQuery: function (query) {
+          //    console.log('searching query');
+          //    $scope.searchCity(query);
+          //  }
+          //});
         }
       );
     };
@@ -97,12 +108,12 @@ angular.module('ratemycoopApp')
       $('.ui.selection.dropdown').dropdown();
       $('.rating').rating();
       $('.ui.checkbox').checkbox();
-      console.log('hey');
       $('#locationSearch').search({
-        searchFields: ['name'],
         source: $scope.cities,
-        onSearchQuery: function () {
-          console.log("you are searching for something")
+        searchFields: ['name'],
+        onSearchQuery: function (query) {
+          console.log('searching query');
+          $scope.searchCity(query);
         }
 
       });
