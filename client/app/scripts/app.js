@@ -60,8 +60,8 @@ angular
       return {
         responseError: function (rejection) {
           if (rejection.status == 401) {
-            $location.nextAfterLogin = $location.path();
-            $location.path('/404');
+            //$location.nextAfterLogin = $location.path();
+            //$location.path('/404');
           }
           return $q.reject(rejection);
         }
