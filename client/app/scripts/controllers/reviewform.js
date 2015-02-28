@@ -56,18 +56,18 @@ angular.module('ratemycoopApp')
     );
 
     $scope.addPerk = function (perk) {
-      console.log("adding perk");
+      $scope.perkSearchQuery = " ";
       perk.isSelected = true;
       console.log(perk);
       $scope.formData.perks.push(perk);
     };
 
     $scope.unselectPerk = function (perk) {
-      console.log('removing perk');
+      console.log($scope.formData.perks.length);
       perk.isSelected = false;
       var i = $scope.formData.perks.indexOf(perk);
       if (i > -1) {
-        $scope.formData.perks.splice(index, 1)
+        $scope.formData.perks.splice(i, 1);
       }
 
 
