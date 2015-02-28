@@ -79,7 +79,7 @@
 
                     <div class="ui fluid search" id="locationSearch">
                       <div class="ui right labeled input">
-                        <input type="text" class="prompt" placeholder="New York City, San Francisco...">
+                        <input type="text" class="prompt" placeholder="Company Location... (i.e. )">
 
                         <div class="ui red tag label"><i class="marker icon"></i>City</div>
                       </div>
@@ -90,62 +90,75 @@
                   </div>
                 </div>
 
-
-                <div class="ten wide field">
-                  <h4 class="ui header">
-                    <i class="game icon"></i>
-                    Perks
-                  </h4>
-                  What kind of cool benefits did you receive?
-                  <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Search for perks like relocation, parking or food..."
-                           ng-model="perkSearchQuery">
-                    <i class="search icon"></i>
+                <div class="ui segment">
+                  <div class="ten wide field">
+                    <h3 class="ui header">
+                      <i class="game icon"></i>
+                      Perks
+                    </h3>
+                    What kind of cool benefits did you receive?
+                    <div class="ui icon input">
+                      <input class="prompt" type="text"
+                             placeholder="Search for perks like relocation, parking or food..."
+                             ng-model="perkSearchQuery">
+                      <i class="search icon"></i>
+                    </div>
                   </div>
-                </div>
 
-                <div class="field">
+                  <div class="field">
 
-                  <div class="ui two column stackable grid">
-                    <div class="column">
-                      <div class="ui horizontal segment">
-                        <h5 class="ui header">
-                          Available Perks
-                        </h5>
+                    <div class="ui two column stackable grid">
+                      <div class="column">
+                        <div class="ui horizontal segment">
+                          <h5 class="ui header">
+                            <i class="tags icon"></i>
+                            Available Perks
+                            <div class="sub header">Click on perks to add them to your perks</div>
+                          </h5>
 
-                        <div class="ui labels">
-                          <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery | limitTo : 6"
-                               ng-click="addPerk(perk)"
-                               ng-hide="perk.isSelected">
-                            <i class="{{perk.icon}} icon"></i>
-                            {{perk.name}}
-                            <div class="green detail">
-                              <i class="green add square icon"></i>
+                          <div class="ui labels">
+                            <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery | limitTo : 6"
+                                 ng-click="addPerk(perk)"
+                                 ng-hide="perk.isSelected">
+                              <i class="{{perk.icon}} icon"></i>
+                              {{perk.name}}
+                              <div class="green detail">
+                                <i class="green add square icon"></i>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="column">
-                      <div class="ui horizontal segment" ng-show="formData.perks.length > 0">
-                        <h5 class="ui header">
-                          <i class="user icon"></i>
-                          Your Perks
-                        </h5>
+                      <div class="column">
+                        <div class="ui horizontal segment">
+                          <h5 class="ui header">
+                            <i class="user icon"></i>
+                            Your Perks
+                          </h5>
 
-                        <div class="ui labels">
-                          <div class="ui blue label" ng-repeat="perk in formData.perks">
-                            <i class="{{perk.icon}} icon"></i>
-                            {{perk.name}}
-                            <i class="delete icon" ng-click="unselectPerk(perk)"></i>
+                          <div class="ui icon message" ng-hide="formData.perks.length > 0">
+                            <i class="smile icon"></i>
+
+                            <div class="content">
+                              No Perks yet, that's ok!
+                            </div>
+
                           </div>
-                        </div>
 
+                          <div class="ui labels">
+                            <div class="ui blue label" ng-repeat="perk in formData.perks">
+                              <i class="{{perk.icon}} icon"></i>
+                              {{perk.name}}
+                              <i class="delete icon" ng-click="unselectPerk(perk)"></i>
+                            </div>
+                          </div>
+
+                        </div>
                       </div>
                     </div>
+
+
                   </div>
-
-
                 </div>
 
 
