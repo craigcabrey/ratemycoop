@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('ReviewformCtrl', function ($scope, Company, $routeParams) {
+  .controller('ReviewformCtrl', function ($scope, Company, Major, $routeParams) {
     $scope.loading = true;
 
     /**
@@ -22,6 +22,11 @@ angular.module('ratemycoopApp')
       },
       function (successData) {
         $scope.loading = false;
+      }
+    );
+
+    $scope.majors = Major.find({},
+      function (successData) {
       }
     );
 
