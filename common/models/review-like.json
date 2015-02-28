@@ -1,0 +1,16 @@
+{
+  "name": "ReviewLike",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "User",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}

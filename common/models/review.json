@@ -27,7 +27,7 @@
       "scale": "2"
     },
     "created": {
-      "type": "date",
+      "type": "Date",
       "required": "true"
     }
   },
@@ -44,6 +44,11 @@
     "payType": {
       "type": "belongsTo",
       "model": "PayType"
+    },
+    "likes": {
+      "type": "hasMany",
+      "model": "ReviewLike",
+      "foreignKey": ""
     }
   },
   "acls": [],
