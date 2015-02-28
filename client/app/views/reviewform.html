@@ -63,10 +63,9 @@
 
 
                 <div class="two fields">
-                  <div class="ui field">
+                  <div class="field">
 
-
-                    <div class="ui left aligned category search" id="majorSearch">
+                    <div class="ui fluid search" id="majorSearch">
                       <div class="ui labeled input">
                         <div class="ui teal label"><i class="graduation icon"></i>Major</div>
                         <input type="text" class="prompt" placeholder="1. Software, Biomedical, Mechanical...">
@@ -75,18 +74,19 @@
 
                     </div>
 
-
                   </div>
 
                   <div class="field">
 
-                    <div class="ui action input">
-                      <input type="text" placeholder="New York City, San Francisco...">
-                      <button class="ui teal right labeled icon button">
-                        <i class="marker icon"></i>
-                        City or Town
-                      </button>
+                    <div class="ui fluid search" id="locationSearch">
+                      <div class="ui right labeled input">
+                        <input type="text" placeholder="New York City, San Francisco...">
+
+                        <div class="ui red tag label"><i class="marker icon"></i>City</div>
+                      </div>
+                      <div class="results"></div>
                     </div>
+
 
                   </div>
                 </div>
@@ -106,7 +106,7 @@
                   <div class="ui right action input">
                     <div class="ui labeled input">
                       <div class="ui green label">$</div>
-                      <input type="text" value="$00.00" placeholder="00.00">
+                      <input type="text" placeholder="10.00">
                     </div>
 
                     <div class="ui labeled selection dropdown button">
