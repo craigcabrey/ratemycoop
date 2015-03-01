@@ -14,6 +14,22 @@ angular.module('ratemycoopApp')
       perks: true
     };
 
+    $scope.formData = {
+      overallRating: 0,
+      cultureRating: 0,
+      difficultyRating: 0,
+
+      description: "",
+
+      payTypes: ['Hourly', 'Salary', 'Stipend'],
+      perks: [],
+
+      returnOffer: false,
+      recommend: false,
+      anonymous: false
+
+    };
+
     /**
      * Get company info on-load
      */
@@ -41,8 +57,7 @@ angular.module('ratemycoopApp')
         $('#majorSearch').search({
           source: $scope.majors,
           maxResults: 4,
-          searchFields: ['code', 'name'],
-
+          searchFields: ['code', 'name']
         })
       }
     );
@@ -87,6 +102,9 @@ angular.module('ratemycoopApp')
       );
     };
 
+    $scope.printFormData = function () {
+      console.log($scope.formData);
+    };
     /**
      * Wizard variables.
      * @type {{currStep: string, s1: string, s2: string, s3: string}}
@@ -99,24 +117,8 @@ angular.module('ratemycoopApp')
     };
 
 
-    $scope.formData = {
-      overallRating: 0,
-      cultureRating: 0,
-      difficultyRating: 0,
-
-      description: "",
-
-      payTypes: ['Hourly', 'Salary', 'Stipend'],
-      perks: [],
-
-      returnOffer: false,
-      recommend: false,
-      anonymous: false
-
-    };
-
     angular.element(document).ready(function () {
-      setTimeout(setupSemantic, 1000);
+      setTimeout(setupSemantic, 400);
     });
 
     function setupSemantic() {
@@ -124,21 +126,31 @@ angular.module('ratemycoopApp')
       $('.ui.selection.dropdown').dropdown();
       $('.ui.dropdown').dropdown();
       $('.rating').rating({
+        /* see http://bit.ly/1M0OaL9 of why we need to do this */
         onRate: function (val) {
-          console.log('rated something');
-          var ratings = $('.rating').rating('get rating');
-          console.log(ratings);
-          $scope.formData.overallRating = ratings[0];
-          console.log($scope.formData.overallRating);
-          $scope.formData.cultureRating = ratings[1];
-          $scope.formData.diffi = ratings[2];
-
+          $scope.$apply(function () {
+            console.log('rated something');
+            var ratings = $('.rating').rating('get rating');
+            console.log(ratings);
+            $scope.formData.overallRating = ratings[0];
+            console.log($scope.formData.overallRating);
+            $scope.formData.cultureRating = ratings[1];
+            $scope.formData.diffi = ratings[2];
+          });
         }
       });
-      $('.ui.checkbox').checkbox();
+      $('#privacyCheckbox').checkbox({
+        onChange: function () {
+          /* see http://bit.ly/1M0OaL9 of why we need to do this */
+          $scope.$apply(function () {
+            $scope.formData.anonymous = !$scope.formData.anonymous;
+          });
+        }
+      });
       $('#locationSearch').search({
         apiSettings: {
-          url: "https://ratemycoop.io/api/Cities/search?query={query}"
+          //TODO: not hardcode url, use another system for searching
+          url: "https://ratemycoop.io/api/v1/Cities/search?query={query}"
         },
         searchFields: ['name']
 
