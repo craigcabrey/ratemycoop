@@ -2,7 +2,7 @@
 
 # ratemycoop.io
 
-rate my co-op is a new service built to allow students to look up information about companies. Search for (and add more) companies, read reviews, and add your own experiences from which others can benefit.
+Rate My Co-op is a new service built to allow students to look up information about companies. Search for (and add more) companies, read reviews, and add your own experiences from which others can benefit.
 
 ## Status
 
@@ -14,7 +14,7 @@ The application is a fairly standard stack consisting of Node.js, loopback.io, A
 
 #### Contributing
 
-We use the `develop` branching model. In order to submit pull requests, fork this repository and branch off of `develop` with a description branch name such as `ui-bugFix/loginForm`. Finally, submit a pull request against the `develop` branch of this repository. Depending on how long it takes to get to the pull request, we may ask you to rebase, but we'll try to incorporate your changes as soon as possible!
+We use the `develop` branching model. In order to submit pull requests, fork this repository and branch off of `develop` with a descriptive branch name such as `ui-bugFix/loginForm`. Finally, submit a pull request against the `develop` branch of this repository. Depending on how long it takes to get to the pull request, we may ask you to rebase, but we'll try to incorporate your changes as soon as possible!
 
 ##### Supported Development Environments
 
