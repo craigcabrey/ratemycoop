@@ -14,6 +14,7 @@ angular.module('ratemycoopApp')
     var craig = new Contributor("Craig Cabrey", "Creator & Developer", "craigcabrey@gmail.com", "craigcabrey.com");
     var erin = new Contributor("Erin McIntosh", "Designer and Cooper-ator", "eem7920@rit.edu", "erinmcintosh.me");
     var ben = new Contributor("Ben Kantor", "Developer", "bkantor01@gmail.com", "");
+    var piper = new Contributor("Piper Chester", "Developer", "piperchester@gmail.com", "piper.im");
     var lexi = new Contributor("Lexi Rich", "Idea Packager", "fill", "fill");
 
     function Contributor(name, role, email, link) {
@@ -24,6 +25,6 @@ angular.module('ratemycoopApp')
       this.gravatar_link = "http://www.gravatar.com/avatar/" + common.MD5(email) + "?s=300&d=retro";
     }
 
-    $scope.contributors = [kocsen, craig, erin, ben, lexi];
+    $scope.contributors = [kocsen, craig, erin, ben, piper, lexi];
 
   });
