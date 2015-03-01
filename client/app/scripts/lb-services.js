@@ -1,6 +1,6 @@
 (function(window, angular, undefined) {'use strict';
 
-var urlBase = "/api";
+var urlBase = "/api/v1";
 var authHeader = 'authorization';
 
 /**
