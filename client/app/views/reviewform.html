@@ -77,10 +77,18 @@
                     </div>
                     <div class="column">
                       <!-- Pay and Compensation -->
+                      <div class="field">
+                        <h2 class="ui header">
+                          <i class="green money icon"></i>
+
+                          <div class="content">
+                            Pay & Compensation
+                            <div class="sub heading"></div>
+                          </div>
+                        </h2>
+                      </div>
 
                       <div class="field">
-
-
                         <div class="ui right labeled input">
                           <i class="left label big dollar icon"></i>
                           <input type="text" placeholder="00.00">
@@ -96,16 +104,6 @@
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="field">
-                        <h3 class="ui header">
-                          <i class="green money icon"></i>
-
-                          <div class="content">
-                            Pay & Compensation
-                            <div class="sub heading"></div>
-                          </div>
-                        </h3>
                       </div>
                     </div>
                   </div>
@@ -146,73 +144,76 @@
                 <div class="ui inverted green right labeled right floated icon button" type="submit" wz-next
                      value="Continue">
                   <i class="right arrow icon"></i>
-                  Next Step
+                  Next
                 </div>
               </wz-step>
               <wz-step title="wizardStepTwo">
                 <!-- WIZARD 2/3 -->
-                <h1 class="ui header">Your experience</h1>
-
-
                 <!-- Overall -->
-                <div class="ui header">
-                  <i class="green history icon"></i>
+                <div class="ui raised green segment">
+                  <div class="ui header">
+                    <i class="green history icon"></i>
 
-                  <div class="content">
-                    Overall
-                    <div class="sub header">Remember the first day, all the way to the last step out that door. How was
-                      your experience overall?
+                    <div class="content">
+                      Overall
+                      <div class="sub header">Remember the first day, all the way to the last step out that door. How
+                        was
+                        your experience overall?
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="ui center aligned basic segment">
-                  <label>Would never go back</label>
+                  <div class="ui center aligned basic segment">
+                    <label>Would never go back</label>
 
-                  <div class="ui massive star rating" data-max-rating="10"></div>
-                  <label>Go back any day</label>
+                    <div class="ui massive star rating" data-max-rating="10"></div>
+                    <label>Go back any day</label>
+                  </div>
                 </div>
 
                 <!-- Culture -->
-                <div class="ui header">
-                  <i class="blue users icon"></i>
+                <div class="ui raised blue segment">
+                  <div class="ui header">
+                    <i class="blue users icon"></i>
 
-                  <div class="content">
-                    Culture
-                    <div class="sub header">How well did you like the people and the culture at {{company.name}}?
+                    <div class="content">
+                      Culture
+                      <div class="sub header">How well did you like the people and the culture at {{company.name}}?
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="ui center aligned basic segment">
-                  <i class="big red frown icon"></i>
+                  <div class="ui center aligned basic segment">
+                    <i class="big red frown icon"></i>
 
-                  <div class="ui massive star rating" data-max-rating="10"></div>
-                  <i class="big green child icon">epic</i>
+                    <div class="ui massive star rating" data-max-rating="10"></div>
+                    <i class="big green child icon">epic</i>
+                  </div>
                 </div>
-
 
                 <!-- Difficulty -->
-                <div class="ui header">
-                  <i class="orange dashboard icon"></i>
+                <div class="ui raised orange segment">
+                  <div class="ui header">
+                    <i class="orange dashboard icon"></i>
 
-                  <div class="content">
-                    Difficulty
-                    <div class="sub header">Think about the interview process, how many interviews and how challenging
-                      was it?
+                    <div class="content">
+                      Difficulty
+                      <div class="sub header">Think about the interview process, how many interviews and how challenging
+                        was it?
+                      </div>
                     </div>
                   </div>
+                  <div class="ui center aligned basic segment">
+                    <i class="big green soccer icon"></i>
+
+                    <div class="ui massive star rating" data-max-rating="10"></div>
+                    <i class="big red rocket icon item"></i>
+                  </div>
+
+                  <div class="ui hidden form divider"></div>
                 </div>
-                <div class="ui center aligned basic segment">
-                  <i class="big green soccer icon"></i>
-
-                  <div class="ui massive star rating" data-max-rating="10"></div>
-                  <i class="big red rocket icon item"></i>
-                </div>
-
-                <div class="ui hidden form divider"></div>
 
 
-                <div class="ui inverted green right labeled right floated icon button" wz-next value="Go on">
-                  <i class="right arrow icon"></i>
+                <div class="ui inverted green left labeled left floated icon button" wz-next value="Go on">
+                  <i class="left arrow icon"></i>
                   Go Back
                 </div>
                 <div class="ui inverted green right labeled right floated icon button" wz-next value="Go on">
