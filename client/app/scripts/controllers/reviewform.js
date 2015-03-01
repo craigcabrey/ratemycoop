@@ -88,6 +88,7 @@ angular.module('ratemycoopApp')
 
       description: "",
 
+      pay: "",
       payTypes: ['Hourly', 'Salary', 'Stipend'],
       perks: [],
 
@@ -98,15 +99,21 @@ angular.module('ratemycoopApp')
     };
 
     $scope.submitReview = function () {
+      /* Validation */
+      // Pay type validation
+      validatePay
+
       var pushObject = prepForPush($scope.formData);
     };
 
     function prepForPush(formData) {
+
+
       var pushObj = {
         "anonymous": formData.anonymous,
         "returnOffer": formData.returnOffer,
-        "recommend": false,
-        "description": "",
+        "recommend": formData.recommend,
+        "description": formData.description,
         "pay": 0,
         "created": "",
         "id": 0,
@@ -124,6 +131,9 @@ angular.module('ratemycoopApp')
     $scope.wizard = {
       currStep: "wizardStepOne",
       s1: "wizardStepOne",
+      s1validation: function () {
+        return false;
+      },
       s2: "wizardStepTwo",
       s3: "wizardStepThree"
     };
@@ -185,6 +195,41 @@ angular.module('ratemycoopApp')
         searchFields: ['name']
 
       });
+
+
+      $('#reviewForm').form(
+        {
+          major: {
+            identifier: 'majorSearchInput',
+            rules: [{
+              type: 'empty',
+              prompt: 'Please enter your major'
+            }]
+          },
+          city: {
+            identifier: 'locationSearchInput',
+            rules: [{
+              type: 'empty',
+              prompt: 'Please enter your major'
+            }]
+          },
+          pay: {
+            identifier: 'payInput',
+            rules: [
+              {
+                type: 'empty',
+                prompt: 'Please enter a valid pay'
+              },
+              {
+                type: ''
+              }
+            ]
+          }
+        },
+        {
+          on: 'blur'
+        }
+      );
 
     }
 
