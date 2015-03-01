@@ -9,7 +9,7 @@
  */
 angular.module('ratemycoopApp')
   .controller('NavCtrl', function ($scope, $location, $rootScope, Company) {
-    
+
     $scope.companies = Company.find({},
       function (success) {// Search trigger
         var searchable = [];
@@ -17,6 +17,9 @@ angular.module('ratemycoopApp')
           var newVal = value;
           newVal['title'] = value.name;
           newVal['url'] = "/#/company/" + value.name;
+          if (value.description && value.description.length >= 100) {
+            newVal['description'] = value.description.substr(0, 100) + "...";
+          }
           searchable.push(newVal);
         });
         $("#navSearchInput").search({

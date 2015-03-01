@@ -18,10 +18,9 @@ angular.module('ratemycoopApp')
           var newVal = value;
           newVal['title'] = value.name;
           newVal['url'] = "/#/company/" + value.name;
-          if (value.description != null && value.description.length >= 301){
-            newVal['description'] = value.description.substr(0,300) + "...";
+          if (value.description && value.description.length >= 230) {
+            newVal['description'] = value.description.substr(0, 230) + "...";
           }
-
           searchable.push(newVal);
         });
         $("#searchInput").search({
