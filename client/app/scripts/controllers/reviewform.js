@@ -14,21 +14,6 @@ angular.module('ratemycoopApp')
       perks: true
     };
 
-    $scope.formData = {
-      overallRating: 0,
-      cultureRating: 0,
-      difficultyRating: 0,
-
-      description: "",
-
-      payTypes: ['Hourly', 'Salary', 'Stipend'],
-      perks: [],
-
-      returnOffer: false,
-      recommend: false,
-      anonymous: false
-
-    };
 
     /**
      * Get company info on-load
@@ -91,20 +76,47 @@ angular.module('ratemycoopApp')
 
     };
 
-    $scope.cities = [];
-
-
-    $scope.searchCity = function (query) {
-      $scope.cities = City.search({query: query},
-        function (successData) {
-          console.log("seems you searched something");
-        }
-      );
-    };
-
     $scope.printFormData = function () {
       console.log($scope.formData);
     };
+
+
+    $scope.formData = {
+      overallRating: 0,
+      cultureRating: 0,
+      difficultyRating: 0,
+
+      description: "",
+
+      payTypes: ['Hourly', 'Salary', 'Stipend'],
+      perks: [],
+
+      returnOffer: false,
+      recommend: false,
+      anonymous: false
+
+    };
+
+    $scope.submitReview = function () {
+      var pushObject = prepForPush($scope.formData);
+    };
+
+    function prepForPush(formData) {
+      var pushObj = {
+        "anonymous": formData.anonymous,
+        "returnOffer": false,
+        "recommend": false,
+        "description": "",
+        "pay": 0,
+        "created": "",
+        "id": 0,
+        "userId": 0,
+        "companyId": 0,
+        "payTypeId": 0
+      }
+    }
+
+
     /**
      * Wizard variables.
      * @type {{currStep: string, s1: string, s2: string, s3: string}}
@@ -147,6 +159,16 @@ angular.module('ratemycoopApp')
           });
         }
       });
+      $('#returnOfferCheckbox').checkbox({
+        onChange: function () {
+          /* see http://bit.ly/1M0OaL9 of why we need to do this */
+          $scope.$apply(function () {
+            $scope.formData.returnOffer = !$scope.formData.returnOffer;
+          });
+        }
+      })
+
+
       $('#locationSearch').search({
         apiSettings: {
           //TODO: not hardcode url, use another system for searching

@@ -245,6 +245,13 @@
 
                 <!-- Final Thoughts area -->
                 <div class="field">
+                  <div class="ui toggle checkbox" id="returnOfferCheckbox">
+                    <input type="checkbox" ng-model="formData.returnOffer">
+
+                    <label>Did you get a return offer for {{company.name}}? </label>
+                  </div>
+                </div>
+                <div class="field">
                   <label>Anything else?</label>
                   <textarea ng-model="formData.description"></textarea>
                 </div>
