@@ -9,7 +9,10 @@
  */
 angular.module('ratemycoopApp')
   .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, $routeParams) {
-    $scope.loading = true;
+    $scope.loading = {
+      main: true,
+      perks: true
+    };
 
     /**
      * Get company info on-load
@@ -21,7 +24,7 @@ angular.module('ratemycoopApp')
         }
       },
       function (successData) {
-        $scope.loading = false;
+        $scope.loading.main = false;
       }
     );
 
@@ -51,6 +54,7 @@ angular.module('ratemycoopApp')
         angular.forEach(successData, function (value) {
           value['isSelected'] = false;
         });
+        $scope.loading.perks = false;
         // Success allperks
       }
     );

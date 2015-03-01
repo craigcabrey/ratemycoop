@@ -3,23 +3,13 @@
     <div class="column">
 
 
-      <div class="ui fluid segment" ng-class="{loading: loading}">
+      <div class="ui fluid segment" ng-class="{loading: loading.main}">
 
         <h1 class="ui dividing header">Review {{company.name}}</h1>
 
 
-        <!-- Error stuff -->
-        <div class="ui error icon message">
-          <i class="spy icon"></i>
-
-          <div class="content">
-            This portion is under development. Use at your own risk, all actions are being tracked
-          </div>
-        </div>
-
         <div class="ui vertical segment">
 
-          {{wizard.currStep}}
           <!--{{cities}}-->
           <div class="ui fluid steps">
             <a class="step" ng-class="{active: wizard.currStep=== wizard.s1}" ng-click="wizard.currStep = wizard.s1">
@@ -53,207 +43,181 @@
               <wz-step title="wizardStepOne">
                 <!-- WIZARD 1/3 -->
 
-                <h1 class="ui header">
-                  Co-op Info
-                  <div class="sub header">
-                    First, a little about you...
-                  </div>
-                </h1>
-
                 <!-- Major and City -->
-                <div class="two fields">
-                  <div class="field">
 
-                    <div class="ui fluid search" id="majorSearch">
-                      <div class="ui labeled input">
-                        <div class="ui green label"><i class="graduation icon"></i>Major</div>
-                        <input type="text" class="prompt" placeholder="1. Software, Biomedical, Mechanical...">
+                <div class="ui raised blue segment">
+                  <div class="ui two column stackable grid">
+                    <div class="column">
+                      <div class="field">
+
+                        <div class="ui fluid search" id="majorSearch">
+                          <div class="ui labeled input">
+                            <div class="ui green label"><i class="graduation icon"></i>Major</div>
+                            <input type="text" class="prompt" placeholder="Software Engineering ...">
+                          </div>
+                          <div class="results"></div>
+
+                        </div>
+
                       </div>
-                      <div class="results"></div>
 
-                    </div>
+                      <div class="field">
 
-                  </div>
+                        <div class="ui fluid search" id="locationSearch">
+                          <div class="ui labeled input">
+                            <div class="ui green label"><i class="marker icon"></i>Company City</div>
 
-                  <div class="field">
+                            <input type="text" class="prompt" placeholder="Where did you work?">
 
-                    <div class="ui fluid search" id="locationSearch">
-                      <div class="ui right labeled input">
-                        <input type="text" class="prompt" placeholder="Company Location... (i.e. )">
-
-                        <div class="ui green tag label"><i class="marker icon"></i>City</div>
+                          </div>
+                          <div class="results"></div>
+                        </div>
                       </div>
-                      <div class="results"></div>
                     </div>
+                    <div class="column">
+                      <!-- Pay and Compensation -->
+                      <div class="field">
+                        <h2 class="ui header">
+                          <i class="green money icon"></i>
 
+                          <div class="content">
+                            Pay & Compensation
+                            <div class="sub heading"></div>
+                          </div>
+                        </h2>
+                      </div>
 
+                      <div class="field">
+                        <div class="ui right labeled input">
+                          <i class="left label big dollar icon"></i>
+                          <input type="text" placeholder="00.00">
+
+                          <div class="ui dropdown label">
+                            <div class="text">Pay Type</div>
+                            <i class="dropdown icon"></i>
+
+                            <div class="menu">
+                              <div class="item">Hourly</div>
+                              <div class="item">Salary</div>
+                              <div class="item">Stipend</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 <!-- Perks MAJOR Segment -->
-                <div class="ui segment">
-                  <div class="ten wide field">
-                    <h3 class="ui header">
-                      <i class="game icon"></i>
-                      Perks
-                    </h3>
-                    What kind of cool benefits did you receive?
-                    <div class="ui icon input">
-                      <input class="prompt"
-                             type="text"
-                             placeholder="Search for perks like parking, food or standing desks..."
-                             ng-model="perkSearchQuery"
-                             id="perkSearchQuery">
-                      <i class="search icon"></i>
-                    </div>
-                  </div>
-
+                <div class="ui raised blue segment" ng-class="{loading: loading.perks}">
                   <!-- Perks Add/Drop -->
                   <div class="field">
-                    <div class="ui two column stackable grid">
-                      <div class="column">
-                        <div class="ui horizontal segment">
-                          <h5 class="ui header">
-                            <i class="tags icon"></i>
-                            Available Perks
-                            <div class="sub header">Click on perks to add them to your perks</div>
-                          </h5>
+                    <div class="column">
+                      <div class="ui header">
+                        <i class="green tags icon"></i>
 
-                          <div class="ui labels">
-                            <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery | limitTo : 6"
-                                 ng-click="addPerk(perk)"
-                                 ng-hide="perk.isSelected">
-                              <i class="{{perk.icon}} icon"></i>
-                              {{perk.name}}
-                              <div class="green detail">
-                                <i class="green add square icon"></i>
-                              </div>
-                            </div>
-                          </div>
+                        <div class="content">
+                          Perks
+                          <div class="sub header">Click on perks to add them to your perks</div>
                         </div>
                       </div>
-                      <div class="column">
-                        <div class="ui horizontal segment">
-                          <h5 class="ui header">
-                            <i class="user icon"></i>
-                            Your Perks
-                          </h5>
 
-                          <div class="ui icon message" ng-hide="formData.perks.length > 0">
-                            <i class="smile icon"></i>
-
-                            <div class="content">
-                              No Perks yet, that's ok!
-                            </div>
-
+                      <div class="ui big labels">
+                        <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery"
+                             ng-class="{orange: perk.isSelected, black: !perk.isSelected}">
+                          <i class="{{perk.icon}} icon"></i>
+                          {{perk.name}}
+                          <div class="detail" ng-hide="perk.isSelected" ng-click="addPerk(perk)">
+                            <i class="add icon"></i>
                           </div>
-
-                          <div class="ui labels">
-                            <div class="ui blue label" ng-repeat="perk in formData.perks">
-                              <i class="{{perk.icon}} icon"></i>
-                              {{perk.name}}
-                              <i class="delete icon" ng-click="unselectPerk(perk)"></i>
-                            </div>
+                          <div class="detail" ng-show="perk.isSelected" ng-click="unselectPerk(perk)">
+                            <i class="close icon"></i>
                           </div>
-
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Pay an Compensation -->
-                <div class="field">
-                  <h4 class="ui header">
-                    <i class="green money icon"></i>Pay & Compensation
-                  </h4>
 
-                  <div class="ui right labeled input">
-                    <i class="dollar icon"></i>
-                    <input type="text" placeholder="00.00">
-
-                    <div class="ui dropdown label">
-                      <div class="text">Pay Type</div>
-                      <i class="dropdown icon"></i>
-
-                      <div class="menu">
-                        <div class="item">Hourly</div>
-                        <div class="item">Salary</div>
-                        <div class="item">Stipend</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="ui inverted green right labeled icon button" type="submit" wz-next value="Continue">
+                <div class="ui inverted green right labeled right floated icon button" type="submit" wz-next
+                     value="Continue">
                   <i class="right arrow icon"></i>
-                  Next Step
+                  Next
                 </div>
               </wz-step>
               <wz-step title="wizardStepTwo">
                 <!-- WIZARD 2/3 -->
-                <h1 class="ui header">Your experience</h1>
-
-
                 <!-- Overall -->
-                <div class="ui header">
-                  <i class="green history icon"></i>
+                <div class="ui raised green segment">
+                  <div class="ui header">
+                    <i class="green history icon"></i>
 
-                  <div class="content">
-                    Overall
-                    <div class="sub header">Remember the first day, all the way to the last step out that door. How was
-                      your experience overall?
+                    <div class="content">
+                      Overall
+                      <div class="sub header">Remember the first day, all the way to the last step out that door. How
+                        was
+                        your experience overall?
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="ui center aligned basic segment">
-                  <label>Would never go back</label>
+                  <div class="ui center aligned basic segment">
+                    <label>Would never go back</label>
 
-                  <div class="ui massive star rating" data-max-rating="10"></div>
-                  <label>Go back any day</label>
+                    <div class="ui massive star rating" data-max-rating="10"></div>
+                    <label>Go back any day</label>
+                  </div>
                 </div>
 
                 <!-- Culture -->
-                <div class="ui header">
-                  <i class="blue users icon"></i>
+                <div class="ui raised blue segment">
+                  <div class="ui header">
+                    <i class="blue users icon"></i>
 
-                  <div class="content">
-                    Culture
-                    <div class="sub header">How well did you like the people and the culture at {company name}?
+                    <div class="content">
+                      Culture
+                      <div class="sub header">How well did you like the people and the culture at {{company.name}}?
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="ui center aligned basic segment">
-                  <i class="big red frown icon"></i>
+                  <div class="ui center aligned basic segment">
+                    <i class="big red frown icon"></i>
 
-                  <div class="ui massive star rating" data-max-rating="10"></div>
-                  <i class="big green child icon">epic</i>
+                    <div class="ui massive star rating" data-max-rating="10"></div>
+                    <i class="big green child icon">epic</i>
+                  </div>
                 </div>
-
 
                 <!-- Difficulty -->
-                <div class="ui header">
-                  <i class="orange dashboard icon"></i>
+                <div class="ui raised orange segment">
+                  <div class="ui header">
+                    <i class="orange dashboard icon"></i>
 
-                  <div class="content">
-                    Difficulty
-                    <div class="sub header">Think about the interview process, how many interviews and how challenging
-                      was it?
+                    <div class="content">
+                      Difficulty
+                      <div class="sub header">Think about the interview process, how many interviews and how challenging
+                        was it?
+                      </div>
                     </div>
                   </div>
+                  <div class="ui center aligned basic segment">
+                    <i class="big green soccer icon"></i>
+
+                    <div class="ui massive star rating" data-max-rating="10"></div>
+                    <i class="big red rocket icon item"></i>
+                  </div>
+
+                  <div class="ui hidden form divider"></div>
                 </div>
-                <div class="ui center aligned basic segment">
-                  <i class="big green soccer icon"></i>
 
-                  <div class="ui massive star rating" data-max-rating="10"></div>
-                  <i class="big red rocket icon item"></i>
+
+                <div class="ui inverted green left labeled left floated icon button" wz-next value="Go on">
+                  <i class="left arrow icon"></i>
+                  Go Back
                 </div>
-
-                <div class="ui hidden form divider"></div>
-
-                <div class="ui inverted green right labeled icon button" wz-next value="Go on">
+                <div class="ui inverted green right labeled right floated icon button" wz-next value="Go on">
                   <i class="right arrow icon"></i>
-                  Almost Done
+                  Next
                 </div>
 
 
@@ -272,7 +236,7 @@
                 <div class="field">
                   <div class="ui yellow message">
                     We take this matter very seriously
-                    - for more information check out our <a>privacy policy</a>.
+                    - for more information check out our <a href="">privacy policy</a>.
                   </div>
                   <div class="ui toggle checkbox">
                     <input type="checkbox" name="privacy">
@@ -280,12 +244,6 @@
                   </div>
                 </div>
                 <div class="ui hidden divider"></div>
-                <div class="field">
-                  <div class="ui checkbox">
-                    <input type="checkbox" name="hot-deals">
-                    <label>I agree to the <a href="#">Terms of Service</a>.</label>
-                  </div>
-                </div>
 
                 <div class="ui submit inverted fluid green icon button" wz-next value="Finish now">
                   <i class="send outline icon"></i>

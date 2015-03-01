@@ -14,12 +14,31 @@ The application is a fairly standard stack consisting of Node.js, loopback.io, A
 
 #### Contributing
 
-We use the `develop` branching model. In order to submit pull requests, fork this repository and branch off of `develop` with a description branch name such as `ui-bugFix/loginForm`. Finally, submit a pull request against the `develop` branch of this repository. Depending on how long it takes to get to the pull request, we may ask you to rebase, but we'll try to incorporate your changes as soon as possible!
+We use the `develop` branching model. In order to submit pull requests, fork this repository and branch off of `develop` with a descriptive branch name such as `ui-bugFix/loginForm`. Finally, submit a pull request against the `develop` branch of this repository. Depending on how long it takes to get to the pull request, we may ask you to rebase, but we'll try to incorporate your changes as soon as possible!
 
 ##### Supported Development Environments
 
-* OS X 10.10+
-* Ubuntu / Fedora / Arch Linux
+###### OS X 10.10
+
+1. Start by installing [homebrew](http://brew.sh/) (following *all* instructions).
+2. Next, execute `brew install node`.
+3. In the root of the repository directory, execute `npm install`.
+4. If you're only working on the backend, you can simply run `node server/server.js`.
+5. For frontend development, execute `npm install -g bower grunt-cli`.
+6. Change into the `client/` directory and execute `npm install` again followed by `npm install grunt`.
+7. Finally, execute `grunt serve` to start the local development server.
+
+###### Ubuntu
+
+[tbd]
+
+###### Fedora
+
+[tbd]
+
+###### Arch Linux
+
+[tbd]
 
 ##### Client Setup
 
