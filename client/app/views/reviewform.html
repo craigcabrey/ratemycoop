@@ -3,7 +3,7 @@
     <div class="column">
 
 
-      <div class="ui fluid segment" ng-class="{loading: loading}">
+      <div class="ui fluid segment" ng-class="{loading: loading.main}">
 
         <h1 class="ui dividing header">Review {{company.name}}</h1>
 
@@ -74,43 +74,29 @@
                 </div>
 
                 <!-- Perks MAJOR Segment -->
-                <div class="ui segment">
-                  <div class="ten wide field">
-                    <h3 class="ui header">
-                      <i class="game icon"></i>
-                      Perks
-                    </h3>
-                    What kind of cool benefits did you receive?
-                    <div class="ui icon input">
-                      <input class="prompt"
-                             type="text"
-                             placeholder="Search for perks like parking, food or standing desks..."
-                             ng-model="perkSearchQuery"
-                             id="perkSearchQuery">
-                      <i class="search icon"></i>
-                    </div>
-                  </div>
-
+                <div class="ui segment" ng-class="{loading: loading.perks}">
                   <!-- Perks Add/Drop -->
                   <div class="field">
                     <div class="column">
                       <div class="ui horizontal segment">
-                        <h5 class="ui header">
+                        <div class="ui header">
                           <i class="tags icon"></i>
-                          Available Perks
-                          <div class="sub header">Click on perks to add them to your perks</div>
-                        </h5>
 
-                        <div class="ui labels">
+                          <div class="content">
+                            Perks
+                            <div class="sub header">Click on perks to add them to your perks</div>
+                          </div>
+                        </div>
+
+                        <div class="ui big labels">
                           <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery"
-                               ng-click="addPerk(perk)"
-                               ng-class="{green: perk.isSelected}">
+                               ng-class="{orange: perk.isSelected, black: !perk.isSelected}">
                             <i class="{{perk.icon}} icon"></i>
                             {{perk.name}}
-                            <div class="detail" ng-hide="perk.isSelected">
+                            <div class="detail" ng-hide="perk.isSelected" ng-click="addPerk(perk)">
                               <i class="add icon"></i>
                             </div>
-                            <div class="detail" ng-show="perk.isSelected" ng-cl>
+                            <div class="detail" ng-show="perk.isSelected" ng-click="unselectPerk(perk)">
                               <i class="close icon"></i>
                             </div>
                           </div>
