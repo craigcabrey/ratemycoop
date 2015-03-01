@@ -97,5 +97,9 @@
   "ReviewLike": {
     "dataSource": "db",
     "public": false
+  },
+  "SuggestedEdit": {
+    "dataSource": "db",
+    "public": false
   }
 }
