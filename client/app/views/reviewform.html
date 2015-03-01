@@ -111,23 +111,11 @@
                           <input type="text" name="payInput" placeholder="00.00" ng-model="formData.pay">
 
 
-                          <select class="ui dropdown" name="payTypeInput" id="payType">
-                            <option value="hourly">Hourly</option>
-                            <option value="salary">Salary</option>
-                            <option value="stipend">Stipend</option>
-
+                          <!--suppress HtmlFormInputWithoutLabel -->
+                          <select class="ui dropdown" name="payTypeInput" id="payType"
+                                  ng-model="formData.payTypeId"
+                                  ng-options="type.id as type.name for type in payTypes">
                           </select>
-
-
-                          <!--<div class="text">Pay Type</div>-->
-                          <!--<i class="dropdown icon"></i>-->
-
-                          <!--<div class="menu">-->
-                          <!--<div class="item">Hourly</div>-->
-                          <!--<div class="item">Salary</div>-->
-                          <!--<div class="item">Stipend</div>-->
-                          <!--</div>-->
-
 
 
                         </div>

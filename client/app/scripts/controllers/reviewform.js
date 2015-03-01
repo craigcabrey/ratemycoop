@@ -8,12 +8,21 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, $routeParams) {
+  .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, PayType, $routeParams) {
     $scope.loading = {
       main: true,
       perks: true
     };
 
+    /**
+     * Used if we want to fetch for pay types, as opposed to using just
+     * $scope.payTypes
+     */
+    $scope.fetchedPayTypes = PayType.find({},
+      function (success) {
+      });
+
+    $scope.payTypes = [{id: 1, name: "Hourly"}, {id: 2, name: "Salary"}, {id: 3, name: "Stipend"}];
 
     /**
      * Get company info on-load
@@ -89,7 +98,8 @@ angular.module('ratemycoopApp')
       description: "",
 
       pay: "",
-      payTypes: ['Hourly', 'Salary', 'Stipend'],
+      payTypeId: $scope.payTypes[0].id,
+
       perks: [],
 
       returnOffer: false,
@@ -101,7 +111,6 @@ angular.module('ratemycoopApp')
     $scope.submitReview = function () {
       /* Validation */
       // Pay type validation
-      validatePay
 
       var pushObject = prepForPush($scope.formData);
     };
@@ -115,14 +124,12 @@ angular.module('ratemycoopApp')
         "recommend": formData.recommend,
         "description": formData.description,
         "pay": 0,
-        "created": "",
         "id": 0,
         "userId": 0,
         "companyId": 0,
         "payTypeId": 0
       }
     }
-
 
     /**
      * Wizard variables.
@@ -148,11 +155,8 @@ angular.module('ratemycoopApp')
         /* see http://bit.ly/1M0OaL9 of why we need to do this */
         onRate: function (val) {
           $scope.$apply(function () {
-            console.log('rated something');
             var ratings = $('.rating').rating('get rating');
-            console.log(ratings);
             $scope.formData.overallRating = ratings[0];
-            console.log($scope.formData.overallRating);
             $scope.formData.cultureRating = ratings[1];
             $scope.formData.diffi = ratings[2];
           });
