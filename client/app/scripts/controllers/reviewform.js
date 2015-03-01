@@ -50,7 +50,6 @@ angular.module('ratemycoopApp')
 
     $scope.allPerks = Perk.find({},
       function (successData) {
-        console.log(successData);
         angular.forEach(successData, function (value) {
           value['isSelected'] = false;
         });
@@ -102,12 +101,10 @@ angular.module('ratemycoopApp')
 
     $scope.formData = {
       overallRating: 0,
-      difficultyRating: 0,
       cultureRating: 0,
+      difficultyRating: 0,
 
-      descriptionGood: "",
-      descriptionBad: "",
-      descriptionOverall: "",
+      description: "",
 
       payTypes: ['Hourly', 'Salary', 'Stipend'],
       perks: [],
@@ -126,7 +123,18 @@ angular.module('ratemycoopApp')
       $('.ui.accordion').accordion();
       $('.ui.selection.dropdown').dropdown();
       $('.ui.dropdown').dropdown();
-      $('.rating').rating();
+      $('.rating').rating({
+        onRate: function (val) {
+          console.log('rated something');
+          var ratings = $('.rating').rating('get rating');
+          console.log(ratings);
+          $scope.formData.overallRating = ratings[0];
+          console.log($scope.formData.overallRating);
+          $scope.formData.cultureRating = ratings[1];
+          $scope.formData.diffi = ratings[2];
+
+        }
+      });
       $('.ui.checkbox').checkbox();
       $('#locationSearch').search({
         apiSettings: {
