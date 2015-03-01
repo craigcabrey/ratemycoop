@@ -18,8 +18,17 @@
     },
     "description": {
       "type": "string",
-      "dataType": "text",
-      "required": true
+      "required": true,
+      "dataType": "text"
+    },
+    "overallRating": {
+      "type": "number"
+    },
+    "cultureRating": {
+      "type": "number"
+    },
+    "difficultyRating": {
+      "type": "number"
     },
     "pay": {
       "type": "number",
@@ -29,7 +38,8 @@
     },
     "created": {
       "type": "Date",
-      "required": "true"
+      "required": "true",
+      "default": "$now"
     }
   },
   "validations": [],
@@ -37,10 +47,6 @@
     "user": {
       "type": "belongsTo",
       "model": "User"
-    },
-    "ratings": {
-      "type": "hasMany",
-      "model": "Rating"
     },
     "payType": {
       "type": "belongsTo",
