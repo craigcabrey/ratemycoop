@@ -44,7 +44,7 @@ angular
         controller: 'PrivacyCtrl'
       })
       .otherwise({
-        redirectTo: '/404.html',
+        redirectTo: '/404',
         templateUrl: '/404.html'
       });
 
