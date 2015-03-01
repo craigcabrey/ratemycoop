@@ -121,6 +121,7 @@ angular.module('ratemycoopApp')
     function setupSemantic() {
       $('.ui.accordion').accordion();
       $('.ui.selection.dropdown').dropdown();
+      $('.ui.dropdown').dropdown();
       $('.rating').rating();
       $('.ui.checkbox').checkbox();
       $('#locationSearch').search({
