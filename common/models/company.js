@@ -9,36 +9,36 @@ module.exports = function(Company) {
     var cultureRating = 0;
     var difficultyRating = 0;
 
-    var reviews = self.reviews();
-    reviews.forEach(
-      function(review) {
-        if ('overallRating' in review) {
-          overallRating += review.overallRating;
+    self.reviews(null, function(err, reviews){
+      reviews.forEach(
+        function(review) {
+          if ('overallRating' in review) {
+            overallRating += review.overallRating;
+          }
+
+          if ('cultureRating' in review) {
+            cultureRating += review.cultureRating;
+          }
+
+          if ('difficultyRating' in review) {
+            difficultyRating += review.difficultyRating;
+          }
+
+          if (review.pay < self.minPay) {
+            self.minPay = review.pay;
+          }
+
+          if (review.pay > self.maxPay) {
+            self.maxPay = review.pay;
+          }
         }
-
-        if ('cultureRating' in review) {
-          cultureRating += review.cultureRating;
-        }
-
-        if ('difficultyRating' in review) {
-          difficultyRating += review.difficultyRating;
-        }
-
-        if (review.pay < self.minPay) {
-          self.minPay = review.pay;
-        }
-
-        if (review.pay > self.maxPay) {
-          self.maxPay = review.pay;
-        }
-      }
-    );
-
-    self.overallRating = overallRating / reviews.length;
-    self.cultureRating = cultureRating / reviews.length;
-    self.difficultyRating = difficultyRating / reviews.length;
-
-    self.save();
+      );
+    
+      self.overallRating = overallRating / reviews.length;
+      self.cultureRating = cultureRating / reviews.length;
+      self.difficultyRating = difficultyRating / reviews.length;
+      self.save();
+    });
   };
 
   /**
