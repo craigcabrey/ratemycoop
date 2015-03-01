@@ -37,7 +37,7 @@
           </div>
 
 
-          <form class="ui error attached form segment" id="reviewForm">
+          <form class="ui error attached form segment" id="reviewForm" ng-submit="submitReview()">
 
 
             <wizard on-finish="finishedWizard()" hide-indicators="true" current-step="wizard.currStep">
@@ -264,13 +264,13 @@
 
                 <div class="ui hidden divider"></div>
 
-                <div class="ui submit inverted fluid green icon button" wz-next>
+                <div class="ui submit inverted fluid green icon button">
                   <i class="send outline icon"></i>
                   Submit Review
                 </div>
                 <div class="ui hidden divider"></div>
 
-                <div class="ui submit inverted fluid yellow icon button" ng-click="wizard.currStep = wizard.s1">
+                <div class="ui inverted fluid yellow icon button" ng-click="wizard.currStep = wizard.s1">
                   <i class="erase icon"></i>
                   Start Over
                 </div>

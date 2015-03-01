@@ -8,11 +8,28 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, PayType, $routeParams) {
+  .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, PayType, User, $routeParams) {
     $scope.loading = {
-      main: true,
-      perks: true
+      main: true, // Promise, must be turned to false somewhere
+      perks: true // Promise, must be turned to false somewhere
     };
+
+
+    /**
+     * Initialize Session
+     */
+    if (User.isAuthenticated()) {
+      $scope.user = User.getCurrent(
+        function (success) {
+          console.log(success);
+          $scope.formData.userId = success.id;
+        }
+      );
+    } else {
+      // TODO: Must handle unauthenticated and redirect to login screen.
+      console.log('ERROR: User must be authenticated');
+      $scope.user = null;
+    }
 
     /**
      * Used if we want to fetch for pay types, as opposed to using just
@@ -100,6 +117,8 @@ angular.module('ratemycoopApp')
       pay: "",
       payTypeId: $scope.payTypes[0].id,
 
+      //userId: $scope.user.id == set when async call to USER returns
+
       perks: [],
 
       returnOffer: false,
@@ -109,6 +128,7 @@ angular.module('ratemycoopApp')
     };
 
     $scope.submitReview = function () {
+      console.log("Review is being submitted :) ");
       /* Validation */
       // Pay type validation
 
@@ -123,11 +143,11 @@ angular.module('ratemycoopApp')
         "returnOffer": formData.returnOffer,
         "recommend": formData.recommend,
         "description": formData.description,
-        "pay": 0,
-        "id": 0,
-        "userId": 0,
+        "userId": formData.userId,
         "companyId": 0,
-        "payTypeId": 0
+        "payTypeId": 0,
+        "pay": 0
+
       }
     }
 
@@ -158,7 +178,7 @@ angular.module('ratemycoopApp')
             var ratings = $('.rating').rating('get rating');
             $scope.formData.overallRating = ratings[0];
             $scope.formData.cultureRating = ratings[1];
-            $scope.formData.diffi = ratings[2];
+            $scope.formData.difficultyRating = ratings[2];
           });
         }
       });
