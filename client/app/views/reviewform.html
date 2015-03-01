@@ -41,13 +41,13 @@
 
 
             <wizard on-finish="finishedWizard()" hide-indicators="true" current-step="wizard.currStep">
-              <wz-step title="wizardStepOne" canexit="wizard.s1validation">
+              <wz-step title="wizardStepOne">
                 <!-- WIZARD 1/3 -->
 
                 <!-- Anonymous -->
                 <div class="field">
                   <div class="ui yellow message" ng-hide="formData.anonymous">
-                    We take this matter very seriously
+                    We take privacy <i>very</i> seriously
                     - for more information check out our <a ng-href="/#/privacy" target="_blank">privacy policy</a>.
                   </div>
                   <div class="ui toggle checkbox" id="privacyCheckbox">
@@ -110,16 +110,26 @@
                           <i class="left label big dollar icon"></i>
                           <input type="text" name="payInput" placeholder="00.00" ng-model="formData.pay">
 
-                          <div class="ui dropdown label">
-                            <div class="text">Pay Type</div>
-                            <i class="dropdown icon"></i>
 
-                            <div class="menu">
-                              <div class="item">Hourly</div>
-                              <div class="item">Salary</div>
-                              <div class="item">Stipend</div>
-                            </div>
-                          </div>
+                          <select class="ui dropdown" name="payTypeInput" id="payType">
+                            <option value="hourly">Hourly</option>
+                            <option value="salary">Salary</option>
+                            <option value="stipend">Stipend</option>
+
+                          </select>
+
+
+                          <!--<div class="text">Pay Type</div>-->
+                          <!--<i class="dropdown icon"></i>-->
+
+                          <!--<div class="menu">-->
+                          <!--<div class="item">Hourly</div>-->
+                          <!--<div class="item">Salary</div>-->
+                          <!--<div class="item">Stipend</div>-->
+                          <!--</div>-->
+
+
+
                         </div>
                       </div>
                     </div>

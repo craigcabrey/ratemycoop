@@ -131,9 +131,6 @@ angular.module('ratemycoopApp')
     $scope.wizard = {
       currStep: "wizardStepOne",
       s1: "wizardStepOne",
-      s1validation: function () {
-        return false;
-      },
       s2: "wizardStepTwo",
       s3: "wizardStepThree"
     };
@@ -146,7 +143,7 @@ angular.module('ratemycoopApp')
     function setupSemantic() {
       $('.ui.accordion').accordion();
       $('.ui.selection.dropdown').dropdown();
-      $('.ui.dropdown').dropdown();
+      $('#payType').dropdown();
       $('.rating').rating({
         /* see http://bit.ly/1M0OaL9 of why we need to do this */
         onRate: function (val) {
@@ -221,9 +218,13 @@ angular.module('ratemycoopApp')
                 prompt: 'Please enter a valid pay'
               },
               {
-                type: ''
+                type: 'length[2]'
               }
             ]
+          },
+          payType: {
+            identifier: 'payTypeInput',
+            prompt: 'prompt'
           }
         },
         {
