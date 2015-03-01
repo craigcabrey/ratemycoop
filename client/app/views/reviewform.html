@@ -93,52 +93,27 @@
 
                   <!-- Perks Add/Drop -->
                   <div class="field">
-                    <div class="ui two column stackable grid">
-                      <div class="column">
-                        <div class="ui horizontal segment">
-                          <h5 class="ui header">
-                            <i class="tags icon"></i>
-                            Available Perks
-                            <div class="sub header">Click on perks to add them to your perks</div>
-                          </h5>
+                    <div class="column">
+                      <div class="ui horizontal segment">
+                        <h5 class="ui header">
+                          <i class="tags icon"></i>
+                          Available Perks
+                          <div class="sub header">Click on perks to add them to your perks</div>
+                        </h5>
 
-                          <div class="ui labels">
-                            <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery | limitTo : 6"
-                                 ng-click="addPerk(perk)"
-                                 ng-hide="perk.isSelected">
-                              <i class="{{perk.icon}} icon"></i>
-                              {{perk.name}}
-                              <div class="green detail">
-                                <i class="green add square icon"></i>
-                              </div>
+                        <div class="ui labels">
+                          <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery"
+                               ng-click="addPerk(perk)"
+                               ng-class="{green: perk.isSelected}">
+                            <i class="{{perk.icon}} icon"></i>
+                            {{perk.name}}
+                            <div class="detail" ng-hide="perk.isSelected">
+                              <i class="add icon"></i>
+                            </div>
+                            <div class="detail" ng-show="perk.isSelected" ng-cl>
+                              <i class="close icon"></i>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="column">
-                        <div class="ui horizontal segment">
-                          <h5 class="ui header">
-                            <i class="user icon"></i>
-                            Your Perks
-                          </h5>
-
-                          <div class="ui icon message" ng-hide="formData.perks.length > 0">
-                            <i class="smile icon"></i>
-
-                            <div class="content">
-                              No Perks yet, that's ok!
-                            </div>
-
-                          </div>
-
-                          <div class="ui labels">
-                            <div class="ui blue label" ng-repeat="perk in formData.perks">
-                              <i class="{{perk.icon}} icon"></i>
-                              {{perk.name}}
-                              <i class="delete icon" ng-click="unselectPerk(perk)"></i>
-                            </div>
-                          </div>
-
                         </div>
                       </div>
                     </div>
