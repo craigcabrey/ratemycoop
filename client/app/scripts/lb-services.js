@@ -1287,6 +1287,112 @@ module.factory(
 
         /**
          * @ngdoc method
+         * @name lbServices.Company#prototype$__findById__suggestedEdits
+         * @methodOf lbServices.Company
+         *
+         * @description
+         *
+         * Find a related item by id for suggestedEdits
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for suggestedEdits
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Company` object.)
+         * </em>
+         */
+        "prototype$__findById__suggestedEdits": {
+          url: urlBase + "/Companies/:id/suggestedEdits/:fk",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company#prototype$__destroyById__suggestedEdits
+         * @methodOf lbServices.Company
+         *
+         * @description
+         *
+         * Delete a related item by id for suggestedEdits
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for suggestedEdits
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        "prototype$__destroyById__suggestedEdits": {
+          url: urlBase + "/Companies/:id/suggestedEdits/:fk",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company#prototype$__updateById__suggestedEdits
+         * @methodOf lbServices.Company
+         *
+         * @description
+         *
+         * Update a related item by id for suggestedEdits
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for suggestedEdits
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Company` object.)
+         * </em>
+         */
+        "prototype$__updateById__suggestedEdits": {
+          url: urlBase + "/Companies/:id/suggestedEdits/:fk",
+          method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
          * @name lbServices.Company#prototype$__get__reviews
          * @methodOf lbServices.Company
          *
@@ -1519,6 +1625,143 @@ module.factory(
         // INTERNAL. Use Company.industries.count() instead.
         "prototype$__count__industries": {
           url: urlBase + "/Companies/:id/industries/count",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company#prototype$__get__suggestedEdits
+         * @methodOf lbServices.Company
+         *
+         * @description
+         *
+         * Queries suggestedEdits of Company.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `filter` – `{object=}` - 
+         *
+         * @param {function(Array.<Object>,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Array.<Object>} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Company` object.)
+         * </em>
+         */
+        "prototype$__get__suggestedEdits": {
+          isArray: true,
+          url: urlBase + "/Companies/:id/suggestedEdits",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company#prototype$__create__suggestedEdits
+         * @methodOf lbServices.Company
+         *
+         * @description
+         *
+         * Creates a new instance in suggestedEdits of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method expects a subset of model properties as request parameters.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * <em>
+         * (The remote method definition does not provide any description.
+         * This usually means the response is a `Company` object.)
+         * </em>
+         */
+        "prototype$__create__suggestedEdits": {
+          url: urlBase + "/Companies/:id/suggestedEdits",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company#prototype$__delete__suggestedEdits
+         * @methodOf lbServices.Company
+         *
+         * @description
+         *
+         * Deletes all suggestedEdits of this model.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * This method returns no data.
+         */
+        "prototype$__delete__suggestedEdits": {
+          url: urlBase + "/Companies/:id/suggestedEdits",
+          method: "DELETE"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Company#prototype$__count__suggestedEdits
+         * @methodOf lbServices.Company
+         *
+         * @description
+         *
+         * Counts suggestedEdits of Company.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `where` – `{object=}` - Criteria to match model instances
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "prototype$__count__suggestedEdits": {
+          url: urlBase + "/Companies/:id/suggestedEdits/count",
           method: "GET"
         },
 
