@@ -21,7 +21,6 @@ angular.module('ratemycoopApp')
     if (User.isAuthenticated()) {
       $scope.user = User.getCurrent(
         function (success) {
-          console.log(success);
           $scope.formData.userId = success.id;
         }
       );
@@ -85,16 +84,13 @@ angular.module('ratemycoopApp')
     );
 
     $scope.addPerk = function (perk) {
-      $scope.perkSearchQuery = "";
-      perk.isSelected = true;
-      console.log(perk);
-      $scope.formData.perks.push(perk);
+      perk.isSelected = true; //This toggles ui change
+      $scope.formData.perks.push(perk.id); // This adds only id, to formData.perks
     };
 
     $scope.unselectPerk = function (perk) {
-      console.log($scope.formData.perks.length);
-      perk.isSelected = false;
-      var i = $scope.formData.perks.indexOf(perk);
+      perk.isSelected = false; // this toggles ui change
+      var i = $scope.formData.perks.indexOf(perk.id); // this finds and removes perk id from perks
       if (i > -1) {
         $scope.formData.perks.splice(i, 1);
       }
@@ -129,25 +125,28 @@ angular.module('ratemycoopApp')
 
     $scope.submitReview = function () {
       console.log("Review is being submitted :) ");
-      /* Validation */
-      // Pay type validation
-
       var pushObject = prepForPush($scope.formData);
     };
 
     function prepForPush(formData) {
-
+      // Validate pay input:
+      var isValidPay = formData.pay.search(/^\$?[\d,]+(\.\d*)?$/) >= 0;
+      if (isValidPay) {
+        formData.pay = formData.pay.replace(/[^0-9\.]/g, '');
+      } else {
+        formData.pay = null;
+      }
 
       var pushObj = {
-        "anonymous": formData.anonymous,
-        "returnOffer": formData.returnOffer,
-        "recommend": formData.recommend,
-        "description": formData.description,
-        "userId": formData.userId,
-        "companyId": 0,
-        "payTypeId": 0,
-        "pay": 0
-
+        anonymous: formData.anonymous,
+        returnOffer: formData.returnOffer,
+        recommend: formData.recommend,
+        description: formData.description,
+        userId: formData.userId,
+        companyId: $scope.company.id,
+        payTypeId: formData.payTypeId,
+        pay: formData.pay,
+        perks: formData.perks
       }
     }
 
