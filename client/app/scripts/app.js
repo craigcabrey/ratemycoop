@@ -44,7 +44,7 @@ angular
         controller: 'PrivacyCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/404.html'
       });
 
     //$locationProvider.html5Mode({ enabled: true, requireBase: false });
