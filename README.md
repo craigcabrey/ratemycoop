@@ -2,7 +2,7 @@
 
 # ratemycoop.io
 
-rate my co-op is a new service built to allow students to look up information about companies. Search for (and add more) companies, read reviews, and add your own experiences from which others can benefit.
+Rate My Co-op is a new service built to allow students to look up information about companies. Search for (and add more) companies, read reviews, and add your own experiences from which others can benefit.
 
 ## Status
 
