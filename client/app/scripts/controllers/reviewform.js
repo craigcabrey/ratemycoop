@@ -146,8 +146,14 @@ angular.module('ratemycoopApp')
         companyId: $scope.company.id,
         payTypeId: formData.payTypeId,
         pay: formData.pay,
-        perks: formData.perks
-      }
+
+        perks: formData.perks,
+        majors: [$('majorSearch').search('get result').id],
+        city: 0//TODO check key names for these
+      };
+
+      console.log('Ready for push!!');
+      console.log(pushObj);
     }
 
     /**
