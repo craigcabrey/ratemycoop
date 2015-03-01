@@ -18,8 +18,27 @@ We use the `develop` branching model. In order to submit pull requests, fork thi
 
 ##### Supported Development Environments
 
-* OS X 10.10+
-* Ubuntu / Fedora / Arch Linux
+###### OS X 10.10
+
+1. Start by installing [homebrew](http://brew.sh/) (following *all* instructions).
+2. Next, execute `brew install node`.
+3. In the root of the repository directory, execute `npm install`.
+4. If you're only working on the backend, you can simply run `node server/server.js`.
+5. For frontend development, execute `npm install -g bower grunt-cli`.
+6. Change into the `client/` directory and execute `npm install` again followed by `npm install grunt`.
+7. Finally, execute `grunt serve` to start the local development server.
+
+###### Ubuntu
+
+[tbd]
+
+###### Fedora
+
+[tbd]
+
+###### Arch Linux
+
+[tbd]
 
 ##### Client Setup
 
