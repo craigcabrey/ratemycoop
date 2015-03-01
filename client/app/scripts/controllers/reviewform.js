@@ -104,7 +104,7 @@ angular.module('ratemycoopApp')
     function prepForPush(formData) {
       var pushObj = {
         "anonymous": formData.anonymous,
-        "returnOffer": false,
+        "returnOffer": formData.returnOffer,
         "recommend": false,
         "description": "",
         "pay": 0,
@@ -166,7 +166,15 @@ angular.module('ratemycoopApp')
             $scope.formData.returnOffer = !$scope.formData.returnOffer;
           });
         }
-      })
+      });
+      $('#recommendCheckbox').checkbox({
+        onChange: function () {
+          /* see http://bit.ly/1M0OaL9 of why we need to do this */
+          $scope.$apply(function () {
+            $scope.formData.recommend = !$scope.formData.recommend;
+          });
+        }
+      });
 
 
       $('#locationSearch').search({

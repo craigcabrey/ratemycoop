@@ -242,8 +242,14 @@
 
               </wz-step>
               <wz-step title="wizardStepThree">
+                <!-- return offer and would you recommend? -->
+                <div class="field">
+                  <div class="ui toggle checkbox" id="recommendCheckbox">
+                    <input type="checkbox" ng-model="formData.recommend">
 
-                <!-- Final Thoughts area -->
+                    <label>Would you reccomend {{company.name}} to a friend? </label>
+                  </div>
+                </div>
                 <div class="field">
                   <div class="ui toggle checkbox" id="returnOfferCheckbox">
                     <input type="checkbox" ng-model="formData.returnOffer">
@@ -251,6 +257,8 @@
                     <label>Did you get a return offer for {{company.name}}? </label>
                   </div>
                 </div>
+
+                <!-- Final Thoughts area -->
                 <div class="field">
                   <label>Anything else?</label>
                   <textarea ng-model="formData.description"></textarea>
