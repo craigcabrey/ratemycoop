@@ -205,7 +205,7 @@
             </div>
           </div>
 
-          <div class="event" ng-show="company.reviews.length == 0">
+          <div class="event" ng-show="company.reviews.length == 0" ng-click="gotoReview()">
             <div class="ui fluid icon large positive message">
               <i class="write icon"></i>
 
@@ -213,7 +213,7 @@
                 Woah!
               </div>
               It looks like no one has written a review yet. Be the first to
-              <a>write one!</a><br>
+              <a href="">write one!</a><br>
             </div>
           </div>
 
@@ -227,7 +227,7 @@
                 </div>
               </div>
               <div btf-markdown="review.description">
-              </div>              
+              </div>
               <div class="meta">
                 <a class="like">
                   <i class="like icon"></i> 5 Likes
