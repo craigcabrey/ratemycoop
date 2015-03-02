@@ -32,7 +32,7 @@
   },
   "Review": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "Major": {
     "dataSource": "db",

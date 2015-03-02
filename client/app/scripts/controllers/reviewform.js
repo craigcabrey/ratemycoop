@@ -127,28 +127,32 @@ angular.module('ratemycoopApp')
     };
 
     /**
-     *
+     * Actual final SERVICE push to Backend.
      */
     $scope.submitReview = function () {
       $scope.loading.main = true;
-      $scope.loading.false = true;
+      $scope.loading.perks = true;
       console.log("Review is being submitted :) ");
       var pushObject = prepForPush($scope.formData);
 
-      //Company.reviews.create(
-      //  {id: $scope.company.id},
-      //  pushObject,
-      //  function(success){
-      //    // TODO handle review creation success
-      //    $scope.loading.main = false;
-      //    $scope.loading.false = false;
-      //  },
-      //  function(error){
-      //    // TODO handle review creation error
-      //    $scope.loading.main = false;
-      //    $scope.loading.false = false;
-      //  }
-      //);
+      Company.reviews.create(
+        {id: $scope.company.id},
+        pushObject,
+        function (success) {
+          // TODO handle review creation success
+          console.log('success!');
+
+          $scope.loading.main = false;
+          $scope.loading.perks = false;
+        },
+        function (error) {
+          console.log('fail');
+
+          // TODO handle review creation error
+          $scope.loading.main = false;
+          $scope.loading.perks = false;
+        }
+      );
 
       //var companyId = $scope.company.id;
       //angular.forEach($scope.formData.perks, function (perk) {
@@ -184,18 +188,21 @@ angular.module('ratemycoopApp')
       }
 
       var pushObj = {
+        overallRating: formData.overallRating,
+        cultureRating: formData.cultureRating,
+        difficultyRating: formData.cultureRating,
         anonymous: formData.anonymous,
         returnOffer: formData.returnOffer,
         recommend: formData.recommend,
         description: formData.description,
         userId: formData.userId,
-        companyId: $scope.company.id,
+        //companyId: $scope.company.id,
         payTypeId: formData.payTypeId,
-        pay: formData.pay,
+        pay: formData.pay
 
-        perks: formData.perks,
-        majors: [$('majorSearch').search('get result').id],
-        city: 0//TODO check key names for these
+        //perks: formData.perks,
+        //majors: [$('majorSearch').search('get result').id],
+        //city: 0//TODO check key names for these
       };
 
       console.log('Ready for push!!');
