@@ -134,6 +134,8 @@ angular.module('ratemycoopApp')
       $scope.loading.perks = true;
       console.log("Review is being submitted :) ");
       var pushObject = prepForPush($scope.formData);
+      console.log("final submission object is");
+      console.log(pushObject);
 
       Company.reviews.create(
         {id: $scope.company.id},
@@ -188,25 +190,27 @@ angular.module('ratemycoopApp')
       }
 
       var pushObj = {
-        overallRating: formData.overallRating,
-        cultureRating: formData.cultureRating,
-        difficultyRating: formData.cultureRating,
         anonymous: formData.anonymous,
         returnOffer: formData.returnOffer,
         recommend: formData.recommend,
         description: formData.description,
+        overallRating: formData.overallRating,
+        cultureRating: formData.cultureRating,
+        difficultyRating: formData.cultureRating,
+        pay: formData.pay,
         userId: formData.userId,
+        payTypeId: formData.payTypeId
+
+
+
         //companyId: $scope.company.id,
-        payTypeId: formData.payTypeId,
-        pay: formData.pay
 
         //perks: formData.perks,
         //majors: [$('majorSearch').search('get result').id],
         //city: 0//TODO check key names for these
       };
 
-      console.log('Ready for push!!');
-      console.log(pushObj);
+      return pushObj;
     }
 
     /**
