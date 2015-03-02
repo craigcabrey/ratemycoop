@@ -8,10 +8,9 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('StandaloneLoginCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('StandaloneLoginCtrl', function ($scope, User) {
+    $scope.loginForm = {
+      login: "",
+      pass: ""
+    }
   });

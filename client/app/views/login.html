@@ -1,9 +1,58 @@
 <div class="ui one column stackable center aligned page vertically padded grid">
   <div class="twelve wide column">
 
-    <div class="ui segment">
-      yo nigguh
+    <div class="ui raised orange segment" style="margin-top: 30%; margin-bottom: 20%">
+
+
+      <div class="ui error huge icon message">
+        <h1 class="ui header">
+          <img src="images/cooper/cooper_coop_sad.svg"/>
+
+        </h1>
+        We're sorry, this page isn't quite ready yet, but you can still Login! Please use the login button
+        on the top right of the page to login or register!
+      </div>
+
+      <h1 class="ui header">
+        <!--<img src="images/cooper/cooper_coop_cat.svg">-->
+
+        <div class="content">
+          Hey there!
+          <div class="sub header"><s>Please login so Cooper the co-op Tiger can help you find the best
+            co-op.</s>
+          </div>
+        </div>
+      </h1>
+
+      <form class="ui loading fluid form">
+
+        <div class="two fields">
+
+          <div class="field">
+            <label>Email - RIT only</label>
+
+            <div class="ui icon input">
+              <input placeholder="abc1234@rit.edu" type="text" ng-model="loginForm.login">
+              <i class="user icon"></i>
+            </div>
+          </div>
+          <div class="field">
+            <label>Password</label>
+
+            <div class="ui icon input">
+              <input placeholder="********" type="password" ng-model="loginForm.password">
+              <i class="lock icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <p>or <a>register</a></p>
+        </div>
+
+      </form>
+
     </div>
+
 
   </div>
 </div>
