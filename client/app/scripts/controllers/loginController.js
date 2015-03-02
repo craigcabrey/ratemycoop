@@ -76,7 +76,11 @@ angular.module('ratemycoopApp')
               loginAction()
             },
             function (err) {
-              // TODO: Handle error on register
+              $scope.loginForm.email = "";
+              $scope.loginForm.pass = "";
+              $scope.loginForm.error = false;
+              $scope.loginForm.confirmPass = "";
+              setLoginError(err.data.error.message);
               $scope.loginLoading = false;
             }
           );
@@ -87,6 +91,7 @@ angular.module('ratemycoopApp')
           $scope.loginForm.error = false;
           $scope.loginForm.confirmPass = "";
           setLoginError("Invalid data.");
+          $("#emailField").focus()
         }
       } else {
         // register mode is off, so login
@@ -136,9 +141,9 @@ angular.module('ratemycoopApp')
           $scope.userButton.text = "Login";
           $scope.user = null;
         },
-        function (error) {
+        function (err) {
           $scope.loginLoading = false;
-          //TODO :Handle error when LOGGIN GOUT
+          setLoginError(err.data.error.message);
         }
       );
     };
@@ -149,8 +154,7 @@ angular.module('ratemycoopApp')
       $scope.loginForm.pass = "";
       $scope.loginForm.error = false;
       $scope.loginForm.confirmPass = "";
-
-
+      $("#emailField").focus()
     };
 
     /**
