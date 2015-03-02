@@ -7,7 +7,6 @@
 
         <h1 class="ui dividing header">Review {{company.name}}</h1>
 
-
         <div class="ui vertical segment">
 
           <!--{{cities}}-->
@@ -36,15 +35,28 @@
           </div>
 
 
-          <form class="ui error attached form segment">
+          <form class="ui error attached form segment" id="reviewForm">
 
 
             <wizard on-finish="finishedWizard()" hide-indicators="true" current-step="wizard.currStep">
               <wz-step title="wizardStepOne">
                 <!-- WIZARD 1/3 -->
 
-                <!-- Major and City -->
+                <!-- Anonymous -->
+                <div class="field">
+                  <div class="ui yellow message" ng-hide="formData.anonymous">
+                    We take privacy <i>very</i> seriously
+                    - for more information check out our <a ng-href="/#/privacy" target="_blank">privacy policy</a>.
+                  </div>
+                  <div class="ui toggle checkbox" id="privacyCheckbox">
+                    <input type="checkbox" ng-model="formData.anonymous">
 
+                    <label>Would you like to remain anonymous?</label>
+                  </div>
+                </div>
+
+
+                <!-- Major and City -->
                 <div class="ui raised blue segment">
                   <div class="ui two column stackable grid">
                     <div class="column">
@@ -53,7 +65,8 @@
                         <div class="ui fluid search" id="majorSearch">
                           <div class="ui labeled input">
                             <div class="ui green label"><i class="graduation icon"></i>Major</div>
-                            <input type="text" class="prompt" placeholder="Software Engineering ...">
+                            <input type="text" name="majorSearchInput" class="prompt"
+                                   placeholder="Software Engineering ...">
                           </div>
                           <div class="results"></div>
 
@@ -67,7 +80,8 @@
                           <div class="ui labeled input">
                             <div class="ui green label"><i class="marker icon"></i>Company City</div>
 
-                            <input type="text" class="prompt" placeholder="Where did you work?">
+                            <input type="text" name="locationSearchInput" class="prompt"
+                                   placeholder="Where did you work?">
 
                           </div>
                           <div class="results"></div>
@@ -77,31 +91,33 @@
                     <div class="column">
                       <!-- Pay and Compensation -->
                       <div class="field">
-                        <h2 class="ui header">
+                        <h4 class="ui header">
                           <i class="green money icon"></i>
 
                           <div class="content">
                             Pay & Compensation
-                            <div class="sub heading"></div>
+                            <div class="sub header">
+                              We won't show your specific pay information.
+                            </div>
                           </div>
-                        </h2>
+                        </h4>
                       </div>
 
                       <div class="field">
-                        <div class="ui right labeled input">
-                          <i class="left label big dollar icon"></i>
-                          <input type="text" placeholder="00.00">
+                        <div class="ui labeled input">
+                          <div class="ui green label">$</div>
 
-                          <div class="ui dropdown label">
-                            <div class="text">Pay Type</div>
-                            <i class="dropdown icon"></i>
+                          <!--<i class="left label big dollar icon"></i>-->
+                          <input type="text" name="payInput" placeholder="00.00" ng-model="formData.pay">
 
-                            <div class="menu">
-                              <div class="item">Hourly</div>
-                              <div class="item">Salary</div>
-                              <div class="item">Stipend</div>
-                            </div>
-                          </div>
+
+                          <!--suppress HtmlFormInputWithoutLabel -->
+                          <select class="ui dropdown" name="payTypeInput" id="payType"
+                                  ng-model="formData.payTypeId"
+                                  ng-options="type.id as type.name for type in payTypes">
+                          </select>
+
+
                         </div>
                       </div>
                     </div>
@@ -118,19 +134,20 @@
 
                         <div class="content">
                           Perks
-                          <div class="sub header">Click on perks to add them to your perks</div>
+                          <div class="sub header">Click on perks to add them to your perks, if any.</div>
                         </div>
                       </div>
 
                       <div class="ui big labels">
                         <div class="ui label" ng-repeat="perk in allPerks | filter:perkSearchQuery"
-                             ng-class="{orange: perk.isSelected, black: !perk.isSelected}">
+                             ng-class="{orange: perk.isSelected, black: !perk.isSelected}"
+                             ng-click="togglePerkAddition(perk)">
                           <i class="{{perk.icon}} icon"></i>
                           {{perk.name}}
-                          <div class="detail" ng-hide="perk.isSelected" ng-click="addPerk(perk)">
+                          <div class="detail" ng-hide="perk.isSelected">
                             <i class="add icon"></i>
                           </div>
-                          <div class="detail" ng-show="perk.isSelected" ng-click="unselectPerk(perk)">
+                          <div class="detail" ng-show="perk.isSelected">
                             <i class="close icon"></i>
                           </div>
                         </div>
@@ -139,9 +156,7 @@
                   </div>
                 </div>
 
-
-                <div class="ui inverted green right labeled right floated icon button" type="submit" wz-next
-                     value="Continue">
+                <div class="ui inverted green right labeled right floated icon button" type="submit" wz-next>
                   <i class="right arrow icon"></i>
                   Next
                 </div>
@@ -195,13 +210,13 @@
 
                     <div class="content">
                       Difficulty
-                      <div class="sub header">Think about the interview process, how many interviews and how challenging
-                        was it?
+                      <div class="sub header">
+                        Think about the interview process, how hard was it to get a spot?
                       </div>
                     </div>
                   </div>
                   <div class="ui center aligned basic segment">
-                    <i class="big green soccer icon"></i>
+                    <i class="big green birthday icon"></i>
 
                     <div class="ui massive star rating" data-max-rating="10"></div>
                     <i class="big red rocket icon item"></i>
@@ -211,11 +226,11 @@
                 </div>
 
 
-                <div class="ui inverted green left labeled left floated icon button" wz-next value="Go on">
+                <div class="ui inverted green left labeled left floated icon button" wz-previous>
                   <i class="left arrow icon"></i>
                   Go Back
                 </div>
-                <div class="ui inverted green right labeled right floated icon button" wz-next value="Go on">
+                <div class="ui inverted green right labeled right floated icon button" wz-next>
                   <i class="right arrow icon"></i>
                   Next
                 </div>
@@ -223,35 +238,41 @@
 
               </wz-step>
               <wz-step title="wizardStepThree">
+                <!-- return offer and would you recommend? -->
+                <div class="field">
+                  <div class="ui toggle checkbox" id="recommendCheckbox">
+                    <input type="checkbox" ng-model="formData.recommend">
+
+                    <label>Would you recommend {{company.name}} to a friend? </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui toggle checkbox" id="returnOfferCheckbox">
+                    <input type="checkbox" ng-model="formData.returnOffer">
+
+                    <label>Did you get a return offer for {{company.name}}? </label>
+                  </div>
+                </div>
 
                 <!-- Final Thoughts area -->
                 <div class="field">
                   <label>Anything else?</label>
-                  <textarea></textarea>
+                  <textarea ng-model="formData.description"></textarea>
+                  <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" class="ui tiny label">Supports
+                    Markdown</a>
+
                 </div>
 
-                <!-- Anonymous -->
-                <h4 class="ui dividing header"><i class="spy icon"></i>Anonymity</h4>
 
-                <div class="field">
-                  <div class="ui yellow message">
-                    We take this matter very seriously
-                    - for more information check out our <a href="">privacy policy</a>.
-                  </div>
-                  <div class="ui toggle checkbox">
-                    <input type="checkbox" name="privacy">
-                    <label>Would you like to remain anonymous?</label>
-                  </div>
-                </div>
                 <div class="ui hidden divider"></div>
 
-                <div class="ui submit inverted fluid green icon button" wz-next value="Finish now">
+                <div class="ui submit inverted fluid green icon button" ng-click="submitReview()">
                   <i class="send outline icon"></i>
                   Submit Review
                 </div>
                 <div class="ui hidden divider"></div>
 
-                <div class="ui submit inverted fluid yellow icon button" ng-click="wizard.currStep = wizard.s1">
+                <div class="ui inverted fluid yellow icon button" ng-click="wizard.currStep = wizard.s1">
                   <i class="erase icon"></i>
                   Start Over
                 </div>
@@ -260,7 +281,6 @@
 
 
           </form>
-
 
         </div>
 

@@ -21,6 +21,9 @@ angular.module('ratemycoopApp')
           if (value.description && value.description.length >= 230) {
             newVal['description'] = value.description.substr(0, 230) + "...";
           }
+          if (value.description === null) { // For when the desciption is null
+            newVal['description'] = "";
+          }
           searchable.push(newVal);
         });
         $("#searchInput").search({

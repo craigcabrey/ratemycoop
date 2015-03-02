@@ -20,6 +20,9 @@ angular.module('ratemycoopApp')
           if (value.description && value.description.length >= 100) {
             newVal['description'] = value.description.substr(0, 100) + "...";
           }
+          if (value.description === null) { // For when the desciption is null
+            newVal['description'] = "";
+          }
           searchable.push(newVal);
         });
         $("#navSearchInput").search({
@@ -40,7 +43,7 @@ angular.module('ratemycoopApp')
 
 
     $scope.isHome = $location.path() === '/';
-    $rootScope.$on("$locationChangeStart",function (event,next,current){
+    $rootScope.$on("$locationChangeStart", function (event, next, current) {
       $scope.isHome = $location.path() === '/';
     });
 

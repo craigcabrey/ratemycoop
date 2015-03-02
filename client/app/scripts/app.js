@@ -43,6 +43,10 @@ angular
         templateUrl: 'views/privacy.html',
         controller: 'PrivacyCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'StandaloneLoginCtrl'
+      })
       .otherwise({
         redirectTo: '/404',
         templateUrl: '/404.html'
@@ -51,7 +55,7 @@ angular
     //$locationProvider.html5Mode({ enabled: true, requireBase: false });
 
     // Set url base
-    LoopBackResourceProvider.setUrlBase('/api/v1');
+    LoopBackResourceProvider.setUrlBase('https://ratemycoop.io/api/v1');
 
     /**
      * Set http interceptor for 40x unauthorized

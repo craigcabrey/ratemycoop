@@ -35,8 +35,6 @@ angular.module('ratemycoopApp')
       setUpStatistics();
       // Logo setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
-      // Debug compnay data print TODO: remove for prod
-      console.log(companyData);
     }
 
     /**
