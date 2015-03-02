@@ -24,8 +24,7 @@
                 <div class="content">
                   <a href="{{company.url}}" target="_blank">{{company.name}}</a>
 
-                  <div class="sub header">
-                    {{company.description}}
+                  <div btf-markdown="company.description" class="sub header">
                   </div>
                   <div class="sub header" ng-show="company.description === null || company.description === ''">
                     <b>Woah!</b> <i>It seems like this company doesn't have a description. You can still write a review
