@@ -43,6 +43,10 @@ angular
         templateUrl: 'views/privacy.html',
         controller: 'PrivacyCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'StandaloneLoginCtrl'
+      })
       .otherwise({
         redirectTo: '/404',
         templateUrl: '/404.html'

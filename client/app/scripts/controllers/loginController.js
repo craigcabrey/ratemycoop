@@ -1,6 +1,8 @@
 'use strict';
 
 /**
+ * THIS IS THE NAVBAR LOGIN CONTROLLER, NOT TO BE CONFUSED BY LOGIN.JS
+ * FOR STANDALONE LOGIN CONTROLLER
  * @ngdoc function
  * @name ratemycoopApp.controller:LoginCtrl
  * @description
