@@ -87,6 +87,10 @@ video#mainVideo {
 }
 
 #fat{
-  width: 31.5%;
+  width: 21.5%;
+}
+
+#aboutWrap {
+	margin-bottom: -2px;
 }
 
