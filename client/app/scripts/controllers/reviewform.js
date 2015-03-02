@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, PayType, User, $routeParams) {
+  .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, PayType, User, $routeParams, $location) {
     $scope.loading = {
       main: true, // Promise, must be turned to false somewhere
       perks: true // Promise, must be turned to false somewhere
@@ -25,8 +25,8 @@ angular.module('ratemycoopApp')
         }
       );
     } else {
-      // TODO: Must handle unauthenticated and redirect to login screen.
       console.log('ERROR: User must be authenticated');
+      $location.path('/login');
       $scope.user = null;
     }
 
