@@ -60,7 +60,7 @@ angular.module('ratemycoopApp')
      * Log in or Register action
      */
     $scope.submitLoginForm = function () {
-      // First, check if register
+      // First, check if register mode is on
       if ($scope.loginForm.registerMode) {
         var form = $scope.loginForm;
         if (form.confirmPass === form.pass && /(.+)@(.+){2,}\.(.+){2,}/.test(form.email)) {
@@ -79,11 +79,10 @@ angular.module('ratemycoopApp')
           $scope.loginForm.confirmPass = "";
           setLoginError("Invalid data.");
         }
-
       } else {
+        // register mode is off, so login
         loginAction()
       }
-
     };
 
     /**
