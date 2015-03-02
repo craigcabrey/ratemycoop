@@ -22,6 +22,9 @@ angular.module('ratemycoopApp')
       function (successData) {
         $scope.loading = false;
         onCompanySuccess(successData);
+      },
+      function (error) {
+        $location.path('/404');
       }
     );
 
