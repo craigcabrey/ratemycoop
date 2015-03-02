@@ -129,13 +129,18 @@ angular.module('ratemycoopApp')
     };
 
     function prepForPush(formData) {
-      // Validate pay input:
-      var isValidPay = formData.pay.search(/^\$?[\d,]+(\.\d*)?$/) >= 0;
-      if (isValidPay) {
-        formData.pay = formData.pay.replace(/[^0-9\.]/g, '');
+      // Validate pay input - grabs the pure currency as a string, else null
+      if (formData.pay !== "") {
+        var isValidPay = formData.pay.search(/^\$?[\d,]+(\.\d*)?$/) >= 0;
+        if (isValidPay) {
+          formData.pay = formData.pay.replace(/[^0-9\.]/g, '');
+        } else {
+          formData.pay = null;
+        }
       } else {
         formData.pay = null;
       }
+
 
       var pushObj = {
         anonymous: formData.anonymous,
@@ -218,7 +223,7 @@ angular.module('ratemycoopApp')
           //TODO: not hardcode url, use another system for searching
           url: "https://ratemycoop.io/api/v1/Cities/search?query={query}"
         },
-        searchFields: ['name']
+        searchFields: ['title']
 
       });
 

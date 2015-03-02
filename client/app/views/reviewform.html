@@ -37,7 +37,7 @@
           </div>
 
 
-          <form class="ui error attached form segment" id="reviewForm" ng-submit="submitReview()">
+          <form class="ui error attached form segment" id="reviewForm">
 
 
             <wizard on-finish="finishedWizard()" hide-indicators="true" current-step="wizard.currStep">
@@ -259,12 +259,15 @@
                 <div class="field">
                   <label>Anything else?</label>
                   <textarea ng-model="formData.description"></textarea>
+                  <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" class="ui tiny label">Supports
+                    Markdown</a>
+
                 </div>
 
 
                 <div class="ui hidden divider"></div>
 
-                <div class="ui submit inverted fluid green icon button">
+                <div class="ui submit inverted fluid green icon button" ng-click="submitReview()">
                   <i class="send outline icon"></i>
                   Submit Review
                 </div>
