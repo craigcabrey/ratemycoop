@@ -22,13 +22,22 @@
       "dataType": "text"
     },
     "overallRating": {
-      "type": "number"
+      "type": "number",
+      "dataType": "decimal",
+      "precision": "3",
+      "scale": "1"
     },
     "cultureRating": {
-      "type": "number"
+      "type": "number",
+      "dataType": "decimal",
+      "precision": "3",
+      "scale": "1"
     },
     "difficultyRating": {
-      "type": "number"
+      "type": "number",
+      "dataType": "decimal",
+      "precision": "3",
+      "scale": "1"
     },
     "pay": {
       "type": "number",
