@@ -7,7 +7,7 @@ module.exports = function(app) {
         var regex = /(.*)@(.*)/;
         var results = ctx.instance.email.match(regex);
         if (results[2] !== 'rit.edu') {
-          next(new Error('Non-RIT domain.'));
+          next(new Error('Use your RIT email.'));
         } else {
           next();
         }
