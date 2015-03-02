@@ -123,11 +123,50 @@ angular.module('ratemycoopApp')
 
     };
 
+    /**
+     *
+     */
     $scope.submitReview = function () {
+      //$scope.loading.main = true;
+      //$scope.loading.false = true;
       console.log("Review is being submitted :) ");
       var pushObject = prepForPush($scope.formData);
+
+      //Company.reviews.create(
+      //  {id: $scope.company.id},
+      //  pushObject,
+      //  function(success){
+      //    // TODO handle review creation success
+      //    $scope.loading.main = false;
+      //    $scope.loading.false = false;
+      //  },
+      //  function(error){
+      //    // TODO handle review creation error
+      //    $scope.loading.main = false;
+      //    $scope.loading.false = false;
+      //  }
+      //);
+
+      //var companyId = $scope.company.id;
+      //angular.forEach($scope.formData.perks, function (perk) {
+      //  Company.perks.link(
+      //    {
+      //      id: companyId,
+      //      fk: perk.id
+      //    }, function (success) {
+      //      //TODO on perk relation success
+      //    },
+      //    function (error) {
+      //    }//TODO on perk relation failure}
+      //  )
+      //});
+
     };
 
+    /**
+     * Prepares the formData parameter object to correct keys in order to push to API
+     * @param formData
+     */
     function prepForPush(formData) {
       // Validate pay input - grabs the pure currency as a string, else null
       if (formData.pay !== "") {
@@ -140,7 +179,6 @@ angular.module('ratemycoopApp')
       } else {
         formData.pay = null;
       }
-
 
       var pushObj = {
         anonymous: formData.anonymous,
@@ -172,11 +210,15 @@ angular.module('ratemycoopApp')
       s3: "wizardStepThree"
     };
 
-
+    // On document ready, wait half a second and to init Semantic UI elements.
     angular.element(document).ready(function () {
-      setTimeout(setupSemantic, 400);
+      // Delay to wait for angular to
+      setTimeout(setupSemantic, 0);
     });
 
+    /**
+     * Runs once on document ready. Set up Semantic UI elements
+     */
     function setupSemantic() {
       $('.ui.accordion').accordion();
       $('.ui.selection.dropdown').dropdown();
@@ -223,8 +265,9 @@ angular.module('ratemycoopApp')
           //TODO: not hardcode url, use another system for searching
           url: "https://ratemycoop.io/api/v1/Cities/search?query={query}"
         },
-        searchFields: ['title']
-
+        searchFullText: false,
+        searchFields: ['title'],
+        maxResults: 10
       });
 
 
@@ -265,7 +308,6 @@ angular.module('ratemycoopApp')
           on: 'blur'
         }
       );
-
     }
 
 

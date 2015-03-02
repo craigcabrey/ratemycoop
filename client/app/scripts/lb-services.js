@@ -737,7 +737,7 @@ module.factory(
          *
          *  - `token` – `{string}` - 
          *
-         *  - `redirect` – `{string}` - 
+         *  - `redirect` – `{string=}` - 
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
