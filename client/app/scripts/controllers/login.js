@@ -9,7 +9,7 @@
  */
 angular.module('ratemycoopApp')
   .controller('LoginCtrl', function ($scope, User, $location) {
-
+    $scope.loginLoading = false;
 
     /**
      * Initialize Session
@@ -64,13 +64,20 @@ angular.module('ratemycoopApp')
       if ($scope.loginForm.registerMode) {
         var form = $scope.loginForm;
         if (form.confirmPass === form.pass && /(.+)@(.+){2,}\.(.+){2,}/.test(form.email)) {
+          $scope.loginLoading = true;
           User.create({
               email: form.email,
               password: form.pass
             },
             function (success) {
+              $scope.loginLoading = false;
               loginAction()
-            });
+            },
+            function (err) {
+              // TODO: Handle error on register
+              $scope.loginLoading = false;
+            }
+          );
         } else {
           // Clear everything
           $scope.loginForm.email = "";
@@ -91,6 +98,7 @@ angular.module('ratemycoopApp')
      * logging in.
      */
     function loginAction() {
+      $scope.loginLoading = true;
       // Else, login
       User.login({
           rememberMe: true
@@ -106,26 +114,31 @@ angular.module('ratemycoopApp')
           $(".loginButtonContainer").popup('hide');
           $scope.user = User.getCurrent();
 
-          // Redirect home, or to originally intended path
-          var next = $location.nextAfterLogin || '/';
-          $location.nextAfterLogin = null;
-          $location.path(next);
+          $scope.loginLoading = false;
         },
         function () {
           // On Error Login
           setLoginError("Invalid credentials.");
           $("#passwordField").val("");
           $("#emailField").select();
+          $scope.loginLoading = false;
         });
     }
 
     $scope.logout = function () {
+      $scope.loginLoading = true;
       User.logout({},
         function (success) {
+          $scope.loginLoading = false;
           $("#loggedInPopup").popup('hide');
           $scope.userButton.text = "Login";
           $scope.user = null;
-        });
+        },
+        function (error) {
+          $scope.loginLoading = false;
+          //TODO :Handle error when LOGGIN GOUT
+        }
+      );
     };
     $scope.toggleRegisterMode = function () {
       // Reset all data, make sure we are clean for register

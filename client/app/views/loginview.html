@@ -22,7 +22,8 @@
   <div class="ui one column grid">
     <div class="column">
       <!-- Login Form -->
-      <form class="ui vertically padded form" ng-submit="submitLoginForm()" ng-class="{error: loginForm.error}">
+      <form class="ui vertically padded form" ng-submit="submitLoginForm()"
+            ng-class="{error: loginForm.error, loading: loginLoading}">
         <div class="ui small error message centered aligned">
           <i class="warning sign icon"></i>
           {{loginForm.errorMessage}}
