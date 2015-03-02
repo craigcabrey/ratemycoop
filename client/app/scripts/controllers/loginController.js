@@ -91,11 +91,11 @@ angular.module('ratemycoopApp')
           $scope.loginForm.error = false;
           $scope.loginForm.confirmPass = "";
           setLoginError("Invalid data.");
-          $("#emailField").focus()
+          $("#emailField").focus();
         }
       } else {
         // register mode is off, so login
-        loginAction()
+        loginAction();
       }
     };
 
