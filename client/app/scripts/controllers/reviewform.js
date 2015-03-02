@@ -127,8 +127,8 @@ angular.module('ratemycoopApp')
      *
      */
     $scope.submitReview = function () {
-      //$scope.loading.main = true;
-      //$scope.loading.false = true;
+      $scope.loading.main = true;
+      $scope.loading.false = true;
       console.log("Review is being submitted :) ");
       var pushObject = prepForPush($scope.formData);
 
