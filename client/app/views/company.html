@@ -249,7 +249,7 @@
   <i class="close icon"></i>
 
   <div class="header">
-    Suggest a Company Edit
+    Suggest an edit for {{company.name}}
   </div>
   <div class="content">
     <div class="ui form">
@@ -262,31 +262,60 @@
         <label>Company Description</label>
         <textarea ng-model="suggestCompanyEditForm.description"></textarea>
       </div>
-      <div class="field">
-        <label>Company Page Link</label>
-        <input type="text" name="companyEdit-url" placeholder="www.incorporatedinc.com"
-               ng-model="suggestCompanyEditForm.url">
+      <div class="two fields">
+        <div class="field">
+          <label>Company Page Link</label>
+          <input type="text" name="companyEdit-url" placeholder="www.incorporatedinc.com"
+                 ng-model="suggestCompanyEditForm.url">
+        </div>
+        <div class="field">
+          <label>Link to Logo</label>
+          <input type="text" name="companyEdit-logo_url" placeholder="logos.com/mylogo.svg"
+                 ng-model="suggestCompanyEditForm.logo_url">
+        </div>
       </div>
-      <div class="field">
-        <label>Twitter Link</label>
-        <input type="text" name="companyEdit-twitter" placeholder="twitter.com/incorporated"
-               ng-model="suggestCompanyEditForm.twitter">
+      <div class="three fields">
+        <div class="field">
+
+          <div class="ui left icon input">
+            <i class="inverted blue twitter icon"></i>
+            <input type="text" name="companyEdit-twitter" placeholder="twitter url"
+                   ng-model="suggestCompanyEditForm.twitter">
+          </div>
+
+
+        </div>
+        <div class="field">
+
+          <div class="ui left icon input">
+            <i class="blue facebook icon"></i>
+            <input type="text" name="companyEdit-facebook" placeholder="facebook url"
+                   ng-model="suggestCompanyEditForm.facebook">
+          </div>
+
+
+        </div>
+        <div class="field">
+
+
+          <div class="ui left icon input">
+            <i class="linkedin icon"></i>
+            <input type="text" name="companyEdit-linkedin" placeholder="linkedIn url"
+                   ng-model="suggestCompanyEditForm.linkedin">
+          </div>
+
+
+        </div>
       </div>
-      <div class="field">
-        <label>Facebook Link</label>
-        <input type="text" name="companyEdit-facebook" placeholder="facebook.com/incorporated"
-               ng-model="suggestCompanyEditForm.facebook">
-      </div>
-      <div class="field">
-        <label>Linkedin Link</label>
-        <input type="text" name="companyEdit-linkedin" placeholder="linkedin.com/company/incorporated"
-               ng-model="suggestCompanyEditForm.linkedin">
-      </div>
-      <div class="field">
-        <label>Link to Logo</label>
-        <input type="text" name="companyEdit-logo_url" placeholder="somewhere/images/incorplogo.svg"
-               ng-model="suggestCompanyEditForm.logo_url">
-      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black button">
+      Cancel
+    </div>
+    <div class="ui positive right labeled icon button">
+      Submit
+      <i class="checkmark icon"></i>
     </div>
   </div>
 </div>
