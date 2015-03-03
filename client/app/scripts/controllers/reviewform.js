@@ -108,7 +108,7 @@ angular.module('ratemycoopApp')
       cultureRating: 0,
       difficultyRating: 0,
 
-      description: " ",
+      description: "",
 
       pay: "",
       payTypeId: $scope.payTypes[0].id,
