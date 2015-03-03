@@ -49,7 +49,7 @@ Assuming you have `node`, `bower`, `grunt` and `grunt-cli` installed
 cd client/
 npm install
 bower install
-bower serve
+grunt serve
 ```
 
 On sucess, bower should open up your broswer to the default `:9000` port. 
