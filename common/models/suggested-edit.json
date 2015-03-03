@@ -22,7 +22,8 @@
       "type": "string"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "dataType": "text"
     }
   },
   "validations": [],
@@ -38,6 +39,13 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    } 
+  ],
   "methods": []
 }
