@@ -32,12 +32,14 @@ angular.module('ratemycoopApp')
       }
     );
 
+    $scope.searchCompanyField = '';
     /**
      * When pressing enter or submitting the form, this gets called
      */
     $scope.search = function () {
       var searchQuery = $('#navSearchField').val();
       var path = "/company/" + searchQuery;
+      $scope.searchCompanyField = null;
       $location.path(path);
     };
 
@@ -45,6 +47,7 @@ angular.module('ratemycoopApp')
     $scope.isHome = $location.path() === '/';
     $rootScope.$on("$locationChangeStart", function (event, next, current) {
       $scope.isHome = $location.path() === '/';
+      $scope.searchCompanyField = null;
     });
 
   });

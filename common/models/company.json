@@ -15,7 +15,7 @@
       "type": "string"
     },
     "facebook": {
-       "type": "string"
+      "type": "string"
     },
     "twitter": {
       "type": "string"
@@ -90,6 +90,11 @@
       "model": "City",
       "foreignKey": "",
       "through": "Location"
+    },
+    "suggestedEdits": {
+      "type": "hasMany",
+      "model": "SuggestedEdit",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -133,6 +138,13 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "__create__reviews"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__create__suggestedEdits"
     }
   ],
   "methods": []

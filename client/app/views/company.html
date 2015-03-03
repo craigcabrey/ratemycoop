@@ -4,6 +4,9 @@
 
       <!-- Main overview content segment -->
       <div class="ui fluid stackable segment">
+        <a class="ui corner label" ng-click="showEditModal()">
+          <i class="edit icon"></i>
+        </a>
 
         <!-- Company Image, title, and overview -->
         <div class="ui vertical segment" ng-class="{loading: loading}">
@@ -14,6 +17,7 @@
               <!-- This is in case there is no logo, display nice big building icon -->
               <h1 ng-switch-default="" class="ui fluid center aligned icon header">
                 <i class="massive building outline icon"></i>
+
                 <div class="content">
                 </div>
               </h1>
@@ -25,6 +29,7 @@
                   <a href="{{company.url}}" target="_blank">{{company.name}}</a>
 
                   <div btf-markdown="company.description" class="sub header">
+
                   </div>
                   <div class="sub header" ng-show="company.description === null || company.description === ''">
                     <b>Woah!</b> <i>It seems like this company doesn't have a description. You can still write a review
@@ -240,6 +245,72 @@
 
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<!-- suggest company edit modal -->
+<div class="ui modal">
+  <i class="close icon"></i>
+
+  <div class="header">
+    Suggest an edit for {{company.name}}
+  </div>
+  <div class="content">
+    <div class="ui form" ng-class="{loading: suggestCompanyEditForm.loading}">
+      <div class="field">
+        <label>Company Name</label>
+        <input type="text" name="companyEdit-name" placeholder="Incorporated Inc."
+               ng-model="suggestCompanyEditForm.name">
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea ng-model="suggestCompanyEditForm.description"></textarea>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Company Page Link</label>
+          <input type="text" name="companyEdit-url" placeholder="www.incorporatedinc.com"
+                 ng-model="suggestCompanyEditForm.url">
+        </div>
+        <div class="field">
+          <label>Link to Logo</label>
+          <input type="text" name="companyEdit-logo_url" placeholder="logos.com/mylogo.svg"
+                 ng-model="suggestCompanyEditForm.logo">
+        </div>
+      </div>
+      <!-- Social media fields -->
+      <div class="three fields">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="inverted blue twitter icon"></i>
+            <input type="text" name="companyEdit-twitter" placeholder="twitter url"
+                   ng-model="suggestCompanyEditForm.twitter">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="blue facebook icon"></i>
+            <input type="text" name="companyEdit-facebook" placeholder="facebook url"
+                   ng-model="suggestCompanyEditForm.facebook">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="linkedin icon"></i>
+            <input type="text" name="companyEdit-linkedin" placeholder="linkedIn url"
+                   ng-model="suggestCompanyEditForm.linkedin">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black button">
+      Cancel
+    </div>
+    <div class="ui positive right labeled icon button" ng-click="editModalSubmit()">
+      Submit
+      <i class="checkmark icon"></i>
     </div>
   </div>
 </div>
