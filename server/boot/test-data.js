@@ -86,7 +86,11 @@ module.exports = function (app) {
         url: "http://www.datto.com/",
         description: "One two potato.",
         logo: "datto.png",
-        overallRating: 5.0,
+        "seekingFulltime": true,
+        "seekingCoop": false,
+        "overallRating": 10.0,
+        "cultureRating": 6.0,
+        "difficultyRating": 7.0,
         perks: [ 1 ],
         minPay: 0,
         maxPay: 0
