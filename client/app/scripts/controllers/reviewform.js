@@ -101,11 +101,6 @@ angular.module('ratemycoopApp')
     };
 
 
-    $scope.printFormData = function () {
-      console.log($scope.formData);
-    };
-
-
     $scope.formData = {
       overallRating: 0,
       cultureRating: 0,
@@ -146,10 +141,9 @@ angular.module('ratemycoopApp')
 
           $scope.loading.main = false;
           $scope.loading.perks = false;
+          $location.path('/company/' + $scope.company.name);
         },
         function (error) {
-          console.log('fail');
-
           // TODO handle review creation error
           $scope.loading.main = false;
           $scope.loading.perks = false;
