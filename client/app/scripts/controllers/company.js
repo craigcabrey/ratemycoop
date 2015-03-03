@@ -11,6 +11,7 @@ angular.module('ratemycoopApp')
   .controller('CompanyCtrl', function ($scope, $routeParams, Company, $location) {
     $scope.loading = true;
 
+
     // Given the route, set the main company stuff
     $scope.company = Company.findOne(
       {
@@ -36,10 +37,14 @@ angular.module('ratemycoopApp')
       setUpRatings();
       // Company stat's computation
       setUpStatistics();
+      // Setup major popups
+      setupMajorsPopups();
       // Logo setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
     }
 
+    // Pay Rating setup
+    $scope.payScale = [15, 20, 31];
     /**
      * Set up ratings and pay scale
      */
@@ -62,10 +67,19 @@ angular.module('ratemycoopApp')
           }
         });
       }
-
-      // Pay Rating setup
-      $scope.payScale = [15, 20, 31];
     }
+
+    /**
+     * activates the popups for the majors displayed.
+     */
+    function setupMajorsPopups() {
+      $('.majorLabel').popup({
+        position: 'bottom center',
+        inline: true,
+        transition: 'vertical flip'
+      });
+    }
+
 
     /**
      * Sets up the $recommend and $returners variable to be shown in statistics page.
@@ -91,16 +105,17 @@ angular.module('ratemycoopApp')
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
-      setTimeout(setupMajorsPopups, 1000);
+      $('.modal').modal('show');
     });
 
-    function setupMajorsPopups() {
-      $('.majorLabel').popup({
-        position: 'bottom center',
-        inline: true,
-        transition: 'vertical flip'
-      });
-    }
 
-
+    /**
+     * name
+     * url
+     * twitter
+     * facebook
+     * linkedin
+     * description
+     * logo url (svg preferred)
+     */
   });
