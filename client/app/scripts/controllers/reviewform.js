@@ -102,11 +102,13 @@ angular.module('ratemycoopApp')
 
 
     $scope.formData = {
+      error: false,
+
       overallRating: 0,
       cultureRating: 0,
       difficultyRating: 0,
 
-      description: "",
+      description: " ",
 
       pay: "",
       payTypeId: $scope.payTypes[0].id,
@@ -140,10 +142,11 @@ angular.module('ratemycoopApp')
 
           $scope.loading.main = false;
           $scope.loading.perks = false;
+          $scope.formData.error = false;
           $location.path('/company/' + $scope.company.name);
         },
         function (error) {
-          // TODO handle review creation error
+          $scope.formData.error = true;
           $scope.loading.main = false;
           $scope.loading.perks = false;
         }
