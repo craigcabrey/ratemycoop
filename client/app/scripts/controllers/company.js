@@ -135,9 +135,17 @@ angular.module('ratemycoopApp')
      */
     $scope.editModalSubmit = function () {
       $scope.suggestCompanyEditForm.loading = true;
+
       Company.suggestedEdits.create(
+        {id: $scope.company.id},
         {
-          id: $scope.company.id
+          name: $scope.suggestCompanyEditForm.name,
+          description: $scope.suggestCompanyEditForm.description,
+          url: $scope.suggestCompanyEditForm.url,
+          twitter: $scope.suggestCompanyEditForm.twitter,
+          facebook: $scope.suggestCompanyEditForm.facebook,
+          linkedin: $scope.suggestCompanyEditForm.linkedin,
+          logo: $scope.suggestCompanyEditForm.logo
         },
         function (success) {
           $('.modal').modal('hide');
@@ -146,6 +154,8 @@ angular.module('ratemycoopApp')
         function (err) {
           $scope.suggestCompanyEditForm.loading = false;
         }
-      )
+      );
+
     };
-  });
+  })
+;
