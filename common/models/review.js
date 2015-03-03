@@ -7,4 +7,14 @@ module.exports = function(Review) {
       next();
     }
   );
+
+  Review.observe('before save', function(ctx, next) {
+    var loopback = require('loopback');
+    var newctx = loopback.getCurrentContext();
+    if(newctx !== null){
+      var currentUser = newctx && newctx.get('currentUser');
+      ctx.instance.userId = currentUser.id;
+    }
+    next();
+  });
 };
