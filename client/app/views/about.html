@@ -16,104 +16,109 @@
               <i class="large help circle icon"></i>
               What is RMC?
             </h2>
+
             <p>
               We believe there should be a simple tool
               to navigate through the different co-op opportunities that RIT provides.
-           </p>
-         </div>
-       </div>
-       <div class="column">
-        <div class="ui horizontal segment">
-          <h2 class="ui icon header">
-            <i class="large student icon"></i>
-            Created by Students
-          </h2>
-          <p>Rate My Co-op is designed by students for students to provide the best out of their coop experience.</p>
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="column">
-        <div class="ui horizontal segment">
-          <h2 class="ui icon header">
-            <i class="large suitcase icon"></i>
-            With Companies <i>you</i> Love
-          </h2>
-          <p>
-            We have designed it with all RIT
-            majors in mind and as many companies as possible.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="column">
+          <div class="ui horizontal segment">
+            <h2 class="ui icon header">
+              <i class="large student icon"></i>
+              Created by Students
+            </h2>
 
-<div class="ui inverted horizontal divider"><i class="child icon"></i> Meet the Team <i class="child icon"></i></div>
-<div class="row">
-  <div class="twenty wide column center aligned">
-    <div class="ui fluid stackable center aligned">
-      <div class="ui cards">
-        <div class="card" id="fat" ng-repeat="person in contributors">
-          <a class="image">
-            <img ng-src="{{person.gravatar_link}}">
-          </a>
-          <div class="content">
-            <p class="header">{{person.name}}</p>
-            <div class="meta">
-              <p>RIT</p>
-            </div>
-            <div class="description">
-              {{person.role}}
-            </div>
+            <p>Rate My Co-op is designed by students for students to provide the best out of their coop experience.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui horizontal segment">
+            <h2 class="ui icon header">
+              <i class="large suitcase icon"></i>
+              With Companies <i>you</i> Love
+            </h2>
+
+            <p>
+              We have designed it with all RIT
+              majors in mind and as many companies as possible.
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="ui inverted horizontal divider">More Info</div>
-<div class="row">
-  <div class="column">
-    <div class="ui three column center aligned equal height divided grid">
-      <div class="column">
-        <div class="ui segment">
-          <div class="ui statistic">
-            <div class="value">
-              <i class="github icon"></i>
-            </div>
-            <div class="label">
-              GitHub Repo
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="ui segment">
-          <div class="ui statistic">
-            <div class="value">
-              <i class="book icon"></i>
-            </div>
-            <div class="label">
-              API & Doc Coming Soon
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="ui segment">
-          <div class="ui statistic">
-            <div class="value">
-              <i class="smile icon"></i>
-            </div>
-            <div class="label">
-              Thanks!
+  <div class="ui inverted horizontal divider"><i class="child icon"></i> Meet the Team <i class="child icon"></i></div>
+  <div class="row">
+    <div class="twenty wide column center aligned">
+      <div class="ui fluid stackable center aligned">
+        <div class="ui cards">
+          <div class="card" id="fat" ng-repeat="person in contributors">
+            <a class="image">
+              <img ng-src="{{person.gravatar_link}}">
+            </a>
+
+            <div class="content">
+              <p class="header">{{person.name}}</p>
+
+              <div class="meta">
+                <p>RIT {{person.major}}</p>
+              </div>
+              <div class="description">
+                {{person.role}}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- END Second Section -->
-
   </div>
-</div>
+
+  <div class="ui inverted horizontal divider">More Info</div>
+  <div class="row">
+    <div class="column">
+      <div class="ui three column center aligned equal height divided grid">
+        <div class="column">
+          <div class="ui segment">
+            <div class="ui statistic">
+              <div class="value">
+                <i class="github icon"></i>
+              </div>
+              <div class="label">
+                GitHub Repo Coming Soon
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui segment">
+            <div class="ui statistic">
+              <div class="value">
+                <i class="book icon"></i>
+              </div>
+              <div class="label">
+                API & Doc Coming Soon
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui segment">
+            <div class="ui statistic">
+              <div class="value">
+                <i class="smile icon"></i>
+              </div>
+              <div class="label">
+                Thanks!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Second Section -->
+
+    </div>
+  </div>
 </div>
