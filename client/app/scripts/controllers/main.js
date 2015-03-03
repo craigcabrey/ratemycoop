@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('MainCtrl', function ($scope, Company, $location) {
+  .controller('MainCtrl', ['$scope','Company','$location', function ($scope, Company, $location) {
 
     // OMG API TO ACCESS STUFF SO EASY
     $scope.companies = Company.find({},
@@ -67,5 +67,5 @@ angular.module('ratemycoopApp')
 
 
     });
-  });
+  }]);
 

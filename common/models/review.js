@@ -11,9 +11,12 @@ module.exports = function(Review) {
   Review.observe('before save', function(ctx, next) {
     var loopback = require('loopback');
     var newctx = loopback.getCurrentContext();
+    // Force userId to be that of the logged in user
     if(newctx !== null){
       var currentUser = newctx && newctx.get('currentUser');
-      ctx.instance.userId = currentUser.id;
+      if(currentUser !== undefined){
+        ctx.instance.userId = currentUser.id;
+      }
     }
     next();
   });
