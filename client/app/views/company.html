@@ -252,24 +252,41 @@
     Suggest a Company Edit
   </div>
   <div class="content">
-    <div class="ui medium image">
-      <img src="/images/avatar/large/chris.jpg">
-    </div>
-    <div class="description">
-      <div class="ui header">We've auto-chosen a profile image for you.</div>
-      <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a>
-        image associated with your registered e-mail address.</p>
-
-      <p>Is it okay to use this photo?</p>
-    </div>
-  </div>
-  <div class="actions">
-    <div class="ui black button">
-      Cancel
-    </div>
-    <div class="ui positive right labeled icon button">
-      Suggest
-      <i class="checkmark icon"></i>
+    <div class="ui form">
+      <div class="field">
+        <label>Company Name</label>
+        <input type="text" name="companyEdit-name" placeholder="Incorporated Inc."
+               ng-model="suggestCompanyEditForm.name">
+      </div>
+      <div class="field">
+        <label>Company Description</label>
+        <textarea ng-model="suggestCompanyEditForm.description"></textarea>
+      </div>
+      <div class="field">
+        <label>Company Page Link</label>
+        <input type="text" name="companyEdit-url" placeholder="www.incorporatedinc.com"
+               ng-model="suggestCompanyEditForm.url">
+      </div>
+      <div class="field">
+        <label>Twitter Link</label>
+        <input type="text" name="companyEdit-twitter" placeholder="twitter.com/incorporated"
+               ng-model="suggestCompanyEditForm.twitter">
+      </div>
+      <div class="field">
+        <label>Facebook Link</label>
+        <input type="text" name="companyEdit-facebook" placeholder="facebook.com/incorporated"
+               ng-model="suggestCompanyEditForm.facebook">
+      </div>
+      <div class="field">
+        <label>Linkedin Link</label>
+        <input type="text" name="companyEdit-linkedin" placeholder="linkedin.com/company/incorporated"
+               ng-model="suggestCompanyEditForm.linkedin">
+      </div>
+      <div class="field">
+        <label>Link to Logo</label>
+        <input type="text" name="companyEdit-logo_url" placeholder="somewhere/images/incorplogo.svg"
+               ng-model="suggestCompanyEditForm.logo_url">
+      </div>
     </div>
   </div>
 </div>

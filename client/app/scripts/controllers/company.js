@@ -109,6 +109,16 @@ angular.module('ratemycoopApp')
     });
 
 
+    $scope.suggestCompanyEditForm = {
+      name: "",
+      description: "",
+      url: "",
+      twitter: "",
+      facebook: "",
+      linkedin: "",
+      logo_url: ""
+
+    };
     /**
      * name
      * url
