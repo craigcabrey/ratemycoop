@@ -136,12 +136,12 @@ angular.module('ratemycoopApp')
         {id: $scope.company.id},
         pushObject,
         function (success) {
-          // TODO handle review creation success
           console.log('success!');
 
           $scope.loading.main = false;
           $scope.loading.perks = false;
-          $location.path('/company/' + $scope.company.name);
+          // TODO: remove before production push
+          //$location.path('/company/' + $scope.company.name);
         },
         function (error) {
           // TODO handle review creation error
@@ -150,19 +150,58 @@ angular.module('ratemycoopApp')
         }
       );
 
-      //var companyId = $scope.company.id;
-      //angular.forEach($scope.formData.perks, function (perk) {
-      //  Company.perks.link(
-      //    {
-      //      id: companyId,
-      //      fk: perk.id
-      //    }, function (success) {
-      //      //TODO on perk relation success
-      //    },
-      //    function (error) {
-      //    }//TODO on perk relation failure}
-      //  )
-      //});
+      /**
+       * Company relations
+       */
+      /* RELATING PERKS */
+      var companyId = $scope.company.id;
+      angular.forEach($scope.formData.perks, function (perk) {
+        console.log("adding perk " + perk.name);
+        Company.perks.link(
+          {
+            id: companyId,
+            fk: perk.id
+          }, function (success) {
+            console.log('success adding perk!');
+            console.log(success);
+          },
+          function (error) {
+            console.log('error adding perk!');
+            console.log(error);
+          }
+        )
+      });
+
+      /* RELATING A MAJOR */
+      console.log("pushing major");
+      Company.majors.link(
+        {
+          id: companyId,
+          fk: $('majorSearch').search('get result').id
+        }, function (success) {
+          console.log('success adding major!');
+          console.log(success);
+        },
+        function (error) {
+          console.log('error adding major!');
+          console.log(error);
+        }
+      );
+
+      /* RELATING A CITY */
+      console.log("pushing location/city");
+      Company.locations.link(
+        {
+          id: companyId,
+          fk: $('#locationSearch').search('get result').id
+        }, function (success) {
+          console.log("success adding location");
+          console.log(success);
+        }, function (error) {
+          console.log("error adding location");
+          console.log(error);
+        }
+      )
 
     };
 
@@ -183,6 +222,11 @@ angular.module('ratemycoopApp')
         formData.pay = null;
       }
 
+      var perksList = [];
+      angular.forEach(formData.perks, function (perk) {
+        perksList.push(perk.id);
+      });
+
       var pushObj = {
         anonymous: formData.anonymous,
         returnOffer: formData.returnOffer,
@@ -193,15 +237,11 @@ angular.module('ratemycoopApp')
         difficultyRating: formData.cultureRating,
         pay: formData.pay,
         userId: formData.userId,
-        payTypeId: formData.payTypeId
+        payTypeId: formData.payTypeId,
 
-
-
-        //companyId: $scope.company.id,
-
-        //perks: formData.perks,
-        //majors: [$('majorSearch').search('get result').id],
-        //city: 0//TODO check key names for these
+        perks: perksList,
+        majors: [$('majorSearch').search('get result').id],
+        location: $('locationSearch').search('get result').id
       };
 
       return pushObj;
