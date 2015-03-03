@@ -305,6 +305,16 @@ angular.module('ratemycoopApp')
             identifier: 'payTypeInput',
             prompt: 'prompt'
           }
+          //,
+          //description: {
+          //  identifier: 'descriptionInput',
+          //  rules: [
+          //    {
+          //      type: 'empty',
+          //      prompt: 'Type in some thoughts'
+          //    }
+          //  ]
+          //}
         },
         {
           on: 'blur'
