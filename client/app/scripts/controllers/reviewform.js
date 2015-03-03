@@ -102,6 +102,8 @@ angular.module('ratemycoopApp')
 
 
     $scope.formData = {
+      error: false,
+
       overallRating: 0,
       cultureRating: 0,
       difficultyRating: 0,
@@ -140,10 +142,11 @@ angular.module('ratemycoopApp')
 
           $scope.loading.main = false;
           $scope.loading.perks = false;
+          $scope.formData.error = false;
           $location.path('/company/' + $scope.company.name);
         },
         function (error) {
-          // TODO handle review creation error
+          $scope.formData.error = true;
           $scope.loading.main = false;
           $scope.loading.perks = false;
         }
@@ -302,6 +305,16 @@ angular.module('ratemycoopApp')
             identifier: 'payTypeInput',
             prompt: 'prompt'
           }
+          //,
+          //description: {
+          //  identifier: 'descriptionInput',
+          //  rules: [
+          //    {
+          //      type: 'empty',
+          //      prompt: 'Type in some thoughts'
+          //    }
+          //  ]
+          //}
         },
         {
           on: 'blur'

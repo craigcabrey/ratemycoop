@@ -32,7 +32,11 @@
             </a>
           </div>
 
-          <form class="ui error attached form segment" id="reviewForm">
+          <form class="ui attached form segment" ng-class="{error: formData.error}" id="reviewForm">
+            <div class="ui error message">
+              <div class="header">Woops, something went wrong.</div>
+              <p>Sorry about that, try submitting your review again.</p>
+            </div>
 
             <wizard on-finish="finishedWizard()" hide-indicators="true" current-step="wizard.currStep">
               <wz-step title="wizardStepOne">
@@ -164,7 +168,8 @@
 
                     <div class="content">
                       Overall
-                      <div class="sub header">Remember the first day, all the way to the last step out that door. How was your experience overall?
+                      <div class="sub header">Remember the first day, all the way to the last step out that door. How
+                        was your experience overall?
                       </div>
                     </div>
                   </div>
@@ -249,11 +254,12 @@
                 <!-- Final Thoughts area -->
                 <div class="field">
                   <div class="ui label" style="float: right;">
-                    <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Supports Markdown</a>
+                    <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Supports
+                      Markdown</a>
                   </div>
                   <h3>Share your thoughts below.</h3>
-                  <textarea ng-model="formData.description"></textarea>
-                                  </div>
+                  <textarea ng-model="formData.description" name="descriptionInput"></textarea>
+                </div>
 
                 <div class="ui hidden divider"></div>
 
