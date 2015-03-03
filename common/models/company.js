@@ -108,6 +108,7 @@ module.exports = function(Company) {
   Company.afterRemote(
     '*.__create__reviews',
     function(ctx, instance, next) {
+      instance.created = new Date();
       Company.findOne(
         {
           where: {
