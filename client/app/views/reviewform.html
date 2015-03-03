@@ -2,20 +2,18 @@
   <div class="row">
     <div class="column">
 
-
       <div class="ui fluid segment" ng-class="{loading: loading.main}">
 
-        <h1 class="ui dividing header">Review {{company.name}}</h1>
+        <h1 class="ui dividing header" style="margin-bottom: 0px;">Review {{company.name}}</h1>
 
         <div class="ui vertical segment">
 
-          <!--{{cities}}-->
-          <div class="ui fluid steps">
+          <div class="ui fluid attached steps">
             <a class="step" ng-class="{active: wizard.currStep=== wizard.s1}" ng-click="wizard.currStep = wizard.s1">
               <i class="building outline icon"></i>
 
               <div class="content">
-                <div class="title">1. Co-op Info</div>
+                <div class="title">1. Your Co-op</div>
               </div>
             </a>
             <a class="step" ng-class="{active: wizard.currStep=== wizard.s2}" ng-click="wizard.currStep = wizard.s2">
@@ -34,9 +32,7 @@
             </a>
           </div>
 
-
           <form class="ui error attached form segment" id="reviewForm">
-
 
             <wizard on-finish="finishedWizard()" hide-indicators="true" current-step="wizard.currStep">
               <wz-step title="wizardStepOne">
@@ -54,7 +50,6 @@
                     <label>Would you like to remain anonymous?</label>
                   </div>
                 </div>
-
 
                 <!-- Major and City -->
                 <div class="ui raised blue segment">
@@ -110,13 +105,11 @@
                           <!--<i class="left label big dollar icon"></i>-->
                           <input type="text" name="payInput" placeholder="00.00" ng-model="formData.pay">
 
-
                           <!--suppress HtmlFormInputWithoutLabel -->
                           <select class="ui dropdown" name="payTypeInput" id="payType"
                                   ng-model="formData.payTypeId"
                                   ng-options="type.id as type.name for type in payTypes">
                           </select>
-
 
                         </div>
                       </div>
@@ -161,6 +154,7 @@
                   Next
                 </div>
               </wz-step>
+
               <wz-step title="wizardStepTwo">
                 <!-- WIZARD 2/3 -->
                 <!-- Overall -->
@@ -170,9 +164,7 @@
 
                     <div class="content">
                       Overall
-                      <div class="sub header">Remember the first day, all the way to the last step out that door. How
-                        was
-                        your experience overall?
+                      <div class="sub header">Remember the first day, all the way to the last step out that door. How was your experience overall?
                       </div>
                     </div>
                   </div>
@@ -225,69 +217,62 @@
                   <div class="ui hidden form divider"></div>
                 </div>
 
-
                 <div class="ui inverted green left labeled left floated icon button" wz-previous>
                   <i class="left arrow icon"></i>
-                  Go Back
+                  Previous
                 </div>
                 <div class="ui inverted green right labeled right floated icon button" wz-next>
                   <i class="right arrow icon"></i>
                   Next
                 </div>
-
-
               </wz-step>
+
               <wz-step title="wizardStepThree">
                 <!-- return offer and would you recommend? -->
-                <div class="field">
-                  <div class="ui toggle checkbox" id="recommendCheckbox">
-                    <input type="checkbox" ng-model="formData.recommend">
+                <div class="two fields">
+                  <div class="field">
+                    <div class="ui toggle checkbox" id="recommendCheckbox">
+                      <input type="checkbox" ng-model="formData.recommend">
 
-                    <label>Would you recommend {{company.name}} to a friend? </label>
+                      <label>Would you recommend {{company.name}} to a friend? </label>
+                    </div>
                   </div>
-                </div>
-                <div class="field">
-                  <div class="ui toggle checkbox" id="returnOfferCheckbox">
-                    <input type="checkbox" ng-model="formData.returnOffer">
+                  <div class="field">
+                    <div class="ui toggle checkbox" id="returnOfferCheckbox">
+                      <input type="checkbox" ng-model="formData.returnOffer">
 
-                    <label>Did you get a return offer for {{company.name}}? </label>
+                      <label>Did you get a return offer for {{company.name}}? </label>
+                    </div>
                   </div>
                 </div>
 
                 <!-- Final Thoughts area -->
                 <div class="field">
-                  <label>Anything else?</label>
+                  <div class="ui label" style="float: right;">
+                    <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Supports Markdown</a>
+                  </div>
+                  <h3>Share your thoughts below.</h3>
                   <textarea ng-model="formData.description"></textarea>
-                  <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank"
-                     class="ui tiny label">Supports
-                    Markdown</a>
-
-                </div>
-
+                                  </div>
 
                 <div class="ui hidden divider"></div>
 
-                <div class="ui submit inverted fluid green icon button" ng-click="submitReview()">
-                  <i class="send outline icon"></i>
-                  Submit Review
+                <div class="ui inverted green left labeled left floated icon button" wz-previous>
+                  <i class="left arrow icon"></i>
+                  Previous
                 </div>
-                <div class="ui hidden divider"></div>
-
-                <div class="ui inverted fluid yellow icon button" ng-click="wizard.currStep = wizard.s1">
-                  <i class="erase icon"></i>
-                  Start Over
+                <div class="ui inverted green right labeled right floated icon button" ng-click="submitReview()">
+                  <i class="check circle icon"></i>
+                  Submit
                 </div>
               </wz-step>
             </wizard>
-
 
           </form>
 
         </div>
 
-
       </div>
-
 
     </div>
   </div>
