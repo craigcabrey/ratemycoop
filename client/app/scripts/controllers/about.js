@@ -10,14 +10,14 @@
 angular.module('ratemycoopApp')
   .controller('AboutCtrl', function ($scope, common) {
 
-    var kocsen = new Contributor("Kocsen Chung", "Creator & Developer", "kocsenc@gmail.com", "kocsen.com");
-    var craig = new Contributor("Craig Cabrey", "Creator & Developer", "craigcabrey@gmail.com", "craigcabrey.com");
-    var erin = new Contributor("Erin McIntosh", "Designer and Cooper-ator", "eem7920@rit.edu", "erinmcintosh.me");
+    var kocsen = new Contributor("Kocsen Chung", "Creator & Developer", "kocsenc@gmail.com", "http://kocsen.com");
+    var craig = new Contributor("Craig Cabrey", "Creator & Developer", "craigcabrey@gmail.com", "http://craigcabrey.com");
+    var erin = new Contributor("Erin McIntosh", "Designer and Cooper-ator", "eem7920@rit.edu", "http://erinmcintosh.me");
     var ben = new Contributor("Ben Kantor", "Developer", "bkantor01@gmail.com", "");
-    var piper = new Contributor("Piper Chester", "Developer", "piperchester@gmail.com", "piper.im");
-    var rob = new Contributor("Rob Holt", "Developer", "holt.r94@gmail.com", "fill");
-    var lexi = new Contributor("Lexi Rich", "Idea Packager", "fill", "fill");
-    var joe = new Contributor("Joseph DeSimpliciis", "Developer", "jcd4790@rit.edu", "jcdesimp.com");
+    var piper = new Contributor("Piper Chester", "Developer", "piperchester@gmail.com", "http://piper.im");
+    var rob = new Contributor("Rob Holt", "Developer", "holt.r94@gmail.com", "");
+    var lexi = new Contributor("Lexi Rich", "Idea Packager", "fill", "");
+    var joe = new Contributor("Joseph DeSimpliciis", "Developer", "jcd4790@rit.edu", "http://jcdesimp.com");
 
     function Contributor(name, role, email, link) {
       this.name = name;
