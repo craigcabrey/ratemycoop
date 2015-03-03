@@ -117,7 +117,7 @@ angular.module('ratemycoopApp')
 
       returnOffer: false,
       recommend: false,
-      anonymous: false
+      anonymous: true
 
     };
 
