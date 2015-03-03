@@ -22,6 +22,7 @@ angular.module('ratemycoopApp')
       },
       function (successData) {
         $scope.loading = false;
+        console.log(successData);
         onCompanySuccess(successData);
       },
       function (error) {
@@ -36,7 +37,8 @@ angular.module('ratemycoopApp')
     function onCompanySuccess(companyData) {
       setUpRatings();
       setUpStatistics();
-      setupMajorsPopups();
+      setTimeout(setupMajorsPopups, 1000);
+      //setupMajorsPopups();
       setupModalPreFill(companyData);
       // Logo setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
