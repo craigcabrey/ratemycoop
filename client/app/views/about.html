@@ -53,7 +53,12 @@
     <div class="ui fluid stackable center aligned">
       <div class="ui cards">
         <div class="card" id="fat" ng-repeat="person in contributors">
-          <a class="image">
+          <div ng-switch on="person">
+            <a ng-switch-when="" class="image" href="{{person.link}}" target="_blank">
+              <img ng-src="{{person.gravatar_link}}">
+            </a>
+          </div>
+          <a class="image" ng-href="{{person.link}}" target="_blank">
             <img ng-src="{{person.gravatar_link}}">
           </a>
           <div class="content">
