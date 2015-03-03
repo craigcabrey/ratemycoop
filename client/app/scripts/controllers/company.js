@@ -60,9 +60,9 @@ angular.module('ratemycoopApp')
       for (var i = 0; i < ratings.length; i++) {
         var id = ratings[i];
         $('#' + id).rating({
-          initialRating: Math.floor($scope.company[id]),
+          initialRating: Math.round($scope.company[id]),
           maxRating: 5,
-          interactive: true,
+          interactive: false,
           onRate: function () {
             //$scope.gotoReview();
           }
