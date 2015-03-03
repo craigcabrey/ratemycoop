@@ -61,6 +61,40 @@ module.exports = function(Company) {
   };
 
   /**
+  * Method to update company perks, majors, and locations with a new review.
+  */
+  Company.prototype.updatePML = function(perks, majors, loc) {
+    var self = this;
+    if(perks.length > 0){
+      perks.forEach(function(perk) {
+        self.perks.findById(perk, function(err, exist_perk) {
+          if(exist_perk === undefined) {
+            self.perks.add(perk, function(err, add_perk) {});
+          }
+        });
+      });
+    }
+    
+    if(majors.length > 0){
+      majors.forEach(function(major) {
+        self.majors.findById(major, function(err, exist_major) {
+          if(exist_major === undefined) {
+            self.majors.add(major, function(err, add_major) {});
+          }
+        });
+      });
+    }
+    
+    if(loc !== null){
+      self.locations.findById(loc, function(err, exist_loc) {
+        if(exist_loc === undefined) {
+          self.locations.add(loc, function(err, add_loc) {});
+        }
+      });
+    }
+  };
+
+  /**
    * Before save operation hook that searches for an existing company
    * of the same name in the data store. If found, return an error.
    */
@@ -83,6 +117,7 @@ module.exports = function(Company) {
         },
         function(err, company) {
           company.recalculate();
+          company.updatePML(instance.perks, instance.majors, instance.location);
         }
       );
 
