@@ -67,25 +67,29 @@ module.exports = function(Company) {
     var self = this;
     if(perks.length > 0){
       perks.forEach(function(perk) {
-        self.perks.findById(perk, function(err, exist_perk) {
-          if(exist_perk === undefined) {
-            self.perks.add(perk, function(err, add_perk) {});
-          }
-        });
+        if(perk !== null){
+          self.perks.findById(perk, function(err, exist_perk) {
+            if(exist_perk === undefined) {
+              self.perks.add(perk, function(err, add_perk) {});
+            }
+          });
+        }
       });
     }
     
     if(majors.length > 0){
       majors.forEach(function(major) {
-        self.majors.findById(major, function(err, exist_major) {
-          if(exist_major === undefined) {
-            self.majors.add(major, function(err, add_major) {});
-          }
-        });
+        if(major !== null){
+          self.majors.findById(major, function(err, exist_major) {
+            if(exist_major === undefined) {
+              self.majors.add(major, function(err, add_major) {});
+            }
+          });
+        }
       });
     }
     
-    if(loc !== null){
+    if(loc !== null && loc !== undefined){
       self.locations.findById(loc, function(err, exist_loc) {
         if(exist_loc === undefined) {
           self.locations.add(loc, function(err, add_loc) {});
