@@ -222,6 +222,11 @@ angular.module('ratemycoopApp')
         formData.pay = null;
       }
 
+      var perksList = [];
+      angular.forEach(formData.perks, function (perk) {
+        perksList.push(perk.id);
+      });
+
       var pushObj = {
         anonymous: formData.anonymous,
         returnOffer: formData.returnOffer,
@@ -232,15 +237,11 @@ angular.module('ratemycoopApp')
         difficultyRating: formData.cultureRating,
         pay: formData.pay,
         userId: formData.userId,
-        payTypeId: formData.payTypeId
+        payTypeId: formData.payTypeId,
 
-
-
-        //companyId: $scope.company.id,
-
-        //perks: formData.perks,
-        //majors: [$('majorSearch').search('get result').id],
-        //city: 0//TODO check key names for these
+        perks: perksList,
+        majors: [$('majorSearch').search('get result').id],
+        location: $('locationSearch').search('get result').id
       };
 
       return pushObj;
