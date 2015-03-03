@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('CompanyCtrl', function ($scope, $routeParams, Company, $location) {
+  .controller('CompanyCtrl', function ($scope, $routeParams, Company, $location, SuggestedEdit) {
     $scope.loading = true;
 
 
@@ -84,7 +84,7 @@ angular.module('ratemycoopApp')
       form.name = companyData.name;
       form.description = companyData.description;
       form.url = companyData.url;
-      form.logo_url = companyData.logo;
+      form.logo = companyData.logo;
     }
 
 
@@ -115,7 +115,6 @@ angular.module('ratemycoopApp')
       $('.modal').modal();
     });
 
-
     $scope.suggestCompanyEditForm = {
       name: "",
       description: "",
@@ -123,15 +122,30 @@ angular.module('ratemycoopApp')
       twitter: "",
       facebook: "",
       linkedin: "",
-      logo_url: ""
-
+      logo: "",
+      loading: false
     };
 
     $scope.showEditModal = function () {
       $('.modal').modal('show');
     };
 
-    $scope.editSubmit = function () {
-
+    /**
+     * Submit edits to the company
+     */
+    $scope.editModalSubmit = function () {
+      $scope.suggestCompanyEditForm.loading = true;
+      Company.suggestedEdits.create(
+        {
+          id: $scope.company.id
+        },
+        function (success) {
+          $('.modal').modal('hide');
+          $scope.suggestCompanyEditForm.loading = false;
+        },
+        function (err) {
+          $scope.suggestCompanyEditForm.loading = false;
+        }
+      )
     };
   });

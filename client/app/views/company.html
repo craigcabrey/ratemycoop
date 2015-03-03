@@ -256,7 +256,7 @@
     Suggest an edit for {{company.name}}
   </div>
   <div class="content">
-    <div class="ui form">
+    <div class="ui form" ng-class="{loading: suggestCompanyEditForm.loading}">
       <div class="field">
         <label>Company Name</label>
         <input type="text" name="companyEdit-name" placeholder="Incorporated Inc."
@@ -275,7 +275,7 @@
         <div class="field">
           <label>Link to Logo</label>
           <input type="text" name="companyEdit-logo_url" placeholder="logos.com/mylogo.svg"
-                 ng-model="suggestCompanyEditForm.logo_url">
+                 ng-model="suggestCompanyEditForm.logo">
         </div>
       </div>
       <!-- Social media fields -->
@@ -308,7 +308,7 @@
     <div class="ui black button">
       Cancel
     </div>
-    <div class="ui positive right labeled icon button" ng-click="editSubmit()">
+    <div class="ui positive right labeled icon button" ng-click="editModalSubmit()">
       Submit
       <i class="checkmark icon"></i>
     </div>
