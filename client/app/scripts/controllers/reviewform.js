@@ -173,6 +173,11 @@ angular.module('ratemycoopApp')
         perksList.push(perk.id);
       });
 
+      var majorsList = [];
+      majorsList.push($('#majorSearch').search('get result').id);
+
+      var temploc = $('#locationSearch').search('get result').id;
+
       var pushObj = {
         anonymous: formData.anonymous,
         returnOffer: formData.returnOffer,
@@ -186,8 +191,8 @@ angular.module('ratemycoopApp')
         payTypeId: formData.payTypeId,
 
         perks: perksList,
-        majors: [$('majorSearch').search('get result').id],
-        location: $('locationSearch').search('get result').id
+        majors: majorsList,
+        location: temploc
       };
 
       return pushObj;
