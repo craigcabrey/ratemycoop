@@ -170,7 +170,7 @@ angular.module('ratemycoopApp')
 
       var perksList = [];
       angular.forEach(formData.perks, function (perk) {
-        perksList.push(perk.id);
+        perksList.push(perk);
       });
 
       var majorsList = [];
@@ -212,7 +212,7 @@ angular.module('ratemycoopApp')
     // On document ready, wait half a second and to init Semantic UI elements.
     angular.element(document).ready(function () {
       // Delay to wait for angular to
-      setTimeout(setupSemantic, 0);
+      setTimeout(setupSemantic, 100);
     });
 
     /**
