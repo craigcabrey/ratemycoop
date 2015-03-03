@@ -95,6 +95,11 @@
       "type": "hasMany",
       "model": "SuggestedEdit",
       "foreignKey": ""
+    },
+    "events": {
+      "type": "hasMany",
+      "model": "Event",
+      "foreignKey": ""
     }
   },
   "acls": [

@@ -93,5 +93,9 @@
   "SuggestedEdit": {
     "dataSource": "db",
     "public": true
+  },
+  "Event": {
+    "dataSource": "db",
+    "public": true
   }
 }
