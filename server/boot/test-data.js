@@ -87,7 +87,9 @@ module.exports = function (app) {
         description: "One two potato.",
         logo: "datto.png",
         overallRating: 5.0,
-        perks: [ 1 ]
+        perks: [ 1 ],
+        minPay: 0,
+        maxPay: 0
       }
     );
     app.models.Review.create(

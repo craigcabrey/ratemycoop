@@ -32,14 +32,6 @@
   },
   "Review": {
     "dataSource": "db",
-    "public": false
-  },
-  "Rating": {
-    "dataSource": "db",
-    "public": false
-  },
-  "RatingType": {
-    "dataSource": "db",
     "public": true
   },
   "Major": {

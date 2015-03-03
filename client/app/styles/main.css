@@ -31,6 +31,10 @@ video#mainVideo {
   text-shadow: 0px 0px 15px rgba(150, 150, 150, 1);
 }
 
+#coopDefinition {
+  border-bottom: 1px dashed;
+}
+
 #mainWelcomeColumn {
   height: 100vh;
 }
@@ -87,6 +91,10 @@ video#mainVideo {
 }
 
 #fat{
-  width: 31.5%;
+  width: 21.5%;
+}
+
+#aboutWrap {
+	margin-bottom: -2px;
 }
 

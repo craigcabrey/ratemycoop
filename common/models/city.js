@@ -12,6 +12,10 @@ module.exports = function(City) {
         ],
         limit: 50
       }, function (err, results) {
+        results.forEach(function(result) {
+          var region = result.region();
+          result.title = result['name'] + ', ' + region.code;
+        });
         callback(null, results);
       }
     );
