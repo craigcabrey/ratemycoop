@@ -315,6 +315,11 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app% >/../bower_components/semantic-ui/dist',
+          dest: '<%= yeoman.dist %>/styles',
+          src: ['themes/**/*.woff*']
         }]
       },
       styles: {
