@@ -35,10 +35,9 @@ angular.module('ratemycoopApp')
      */
     function onCompanySuccess(companyData) {
       setUpRatings();
-      // Company stat's computation
       setUpStatistics();
-      // Setup major popups
       setupMajorsPopups();
+      setupModalPreFill(companyData);
       // Logo setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
     }
@@ -80,6 +79,14 @@ angular.module('ratemycoopApp')
       });
     }
 
+    function setupModalPreFill(companyData) {
+      var form = $scope.suggestCompanyEditForm;
+      form.name = companyData.name;
+      form.description = companyData.description;
+      form.url = companyData.url;
+      form.logo_url = companyData.logo;
+    }
+
 
     /**
      * Sets up the $recommend and $returners variable to be shown in statistics page.
@@ -105,7 +112,7 @@ angular.module('ratemycoopApp')
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
-      $('.modal').modal('show');
+      $('.modal').modal();
     });
 
 
@@ -119,13 +126,12 @@ angular.module('ratemycoopApp')
       logo_url: ""
 
     };
-    /**
-     * name
-     * url
-     * twitter
-     * facebook
-     * linkedin
-     * description
-     * logo url (svg preferred)
-     */
+
+    $scope.showEditModal = function () {
+      $('.modal').modal('show');
+    };
+
+    $scope.editSubmit = function () {
+
+    };
   });

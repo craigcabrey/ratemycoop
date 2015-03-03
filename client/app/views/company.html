@@ -4,6 +4,9 @@
 
       <!-- Main overview content segment -->
       <div class="ui fluid stackable segment">
+        <a class="ui corner label" ng-click="showEditModal()">
+          <i class="edit icon"></i>
+        </a>
 
         <!-- Company Image, title, and overview -->
         <div class="ui vertical segment" ng-class="{loading: loading}">
@@ -26,6 +29,7 @@
                   <a href="{{company.url}}" target="_blank">{{company.name}}</a>
 
                   <div btf-markdown="company.description" class="sub header">
+
                   </div>
                   <div class="sub header" ng-show="company.description === null || company.description === ''">
                     <b>Woah!</b> <i>It seems like this company doesn't have a description. You can still write a review
@@ -259,7 +263,7 @@
                ng-model="suggestCompanyEditForm.name">
       </div>
       <div class="field">
-        <label>Company Description</label>
+        <label>Description</label>
         <textarea ng-model="suggestCompanyEditForm.description"></textarea>
       </div>
       <div class="two fields">
@@ -274,37 +278,28 @@
                  ng-model="suggestCompanyEditForm.logo_url">
         </div>
       </div>
+      <!-- Social media fields -->
       <div class="three fields">
         <div class="field">
-
           <div class="ui left icon input">
             <i class="inverted blue twitter icon"></i>
             <input type="text" name="companyEdit-twitter" placeholder="twitter url"
                    ng-model="suggestCompanyEditForm.twitter">
           </div>
-
-
         </div>
         <div class="field">
-
           <div class="ui left icon input">
             <i class="blue facebook icon"></i>
             <input type="text" name="companyEdit-facebook" placeholder="facebook url"
                    ng-model="suggestCompanyEditForm.facebook">
           </div>
-
-
         </div>
         <div class="field">
-
-
           <div class="ui left icon input">
             <i class="linkedin icon"></i>
             <input type="text" name="companyEdit-linkedin" placeholder="linkedIn url"
                    ng-model="suggestCompanyEditForm.linkedin">
           </div>
-
-
         </div>
       </div>
     </div>
@@ -313,7 +308,7 @@
     <div class="ui black button">
       Cancel
     </div>
-    <div class="ui positive right labeled icon button">
+    <div class="ui positive right labeled icon button" ng-click="editSubmit()">
       Submit
       <i class="checkmark icon"></i>
     </div>
