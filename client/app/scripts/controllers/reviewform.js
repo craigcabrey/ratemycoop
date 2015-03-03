@@ -38,7 +38,7 @@ angular.module('ratemycoopApp')
       function (success) {
       });
 
-    $scope.payTypes = [{id: 1, name: "Hourly"}, {id: 2, name: "Salary"}, {id: 3, name: "Stipend"}];
+    $scope.payTypes = [{id: 1, name: "Hourly"}, {id: 2, name: "Salary (Monthly)"}, {id: 3, name: "Stipend"}];
 
     /**
      * Get company info on-load
