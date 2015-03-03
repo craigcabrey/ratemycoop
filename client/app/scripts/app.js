@@ -55,8 +55,8 @@ angular
     //$locationProvider.html5Mode({ enabled: true, requireBase: false });
 
     // Set url base
-    //LoopBackResourceProvider.setUrlBase('https://ratemycoop.io/api/v1');
-    LoopBackResourceProvider.setUrlBase('http://localhost:3000/api/v1');
+    LoopBackResourceProvider.setUrlBase('https://ratemycoop.io/api/v1');
+    //LoopBackResourceProvider.setUrlBase('http://localhost:3000/api/v1');
 
     /**
      * Set http interceptor for 40x unauthorized
