@@ -317,7 +317,8 @@ angular.module('ratemycoopApp')
           //}
         },
         {
-          on: 'blur'
+          on: 'blur',
+          keyboardShortcuts: false
         }
       );
     }
