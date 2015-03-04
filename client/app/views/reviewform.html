@@ -256,18 +256,23 @@
                   </div>
                   <h3>Share your thoughts below.</h3>
                   <textarea ng-model="formData.description" name="descriptionInput"></textarea>
-                </div>
+                  <div class="ui fluid accordion" style="margin-top: 7px">
+                    <div class="title">
+                      <i class="dropdown icon"></i>Live Preview
+                    </div>
+                      <div btf-markdown="formData.description" class="content ui tall segment"></div>
+                  </div>
 
-                <div class="ui hidden divider"></div>
+                  <div class="ui hidden divider"></div>
 
-                <div class="ui inverted green left labeled left floated icon button" wz-previous>
-                  <i class="left arrow icon"></i>
-                  Previous
-                </div>
-                <div class="ui inverted green right labeled right floated icon button" ng-click="submitReview()">
-                  <i class="check circle icon"></i>
-                  Submit
-                </div>
+                  <div class="ui inverted green left labeled left floated icon button" wz-previous>
+                    <i class="left arrow icon"></i>
+                    Previous
+                  </div>
+                  <div class="ui inverted green right labeled right floated icon button" ng-click="submitReview()">
+                    <i class="check circle icon"></i>
+                    Submit
+                  </div>
               </wz-step>
             </wizard>
 
