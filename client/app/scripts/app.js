@@ -48,6 +48,10 @@ angular
         templateUrl: 'views/login.html',
         controller: 'StandaloneLoginCtrl'
       })
+      .when('/login/:redirect_url', {
+        templateUrl: 'views/login.html',
+        controller: 'StandaloneLoginCtrl'
+      })
       .otherwise({
         redirectTo: '/404',
         templateUrl: '/404.html'
@@ -65,6 +69,7 @@ angular
     $httpProvider.interceptors.push(function ($q, $location) {
       return {
         responseError: function (rejection) {
+          console.log("ASDOFAJWEOFIJA")
           if (rejection.status == 401) {
             //TODO: Redirect to login page
           }
