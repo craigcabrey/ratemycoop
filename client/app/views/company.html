@@ -26,7 +26,7 @@
             <div class="twelve wide column">
               <h1 class="ui dividing header">
 
-              <div class="content">
+                <div class="content">
                   <a href="{{company.url}}" target="_blank">{{company.name}}</a>
                 </div>
               </h1>
@@ -88,13 +88,12 @@
             </div>
             <div class="eleven wide column">
               <div class="ui top attached segment">
-                <!--<div class="ui black ribbon label">Pay & Compensation</div>-->
-                <div class="ui red right ribbon label"><i class="marker icon"></i>Location</div>
 
 
                 <div class="ui two column grid">
                   <div class="column">
                     <div class="ui horizontal segment">
+                      <div class="ui black ribbon label">Pay & Compensation</div>
 
 
                       <div class="ui fluid list">
@@ -121,6 +120,8 @@
                   </div>
                   <div class="column" ng-if="company.locations.length > 0;">
                     <div class="ui horizontal segment">
+                      <div class="ui red right ribbon label"><i class="marker icon"></i>Location</div>
+
 
                       <div class="ui list">
                         <div class="item" ng-repeat="location in company.locations">
