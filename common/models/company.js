@@ -15,6 +15,12 @@ module.exports = function(Company) {
     self.reviews(null, function(err, reviews){
       reviews.forEach(
         function(review) {
+          if (review.payTypeId === 2) {
+            var yearly = review.pay * 12;
+            var weekly = yearly / 52;
+            review.pay = weekly / 40;
+          }
+
           if ('overallRating' in review && review.overallRating != 0) {
             overallRating += review.overallRating;
             overallRatingCount++;
