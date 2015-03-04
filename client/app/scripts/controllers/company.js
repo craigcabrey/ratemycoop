@@ -13,7 +13,6 @@ angular.module('ratemycoopApp')
     $scope.stipendAverage = null;
 
 
-
     // Given the route, set the main company stuff
     $scope.company = Company.findOne(
       {
@@ -26,7 +25,7 @@ angular.module('ratemycoopApp')
         $scope.loading = false;
         onCompanySuccess(successData);
       },
-      function (error) {
+      function () {
         $location.path('/404');
       }
     );
@@ -41,7 +40,9 @@ angular.module('ratemycoopApp')
       setTimeout(setupMajorsPopups, 500);
       setupModalPreFill(companyData);
       traverseReviews(companyData.reviews);
-      // Logo setup
+      setupDisplayPay(companyData.minPay, companyData.maxPay);
+
+      // Logo & Pay setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
     }
 
@@ -72,6 +73,23 @@ angular.module('ratemycoopApp')
     }
 
     /**
+     * Sets up the $recommend and $returners variable to be shown in statistics page.
+     */
+    function setUpStatistics() {
+      $scope.company.recommend = 0;
+      $scope.company.returners = 0;
+      var reviews = $scope.company.reviews;
+      angular.forEach(reviews, function (review) {
+        if (review.recommend) {
+          $scope.company.recommend++;
+        }
+        if (review.returnOffer) {
+          $scope.company.returners++;
+        }
+      });
+    }
+
+    /**
      * activates the popups for the majors displayed.
      */
     function setupMajorsPopups() {
@@ -94,6 +112,10 @@ angular.module('ratemycoopApp')
       form.logo = companyData.logo;
     }
 
+    /**
+     * Goes through reviews and sets many $scope variables if necessary
+     * @param reviewList
+     */
     function traverseReviews(reviewList) {
       $scope.stipendAverage = null;
       var stipendSum = 0;
@@ -111,23 +133,21 @@ angular.module('ratemycoopApp')
       }
     }
 
-
-    /**
-     * Sets up the $recommend and $returners variable to be shown in statistics page.
-     */
-    function setUpStatistics() {
-      $scope.company.recommend = 0;
-      $scope.company.returners = 0;
-      var reviews = $scope.company.reviews;
-      angular.forEach(reviews, function (review) {
-        if (review.recommend) {
-          $scope.company.recommend++;
+    function setupDisplayPay(min, max) {
+      if (min) {
+        if (min % 1 !== 0) {
+          console.log('yolo');
+          $scope.company.minPay = min.toFixed(2);
+          console.log($scope.minPay);
         }
-        if (review.returnOffer) {
-          $scope.company.returners++;
+      }
+      if (max) {
+        if (max % 1 !== 0) {
+          $scope.company.maxPay = max.toFixed(2);
         }
-      });
+      }
     }
+
 
     $scope.gotoReview = function () {
       var path = "/company/" + $scope.company.name + "/review";
