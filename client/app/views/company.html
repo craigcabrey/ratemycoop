@@ -86,29 +86,56 @@
 
             </div>
             <div class="eleven wide column">
-
               <div class="ui top attached segment">
-                <div class="ui black ribbon label">Pay & Compensation</div>
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="ui horizontal segment">
 
-                <div class="ui fluid list">
-                  <div class="item" ng-if="company.maxPay === null">
-                    <div class="ui medium label">No pay yet</div>
+
+                      <div class="ui black ribbon label">Pay & Compensation</div>
+
+
+                      <div class="ui fluid list">
+                        <div class="item" ng-if="company.maxPay === null">
+                          <div class="ui medium label">No pay yet</div>
+                        </div>
+                        <div class="item" ng-hide="company.maxPay === null">
+                          <i class="dollar icon"></i>
+                          <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[0]}"></i>
+                          <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[1]}"></i>
+                          <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[2]}"></i>
+                        </div>
+                        <div class="item" ng-hide="company.maxPay === null">
+                          <div class="ui medium green label">${{company.minPay}} - ${{company.maxPay}} hourly</div>
+                          <div class="ui medium blue label" ng-hide="stipendAverage === null" ng-cloak="">
+                            ${{stipendAverage}}
+                            stipend
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
                   </div>
-                  <div class="item" ng-hide="company.maxPay === null">
-                    <i class="dollar icon"></i>
-                    <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[0]}"></i>
-                    <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[1]}"></i>
-                    <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[2]}"></i>
-                  </div>
-                  <div class="item" ng-hide="company.maxPay === null">
-                    <div class="ui medium green label">${{company.minPay}} - ${{company.maxPay}} hourly</div>
-                    <div class="ui medium blue label" ng-hide="stipendAverage === null" ng-cloak="">${{stipendAverage}}
-                      stipend
+                  <div class="column">
+                    <div class="ui horizontal segment">
+                      <div class="ui red right ribbon label"><i class="marker icon"></i>Location</div>
+
+                      <div class="ui divided list" ng-if="true">
+                        <div class="item" >
+                          <i class="map marker icon"></i>
+                          <div class="content">
+                            PotatoLand, OH
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
-
               </div>
+
+
               <!-- Perks -->
               <div class="ui attached segment">
                 <div class="ui orange ribbon label">Perks</div>
