@@ -106,39 +106,6 @@ module.exports = function(Company) {
     }
   };
 
-  Company.beforeRemote(
-    '*.__create__reviews',
-    function(ctx, instance, next) {
-      var loopback = require('loopback');
-      var loopback_context = loopback.getCurrentContext();
-
-      if (loopback_context !== null) {
-        var currentUser = loopback_context.get('currentUser');
-
-        ONE_MONTH = 30 * 24 * 60 * 60 * 1000;  // Month in milliseconds
-        Company.app.models.Review.findOne(
-          {
-            where: {
-              userId: currentUser.id,
-              companyId: instance.companyId,
-              created: { 
-                gt: Date.now() - (ONE_MONTH * 3)
-              }
-            }
-          },
-          function(err, review) {
-            if (review) {
-              var error = new Error('You\'ve already reviewed this company in the past three months.');
-              next(error);
-            } else {
-              next();
-            }
-          }
-        );
-      }
-    }
-  );
-
   /**
    * Remote method hook
    */

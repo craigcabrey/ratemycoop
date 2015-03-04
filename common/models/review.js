@@ -16,6 +16,27 @@ module.exports = function(Review) {
       var currentUser = newctx && newctx.get('currentUser');
       if(currentUser !== undefined){
         ctx.instance.userId = currentUser.id;
+
+        // Check that user has not submitted a review the the past 3 months
+        ONE_MONTH = 30 * 24 * 60 * 60 * 1000;  // Month in milliseconds
+        Review.findOne(
+          {
+            where: {
+              userId: currentUser.id,
+              companyId: ctx.instance.companyId,
+              created: {
+                gt: Date.now() - (ONE_MONTH * 3)
+              }
+            }
+          },
+          function(err, review) {
+            if(review) {
+              var error = new Error('You\'ve already reviewed this company in the past three months.');
+              error.status = 403;
+              next(error);
+            }
+          }
+        );
       }
     }
     next();
