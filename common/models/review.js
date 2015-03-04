@@ -34,11 +34,14 @@ module.exports = function(Review) {
               var error = new Error('You\'ve already reviewed this company in the past three months.');
               error.status = 403;
               next(error);
+            } else {
+              next();
             }
           }
         );
       }
+    } else {
+      next();
     }
-    next();
   });
 };
