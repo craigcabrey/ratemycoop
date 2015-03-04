@@ -27,7 +27,7 @@ angular.module('ratemycoopApp')
       this.email = email;
       this.major = major;
       this.link = link;
-      this.gravatar_link = "http://www.gravatar.com/avatar/" + common.MD5(email) + "?s=300&d=retro";
+      this.gravatar_link = "https://secure.gravatar.com/avatar/" + common.MD5(email) + "?s=300&d=retro";
     }
 
     $scope.contributors = [kocsen, craig, erin, ben, piper, rob, lexi, joe];
