@@ -226,7 +226,7 @@
             </div>
           </div>
 
-          <div class="event" ng-repeat="review in company.reviews" ng-if="review.description !== ''">
+          <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
             <div class="content">
               <div class="summary">
