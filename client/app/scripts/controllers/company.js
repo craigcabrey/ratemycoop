@@ -136,9 +136,7 @@ angular.module('ratemycoopApp')
     function setupDisplayPay(min, max) {
       if (min) {
         if (min % 1 !== 0) {
-          console.log('yolo');
           $scope.company.minPay = min.toFixed(2);
-          console.log($scope.minPay);
         }
       }
       if (max) {
