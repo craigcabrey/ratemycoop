@@ -88,13 +88,14 @@
             </div>
             <div class="eleven wide column">
               <div class="ui top attached segment">
+                <div class="ui black ribbon label">Pay & Location</div>
 
 
                 <div class="ui two column grid">
                   <div class="column">
-                    <div class="ui horizontal segment">
-                      <div class="ui black ribbon label">Pay & Compensation</div>
-
+                    <div class="ui basic horizontal segment">
+                      <div class="ui basic"></div>
+                      <!-- This basic div is for spacing -->
 
                       <div class="ui fluid list">
                         <div class="item" ng-if="company.maxPay === null">
@@ -119,17 +120,18 @@
                     </div>
                   </div>
                   <div class="column" ng-if="company.locations.length > 0;">
-                    <div class="ui horizontal segment">
-                      <div class="ui red right ribbon label"><i class="marker icon"></i>Location</div>
-
+                    <div class="ui basic horizontal segment">
 
                       <div class="ui list">
                         <div class="item" ng-repeat="location in company.locations">
-                          <i class="map marker icon"></i>
+                          <i class="red map marker icon"></i>
 
-                          <div class="content">
+
+                          <a class="content"
+                             target="_blank"
+                             ng-href="https://www.google.com/maps/search/{{location.name}},{{location.region.code}}">
                             {{location.name}}, {{location.region.code}}
-                          </div>
+                          </a>
                         </div>
                       </div>
 
