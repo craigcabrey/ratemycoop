@@ -107,14 +107,6 @@ module.exports = function(Company) {
   };
 
   /**
-   * Before save operation hook that searches for an existing company
-   * of the same name in the data store. If found, return an error.
-   */
-  Company.observe('before save', function(ctx, next) {
-    next();
-  });
-
-  /**
    * Remote method hook
    */
   Company.afterRemote(
