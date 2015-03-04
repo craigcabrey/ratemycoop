@@ -69,7 +69,6 @@ angular
     $httpProvider.interceptors.push(function ($q, $location) {
       return {
         responseError: function (rejection) {
-          console.log("ASDOFAJWEOFIJA")
           if (rejection.status == 401) {
             //TODO: Redirect to login page
           }
