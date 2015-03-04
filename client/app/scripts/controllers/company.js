@@ -10,6 +10,8 @@
 angular.module('ratemycoopApp')
   .controller('CompanyCtrl', function ($scope, $routeParams, Company, $location, SuggestedEdit) {
     $scope.loading = true;
+    $scope.stipendAverage = null;
+
 
 
     // Given the route, set the main company stuff
@@ -22,7 +24,6 @@ angular.module('ratemycoopApp')
       },
       function (successData) {
         $scope.loading = false;
-        console.log(successData);
         onCompanySuccess(successData);
       },
       function (error) {
@@ -37,9 +38,9 @@ angular.module('ratemycoopApp')
     function onCompanySuccess(companyData) {
       setUpRatings();
       setUpStatistics();
-      setTimeout(setupMajorsPopups, 1000);
-      //setupMajorsPopups();
+      setTimeout(setupMajorsPopups, 500);
       setupModalPreFill(companyData);
+      traverseReviews(companyData.reviews);
       // Logo setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
     }
@@ -81,12 +82,33 @@ angular.module('ratemycoopApp')
       });
     }
 
+    /**
+     * This will set up the `edit company` form
+     * @param companyData
+     */
     function setupModalPreFill(companyData) {
       var form = $scope.suggestCompanyEditForm;
       form.name = companyData.name;
       form.description = companyData.description;
       form.url = companyData.url;
       form.logo = companyData.logo;
+    }
+
+    function traverseReviews(reviewList) {
+      $scope.stipendAverage = null;
+      var stipendSum = 0;
+      var stipendCount = 0;
+
+      angular.forEach(reviewList, function (review) {
+        if (review.payTypeId === 3) {
+          stipendCount++;
+          stipendSum += review.pay;
+        }
+      });
+
+      if (stipendCount > 0) {
+        $scope.stipendAverage = Math.round(stipendSum / stipendCount);
+      }
     }
 
 

@@ -102,6 +102,9 @@
                   </div>
                   <div class="item" ng-hide="company.maxPay === null">
                     <div class="ui medium green label">${{company.minPay}} - ${{company.maxPay}} hourly</div>
+                    <div class="ui medium blue label" ng-hide="stipendAverage === null" ng-cloak="">${{stipendAverage}}
+                      stipend
+                    </div>
                   </div>
                 </div>
 
