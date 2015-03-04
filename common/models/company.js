@@ -121,7 +121,7 @@ module.exports = function(Company) {
           include: "reviews"
         },
         function(err, company) {
-          if (instance.payTypeId != 3 && company.minPay === 0) {
+          if (instance.payTypeId != 3 && company.minPay === null) {
             company.minPay = instance.pay;
           }
 
