@@ -50,7 +50,7 @@
                         <div class="ui fluid search" id="majorSearch">
                           <div class="ui labeled input">
                             <div class="ui green label"><i class="graduation icon"></i>Major</div>
-                            <input type="text" name="majorSearchInput" class="prompt"
+                            <input type="text" name="majorSearchInput" autocomplete="off" class="prompt"
                                    placeholder="Software Engineering ...">
                           </div>
                           <div class="results"></div>
@@ -65,7 +65,7 @@
                           <div class="ui labeled input">
                             <div class="ui green label"><i class="marker icon"></i>Location</div>
 
-                            <input type="text" name="locationSearchInput" class="prompt"
+                            <input type="text" name="locationSearchInput" autocomplete="off" class="prompt"
                                    placeholder="Where did you work?">
 
                           </div>
@@ -91,7 +91,8 @@
                       <div class="field">
                         <div class="ui right labeled left icon input">
                           <i class="dollar icon"></i>
-                          <input type="text" name="payInput" placeholder="00.00" ng-model="formData.pay">
+                          <input type="text" name="payInput" placeholder="00.00" autocomplete="off"
+                                 ng-model="formData.pay">
 
                           <!--suppress HtmlFormInputWithoutLabel -->
                           <select class="ui dropdown label" name="payTypeInput" id="payType"
