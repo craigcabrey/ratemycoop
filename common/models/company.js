@@ -121,6 +121,18 @@ module.exports = function(Company) {
           include: "reviews"
         },
         function(err, company) {
+          if (company.minPay === 0) {
+            company.minPay = instance.pay;
+          }
+
+          if (!instance.perks) {
+            instance.perks = [];
+          }
+
+          if (!instance.majors) {
+            instance.majors = [];
+          }
+
           company.recalculate();
           company.updatePML(instance.perks, instance.majors, instance.location);
         }
