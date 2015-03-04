@@ -36,12 +36,14 @@ module.exports = function(Company) {
             difficultyRatingCount++;
           }
 
-          if (review.pay < self.minPay) {
-            self.minPay = review.pay;
-          }
+          if (review.payTypeId != 3) {
+            if (review.pay < self.minPay) {
+              self.minPay = review.pay;
+            }
 
-          if (review.pay > self.maxPay) {
-            self.maxPay = review.pay;
+            if (review.pay > self.maxPay) {
+              self.maxPay = review.pay;
+            }
           }
         }
       );
@@ -127,7 +129,7 @@ module.exports = function(Company) {
           include: "reviews"
         },
         function(err, company) {
-          if (company.minPay === 0) {
+          if (instance.payTypeId != 3 && company.minPay === 0) {
             company.minPay = instance.pay;
           }
 
