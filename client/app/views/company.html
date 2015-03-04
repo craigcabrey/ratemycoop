@@ -117,15 +117,16 @@
 
                     </div>
                   </div>
-                  <div class="column">
+                  <div class="column" ng-if="company.locations.length > 0;">
                     <div class="ui horizontal segment">
                       <div class="ui red right ribbon label"><i class="marker icon"></i>Location</div>
 
-                      <div class="ui divided list" ng-if="true">
-                        <div class="item" >
+                      <div class="ui list">
+                        <div class="item" ng-repeat="location in company.locations">
                           <i class="map marker icon"></i>
+
                           <div class="content">
-                            PotatoLand, OH
+                            {{location.name}}, {{location.region.code}}
                           </div>
                         </div>
                       </div>
