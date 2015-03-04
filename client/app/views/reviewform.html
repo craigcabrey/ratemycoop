@@ -77,7 +77,7 @@
 
                         <div class="ui fluid search" id="locationSearch">
                           <div class="ui labeled input">
-                            <div class="ui green label"><i class="marker icon"></i>Company City</div>
+                            <div class="ui green label"><i class="marker icon"></i>Location</div>
 
                             <input type="text" name="locationSearchInput" class="prompt"
                                    placeholder="Where did you work?">
@@ -102,19 +102,16 @@
                         </h4>
                       </div>
 
-                      <div class="field">
-                        <div class="ui labeled input">
-                          <div class="ui green label">$</div>
-
-                          <!--<i class="left label big dollar icon"></i>-->
+                      <div class="seven wide fluid field">
+                        <div class="ui right labeled left icon input">
+                          <i class="dollar icon"></i>
                           <input type="text" name="payInput" placeholder="00.00" ng-model="formData.pay">
 
                           <!--suppress HtmlFormInputWithoutLabel -->
-                          <select class="ui dropdown" name="payTypeInput" id="payType"
+                          <select class="ui dropdown label" name="payTypeInput" id="payType"
                                   ng-model="formData.payTypeId"
                                   ng-options="type.id as type.name for type in payTypes">
                           </select>
-
                         </div>
                       </div>
                     </div>
@@ -200,13 +197,13 @@
                   </div>
                 </div>
 
-                <!-- Difficulty -->
+                <!-- Competitiveness -->
                 <div class="ui raised orange segment">
                   <div class="ui header">
                     <i class="orange dashboard icon"></i>
 
                     <div class="content">
-                      Difficulty
+                      Competitiveness
                       <div class="sub header">
                         Think about the interview process, how hard was it to get a spot?
                       </div>
@@ -259,18 +256,23 @@
                   </div>
                   <h3>Share your thoughts below.</h3>
                   <textarea ng-model="formData.description" name="descriptionInput"></textarea>
-                </div>
+                  <div class="ui fluid accordion" style="margin-top: 7px">
+                    <div class="title">
+                      <i class="dropdown icon"></i>Live Preview
+                    </div>
+                      <div btf-markdown="formData.description" class="content ui tall segment"></div>
+                  </div>
 
-                <div class="ui hidden divider"></div>
+                  <div class="ui hidden divider"></div>
 
-                <div class="ui inverted green left labeled left floated icon button" wz-previous>
-                  <i class="left arrow icon"></i>
-                  Previous
-                </div>
-                <div class="ui inverted green right labeled right floated icon button" ng-click="submitReview()">
-                  <i class="check circle icon"></i>
-                  Submit
-                </div>
+                  <div class="ui inverted green left labeled left floated icon button" wz-previous>
+                    <i class="left arrow icon"></i>
+                    Previous
+                  </div>
+                  <div class="ui inverted green right labeled right floated icon button" ng-click="submitReview()">
+                    <i class="check circle icon"></i>
+                    Submit
+                  </div>
               </wz-step>
             </wizard>
 

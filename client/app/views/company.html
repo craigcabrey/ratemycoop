@@ -65,7 +65,7 @@
                   </div>
                 </div>
                 <div class="item">
-                  Difficulty
+                  Competitiveness
                   <div class="menu">
                     <div class="item">
                       <div class="ui huge star rating" id="difficultyRating"></div>
@@ -102,6 +102,9 @@
                   </div>
                   <div class="item" ng-hide="company.maxPay === null">
                     <div class="ui medium green label">${{company.minPay}} - ${{company.maxPay}} hourly</div>
+                    <div class="ui medium blue label" ng-hide="stipendAverage === null" ng-cloak="">${{stipendAverage}}
+                      stipend
+                    </div>
                   </div>
                 </div>
 
@@ -223,14 +226,13 @@
             </div>
           </div>
 
-          <div class="event" ng-repeat="review in company.reviews">
+          <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
             <div class="content">
               <div class="summary">
                 Anonymous review
-                <!--<div class="date">-->
-                  <!--3 days ago-->
-                <!--</div>-->
+                <div class="date" am-time-ago="review.created">
+                </div>
               </div>
               <div btf-markdown="review.description">
               </div>

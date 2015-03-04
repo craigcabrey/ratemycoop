@@ -319,7 +319,10 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app% >/../bower_components/semantic-ui/dist',
           dest: '<%= yeoman.dist %>/styles',
-          src: ['themes/**/*.woff*']
+          src: [
+            'themes/**/*.woff*',
+            'themes/**/*.ttf*'
+          ]
         }]
       },
       styles: {
