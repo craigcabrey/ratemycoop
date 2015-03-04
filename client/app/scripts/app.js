@@ -19,7 +19,8 @@ angular
     'angular.filter',
     'lbServices',
     'mgo-angular-wizard',
-    'btford.markdown'
+    'btford.markdown',
+    'angularMoment'
   ])
   .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider) {
     $routeProvider
