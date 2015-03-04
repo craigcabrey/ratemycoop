@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('CompanyCtrl', function ($scope, $routeParams, Company, $location, SuggestedEdit) {
+  .controller('CompanyCtrl', function ($scope, $routeParams, Company, User, $location, SuggestedEdit) {
     $scope.loading = true;
     $scope.stipendAverage = null;
 
@@ -148,8 +148,13 @@ angular.module('ratemycoopApp')
 
 
     $scope.gotoReview = function () {
-      var path = "/company/" + $scope.company.name + "/review";
-      $location.path(path);
+      if (User.isAuthenticated()) {
+        var path = "/company/" + $scope.company.name + "/review";
+        $location.path(path);
+      } else {
+        $('#notLoggedInModal').modal('show')
+      }
+
     };
 
     // Semantic Triggers .ready() block.
@@ -190,8 +195,8 @@ angular.module('ratemycoopApp')
           logo: $scope.suggestCompanyEditForm.logo
         },
         function (success) {
-          $('.modal').modal('hide');
           $scope.suggestCompanyEditForm.loading = false;
+          $('.modal').modal('hide');
         },
         function (err) {
           $scope.suggestCompanyEditForm.loading = false;
