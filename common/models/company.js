@@ -15,6 +15,12 @@ module.exports = function(Company) {
     self.reviews(null, function(err, reviews){
       reviews.forEach(
         function(review) {
+          if (review.payTypeId === 2) {
+            var yearly = review.pay * 12;
+            var weekly = yearly / 52;
+            review.pay = weekly / 40;
+          }
+
           if ('overallRating' in review && review.overallRating != 0) {
             overallRating += review.overallRating;
             overallRatingCount++;
@@ -30,12 +36,14 @@ module.exports = function(Company) {
             difficultyRatingCount++;
           }
 
-          if (review.pay < self.minPay) {
-            self.minPay = review.pay;
-          }
+          if (review.payTypeId != 3) {
+            if (review.pay < self.minPay) {
+              self.minPay = review.pay;
+            }
 
-          if (review.pay > self.maxPay) {
-            self.maxPay = review.pay;
+            if (review.pay > self.maxPay) {
+              self.maxPay = review.pay;
+            }
           }
         }
       );
@@ -121,6 +129,18 @@ module.exports = function(Company) {
           include: "reviews"
         },
         function(err, company) {
+          if (instance.payTypeId != 3 && company.minPay === 0) {
+            company.minPay = instance.pay;
+          }
+
+          if (!instance.perks) {
+            instance.perks = [];
+          }
+
+          if (!instance.majors) {
+            instance.majors = [];
+          }
+
           company.recalculate();
           company.updatePML(instance.perks, instance.majors, instance.location);
         }
