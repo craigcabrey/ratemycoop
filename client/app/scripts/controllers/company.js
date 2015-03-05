@@ -159,7 +159,7 @@ angular.module('ratemycoopApp')
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
-      $('.modal').modal();
+      // Perform on doc ready.
     });
 
     $scope.suggestCompanyEditForm = {
@@ -174,7 +174,7 @@ angular.module('ratemycoopApp')
     };
 
     $scope.showEditModal = function () {
-      $('.modal').modal('show');
+      $('#companyEditModal').modal('show');
     };
 
     /**
@@ -196,7 +196,7 @@ angular.module('ratemycoopApp')
         },
         function (success) {
           $scope.suggestCompanyEditForm.loading = false;
-          $('.modal').modal('hide');
+          $('#companyEditModal').modal('hide');
         },
         function (err) {
           $scope.suggestCompanyEditForm.loading = false;
