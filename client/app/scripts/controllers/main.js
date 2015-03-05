@@ -29,7 +29,8 @@ angular.module('ratemycoopApp')
         $("#searchInput").search({
           source: searchable,
           onSelect: function (result, res) {
-            goToCompany(result.name);
+            $location.path("/company/" + result.name);
+            $scope.$apply();
           }
         });
 
@@ -48,18 +49,6 @@ angular.module('ratemycoopApp')
         $('#mainSearch').css({'top': '20%'});
       }
     };
-
-    /**
-     * When pressing enter or submitting the form, this gets called
-     */
-    $scope.search = function () {
-      goToCompany($scope.searchCompanyField);
-    };
-
-    function goToCompany(companyName) {
-      $location.path("/company/" + companyName);
-      $scope.$apply();
-    }
 
 
     /**
