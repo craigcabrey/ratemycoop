@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('MainCtrl', ['$scope','Company','$location', function ($scope, Company, $location) {
+  .controller('MainCtrl', ['$scope', 'Company', '$location', function ($scope, Company, $location) {
 
     // OMG API TO ACCESS STUFF SO EASY
     $scope.companies = Company.find({},
@@ -27,7 +27,10 @@ angular.module('ratemycoopApp')
           searchable.push(newVal);
         });
         $("#searchInput").search({
-          source: searchable
+          source: searchable,
+          onSelect: function (result, res) {
+            goToCompany(result.name);
+          }
         });
 
       }
@@ -50,10 +53,13 @@ angular.module('ratemycoopApp')
      * When pressing enter or submitting the form, this gets called
      */
     $scope.search = function () {
-      var searchQuery = $('#searchField').val();
-      var path = "/company/" + searchQuery;
-      $location.path(path);
+      goToCompany($scope.searchCompanyField);
     };
+
+    function goToCompany(companyName) {
+      $location.path("/company/" + companyName);
+      $scope.$apply();
+    }
 
 
     /**
