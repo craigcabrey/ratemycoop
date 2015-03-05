@@ -103,3 +103,7 @@ video#mainVideo {
     width: 100%;
   }
 }
+
+.markdown-preview {
+  word-wrap: break-word;
+}
