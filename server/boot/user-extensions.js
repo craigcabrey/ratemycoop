@@ -1,3 +1,6 @@
+var config = require('../../server/config.json');
+var path = require('path');
+
 module.exports = function(app) {
   var User = app.models.User;
   User.observe(
@@ -36,8 +39,10 @@ module.exports = function(app) {
 
           // if a match is found, tell them it exists
           if(data) {
-            next(new Error('Email already exists.'));
-            return;
+            if (data.id !== ctx.instance.id) {
+              next(new Error('Email already exists.'));
+              return;
+            }
           }
 
           //if all ok
@@ -51,6 +56,28 @@ module.exports = function(app) {
 
 
 
+      }
+    }
+  );
+
+  // Send verification email
+  User.afterRemote('create',
+    function(ctx, user, next) {
+      if (user) {
+        var options = {
+          type: 'email',
+          from: config.email,
+          subject: config.verifySubject,
+          port: '80',
+          template: path.resolve(__dirname, '../../server/templates/verify.ejs')
+        };
+        user.verify(options, function(err, response) {
+          if (err) {
+            next(err);
+            return;
+          }
+          next();
+        });
       }
     }
   );
