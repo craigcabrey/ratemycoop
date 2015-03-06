@@ -106,4 +106,5 @@ video#mainVideo {
 
 .markdown-preview {
   word-wrap: break-word;
+  word-break: break-all;
 }
