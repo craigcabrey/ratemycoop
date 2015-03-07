@@ -4,7 +4,7 @@
 
       <!-- Main overview content segment -->
       <div class="ui fluid stackable segment">
-        <a class="ui corner label" ng-click="showEditModal()">
+        <a class="ui huge red corner label" ng-click="showEditModal()">
           <i class="edit icon"></i>
         </a>
 
@@ -265,13 +265,13 @@
 
           <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
-            <div class="content">
+            <div class="content markdown-preview" >
               <div class="summary">
                 Anonymous review
                 <div class="date" am-time-ago="review.created">
                 </div>
               </div>
-              <div btf-markdown="review.description">
+              <div btf-markdown="review.description" >
               </div>
               <!--<div class="meta">-->
               <!--<a class="like">-->

@@ -192,6 +192,7 @@ angular.module('ratemycoopApp')
         pay: formData.pay,
         userId: formData.userId,
         payTypeId: formData.payTypeId,
+        jobTitle: formData.jobTitle,
 
         perks: perksList,
         majors: majorsList,
