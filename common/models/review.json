@@ -49,6 +49,10 @@
       "type": "Date",
       "required": "true",
       "default": "$now"
+    },
+    "jobTitle": {
+      "type": "string",
+      "required": "false"
     }
   },
   "validations": [],
