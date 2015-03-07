@@ -11,6 +11,11 @@
   },
   "parse": {
   },
+  "routes:before": {
+    "loopback#context": {},
+    "loopback#token": {},
+    "./middleware/userVerified": {}
+  },
   "routes": {
   },
   "files": {
