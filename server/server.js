@@ -5,10 +5,11 @@ var boot = require('loopback-boot');
 var app = module.exports = loopback();
 
 app.middleware('initial', morgan('short'));
-
+/*
 app.use(loopback.context());
 app.use(loopback.token());
 app.use(function (req, res, next) {
+  console.log(req.accessToken);
   if (!req.accessToken) return next();
   app.models.User.findById(req.accessToken.userId, function(err, user) {
     if (err) return next(err);
@@ -19,7 +20,7 @@ app.use(function (req, res, next) {
     next();
   });
 });
-
+*/
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname);

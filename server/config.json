@@ -25,5 +25,7 @@
     "errorHandler": {
       "disableStackTrace": false
     }
-  }
+  },
+  "email": "noreply@ratemycoop.io",
+  "verifySubject": "Rate My Co-op: Please verify your email"
 }
