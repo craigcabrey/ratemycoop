@@ -52,6 +52,10 @@ angular
         templateUrl: 'views/login.html',
         controller: 'StandaloneLoginCtrl'
       })
+      .when('/feed', {
+        templateUrl: 'views/feed.html',
+        controller: 'FeedCtrl'
+      })
       .otherwise({
         redirectTo: '/404',
         templateUrl: '/404.html'
