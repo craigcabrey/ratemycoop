@@ -18,7 +18,6 @@ module.exports = function() {
       if (loopbackContext) {
         loopbackContext.set('currentUser', user);
       }
-      console.log(res);
       next();
     });
   }
