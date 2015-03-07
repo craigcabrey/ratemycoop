@@ -168,7 +168,7 @@ angular.module('ratemycoopApp')
           formData.pay = null;
         }
       } else {
-        formData.pay = 0;
+        formData.pay = null;
       }
 
       var perksList = [];
