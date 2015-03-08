@@ -65,16 +65,15 @@
           <div class="field">
             <label>Is this company seeking for Co-op or Full time positions?</label>
 
-            <div class="ui checkbox">
+            <div class="ui checkbox"
+                 ng-click="suggestCompanyEditForm.seekingCoop = !suggestCompanyEditForm.seekingCoop">
               <input type="checkbox" ng-model="suggestCompanyEditForm.seekingCoop">
               <label>Co-op</label>
             </div>
           </div>
           <div class="field">
-            {{suggestCompanyEditForm.seekingFulltime}}
-            {{suggestCompanyEditForm.seekingCoop}}
-
-            <div class="ui checkbox">
+            <div class="ui checkbox"
+                 ng-click="suggestCompanyEditForm.seekingFulltime = !suggestCompanyEditForm.seekingFulltime">
               <input type="checkbox" ng-model="suggestCompanyEditForm.seekingFulltime">
               <label>Full time</label>
             </div>

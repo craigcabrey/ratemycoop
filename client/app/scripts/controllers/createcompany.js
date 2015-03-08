@@ -51,12 +51,7 @@ angular.module('ratemycoopApp')
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
-      $('.ui.checkbox').checkbox({
-        onChange: function () {
-          //TODO fix checkboxes
-          $scope.$apply();
-        }
-      });
+      $('.ui.checkbox').checkbox();
     });
 
 
