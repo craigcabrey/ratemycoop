@@ -3,32 +3,25 @@
     <div class="column">
 
       <div class="ui big vertical fluid menu">
-        <a class="item">
-          <i class="chevron right icon"></i> Company A
-        </a>
-
-        <div class="item">
+        <div class="item" ng-repeat="company in companies">
           <i class="chevron right icon"></i>
-
 
           <div class="ui divided items">
             <div class="item browseItem">
               <div class="content">
-                <a class="header">Company Name</a>
+                <a class="header">{{company.name}}</a>
 
                 <div class="meta">
                 <span class="cinema">
                 <i class="red marker icon"></i>
-                Potato, PA
+                {{company.locations[0].name}}
                 </span>
                 </div>
                 <div class="description">
-                  <p>D3 Engineering provides the fastest, lowest-risk path through embedded product development.
-                    Building
-                  </p>
+                  <p>{{company.description}}</p>
                 </div>
                 <div class="extra">
-                  <div class="ui label"><i class="smile icon"></i>3 reviews</div>
+                  <div class="ui label"><i class="smile icon"></i>{{company.reviews.length}} reviews</div>
                 </div>
               </div>
             </div>
@@ -36,60 +29,34 @@
 
 
         </div>
-        <a class="item">
-          <i class="chevron right icon"></i> Company A
-        </a>
       </div>
 
       <div class="ui raised blue fluid segment">
-
-
         <div class="ui divided items">
-          <div class="item browseItem">
+          <div class="item browseItem" ng-repeat="company in companies">
             <div class="image">
               <i class="huge building icon"></i>
             </div>
             <div class="content">
-              <a class="header">Company Name</a>
+              <a class="header">{{company.name}}</a>
 
               <div class="meta">
                 <span class="cinema">
                 <i class="red marker icon"></i>
-                Potato, PA
+                  {{company.locations[0].name}}
                 </span>
               </div>
               <div class="description">
-                <p>D3 Engineering provides the fastest, lowest-risk path through embedded product development. Building
+                <p>{{company.description}}
                 </p>
               </div>
               <div class="extra">
-                <div class="ui green label">$30-30 hourly</div>
-                <div class="ui label"><i class="smile icon"></i>3 reviews</div>
-                <div class="ui right floated primary inverted green button">
+                <div class="ui green label">${{company.minPay}}-{{company.maxPay}} hourly</div>
+                <div class="ui label"><i class="smile icon"></i>{{company.reviews.length}} reviews</div>
+                <a ng-href="#/company/{{company.name}}" class="ui right floated primary inverted green button">
                   View Company
                   <i class="right chevron icon"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item browseItem">
-            <div class="image">
-              <i class="huge building icon"></i>
-            </div>
-            <div class="content">
-              <a class="header">Company Name B</a>
-
-              <div class="meta">
-        <span class="cinema">
-        <i class="red marker icon"></i>
-        Potato, PA
-        </span>
-              </div>
-              <div class="description">
-                <p>D3 Engineering provides the fastest, lowest-risk path through embedded product development. Building
-                </p>
-              </div>
-              <div class="extra">
+                </a>
               </div>
             </div>
           </div>
