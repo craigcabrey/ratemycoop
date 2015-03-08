@@ -1,0 +1,13 @@
+[
+  {
+  "name": "New York",
+  "code": "NY",
+  "countryId": 1
+  },
+  {
+    "name": "California",
+    "code": "CA",
+    "countryId": 1
+  }
+
+  ]
