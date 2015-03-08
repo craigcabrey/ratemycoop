@@ -63,7 +63,7 @@ angular
       });
 
     //$locationProvider.html5Mode({ enabled: true, requireBase: false });
-    
+
     LoopBackResourceProvider.setUrlBase(ENV.apiEndpoint);
 
 

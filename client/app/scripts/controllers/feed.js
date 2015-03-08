@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('FeedCtrl', function ($scope) {
+  .controller('FeedCtrl', function ($scope, Company) {
 
     $scope.companies = Company.find({},
       function (success) {// Search trigger
