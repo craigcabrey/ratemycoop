@@ -11,6 +11,11 @@
   },
   "parse": {
   },
+  "routes:before": {
+    "loopback#context": {},
+    "loopback#token": {},
+    "./middleware/userVerified": {}
+  },
   "routes": {
   },
   "files": {
@@ -19,6 +24,6 @@
     "loopback#urlNotFound": {}
   },
   "final:after": {
-    "errorhandler": {}
+    "./middleware/errorHandler": {}
   }
 }

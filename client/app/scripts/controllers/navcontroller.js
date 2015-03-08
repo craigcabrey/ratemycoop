@@ -25,23 +25,22 @@ angular.module('ratemycoopApp')
           }
           searchable.push(newVal);
         });
+
         $("#navSearchInput").search({
-          source: searchable
+          source: searchable,
+          onSelect: function (res) {
+            $location.path("/company/" + res.name);
+            $scope.$apply();
+            $scope.searchCompanyFieldNav = '';
+
+          }
         });
 
       }
     );
 
-    $scope.searchCompanyField = '';
-    /**
-     * When pressing enter or submitting the form, this gets called
-     */
-    $scope.search = function () {
-      var searchQuery = $('#navSearchField').val();
-      var path = "/company/" + searchQuery;
-      $scope.searchCompanyField = null;
-      $location.path(path);
-    };
+    // Navbar search binding
+    $scope.searchCompanyFieldNav = '';
 
 
     $scope.isHome = $location.path() === '/';

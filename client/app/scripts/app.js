@@ -19,9 +19,11 @@ angular
     'angular.filter',
     'lbServices',
     'mgo-angular-wizard',
-    'btford.markdown'
+    'btford.markdown',
+    'angularMoment',
+    'config'
   ])
-  .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider) {
+  .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', 'ENV', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider, ENV) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -47,15 +49,19 @@ angular
         templateUrl: 'views/login.html',
         controller: 'StandaloneLoginCtrl'
       })
+      .when('/login/:redirect_url', {
+        templateUrl: 'views/login.html',
+        controller: 'StandaloneLoginCtrl'
+      })
       .otherwise({
         redirectTo: '/404',
         templateUrl: '/404.html'
       });
 
     //$locationProvider.html5Mode({ enabled: true, requireBase: false });
+    
+    LoopBackResourceProvider.setUrlBase(ENV.apiEndpoint);
 
-    // Set url base
-    LoopBackResourceProvider.setUrlBase('https://ratemycoop.io/api/v1');
 
     /**
      * Set http interceptor for 40x unauthorized

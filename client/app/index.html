@@ -16,7 +16,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="images/cooper/apple-icon-180x180.png">
   <link rel="icon" type="image/png" href="images/cooper/favicon-96x96.png">
   <link rel="manifest" href="/manifest.json">
-  <meta property="og:image" content="https://ratemycoop.io/images/cooper/cooper_coop_cat.54771f55.png" />
+  <meta property="og:description"
+        content="Rate My Co-op is a new service built to allow students to look up information about companies. Search for (and add more) companies, read reviews, and add your own experiences from which others can benefit."/>
+  <meta property="og:image" content="https://ratemycoop.io/images/cooper/cooper_coop_cat.54771f55.png"/>
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
@@ -45,10 +47,11 @@
 
   <!-- Header/navbar -->
   <div class="check-element animate-show" ng-controller="NavCtrl">
-    <nav class="ui fixed menu inverted grid">
+    <nav class="ui fixed menu inverted grid" style="z-index: 1000;">
       <a href="#/" class="item" style="">
         <img src="images/cooper/cooper_coop_cat.svg" height="36px"/>
       </a>
+
       <div class="item">
         <div class="ui orange label">BETA</div>
       </div>
@@ -57,7 +60,7 @@
         <form class="ui search" id="navSearchInput" ng-submit="search()" ng-hide="isHome" ng-cloak>
           <div class="ui icon input search">
             <input class="prompt" type="text" id="navSearchField"
-                   ng-model="searchCompanyField" placeholder="Search companies" autocomplete="off">
+                   ng-model="searchCompanyFieldNav" placeholder="Search companies" autocomplete="off">
             <i class="search icon"></i>
           </div>
           <div class="ui left aligned results segment"></div>
@@ -79,8 +82,11 @@
     <div class="ui grid">
       <div class="column footer tablet only computer only">
         <div class="ui inverted fixed bottom menu navbar">
-          <a ng-href="/#/about" class="brand item">About</a>
-          <a ng-href="/#/privacy" class="brand item">Privacy</a>
+          <div class="item">
+            <div class="ui orange tiny label">v1.0.0-beta4</div>
+          </div>
+          <a ng-href="/#/about" class="item">About</a>
+          <a ng-href="/#/privacy" class="item">Privacy</a>
           <a href="http://goo.gl/forms/6uC5TJ9Kvv" class="brand item" target="_blank">Report Issue</a>
 
           <div class="right menu">
@@ -138,6 +144,8 @@
 <script src="bower_components/angular-wizard/dist/angular-wizard.js"></script>
 <script src="bower_components/showdown/src/showdown.js"></script>
 <script src="bower_components/angular-markdown-directive/markdown.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -154,6 +162,7 @@
 <script src="scripts/controllers/privacy.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/lb-services.js"></script>
+<script src="scripts/config.js"></script>
 <!-- endbuild -->
 
 </body>

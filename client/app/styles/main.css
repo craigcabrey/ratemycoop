@@ -98,3 +98,13 @@ video#mainVideo {
 	margin-bottom: -2px;
 }
 
+@media (max-width: 550px) {
+  #fat {
+    width: 100%;
+  }
+}
+
+.markdown-preview {
+  word-wrap: break-word;
+  word-break: break-all;
+}

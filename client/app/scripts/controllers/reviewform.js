@@ -38,7 +38,7 @@ angular.module('ratemycoopApp')
       function (success) {
       });
 
-    $scope.payTypes = [{id: 1, name: "Hourly"}, {id: 2, name: "Salary"}, {id: 3, name: "Stipend"}];
+    $scope.payTypes = [{id: 1, name: "Hourly"}, {id: 2, name: "Salary (Monthly)"}, {id: 3, name: "Stipend"}];
 
     /**
      * Get company info on-load
@@ -192,6 +192,7 @@ angular.module('ratemycoopApp')
         pay: formData.pay,
         userId: formData.userId,
         payTypeId: formData.payTypeId,
+        jobTitle: formData.jobTitle,
 
         perks: perksList,
         majors: majorsList,
@@ -317,7 +318,8 @@ angular.module('ratemycoopApp')
           //}
         },
         {
-          on: 'blur'
+          on: 'blur',
+          keyboardShortcuts: false
         }
       );
     }

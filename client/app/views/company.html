@@ -4,7 +4,7 @@
 
       <!-- Main overview content segment -->
       <div class="ui fluid stackable segment">
-        <a class="ui corner label" ng-click="showEditModal()">
+        <a class="ui huge red corner label" ng-click="showEditModal()">
           <i class="edit icon"></i>
         </a>
 
@@ -24,20 +24,21 @@
 
             </div>
             <div class="twelve wide column">
-              <h1 class="ui header">
+              <h1 class="ui dividing header">
+
                 <div class="content">
                   <a href="{{company.url}}" target="_blank">{{company.name}}</a>
-
-                  <div btf-markdown="company.description" class="sub header">
-
-                  </div>
-                  <div class="sub header" ng-show="company.description === null || company.description === ''">
-                    <b>Woah!</b> <i>It seems like this company doesn't have a description. You can still write a review
-                    while we
-                    try and get reliable information.</i>
-                  </div>
                 </div>
               </h1>
+              <div>
+                <div btf-markdown="company.description"></div>
+              </div>
+
+              <div ng-show="company.description === null || company.description === ''">
+                <b>Woah!</b> <i>It seems like this company doesn't have a description. You can still write a review
+                while we
+                try and get reliable information.</i>
+              </div>
               <div class="ui right floated inverted green icon button" ng-click="gotoReview()">
                 <i class="write icon"></i>
                 Write a review
@@ -65,7 +66,7 @@
                   </div>
                 </div>
                 <div class="item">
-                  Difficulty
+                  Competitiveness
                   <div class="menu">
                     <div class="item">
                       <div class="ui huge star rating" id="difficultyRating"></div>
@@ -86,26 +87,65 @@
 
             </div>
             <div class="eleven wide column">
-
               <div class="ui top attached segment">
-                <div class="ui black ribbon label">Pay & Compensation</div>
 
-                <div class="ui fluid list">
-                  <div class="item" ng-if="company.maxPay === null">
-                    <div class="ui medium label">No pay yet</div>
-                  </div>
-                  <div class="item" ng-hide="company.maxPay === null">
-                    <i class="dollar icon"></i>
-                    <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[0]}"></i>
-                    <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[1]}"></i>
-                    <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[2]}"></i>
-                  </div>
-                  <div class="item" ng-hide="company.maxPay === null">
-                    <div class="ui medium green label">${{company.minPay}} - ${{company.maxPay}} hourly</div>
-                  </div>
+
+                <div ng-switch="company.locations.length === 0">
+
+                  <div class="ui black ribbon label" ng-switch-when="false">Pay & Location</div>
+                  <div class="ui black ribbon label" ng-switch-default="">Pay</div>
                 </div>
 
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="ui basic horizontal segment">
+                      <div class="ui basic"></div>
+                      <!-- This basic div is for spacing -->
+
+                      <div class="ui fluid list">
+                        <div class="item" ng-if="company.maxPay === null">
+                          <div class="ui medium label">No pay yet</div>
+                        </div>
+                        <div class="item" ng-hide="company.maxPay === null">
+                          <i class="dollar icon"></i>
+                          <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[0]}"></i>
+                          <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[1]}"></i>
+                          <i class="dollar icon" ng-class="{disabled: company.maxPay < payScale[2]}"></i>
+                        </div>
+                        <div class="item" ng-hide="company.maxPay === null">
+                          <div class="ui medium green label">${{company.minPay}} - ${{company.maxPay}} hourly</div>
+                          <div class="ui medium blue label" ng-hide="stipendAverage === null" ng-cloak="">
+                            ${{stipendAverage}}
+                            stipend
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <div class="column" ng-if="company.locations.length > 0;">
+                    <div class="ui basic horizontal segment">
+
+                      <div class="ui list">
+                        <div class="item" ng-repeat="location in company.locations">
+                          <i class="red map marker icon"></i>
+
+
+                          <a class="content"
+                             target="_blank"
+                             ng-href="https://www.google.com/maps/search/{{location.name}},{{location.region.code}}">
+                            {{location.name}}, {{location.region.code}}
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </div>
+
+
               <!-- Perks -->
               <div class="ui attached segment">
                 <div class="ui orange ribbon label">Perks</div>
@@ -223,16 +263,15 @@
             </div>
           </div>
 
-          <div class="event" ng-repeat="review in company.reviews">
+          <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
-            <div class="content">
+            <div class="content markdown-preview" >
               <div class="summary">
                 Anonymous review
-                <!--<div class="date">-->
-                  <!--3 days ago-->
-                <!--</div>-->
+                <div class="date" am-time-ago="review.created">
+                </div>
               </div>
-              <div btf-markdown="review.description">
+              <div btf-markdown="review.description" >
               </div>
               <!--<div class="meta">-->
               <!--<a class="like">-->
@@ -249,7 +288,7 @@
   </div>
 </div>
 <!-- suggest company edit modal -->
-<div class="ui modal">
+<div class="ui modal" id="companyEditModal">
   <i class="close icon"></i>
 
   <div class="header">
@@ -311,6 +350,29 @@
     <div class="ui positive right labeled icon button" ng-click="editModalSubmit()">
       Submit
       <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+<!-- Modal for unauth -->
+<div class="ui basic modal" id="notLoggedInModal">
+  <i class="close icon"></i>
+
+  <div class="header">
+    Woops! Login please
+  </div>
+  <div class="content">
+    <div class="image">
+      <img src="images/cooper/cooper_coop_sad.svg" style="max-width: 10em">
+    </div>
+    <div class="description">
+      <p>You must be logged in to review a company. Click on the <b>top right</b> to Register or Log in
+        using your RIT email.</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui fluid green basic inverted button">
+      <i class="checkmark icon"></i>
+      OK
     </div>
   </div>
 </div>

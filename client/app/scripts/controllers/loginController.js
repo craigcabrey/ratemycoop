@@ -10,7 +10,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('LoginCtrl', function ($scope, User, $location) {
+  .controller('LoginCtrl', function ($scope, User, LoopBackAuth) {
     $scope.loginLoading = false;
 
     /**
@@ -143,6 +143,9 @@ angular.module('ratemycoopApp')
         },
         function (err) {
           $scope.loginLoading = false;
+          LoopBackAuth.clearUser();
+          LoopBackAuth.clearStorage();
+          $scope.user = null;
           setLoginError(err.data.error.message);
         }
       );

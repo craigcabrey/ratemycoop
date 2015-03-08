@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Free Food",
+    "icon": "food"
+  },
+  {
+    "name": "Free Snacks",
+    "icon": "coffee"
+  },
+  {
+    "name": "Free Housing",
+    "icon": "home"
+  },
+  {
+    "name": "Subsidized Housing",
+    "icon": "inverted home"
+  },
+  {
+    "name": "Relocation",
+    "icon": "plane"
+  },
+  {
+    "name": "Insurance",
+    "icon": "doctor"
+  },
+  {
+    "name": "Hardware",
+    "icon": "server"
+  },
+  {
+    "name": "Swag",
+    "icon": "angellist"
+  },
+  {
+    "name": "Standing Desk",
+    "icon": "cube"
+  },
+  {
+    "name": "Free Parking",
+    "icon": "car"
+  },
+  {
+    "name": "Fitness",
+    "icon": "heartbeat"
+  },
+  {
+    "name": "Access Services",
+    "icon": "text telephone"
+  },
+  {
+    "name": "Paid Vacation",
+    "icon": "travel"
+  }
+]

@@ -8,8 +8,9 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('CompanyCtrl', function ($scope, $routeParams, Company, $location, SuggestedEdit) {
+  .controller('CompanyCtrl', function ($scope, $routeParams, Company, User, $location, SuggestedEdit) {
     $scope.loading = true;
+    $scope.stipendAverage = null;
 
 
     // Given the route, set the main company stuff
@@ -22,10 +23,9 @@ angular.module('ratemycoopApp')
       },
       function (successData) {
         $scope.loading = false;
-        console.log(successData);
         onCompanySuccess(successData);
       },
-      function (error) {
+      function () {
         $location.path('/404');
       }
     );
@@ -37,10 +37,12 @@ angular.module('ratemycoopApp')
     function onCompanySuccess(companyData) {
       setUpRatings();
       setUpStatistics();
-      setTimeout(setupMajorsPopups, 1000);
-      //setupMajorsPopups();
+      setTimeout(setupMajorsPopups, 500);
       setupModalPreFill(companyData);
-      // Logo setup
+      traverseReviews(companyData.reviews);
+      setupDisplayPay(companyData.minPay, companyData.maxPay);
+
+      // Logo & Pay setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
     }
 
@@ -71,26 +73,6 @@ angular.module('ratemycoopApp')
     }
 
     /**
-     * activates the popups for the majors displayed.
-     */
-    function setupMajorsPopups() {
-      $('.majorLabel').popup({
-        position: 'bottom center',
-        inline: true,
-        transition: 'vertical flip'
-      });
-    }
-
-    function setupModalPreFill(companyData) {
-      var form = $scope.suggestCompanyEditForm;
-      form.name = companyData.name;
-      form.description = companyData.description;
-      form.url = companyData.url;
-      form.logo = companyData.logo;
-    }
-
-
-    /**
      * Sets up the $recommend and $returners variable to be shown in statistics page.
      */
     function setUpStatistics() {
@@ -107,14 +89,77 @@ angular.module('ratemycoopApp')
       });
     }
 
+    /**
+     * activates the popups for the majors displayed.
+     */
+    function setupMajorsPopups() {
+      $('.majorLabel').popup({
+        position: 'bottom center',
+        inline: true,
+        transition: 'vertical flip'
+      });
+    }
+
+    /**
+     * This will set up the `edit company` form
+     * @param companyData
+     */
+    function setupModalPreFill(companyData) {
+      var form = $scope.suggestCompanyEditForm;
+      form.name = companyData.name;
+      form.description = companyData.description;
+      form.url = companyData.url;
+      form.logo = companyData.logo;
+    }
+
+    /**
+     * Goes through reviews and sets many $scope variables if necessary
+     * @param reviewList
+     */
+    function traverseReviews(reviewList) {
+      $scope.stipendAverage = null;
+      var stipendSum = 0;
+      var stipendCount = 0;
+
+      angular.forEach(reviewList, function (review) {
+        if (review.payTypeId === 3) {
+          stipendCount++;
+          stipendSum += review.pay;
+        }
+      });
+
+      if (stipendCount > 0) {
+        $scope.stipendAverage = Math.round(stipendSum / stipendCount);
+      }
+    }
+
+    function setupDisplayPay(min, max) {
+      if (min) {
+        if (min % 1 !== 0) {
+          $scope.company.minPay = min.toFixed(2);
+        }
+      }
+      if (max) {
+        if (max % 1 !== 0) {
+          $scope.company.maxPay = max.toFixed(2);
+        }
+      }
+    }
+
+
     $scope.gotoReview = function () {
-      var path = "/company/" + $scope.company.name + "/review";
-      $location.path(path);
+      if (User.isAuthenticated()) {
+        var path = "/company/" + $scope.company.name + "/review";
+        $location.path(path);
+      } else {
+        $('#notLoggedInModal').modal('show')
+      }
+
     };
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
-      $('.modal').modal();
+      // Perform on doc ready.
     });
 
     $scope.suggestCompanyEditForm = {
@@ -129,7 +174,7 @@ angular.module('ratemycoopApp')
     };
 
     $scope.showEditModal = function () {
-      $('.modal').modal('show');
+      $('#companyEditModal').modal('show');
     };
 
     /**
@@ -150,8 +195,8 @@ angular.module('ratemycoopApp')
           logo: $scope.suggestCompanyEditForm.logo
         },
         function (success) {
-          $('.modal').modal('hide');
           $scope.suggestCompanyEditForm.loading = false;
+          $('#companyEditModal').modal('hide');
         },
         function (err) {
           $scope.suggestCompanyEditForm.loading = false;

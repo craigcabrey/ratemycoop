@@ -4,10 +4,13 @@
 
       <div class="ui fluid segment" ng-class="{loading: loading.main}">
 
-        <h1 class="ui dividing header" style="margin-bottom: 0px;">Review {{company.name}}</h1>
+        <h1 class="ui dividing header" style="margin-bottom: 0px;">Add a review for {{company.name}}</h1>
 
-        <div class="ui vertical segment">
+        <div class="ui yellow message">
+          We take privacy <i>very</i> seriously: for more information, check out our <a ng-href="/#/privacy" target="_blank">privacy policy</a>.
+        </div>
 
+        <div class="ui vertical segment" style="padding: 0px;">
           <div class="ui fluid attached steps">
             <a class="step" ng-class="{active: wizard.currStep=== wizard.s1}" ng-click="wizard.currStep = wizard.s1">
               <i class="building outline icon"></i>
@@ -34,96 +37,69 @@
 
           <form class="ui attached form segment" ng-class="{error: formData.error}" id="reviewForm">
             <div class="ui error message">
-              <div class="header">Woops, something went wrong.</div>
+              <div class="header">
+                Whoops, something went wrong.
+              </div>
               <p>Sorry about that, try submitting your review again.</p>
             </div>
 
             <wizard on-finish="finishedWizard()" hide-indicators="true" current-step="wizard.currStep">
+              <!-- WIZARD 1/3 -->
               <wz-step title="wizardStepOne">
-                <!-- WIZARD 1/3 -->
-
-                <!-- Anonymous -->
-                <div class="field">
-                  <div class="ui yellow message" ng-hide="formData.anonymous">
-                    We take privacy <i>very</i> seriously
-                    - for more information check out our <a ng-href="/#/privacy" target="_blank">privacy policy</a>.
-                  </div>
-                  <div class="ui toggle checkbox" id="privacyCheckbox">
-                    <input type="checkbox" ng-model="formData.anonymous">
-
-                    <label>Would you like to remain anonymous?</label>
-                  </div>
-                </div>
-
-                <!-- Major and City -->
                 <div class="ui raised blue segment">
                   <div class="ui two column stackable grid">
                     <div class="column">
+                      <!-- Major -->
                       <div class="field">
-
-                        <div class="ui fluid search" id="majorSearch">
-                          <div class="ui labeled input">
-                            <div class="ui green label"><i class="graduation icon"></i>Major</div>
-                            <input type="text" name="majorSearchInput" class="prompt"
-                                   placeholder="Software Engineering ...">
-                          </div>
+                        <div class="ui field fluid search" id="majorSearch">
+                          <label>Major</label>
+                          <input type="text" name="majorSearchInput" autocomplete="off" class="prompt"
+                                 placeholder="In which program are you primarily enrolled?">
                           <div class="results"></div>
-
                         </div>
-
                       </div>
 
+                      <!-- Location -->
                       <div class="field">
-
-                        <div class="ui fluid search" id="locationSearch">
-                          <div class="ui labeled input">
-                            <div class="ui green label"><i class="marker icon"></i>Company City</div>
-
-                            <input type="text" name="locationSearchInput" class="prompt"
-                                   placeholder="Where did you work?">
-
-                          </div>
+                        <div class="ui field fluid search" id="locationSearch">
+                          <label>Location</label>
+                          <input type="text" name="locationSearchInput" autocomplete="off" class="prompt"
+                                 placeholder="Where did you work?">
                           <div class="results"></div>
                         </div>
                       </div>
                     </div>
-                    <div class="column">
-                      <!-- Pay and Compensation -->
-                      <div class="field">
-                        <h4 class="ui header">
-                          <i class="green money icon"></i>
 
-                          <div class="content">
-                            Pay & Compensation
-                            <div class="sub header">
-                              We won't show your specific pay information.
-                            </div>
-                          </div>
-                        </h4>
+                    <div class="column">
+                      <!-- Job Title -->
+                      <div class="field">
+                        <label>Job Title</label>
+                        <div class="ui right labeled input">
+                          <input type="text" name="jobTitleInput" placeholder="What was your official title?"
+                                 autocomplete="off" ng-model="formData.jobTitle">
+                        </div>
                       </div>
 
+                      <!-- Compensation -->
                       <div class="field">
-                        <div class="ui labeled input">
-                          <div class="ui green label">$</div>
-
-                          <!--<i class="left label big dollar icon"></i>-->
-                          <input type="text" name="payInput" placeholder="00.00" ng-model="formData.pay">
-
+                        <label>Compensation</label>
+                        <div class="ui right labeled left icon input">
+                          <i class="dollar icon"></i>
+                          <input type="text" name="payInput" placeholder="0.00" autocomplete="off"
+                                 ng-model="formData.pay">
                           <!--suppress HtmlFormInputWithoutLabel -->
-                          <select class="ui dropdown" name="payTypeInput" id="payType"
+                          <select class="ui dropdown label" name="payTypeInput" id="payType"
                                   ng-model="formData.payTypeId"
                                   ng-options="type.id as type.name for type in payTypes">
                           </select>
-
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Perks MAJOR Segment -->
+                <!-- Perks -->
                 <div class="ui raised blue segment" ng-class="{loading: loading.perks}">
-                  <!-- Perks Add/Drop -->
                   <div class="field">
                     <div class="column">
                       <div class="ui header">
@@ -131,7 +107,7 @@
 
                         <div class="content">
                           Perks
-                          <div class="sub header">Click on perks to add them to your perks, if any.</div>
+                          <div class="sub header">Select which perks {{company.name}} offered, if any.</div>
                         </div>
                       </div>
 
@@ -153,14 +129,23 @@
                   </div>
                 </div>
 
-                <div class="ui inverted green right labeled right floated icon button" type="submit" wz-next>
-                  <i class="right arrow icon"></i>
-                  Next
+                <!-- Anonymous -->
+                <div class="eight column wide">
+                  <div class="ui toggle checkbox" id="privacyCheckbox" style="transform: translateY(35%);">
+                    <input type="checkbox" ng-model="formData.anonymous">
+
+                    <label>Would you like to remain anonymous?</label>
+                  </div>
+                  <div class="ui inverted green right labeled right floated icon button" type="submit" wz-next>
+                    <i class="right arrow icon"></i>
+                    Next
+                  </div>
                 </div>
+
               </wz-step>
 
+              <!-- WIZARD 2/3 -->
               <wz-step title="wizardStepTwo">
-                <!-- WIZARD 2/3 -->
                 <!-- Overall -->
                 <div class="ui raised green segment">
                   <div class="ui header">
@@ -168,16 +153,15 @@
 
                     <div class="content">
                       Overall
-                      <div class="sub header">Remember the first day, all the way to the last step out that door. How
+                      <div class="sub header">Remember the first day, all the way up to the last step out the door. How
                         was your experience overall?
                       </div>
                     </div>
                   </div>
                   <div class="ui center aligned basic segment">
-                    <label>Would never go back</label>
-
+                    <i class="big thumbs down outline icon"></i>
                     <div class="ui massive star rating" data-max-rating="10"></div>
-                    <label>Go back any day</label>
+                    <i class="big thumbs up outline icon"></i>
                   </div>
                 </div>
 
@@ -193,20 +177,20 @@
                     </div>
                   </div>
                   <div class="ui center aligned basic segment">
-                    <i class="big red frown icon"></i>
+                    <i class="big frown icon"></i>
 
                     <div class="ui massive star rating" data-max-rating="10"></div>
-                    <i class="big green child icon">epic</i>
+                    <i class="big smile icon"></i>
                   </div>
                 </div>
 
-                <!-- Difficulty -->
+                <!-- Competitiveness -->
                 <div class="ui raised orange segment">
                   <div class="ui header">
                     <i class="orange dashboard icon"></i>
 
                     <div class="content">
-                      Difficulty
+                      Competitiveness
                       <div class="sub header">
                         Think about the interview process, how hard was it to get a spot?
                       </div>
@@ -218,8 +202,6 @@
                     <div class="ui massive star rating" data-max-rating="10"></div>
                     <i class="big red rocket icon item"></i>
                   </div>
-
-                  <div class="ui hidden form divider"></div>
                 </div>
 
                 <div class="ui inverted green left labeled left floated icon button" wz-previous>
@@ -232,6 +214,7 @@
                 </div>
               </wz-step>
 
+              <!-- WIZARD 3/3 -->
               <wz-step title="wizardStepThree">
                 <!-- return offer and would you recommend? -->
                 <div class="two fields">
@@ -259,17 +242,23 @@
                   </div>
                   <h3>Share your thoughts below.</h3>
                   <textarea ng-model="formData.description" name="descriptionInput"></textarea>
-                </div>
+                  <div class="ui fluid accordion" style="margin-top: 7px">
+                    <div class="title">
+                      <i class="dropdown icon"></i>Live Preview
+                    </div>
+                    <div btf-markdown="formData.description" class="content ui segment markdown-preview"></div>
+                  </div>
 
-                <div class="ui hidden divider"></div>
+                  <div class="ui hidden divider"></div>
 
-                <div class="ui inverted green left labeled left floated icon button" wz-previous>
-                  <i class="left arrow icon"></i>
-                  Previous
-                </div>
-                <div class="ui inverted green right labeled right floated icon button" ng-click="submitReview()">
-                  <i class="check circle icon"></i>
-                  Submit
+                  <div class="ui inverted green left labeled left floated icon button" wz-previous>
+                    <i class="left arrow icon"></i>
+                    Previous
+                  </div>
+                  <div class="ui inverted green right labeled right floated icon button" ng-click="submitReview()">
+                    <i class="check circle icon"></i>
+                    Submit
+                  </div>
                 </div>
               </wz-step>
             </wizard>
