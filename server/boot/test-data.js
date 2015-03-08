@@ -3,120 +3,86 @@ module.exports = function (app) {
   if (typeof(environment) === 'undefined') {
     console.log('Entering development mode.');
 
-    // User instance (with autologin)
-    app.models.User.create(
-      {
-        email: 'test@rit.edu',
-        password: 'potato'
-      },
-      function(err, success) {
-        app.models.User.login(
-          {
-            email: 'test@rit.edu',
-            password: 'potato'
-          },
-          function(err, user) {
-            console.log('Autologin token: ' + user.id);
-          }
-        );
-      }
-    );
+    // User instances (with autologin)
+    var testUsers = require("./dummydata/users.json");
+
+    /**
+     * Helper function
+     * @param userobj
+     */
+    var mkUser = function(userobj) {
+      app.models.User.create(userobj, function(err, success) {
+        app.models.User.login(userobj, function(err, user) {
+          console.log("User: " + userobj["email"] + "    password: " + userobj["password"]);
+          console.log("    Autologin token: " + user.id);
+        });
+      });
+    };
+
+    for(var u in testUsers) {
+      mkUser(testUsers[u]);
+    }
 
     // Country, Region, and City instances
-    app.models.Country.create(
-      {
-        name: "United States",
-        code: "US"
-      }
-    );
-    app.models.Region.create(
-      {
-        name: "Potato",
-        code: "PO",
-        countryId: 1
-      }
-    );
-    app.models.City.create(
-      {
-        name: "Potatoville",
-        regionId: 1
-      }
-    );
 
-    // University, College, and Major instances
-    app.models.University.create(
-      {
-        name: "Rochester Institute of Technology",
-        shortName: "RIT",
-        domain: "rit.edu"
-      }
-    );
-    app.models.College.create(
-      {
-        name: "Golisano College of Computing & Information Sciences",
-        code: "GCCIS",
-        universityId: 1
-      }
-    );
-    app.models.Major.create(
-      {
-        name: "Software Engineering",
-        code: "SWEN",
-        collegeId: 1
-      }
-    );
+    // add countries
+    var testCountries = require("./dummydata/countries.json");
+    addAll(testCountries, app.models.Country);
 
-    // PayType instance
-    app.models.PayType.create(
-      {
-        name: "hourly"
-      }
-    );
+    // add regions
+    var testRegions = require("./dummydata/regions.json");
+    addAll(testRegions, app.models.Region);
 
-    // Company, Review, and Perk instances
-    app.models.Perk.create(
-      {
-        name: "Free Lunch Friday",
-        icon: "food"
-      }
-    );
-    app.models.Company.create(
-      {
-        name: "Datto, Inc.",
-        url: "http://www.datto.com/",
-        description: "One two potato.",
-        logo: "datto.png",
-        "seekingFulltime": true,
-        "seekingCoop": false,
-        "overallRating": 10.0,
-        "cultureRating": 6.0,
-        "difficultyRating": 7.0,
-        perks: [ 1 ],
-        minPay: 0,
-        maxPay: 0
-      }
-    );
-    app.models.Review.create(
-      {
-        companyId: 1,
-        anonymous: true,
-        description: "Full of potatoes.",
-        payTypeId: 1,
-        userId: 1
-      }
-    );
-    app.models.CompanyMajor.create(
-      {
-        companyId: 1,
-        majorId: 1
-      }
-    );
-    app.models.Location.create(
-      {
-        companyId: 1,
-        cityId: 1
-      }
-    );
+    // add cities
+    var testCities = require("./dummydata/cities.json");
+    addAll(testCities, app.models.City);
+
+    // Universities
+    var testUniversities = require("./dummydata/universities.json");
+    addAll(testUniversities, app.models.University);
+
+    // Colleges
+    var testColleges = require("./dummydata/colleges.json");
+    addAll(testColleges, app.models.College);
+
+    // Majors
+    var testMajors = require("./dummydata/majors.json");
+    addAll(testMajors, app.models.Major);
+
+    // PayTypes
+    var testEnums = require("./dummydata/majors.json");
+    addAll(testEnums, app.models.PayType);
+
+    // Perks
+    var testPerks = require("./dummydata/perks.json");
+    addAll(testPerks, app.models.Perk);
+
+    // Companies
+    var testCompanies = require("./dummydata/companies.json");
+    addAll(testCompanies, app.models.Company);
+
+    // Reviews
+    var testReviews = require("./dummydata/reviews.json");
+    addAll(testReviews, app.models.Review);
+
+    // Company Majors
+    var testCompanyMajors = require("./dummydata/companyMajors.json");
+    addAll(testCompanyMajors, app.models.CompanyMajor);
+
+    // Locations
+    var testLocations = require("./dummydata/locations.json");
+    addAll(testLocations, app.models.Location);
   }
 };
 
+
+/**
+ * Helper funciton for adding a list of data to their corresponding models
+ * @param collection of models to add (list of json objects)
+ * @param model of data being added (ex: app.models.Company)
+ */
+var addAll = function(collection, model) {
+  for(var d in collection) {
+    model.create(collection[d]);
+  }
+};
