@@ -2,10 +2,10 @@ module.exports = function (Review) {
 
   var loopback = require('loopback');
 
+
   Review.afterRemote(
     'access',
     function (ctx, instance, next) {
-      console.log(instance.likes());
       ctx.Model.include = function (subItems, subInclude, callback) {
         callback();
       };
@@ -156,15 +156,21 @@ module.exports = function (Review) {
   //  cb(null, null);
   //};
 
+  /**
+   * Declaration for "like" remote method
+   */
   Review.remoteMethod(
     'like',
     {
       returns: [{arg: "msg", type: "string"}, {arg: "isLiked", type: "boolean"}],
       isStatic: false,
-      description: "Like or unlike this review as the current user.s"
+      description: "Like or unlike this review as the current user."
     }
   );
 
+  /**
+   * Declaration for "isLikedByUser" endpoints
+   */
   Review.remoteMethod(
     'isLikedByUser',
     {
@@ -176,8 +182,5 @@ module.exports = function (Review) {
       description: "Check if this review was liked by the current user."
     }
   );
-
-  // Disable unused methods
-  Review.disableRemoteMethod('deleteLikeById', true);
 
 };
