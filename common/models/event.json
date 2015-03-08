@@ -16,7 +16,11 @@
       "type": "string",
       "required": true
     },
-    "date": {
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
       "type": "date",
       "required": true
     }
@@ -34,6 +38,13 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
   "methods": []
 }
