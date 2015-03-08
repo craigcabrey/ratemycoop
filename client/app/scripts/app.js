@@ -33,6 +33,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/company/create', {
+        templateUrl: 'views/createcompany.html',
+        controller: 'CreatecompanyCtrl'
+      })
       .when('/company/:companyname', {
         templateUrl: 'views/company.html',
         controller: 'CompanyCtrl'
@@ -53,17 +57,13 @@ angular
         templateUrl: 'views/login.html',
         controller: 'StandaloneLoginCtrl'
       })
-      .when('/companycreate', {
-        templateUrl: 'views/createcompany.html',
-        controller: 'CreatecompanyCtrl'
-      })
       .otherwise({
         redirectTo: '/404',
         templateUrl: '/404.html'
       });
 
     //$locationProvider.html5Mode({ enabled: true, requireBase: false });
-    
+
     LoopBackResourceProvider.setUrlBase(ENV.apiEndpoint);
 
 

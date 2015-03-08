@@ -1,11 +1,21 @@
 <div class="ui page grid">
   <div class="row">
     <div class="column">
-      <div class="header">
-        Suggest an edit for {{company.name}}
-      </div>
+      <h1 class="ui inverted header">
+        <div class="content">
+          Add a New Company
+          <div class="sub header">
+            Fill out as much as you can
+          </div>
+        </div>
+      </h1>
       <div class="ui raised orange segment">
-        <div class="ui form" ng-class="{loading: suggestCompanyEditForm.loading}">
+        <form class="ui form" ng-class="{loading: suggestCompanyEditForm.loading}" ng-submit="submitNewCompany()">
+          <div class="ui warning message">
+            <div class="header">Could you check something!</div>
+          </div>
+          {{suggestCompanyEditForm}}
+
           <div class="field">
             <label>Company Name</label>
             <input type="text" name="companyEdit-name" placeholder="Incorporated Inc."
@@ -51,7 +61,11 @@
               </div>
             </div>
           </div>
-        </div>
+          <div class="ui right floated submit green icon button" ng-click="submitNewCompany()">
+            <i class="send icon"></i>
+            Submit
+          </div>
+        </form>
       </div>
     </div>
   </div>
