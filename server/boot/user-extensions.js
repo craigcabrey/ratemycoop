@@ -60,6 +60,31 @@ module.exports = function(app) {
     }
   );
 
+  // Check for users without verification token and send one
+  setTimeout(function(){
+  User.find(null,
+  function(err, users) {
+    console.log(users);
+    if (users.length > 0) {
+      users.forEach(function(user) {
+        if (user.verificationToken === undefined) {
+          var options = {
+            type: 'email',
+            from: config.email,
+            subject: config.verifySubject,
+            port: '80',
+            template: path.resolve(__dirname, '../../server/templates/existingVerify.ejs')
+          };
+          user.verify(options, function(err, response) {
+            if (err) {
+              return;
+            }
+          });
+        }
+      });
+    }
+  });}, 2000);
+
   // Send verification email
   User.afterRemote('create',
     function(ctx, user, next) {
