@@ -1,0 +1,14 @@
+[
+  {
+  "name": "New York",
+  "regionId": 1
+  },
+  {
+    "name": "San Francisco",
+    "regionId": 2
+  },
+  {
+    "name": "Potato",
+    "regionId": 1
+  }
+]
