@@ -1,4 +1,4 @@
-[![Cooper, your co-op companion!](https://ratemycoop.io/images/cooper/cooper_coop_cat.svg)](https://ratemycoop.io/)
+[![Cooper, your co-op companion!](https://ratemycoop.io/logos/cooper_cat.svg)](https://ratemycoop.io/)
 
 # ratemycoop.io
 

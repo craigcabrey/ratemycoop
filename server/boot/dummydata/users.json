@@ -1,0 +1,14 @@
+[
+  {
+    "email": "test@rit.edu",
+    "password": "potato"
+  },
+  {
+    "email": "brotato@rit.edu",
+    "password": "brotato"
+  },
+  {
+    "email": "pasta@rit.edu",
+    "password": "pasta"
+  }
+]
