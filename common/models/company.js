@@ -37,7 +37,7 @@ module.exports = function(Company) {
           }
 
           if (review.payTypeId != 3) {
-            if (review.pay < self.minPay) {
+            if (self.minPay && review.pay < self.minPay) {
               self.minPay = review.pay;
             }
 
