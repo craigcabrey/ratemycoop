@@ -64,7 +64,6 @@ module.exports = function(app) {
   setTimeout(function(){
   User.find(null,
   function(err, users) {
-    console.log(users);
     if (users.length > 0) {
       users.forEach(function(user) {
         if (user.verificationToken === undefined) {
