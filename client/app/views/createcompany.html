@@ -10,11 +10,12 @@
         </div>
       </h1>
       <div class="ui raised orange segment">
-        <form class="ui form" ng-class="{loading: suggestCompanyEditForm.loading}" ng-submit="submitNewCompany()">
+        <form class="ui form"
+              ng-class="{loading: suggestCompanyEditForm.loading, warning: suggestCompanyEditForm.error}"
+              ng-submit="submitNewCompany()">
           <div class="ui warning message">
-            <div class="header">Could you check something!</div>
+            <div class="header">It seems something went wrong!</div>
           </div>
-          {{suggestCompanyEditForm}}
 
           <div class="field">
             <label>Company Name</label>
@@ -63,7 +64,9 @@
           </div>
 
           <div class="field">
-            <label>Is this company seeking for Co-op or Full time positions?</label>
+            <label ng-hide="suggestCompanyEditForm.name === ''">What positions is {{suggestCompanyEditForm.name}}
+              looking to fill?</label>
+            <label ng-show="suggestCompanyEditForm.name === ''">What positions is this company looking to fill?</label>
 
             <div class="ui checkbox"
                  ng-click="suggestCompanyEditForm.seekingCoop = !suggestCompanyEditForm.seekingCoop">

@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('CreatecompanyCtrl', function ($scope, Company) {
+  .controller('CreatecompanyCtrl', function ($scope, Company, $location) {
     $scope.suggestCompanyEditForm = {
       name: "",
       url: "",
@@ -20,12 +20,14 @@ angular.module('ratemycoopApp')
       seekingCoop: false,
       description: "",
 
-      loading: false
+      loading: false,
+      error: false
     };
 
 
     $scope.submitNewCompany = function () {
       var data = $scope.suggestCompanyEditForm;
+      data.loading = true;
       Company.create(
         {
           "name": data.name,
@@ -36,16 +38,19 @@ angular.module('ratemycoopApp')
           "linkedin": data.linkedin,
           "seekingFulltime": data.seekingFulltime,
           "seekingCoop": data.seekingCoop,
-          "description": data.description
+          "description": data.description,
+          minPay: null,
+          maxPay: null
         },
         function (success) {
-          console.log('success');
+          data.loading = false;
+          $location.path('/company/' + data.name);
         },
         function (error) {
-          console.log('error');
+          data.loading = false;
+          data.error = true;
         }
       )
-
     };
 
 
