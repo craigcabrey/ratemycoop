@@ -25,7 +25,7 @@ angular.module('ratemycoopApp')
 
 
     $scope.submitNewCompany = function () {
-      var data = $scope.suggestedCompanyEditForm;
+      var data = $scope.suggestCompanyEditForm;
       Company.create(
         {
           "name": data.name,
@@ -46,7 +46,18 @@ angular.module('ratemycoopApp')
         }
       )
 
-    }
+    };
+
+
+    // Semantic Triggers .ready() block.
+    $(document).ready(function () {
+      $('.ui.checkbox').checkbox({
+        onChange: function () {
+          //TODO fix checkboxes
+          $scope.$apply();
+        }
+      });
+    });
 
 
   });
