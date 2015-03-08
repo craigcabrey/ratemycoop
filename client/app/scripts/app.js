@@ -53,6 +53,10 @@ angular
         templateUrl: 'views/login.html',
         controller: 'StandaloneLoginCtrl'
       })
+      .when('/companycreate', {
+        templateUrl: 'views/createcompany.html',
+        controller: 'CreatecompanyCtrl'
+      })
       .otherwise({
         redirectTo: '/404',
         templateUrl: '/404.html'
