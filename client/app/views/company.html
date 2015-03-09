@@ -265,19 +265,19 @@
 
           <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
-            <div class="content markdown-preview" >
+            <div class="content markdown-preview">
               <div class="summary">
                 Anonymous review
                 <div class="date" am-time-ago="review.created">
                 </div>
               </div>
-              <div btf-markdown="review.description" >
+              <div btf-markdown="review.description">
               </div>
-              <!--<div class="meta">-->
-              <!--<a class="like">-->
-              <!--<i class="like icon"></i>-->
-              <!--</a>-->
-              <!--</div>-->
+              <div class="meta" ng-click="likeReview(review)">
+                <a class="like" ng-class="{active: review.isLiked}">
+                  <i class="like icon"></i>{{review.numLikes}} people have found this review helpful.
+                </a>
+              </div>
             </div>
 
           </div>

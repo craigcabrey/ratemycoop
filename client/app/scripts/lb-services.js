@@ -4638,6 +4638,76 @@ module.factory(
           method: "PUT"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Review#prototype$like
+         * @methodOf lbServices.Review
+         *
+         * @description
+         *
+         * Like or unlike this review as the current user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method does not accept any data. Supply an empty object.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `msg` – `{string=}` - 
+         *
+         *  - `isLiked` – `{boolean=}` - 
+         */
+        "prototype$like": {
+          url: urlBase + "/Reviews/:id/like",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Review#prototype$isLikedByUser
+         * @methodOf lbServices.Review
+         *
+         * @description
+         *
+         * Check if this review was liked by the current user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `isLiked` – `{boolean=}` - 
+         */
+        "prototype$isLikedByUser": {
+          url: urlBase + "/Reviews/:id/isLikedByUser",
+          method: "GET"
+        },
+
         // INTERNAL. Use Company.reviews.findById() instead.
         "::findById::Company::reviews": {
           url: urlBase + "/Companies/:id/reviews/:fk",
@@ -12942,6 +13012,50 @@ module.factory(
           var action = TargetResource["::update::SuggestedEdit::user"];
           return action.apply(R, arguments);
         };
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.Email
+ * @header lbServices.Email
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Email` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "Email",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/Emails/:id",
+      { 'id': '@id' },
+      {
+      }
+    );
+
+
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.Email#modelName
+    * @propertyOf lbServices.Email
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `Email`.
+    */
+    R.modelName = "Email";
+
 
     return R;
   }]);
