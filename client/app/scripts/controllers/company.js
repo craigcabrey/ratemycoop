@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('CompanyCtrl', function ($scope, $routeParams, Company, User, $location, SuggestedEdit) {
+  .controller('CompanyCtrl', function ($scope, $routeParams, $location, Company, User, Review, SuggestedEdit) {
     $scope.loading = true;
     $scope.stipendAverage = null;
 
@@ -18,7 +18,7 @@ angular.module('ratemycoopApp')
       {
         filter: {
           where: {name: $routeParams.companyname},
-          include: ['perks', 'majors', 'reviews', {'locations': 'region'}]
+          include: ['perks', 'majors', {'reviews': 'likes'}, 'events', {'locations': 'region'}]
         }
       },
       function (successData) {
@@ -35,19 +35,83 @@ angular.module('ratemycoopApp')
      * @param companyData
      */
     function onCompanySuccess(companyData) {
+      setUpEvents();
       setUpRatings();
       setUpStatistics();
       setTimeout(setupMajorsPopups, 500);
       setupModalPreFill(companyData);
       traverseReviews(companyData.reviews);
       setupDisplayPay(companyData.minPay, companyData.maxPay);
+      setupLikes(companyData.reviews);
 
       // Logo & Pay setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
     }
 
+    function setUpEvents() {
+      console.log($scope.company.events);
+      var events = $scope.company.events;
+      for (var i = 0; i < events.length; i++) {
+        var event = events[i];
+        event.startDate = new Date(event.startDate);
+        event.endDate = new Date(event.endDate);
+      }
+
+      $('.ui.accordion').accordion();
+    }
+
     // Pay Rating setup
     $scope.payScale = [15, 20, 31];
+
+    $scope.likeReview = function (rev) {
+      Review.prototype$like({id: rev.id},
+        function (data) {
+          rev.isLiked = data.isLiked;
+          Review.prototype$__count__likes({id: rev.id},
+            function (data) {
+              rev.numLikes = data.count;
+            },
+            function (err) {
+              console.error(err);
+            });
+        },
+        function (err) {
+          console.error(err);
+        })
+    };
+
+
+    /**
+     * setup the likes
+     * @param reviews to set up
+     */
+    function setupLikes(reviews) {
+      for (var rIndex in reviews) {
+        setupSingleLike($scope.company.reviews[rIndex]);
+      }
+    }
+
+    /**
+     * Set up a single like, separate function for callback scope control.
+     * @param review to set up
+     */
+    function setupSingleLike(review) {
+      Review.prototype$__count__likes({id: review.id},
+        function (data) {
+          review.numLikes = data.count;
+        },
+        function (err) {
+          console.error(err);
+        });
+
+      Review.prototype$isLikedByUser({id: review.id},
+        function (data) {
+          review.isLiked = data.isLiked;
+        }, function (err) {
+          console.error(err);
+        });
+    }
+
     /**
      * Set up ratings and pay scale
      */
