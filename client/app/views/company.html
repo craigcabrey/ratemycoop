@@ -47,6 +47,33 @@
           </div>
         </div>
 
+        <div class="ui vertical segment" ng-show="company.events.length > 0">
+          <div class="ui accordion">
+            <div class="title">
+              <i class="dropdown icon"></i>
+              <i class="calendar icon"></i>
+              <b>Upcoming Events</b>
+            </div>
+            <div class="content">
+              <div class="ui cards">
+                <div class="card" ng-repeat="event in company.events">
+                  <div class="content">
+                    <span class="header">{{event.name}}</span>
+                    <div class="meta">
+                      <i class="red marker map icon"></i>
+                      {{event.location}},
+                      <span>{{event.startDate | amCalendar}}</span>
+                    </div>
+                    <div class="description">
+                      <p>{{event.description}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Overview one -->
         <div class="ui vertical segment" ng-class="{loading: loading}">
           <div class="ui stackable grid">
@@ -89,7 +116,6 @@
             <div class="eleven wide column">
               <div class="ui top attached segment">
 
-
                 <div ng-switch="company.locations.length === 0">
 
                   <div class="ui black ribbon label" ng-switch-when="false">Pay & Location</div>
@@ -121,7 +147,6 @@
                         </div>
                       </div>
 
-
                     </div>
                   </div>
                   <div class="column" ng-if="company.locations.length > 0;">
@@ -130,8 +155,6 @@
                       <div class="ui list">
                         <div class="item" ng-repeat="location in company.locations">
                           <i class="red map marker icon"></i>
-
-
                           <a class="content"
                              target="_blank"
                              ng-href="https://www.google.com/maps/search/{{location.name}},{{location.region.code}}">
@@ -144,7 +167,6 @@
                   </div>
                 </div>
               </div>
-
 
               <!-- Perks -->
               <div class="ui attached segment">
@@ -242,7 +264,6 @@
     <div class="column">
       <div class="ui huge segment" ng-class="{loading: loading}">
         <div class="ui fluid feed">
-
 
           <div class="event">
             <div class="ui fluid inverted green icon button" ng-click="gotoReview()">
