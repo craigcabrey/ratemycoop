@@ -8,7 +8,20 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('FeedCtrl', function ($scope, Company) {
+  .controller('FeedCtrl', function ($scope, $filter, Company) {
+
+    $scope.companyFilterQuery = "";
+    $scope.filter = {
+      rating: false,
+      review: false,
+      pay: false
+    };
+
+    var orderBy = $filter('orderBy');
+    $scope.order = function (predicate, reverse) {
+      $scope.companies = orderBy($scope.companies, predicate, reverse);
+    };
+
 
     $scope.companies = Company.find({
         filter: {
@@ -21,6 +34,7 @@ angular.module('ratemycoopApp')
 
         angular.forEach(success, function (company) {
           company['logo_url'] = "https://ratemycoop.io/logos/" + company.logo;
+          company.url = "#/company/" + company.name;
           company.feedRating = new Array(Math.round(company.overallRating / 2));
 
           if (company.description && company.description.length >= 230) {
