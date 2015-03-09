@@ -11,26 +11,52 @@
       </h1>
       <div class="ui raised orange segment">
         <form class="ui form"
-              ng-class="{loading: suggestCompanyEditForm.loading, warning: suggestCompanyEditForm.error}"
-              ng-submit="submitNewCompany()">
-          <div class="ui warning message">
+              ng-class="{loading: suggestCompanyEditForm.loading, error: suggestCompanyEditForm.error}"
+              id="newCompanyForm">
+          <div class="ui error message">
             <div class="header">It seems something went wrong!</div>
           </div>
 
           <div class="field">
             <label>Company Name</label>
-            <input type="text" name="companyEdit-name" placeholder="Incorporated Inc."
-                   ng-model="suggestCompanyEditForm.name">
+
+            <div class="ui corner labeled input">
+              <input type="text" name="companyEdit-name"
+                     placeholder="Incorporated Inc."
+                     ng-model="suggestCompanyEditForm.name">
+
+              <div class="ui red corner label">
+                <i class="asterisk icon"></i>
+              </div>
+            </div>
           </div>
           <div class="field">
             <label>Description</label>
-            <textarea ng-model="suggestCompanyEditForm.description"></textarea>
+
+            <div class="ui corner labeled input">
+              <textarea
+                name="companyEdit-description"
+                ng-model="suggestCompanyEditForm.description">
+              </textarea>
+
+              <div class="ui red corner label">
+                <i class="asterisk icon"></i>
+              </div>
+            </div>
           </div>
           <div class="two fields">
             <div class="field">
               <label>Company Page Link</label>
-              <input type="text" name="companyEdit-url" placeholder="www.incorporatedinc.com"
-                     ng-model="suggestCompanyEditForm.url">
+
+              <div class="ui corner labeled input">
+                <input type="text" name="companyEdit-url"
+                       placeholder="www.incorporatedinc.com"
+                       ng-model="suggestCompanyEditForm.url">
+
+                <div class="ui red corner label">
+                  <i class="asterisk icon"></i>
+                </div>
+              </div>
             </div>
             <div class="field">
               <label>Link to Logo</label>
@@ -81,7 +107,7 @@
               <label>Full time</label>
             </div>
           </div>
-          <div class="ui right floated submit green icon button" ng-click="submitNewCompany()">
+          <div class="ui right floated green icon button" ng-click="submitNewCompany()">
             <i class="send icon"></i>
             Submit
           </div>
