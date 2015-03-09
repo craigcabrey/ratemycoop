@@ -3,6 +3,37 @@
     <div class="column">
 
 
+      <div class="ui stackable equal height grid">
+        <div class="six wide column">
+          <div class="ui left icon fluid input">
+            <input type="text" placeholder="Filter companies...">
+            <i class="building icon"></i>
+          </div>
+        </div>
+
+        <div class="two wide column">
+          <h5 class="ui inverted header">Sort by...</h5>
+        </div>
+
+        <div class="two wide column">
+          <div class="ui tiny blue button">
+            Rating
+          </div>
+        </div>
+        <div class="two wide column">
+          <div class="ui tiny blue button">
+            Reviews
+          </div>
+        </div>
+        <div class="two wide column">
+          <div class="ui tiny blue button">
+            Pay
+          </div>
+        </div>
+
+      </div>
+
+
       <!-- Items attempt -->
       <div class="ui raised blue fluid segment">
 
@@ -25,8 +56,7 @@
                 <i class="star icon" ng-repeat="i in company.feedRating track by $index"></i>
               </div>
 
-
-              <div class="meta">
+              <div class="meta" ng-if="company.locations.length > 0">
                 <i class="red marker icon"></i>
                 {{company.locations[0].name}}
               </div>
@@ -35,10 +65,13 @@
                 </p>
               </div>
               <div class="extra">
-                <div class="ui green label">${{company.minPay}}-{{company.maxPay}} hourly</div>
-                <div class="ui label"><i class="comment outline icon"></i>{{company.reviews.length}} reviews</div>
+                <div class="ui green label" ng-if="company.minPay != null;">${{company.minPay}}-${{company.maxPay}}
+                  hourly
+                </div>
+                <div class="ui orange label"><i class="comment outline icon"></i>{{company.reviews.length}} reviews
+                </div>
                 <a ng-href="#/company/{{company.name}}" class="ui right floated primary inverted button">
-                  View Company
+                  View
                   <i class="right chevron icon"></i>
                 </a>
               </div>
