@@ -54,7 +54,7 @@
 
         <div class="ui divided items">
           <div class="item browseItem"
-               ng-repeat="company in companies | filter:companyFilterQuery | orderBy:predicate:reverse">
+               dir-paginate="company in companies| itemsPerPage:3| filter:companyFilterQuery| orderBy:predicate:reverse">
             <div class="image" ng-switch="company.logo !== null">
               <img class="ui image" ng-src="{{company.logo_url}}" ng-switch-when="true">
 
@@ -95,6 +95,10 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="">
+          <dir-pagination-controls template-url="/views/templates/dirPagination.tpl.html"></dir-pagination-controls>
         </div>
 
       </div>

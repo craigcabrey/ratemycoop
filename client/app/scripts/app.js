@@ -21,7 +21,8 @@ angular
     'mgo-angular-wizard',
     'btford.markdown',
     'angularMoment',
-    'config'
+    'config',
+    'angularUtils.directives.dirPagination'
   ])
   .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', 'ENV', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider, ENV) {
     $routeProvider
