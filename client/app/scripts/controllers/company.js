@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('CompanyCtrl', function ($scope, $routeParams, Company, User, $location, Review, SuggestedEdit) {
+  .controller('CompanyCtrl', function ($scope, $routeParams, $location, Company, User, Review, SuggestedEdit) {
     $scope.loading = true;
     $scope.stipendAverage = null;
 
@@ -24,7 +24,6 @@ angular.module('ratemycoopApp')
       function (successData) {
         $scope.loading = false;
         onCompanySuccess(successData);
-        //console.log(successData);
       },
       function () {
         $location.path('/404');
@@ -67,18 +66,17 @@ angular.module('ratemycoopApp')
     $scope.likeReview = function (rev) {
       Review.prototype$like({id: rev.id},
         function (data) {
-          console.log(data);
           rev.isLiked = data.isLiked;
           Review.prototype$__count__likes({id: rev.id},
             function (data) {
               rev.numLikes = data.count;
             },
             function (err) {
-
+              console.error(err);
             });
         },
         function (err) {
-
+          console.error(err);
         })
     };
 
@@ -103,14 +101,14 @@ angular.module('ratemycoopApp')
           review.numLikes = data.count;
         },
         function (err) {
-
+          console.error(err);
         });
 
       Review.prototype$isLikedByUser({id: review.id},
         function (data) {
           review.isLiked = data.isLiked;
         }, function (err) {
-
+          console.error(err);
         });
     }
 
