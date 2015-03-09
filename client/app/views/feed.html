@@ -20,24 +20,26 @@
           <div class="ui grid">
             <div class="computer only tablet only fluid row">
               <div class="three wide column">
-                <h5 class="ui inverted header">Sort by...</h5>
+                <h5 class="ui inverted header">
+                  Sort by...
+                </h5>
               </div>
 
               <div class="three wide column">
-                <div class="ui tiny blue button">
+                <div class="ui tiny blue fluid button" ng-click="filterCompany('filterPay')">
                   Pay
                 </div>
               </div>
               <div class="three wide column">
-                <div class="ui tiny blue button">
+                <div class="ui tiny blue fluid button" ng-click="filterCompany('filterRating')">
                   Rating
                 </div>
               </div>
-              <div class="three wide column">
-                <div class="ui tiny blue button">
-                  Reviews
-                </div>
-              </div>
+              <!--<div class="three wide column">-->
+              <!--<div class="ui tiny blue fluid button" ng-click="filterCompany('')">-->
+              <!--Reviews-->
+              <!--</div>-->
+              <!--</div>-->
             </div>
           </div>
 
@@ -51,7 +53,8 @@
       <div class="ui raised blue fluid segment">
 
         <div class="ui divided items">
-          <div class="item browseItem" ng-repeat="company in companies | filter:companyFilterQuery">
+          <div class="item browseItem"
+               ng-repeat="company in companies | filter:companyFilterQuery | orderBy:predicate:reverse">
             <div class="image" ng-switch="company.logo !== null">
               <img class="ui image" ng-src="{{company.logo_url}}" ng-switch-when="true">
 
