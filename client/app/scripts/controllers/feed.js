@@ -12,7 +12,6 @@ angular.module('ratemycoopApp')
 
     $scope.companies = Company.find({
         filter: {
-          limit: 10,
           include: ['reviews', {'locations': 'region'}]
         }
       },
