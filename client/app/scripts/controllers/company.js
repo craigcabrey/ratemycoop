@@ -49,7 +49,6 @@ angular.module('ratemycoopApp')
     }
 
     function setUpEvents() {
-      console.log($scope.company.events);
       var events = $scope.company.events;
       for (var i = 0; i < events.length; i++) {
         var event = events[i];

@@ -2,49 +2,33 @@
   <div class="row">
     <div class="column">
 
-      <div class="ui big vertical fluid menu">
-        <div class="item" ng-repeat="company in companies">
-          <i class="chevron right icon"></i>
 
-          <div class="ui divided items">
-            <div class="item browseItem">
-              <div class="content">
-                <a class="header">{{company.name}}</a>
-
-                <div class="meta">
-                <span class="cinema">
-                <i class="red marker icon"></i>
-                {{company.locations[0].name}}
-                </span>
-                </div>
-                <div class="description">
-                  <p>{{company.description}}</p>
-                </div>
-                <div class="extra">
-                  <div class="ui label"><i class="smile icon"></i>{{company.reviews.length}} reviews</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-
+      <!-- Items attempt -->
       <div class="ui raised blue fluid segment">
+
         <div class="ui divided items">
           <div class="item browseItem" ng-repeat="company in companies">
-            <div class="image">
-              <i class="huge building icon"></i>
+            <div class="image" ng-switch="company.logo !== null">
+              <img class="ui image" ng-src="{{company.logo_url}}" ng-switch-when="true">
+
+              <h1 ng-switch-default="" class="ui fluid center aligned icon header">
+                <i class="massive building outline icon"></i>
+
+                <div class="content">
+                </div>
+              </h1>
             </div>
             <div class="content">
               <a class="header">{{company.name}}</a>
 
+              <div class="right floated icons">
+                <i class="star icon" ng-repeat="i in company.feedRating track by $index"></i>
+              </div>
+
+
               <div class="meta">
-                <span class="cinema">
                 <i class="red marker icon"></i>
-                  {{company.locations[0].name}}
-                </span>
+                {{company.locations[0].name}}
               </div>
               <div class="description">
                 <p>{{company.description}}
@@ -52,8 +36,8 @@
               </div>
               <div class="extra">
                 <div class="ui green label">${{company.minPay}}-{{company.maxPay}} hourly</div>
-                <div class="ui label"><i class="smile icon"></i>{{company.reviews.length}} reviews</div>
-                <a ng-href="#/company/{{company.name}}" class="ui right floated primary inverted green button">
+                <div class="ui label"><i class="comment outline icon"></i>{{company.reviews.length}} reviews</div>
+                <a ng-href="#/company/{{company.name}}" class="ui right floated primary inverted button">
                   View Company
                   <i class="right chevron icon"></i>
                 </a>
@@ -62,8 +46,48 @@
           </div>
         </div>
 
-
       </div>
+
+
+      <!-- MENU ATTEMPT -->
+      <!--<div class="ui big vertical fluid menu">-->
+      <!--<div class="item" ng-repeat="company in companies">-->
+      <!--<i class="chevron right icon"></i>-->
+
+      <!--<div class="image" ng-switch="company.logo !== null">-->
+      <!--<img class="ui image" ng-src="{{company.logo_url}}" ng-switch-when="true">-->
+
+      <!--<h1 ng-switch-default="" class="ui fluid center aligned icon header">-->
+      <!--<i class="massive building outline icon"></i>-->
+
+      <!--<div class="content">-->
+      <!--</div>-->
+      <!--</h1>-->
+      <!--</div>-->
+      <!--<div class="ui divided items">-->
+      <!--<div class="item browseItem">-->
+      <!--<div class="content">-->
+      <!--<a class="header">{{company.name}}</a>-->
+
+      <!--<div class="meta">-->
+      <!--<span class="cinema">-->
+      <!--<i class="red marker icon"></i>-->
+      <!--{{company.locations[0].name}}-->
+      <!--</span>-->
+      <!--</div>-->
+      <!--<div class="description">-->
+      <!--<p>{{company.description}}</p>-->
+      <!--</div>-->
+      <!--<div class="extra">-->
+      <!--<div class="ui label"><i class="smile icon"></i>{{company.reviews.length}} reviews</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+
+
     </div>
   </div>
 </div>

@@ -19,17 +19,16 @@ angular.module('ratemycoopApp')
       function (success) {// Search trigger
 
 
-        console.log($scope.companies[0]);
-        angular.forEach(success, function (value) {
+        angular.forEach(success, function (company) {
+          company['logo_url'] = "https://ratemycoop.io/logos/" + company.logo;
+          company.feedRating = new Array(Math.round(company.overallRating / 2));
 
-          var newVal = value;
-          newVal['title'] = value.name;
-          newVal['url'] = "/#/company/" + value.name;
-          if (value.description && value.description.length >= 230) {
-            newVal['description'] = value.description.substr(0, 230) + "...";
+          if (company.description && company.description.length >= 230) {
+            company['description'] = company.description.substr(0, 230) + "...";
           }
-          if (value.description === null) { // For when the description is null
-            newVal['description'] = "";
+
+          if (company.description === null) { // For when the description is null
+            company['description'] = "";
           }
         });
 
