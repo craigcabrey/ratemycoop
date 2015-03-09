@@ -18,7 +18,7 @@ angular.module('ratemycoopApp')
       {
         filter: {
           where: {name: $routeParams.companyname},
-          include: ['perks', 'majors', {'reviews': 'likes'}, {'locations': 'region'}]
+          include: ['perks', 'majors', {'reviews': 'likes'}, 'events', {'locations': 'region'}]
         }
       },
       function (successData) {
@@ -36,6 +36,7 @@ angular.module('ratemycoopApp')
      * @param companyData
      */
     function onCompanySuccess(companyData) {
+      setUpEvents();
       setUpRatings();
       setUpStatistics();
       setTimeout(setupMajorsPopups, 500);
@@ -46,6 +47,18 @@ angular.module('ratemycoopApp')
 
       // Logo & Pay setup
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+    }
+
+    function setUpEvents() {
+      console.log($scope.company.events);
+      var events = $scope.company.events;
+      for (var i = 0; i < events.length; i++) {
+        var event = events[i];
+        event.startDate = new Date(event.startDate);
+        event.endDate = new Date(event.endDate);
+      }
+
+      $('.ui.accordion').accordion();
     }
 
     // Pay Rating setup
