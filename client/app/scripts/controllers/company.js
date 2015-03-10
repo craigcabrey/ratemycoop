@@ -49,7 +49,6 @@ angular.module('ratemycoopApp')
     }
 
     function setUpEvents() {
-      console.log($scope.company.events);
       var events = $scope.company.events;
       for (var i = 0; i < events.length; i++) {
         var event = events[i];
@@ -190,11 +189,36 @@ angular.module('ratemycoopApp')
           stipendCount++;
           stipendSum += review.pay;
         }
+
+        if (!review.anonymous) {
+          review.reviewerName = getUserNameGivenID(review.userId);
+        }
+
       });
 
       if (stipendCount > 0) {
         $scope.stipendAverage = Math.round(stipendSum / stipendCount);
       }
+    }
+
+    /**
+     * This is for getting user info
+     * @param id
+     */
+    function getUserNameGivenID(id) {
+      User.findOne(
+        {
+          filter: {
+            where: {id: id}
+          }
+        },
+        function (user) {
+          return user.email;
+        },
+        function () {
+          return "Anonymous Hero";
+        }
+      );
     }
 
     function setupDisplayPay(min, max) {

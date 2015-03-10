@@ -287,11 +287,13 @@
           <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
             <div class="content markdown-preview">
-              <div class="summary">
-                Anonymous review
+              <div class="summary" ng-switch="review.anonymous">
+                <p ng-switch-when="false">{{review.reviewerName}}</p>
+                <p ng-switch-default="">Anonymous Hero review</p>
                 <div class="date" am-time-ago="review.created">
                 </div>
               </div>
+
               <div btf-markdown="review.description">
               </div>
               <div class="meta" ng-click="likeReview(review)">
