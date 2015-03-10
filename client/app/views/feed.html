@@ -84,17 +84,19 @@
                 </p>
               </div>
               <div class="extra">
-                <div class="ui orange label">
+                <div class="ui basic segment">
+                  <div class="ui orange label">
                   <i class="comment outline icon"></i>
                   {{company.reviews.length}} reviews
                 </div>
-                <div class="ui green label" ng-if="company.minPay != null;">${{company.minPay}}-${{company.maxPay}}
-                  hourly
+                <div class="ui green label" ng-if="company.minPay != null;">
+                  ${{company.minPay}}-${{company.maxPay}} hourly
                 </div>
                 <a ng-href="#/company/{{company.name}}" class="ui right floated primary inverted button">
                   View
                   <i class="right chevron icon"></i>
                 </a>
+                </div>
               </div>
             </div>
           </div>
