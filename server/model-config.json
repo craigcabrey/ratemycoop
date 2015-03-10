@@ -8,7 +8,15 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "acls": [
+      {
+        "principalType": "ROLE",
+        "principalId": "$authenticated",
+        "permission": "ALLOW",
+        "property": "resendEmail"
+      }
+    ]
   },
   "AccessToken": {
     "dataSource": "db",

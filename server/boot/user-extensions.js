@@ -105,17 +105,7 @@ module.exports = function(app) {
     }
   );
 
-  // Add remote method to resend verification email
-  User.remoteMethod(
-    'resendEmail',
-    {
-      returns: [{arg: "sent", type: "boolean"}],
-      isStatic: false,
-      description: "Resend the verification email for the current user"
-    }
-  );
-
-  // FUnction to resend verification email to the user
+  // Function to resend verification email to the user
   User.prototype.resendEmail = function(cb) {
     this.verify(buildVerifyEmail('verify.ejs'), function(err, response) {
       if (err) {
@@ -125,4 +115,15 @@ module.exports = function(app) {
       cb(null, "sent", true);
     });
   };
+
+  // Add remote method to resend verification email
+  User.remoteMethod(
+    'resendEmail',
+    {
+      returns: [{arg: "sent", type: "boolean"}],
+      isStatic: false,
+      http: { verb: 'get', path: '/resendEmail' },
+      description: "Resend the verification email for the current user"
+    }
+  );
 };
