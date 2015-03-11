@@ -287,10 +287,14 @@
 
           <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
-            <div class="content">
-              <div class="summary">
-                <div ng-show="review.anonymous">{{review.reviewerName}}</div>
-                <div ng-hide="review.anonymous">Anonymous Hero review</div>
+            <div class="content" ng-switch="review.anonymous">
+              <div class="summary" ng-switch-when="false">
+                {{review.reviewerName}}
+                <div class="date" am-time-ago="review.created"></div>
+              </div>
+
+              <div class="summary" ng-switch-default="">
+                Anonymous Hero review
                 <div class="date" am-time-ago="review.created"></div>
               </div>
 
