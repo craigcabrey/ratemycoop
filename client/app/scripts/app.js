@@ -21,7 +21,8 @@ angular
     'mgo-angular-wizard',
     'btford.markdown',
     'angularMoment',
-    'config'
+    'config',
+    'angularUtils.directives.dirPagination'
   ])
   .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', 'ENV', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider, ENV) {
     $routeProvider
@@ -56,6 +57,10 @@ angular
       .when('/login/:redirect_url', {
         templateUrl: 'views/login.html',
         controller: 'StandaloneLoginCtrl'
+      })
+      .when('/feed', {
+        templateUrl: 'views/feed.html',
+        controller: 'FeedCtrl'
       })
       .otherwise({
         redirectTo: '/404',
