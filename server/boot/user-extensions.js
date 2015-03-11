@@ -60,6 +60,19 @@ module.exports = function(app) {
     }
   );
 
+  var buildVerifyEmail = function(template) {
+    var options = {
+      type: 'email',
+      from: config.email,
+      subject: config.verifySubject,
+      port: '443',
+      host: config.hostname,
+      protocol: 'https',
+      template: path.resolve(__dirname, '../../server/templates/' + template)
+    };
+    return options;
+  };
+
   // Check for users without verification token and send one
   setTimeout(function(){
   User.find(null,
@@ -67,14 +80,7 @@ module.exports = function(app) {
     if (users.length > 0) {
       users.forEach(function(user) {
         if (user.verificationToken === undefined) {
-          var options = {
-            type: 'email',
-            from: config.email,
-            subject: config.verifySubject,
-            port: '80',
-            template: path.resolve(__dirname, '../../server/templates/existingVerify.ejs')
-          };
-          user.verify(options, function(err, response) {
+          user.verify(buildVerifyEmail('existingVerify.ejs'), function(err, response) {
             if (err) {
               return;
             }
@@ -88,14 +94,7 @@ module.exports = function(app) {
   User.afterRemote('create',
     function(ctx, user, next) {
       if (user) {
-        var options = {
-          type: 'email',
-          from: config.email,
-          subject: config.verifySubject,
-          port: '80',
-          template: path.resolve(__dirname, '../../server/templates/verify.ejs')
-        };
-        user.verify(options, function(err, response) {
+        user.verify(buildVerifyEmail('verify.ejs'), function(err, response) {
           if (err) {
             next(err);
             return;
@@ -103,6 +102,28 @@ module.exports = function(app) {
           next();
         });
       }
+    }
+  );
+
+  // Function to resend verification email to the user
+  User.prototype.resendEmail = function(cb) {
+    this.verify(buildVerifyEmail('verify.ejs'), function(err, response) {
+      if (err) {
+        cb(err);
+        return ;
+      }
+      cb(null, "sent", true);
+    });
+  };
+
+  // Add remote method to resend verification email
+  User.remoteMethod(
+    'resendEmail',
+    {
+      returns: [{arg: "sent", type: "boolean"}],
+      isStatic: false,
+      http: { verb: 'get', path: '/resendEmail' },
+      description: "Resend the verification email for the current user"
     }
   );
 };
