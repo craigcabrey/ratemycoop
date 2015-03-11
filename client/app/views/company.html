@@ -59,6 +59,7 @@
                 <div class="card" ng-repeat="event in company.events">
                   <div class="content">
                     <span class="header">{{event.name}}</span>
+
                     <div class="meta">
                       <i class="red marker map icon"></i>
                       {{event.location}},
@@ -286,12 +287,17 @@
 
           <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
-            <div class="content markdown-preview">
-              <div class="summary">
-                Anonymous review
-                <div class="date" am-time-ago="review.created">
-                </div>
+            <div class="content" ng-switch="review.anonymous">
+              <div class="summary" ng-switch-when="false">
+                {{review.reviewerName}}
+                <div class="date" am-time-ago="review.created"></div>
               </div>
+
+              <div class="summary" ng-switch-default="">
+                Anonymous Hero review
+                <div class="date" am-time-ago="review.created"></div>
+              </div>
+
               <div btf-markdown="review.description">
               </div>
               <div class="meta" ng-click="likeReview(review)">
