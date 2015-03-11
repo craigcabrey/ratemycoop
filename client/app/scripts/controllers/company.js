@@ -191,7 +191,7 @@ angular.module('ratemycoopApp')
         }
 
         if (!review.anonymous) {
-          review.reviewerName = getUserNameGivenID(review.userId);
+          getUserNameGivenReview(review);
         }
 
       });
@@ -205,18 +205,18 @@ angular.module('ratemycoopApp')
      * This is for getting user info
      * @param id
      */
-    function getUserNameGivenID(id) {
+    function getUserNameGivenReview(review) {
       User.findOne(
         {
           filter: {
-            where: {id: id}
+            where: {id: review.userId}
           }
         },
         function (user) {
-          return user.email;
+          review.reviewerName = user.email;
         },
         function () {
-          return "Anonymous Hero";
+          review.reviewerName = "Anonymous Hero";
         }
       );
     }

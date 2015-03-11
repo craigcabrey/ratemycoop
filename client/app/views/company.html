@@ -59,6 +59,7 @@
                 <div class="card" ng-repeat="event in company.events">
                   <div class="content">
                     <span class="header">{{event.name}}</span>
+
                     <div class="meta">
                       <i class="red marker map icon"></i>
                       {{event.location}},
@@ -288,8 +289,8 @@
             <div class="label"><i class="user icon"></i></div>
             <div class="content markdown-preview">
               <div class="summary" ng-switch="review.anonymous">
-                <p ng-switch-when="false">{{review.reviewerName}}</p>
-                <p ng-switch-default="">Anonymous Hero review</p>
+                <div ng-switch-when="false">{{review.reviewerName}}</div>
+                <div ng-switch-default="">Anonymous Hero review</div>
                 <div class="date" am-time-ago="review.created">
                 </div>
               </div>
