@@ -46,6 +46,17 @@ module.exports = function (grunt) {
           }
         }
       },
+      staging: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'staging',
+            apiEndpoint: 'https://staging.ratemycoop.io/api/v1'
+          }
+        }
+      },
       production: {
         options: {
           dest: '<%= yeoman.app %>/scripts/config.js'
