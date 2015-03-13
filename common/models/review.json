@@ -6,15 +6,15 @@
   "properties": {
     "anonymous": {
       "type": "boolean",
-      "required": "true"
+      "required": true
     },
     "returnOffer": {
       "type": "boolean",
-      "required": "true"
+      "required": true
     },
     "recommend": {
       "type": "boolean",
-      "required": "true"
+      "required": true
     },
     "description": {
       "type": "string",
@@ -25,34 +25,38 @@
       "type": "number",
       "dataType": "decimal",
       "precision": "3",
-      "scale": "1"
+      "scale": "1",
+      "required": false
     },
     "cultureRating": {
       "type": "number",
       "dataType": "decimal",
       "precision": "3",
-      "scale": "1"
+      "scale": "1",
+      "required": false
     },
     "difficultyRating": {
       "type": "number",
       "dataType": "decimal",
       "precision": "3",
-      "scale": "1"
+      "scale": "1",
+      "required": false
     },
     "pay": {
       "type": "number",
       "dataType": "decimal",
       "precision": "10",
-      "scale": "2"
+      "scale": "2",
+      "required": false
     },
     "created": {
       "type": "Date",
-      "required": "true",
+      "required": true,
       "default": "$now"
     },
     "jobTitle": {
       "type": "string",
-      "required": "false"
+      "required": false
     }
   },
   "validations": [],
