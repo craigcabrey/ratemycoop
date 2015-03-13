@@ -300,9 +300,12 @@
 
               <div btf-markdown="review.description">
               </div>
-              <div class="meta" ng-click="likeReview(review)">
-                <a class="like" ng-class="{active: review.isLiked}">
+              <div class="meta" ng-switch="isLoggedIn()">
+                <a class="like" ng-class="{active: review.isLiked}" ng-click="likeReview(review)" ng-switch-when="true">
                   <i class="like icon"></i>{{review.numLikes}} people have found this review helpful.
+                </a>
+                <a class="" ng-switch-default="" ng-click="showLoginPleaModal()">
+                  <i class="disabled like icon"></i>{{review.numLikes}} people have found this review helpful.
                 </a>
               </div>
             </div>
@@ -392,7 +395,7 @@
       <img src="images/cooper/cooper_coop_sad.svg" style="max-width: 10em">
     </div>
     <div class="description">
-      <p>You must be logged in to review a company. Click on the <b>top right</b> to Register or Log in
+      <p>You must be logged in to do that. Click on the <b>top right</b> to Register or Log in
         using your RIT email.</p>
     </div>
   </div>

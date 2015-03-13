@@ -31,6 +31,14 @@ angular.module('ratemycoopApp')
     );
 
     /**
+     * Quick function check if logged in
+     * @returns {boolean}
+     */
+    $scope.isLoggedIn = function () {
+      return User.isAuthenticated();
+    };
+
+    /**
      * Runs when company gets retrieved successfully
      * @param companyData
      */
@@ -203,7 +211,7 @@ angular.module('ratemycoopApp')
 
     /**
      * This is for getting user info
-     * @param id
+     * @param review - the review object which is being checked for users
      */
     function getUserNameGivenReview(review) {
       User.findOne(
@@ -240,10 +248,17 @@ angular.module('ratemycoopApp')
         var path = "/company/" + $scope.company.name + "/review";
         $location.path(path);
       } else {
-        $('#notLoggedInModal').modal('show')
+        $scope.showLoginPleaModal();
       }
-
     };
+
+    /**
+     * Simple function to show modal that says 'please log in'.
+     */
+    $scope.showLoginPleaModal = function () {
+      $('#notLoggedInModal').modal('show')
+    };
+
 
     // Semantic Triggers .ready() block.
     $(document).ready(function () {
