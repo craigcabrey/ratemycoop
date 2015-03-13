@@ -30,7 +30,7 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.css" />
+  <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.css"/>
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -52,9 +52,10 @@
         <img src="images/cooper/cooper_coop_cat.svg" height="36px"/>
       </a>
 
-      <a class="item" ng-href="#/feed">
-        Browse
-      </a>
+      <!-- Hidden until feature ready #featureFlag -->
+      <!--<a class="item" ng-href="#/feed">-->
+      <!--Browse-->
+      <!--</a>-->
 
       <div class="item computer only tablet only row">
         <form class="ui search" id="navSearchInput" ng-submit="search()" ng-hide="isHome" ng-cloak>

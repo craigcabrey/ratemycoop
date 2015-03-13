@@ -112,6 +112,7 @@ angular.module('ratemycoopApp')
 
       pay: "",
       payTypeId: $scope.payTypes[0].id,
+      jobTitle: "",
 
       //userId: $scope.user.id == set when async call to USER returns
 
@@ -170,6 +171,11 @@ angular.module('ratemycoopApp')
       } else {
         formData.pay = null;
       }
+
+      if (formData.jobTitle === "") {
+        formData.jobTitle = null;
+      }
+
 
       var perksList = [];
       angular.forEach(formData.perks, function (perk) {

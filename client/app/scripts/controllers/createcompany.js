@@ -87,10 +87,6 @@ angular.module('ratemycoopApp')
               {
                 type: 'empty',
                 prompt: 'Please enter a company website'
-              },
-              {
-                type: 'url',
-                prompt: 'Please enter a valid url (with http://)'
               }
             ]
           }
