@@ -88,10 +88,6 @@ angular.module('ratemycoopApp')
         perk.isSelected = true; //This toggles ui change
         $scope.formData.perks.push(perk.id); // This adds only id, to formData.perks
       } else {
-        $scope.$watch(perk, function (test) {
-          console.log('in test');
-        });
-        console.log('unselecting perk');
         perk.isSelected = false; // this toggles ui change
         var i = $scope.formData.perks.indexOf(perk.id); // this finds and removes perk id from perks
         if (i > -1) {
@@ -130,7 +126,6 @@ angular.module('ratemycoopApp')
     $scope.submitReview = function () {
       $scope.loading.main = true;
       $scope.loading.perks = true;
-      console.log("Review is being submitted :) ");
       var pushObject = prepForPush($scope.formData);
       console.log("final submission object is");
       console.log(pushObject);
@@ -139,14 +134,13 @@ angular.module('ratemycoopApp')
         {id: $scope.company.id},
         pushObject,
         function (success) {
-          console.log('success!');
-
           $scope.loading.main = false;
           $scope.loading.perks = false;
           $scope.formData.error = false;
           $location.path('/company/' + $scope.company.name);
         },
         function (error) {
+          console.log(error);
           $scope.formData.error = true;
           $scope.loading.main = false;
           $scope.loading.perks = false;
