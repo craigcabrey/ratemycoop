@@ -9,15 +9,17 @@
  */
 angular.module('ratemycoopApp')
   .controller('CompanyCtrl', function ($scope, $routeParams, $location, Company, User, Review, SuggestedEdit) {
+    // Setting visual component models
     $scope.loading = true;
     $scope.stipendAverage = null;
 
 
-    // Given the route, set the main company stuff
+    // Given the route, set the main company information
     $scope.company = Company.findOne(
       {
         filter: {
           where: {name: $routeParams.companyname},
+          // Have to make sure we include all company dependies.
           include: ['perks', 'majors', {'reviews': 'likes'}, 'events', {'locations': 'region'}]
         }
       },
@@ -26,6 +28,7 @@ angular.module('ratemycoopApp')
         onCompanySuccess(successData);
       },
       function () {
+        // If we can't get the company, redirect to 404
         $location.path('/404');
       }
     );
@@ -56,6 +59,9 @@ angular.module('ratemycoopApp')
       $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
     }
 
+    /**
+     * Goes through events and sets the dates for UI to parse and display
+     */
     function setUpEvents() {
       var events = $scope.company.events;
       for (var i = 0; i < events.length; i++) {
@@ -63,67 +69,16 @@ angular.module('ratemycoopApp')
         event.startDate = new Date(event.startDate);
         event.endDate = new Date(event.endDate);
       }
-
-      $('.ui.accordion').accordion();
-    }
-
-    // Pay Rating setup
-    $scope.payScale = [15, 20, 31];
-
-    $scope.likeReview = function (rev) {
-      Review.prototype$like({id: rev.id},
-        function (data) {
-          rev.isLiked = data.isLiked;
-          Review.prototype$__count__likes({id: rev.id},
-            function (data) {
-              rev.numLikes = data.count;
-            },
-            function (err) {
-              console.error(err);
-            });
-        },
-        function (err) {
-          console.error(err);
-        })
-    };
-
-
-    /**
-     * setup the likes
-     * @param reviews to set up
-     */
-    function setupLikes(reviews) {
-      for (var rIndex in reviews) {
-        setupSingleLike($scope.company.reviews[rIndex]);
-      }
     }
 
     /**
-     * Set up a single like, separate function for callback scope control.
-     * @param review to set up
-     */
-    function setupSingleLike(review) {
-      Review.prototype$__count__likes({id: review.id},
-        function (data) {
-          review.numLikes = data.count;
-        },
-        function (err) {
-          console.error(err);
-        });
-
-      Review.prototype$isLikedByUser({id: review.id},
-        function (data) {
-          review.isLiked = data.isLiked;
-        }, function (err) {
-          console.error(err);
-        });
-    }
-
-    /**
-     * Set up ratings and pay scale
+     * Set up ratings and pay scale.
+     * This determines the amount of '$' signs to show.
      */
     function setUpRatings() {
-      // Stars Ratings setup
+      // The split is done here
+      $scope.payScale = [15, 20, 31];
+
       $scope.company.overallRating = $scope.company.overallRating / 2;
       $scope.company.difficultyRating = $scope.company.difficultyRating / 2;
       $scope.company.cultureRating = $scope.company.cultureRating / 2;
@@ -135,10 +90,7 @@ angular.module('ratemycoopApp')
         $('#' + id).rating({
           initialRating: Math.round($scope.company[id]),
           maxRating: 5,
-          interactive: false,
-          onRate: function () {
-            //$scope.gotoReview();
-          }
+          interactive: false
         });
       }
     }
@@ -193,11 +145,13 @@ angular.module('ratemycoopApp')
       var stipendCount = 0;
 
       angular.forEach(reviewList, function (review) {
+        // Count up & calculate stipend pay
         if (review.payTypeId === 3) {
           stipendCount++;
           stipendSum += review.pay;
         }
 
+        // Find out if we set anonymous name or user email
         if (!review.anonymous) {
           getUserNameGivenReview(review);
         }
@@ -208,6 +162,82 @@ angular.module('ratemycoopApp')
         $scope.stipendAverage = Math.round(stipendSum / stipendCount);
       }
     }
+
+    /**
+     * For UI purposes, this function will round the decimal for pay
+     * to 2 decimals.
+     * Note: Will only round if not a whole number.
+     * @param min
+     * @param max
+     */
+    function setupDisplayPay(min, max) {
+      if (min) {
+        if (min % 1 !== 0) {
+          $scope.company.minPay = min.toFixed(2);
+        }
+      }
+      if (max) {
+        if (max % 1 !== 0) {
+          $scope.company.maxPay = max.toFixed(2);
+        }
+      }
+    }
+
+    /**
+     * Traverse through reviews and setup the like settings for each review
+     * @param reviews to set up
+     */
+    function setupLikes(reviews) {
+      for (var rIndex in reviews) {
+        setupSingleLike($scope.company.reviews[rIndex]);
+      }
+    }
+
+
+    /************************************************************************************
+     * LIKE FEATURE FUNCTIONS
+     ************************************************************************************/
+    /**
+     * Set up a single like, separate function for callback scope control.
+     * @param review to set up
+     */
+    function setupSingleLike(review) {
+      Review.prototype$__count__likes({id: review.id},
+        function (data) {
+          review.numLikes = data.count;
+        },
+        function (err) {
+          console.error(err);
+        });
+
+      Review.prototype$isLikedByUser({id: review.id},
+        function (data) {
+          review.isLiked = data.isLiked;
+        }, function (err) {
+          console.error(err);
+        });
+    }
+
+    /**
+     * ACTION called when liking a review.
+     * @param rev the review you are liking
+     */
+    $scope.likeReview = function (rev) {
+      Review.prototype$like({id: rev.id},
+        function (data) {
+          rev.isLiked = data.isLiked;
+          Review.prototype$__count__likes({id: rev.id},
+            function (data) {
+              rev.numLikes = data.count;
+            },
+            function (err) {
+              console.error(err);
+            });
+        },
+        function (err) {
+          console.error(err);
+        })
+    };
 
     /**
      * This is for getting user info
@@ -229,19 +259,6 @@ angular.module('ratemycoopApp')
       );
     }
 
-    function setupDisplayPay(min, max) {
-      if (min) {
-        if (min % 1 !== 0) {
-          $scope.company.minPay = min.toFixed(2);
-        }
-      }
-      if (max) {
-        if (max % 1 !== 0) {
-          $scope.company.maxPay = max.toFixed(2);
-        }
-      }
-    }
-
 
     $scope.gotoReview = function () {
       if (User.isAuthenticated()) {
@@ -259,11 +276,6 @@ angular.module('ratemycoopApp')
       $('#notLoggedInModal').modal('show')
     };
 
-
-    // Semantic Triggers .ready() block.
-    $(document).ready(function () {
-      // Perform on doc ready.
-    });
 
     $scope.suggestCompanyEditForm = {
       name: "",
@@ -307,5 +319,11 @@ angular.module('ratemycoopApp')
       );
 
     };
+
+
+    // Semantic Triggers
+    $(document).ready(function () {
+      $('#eventsAccordion').accordion();
+    });
   })
 ;
