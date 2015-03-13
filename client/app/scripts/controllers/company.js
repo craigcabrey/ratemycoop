@@ -13,7 +13,6 @@ angular.module('ratemycoopApp')
     $scope.loading = true;
     $scope.stipendAverage = null;
 
-
     // Given the route, set the main company information
     $scope.company = Company.findOne(
       {
@@ -263,7 +262,10 @@ angular.module('ratemycoopApp')
       }
     }
 
-
+    /**
+     * ACTION: Function call that will redirect
+     * to review wizard. Will only work if logged in.
+     */
     $scope.gotoReview = function () {
       if (User.isAuthenticated()) {
         var path = "/company/" + $scope.company.name + "/review";
@@ -273,14 +275,10 @@ angular.module('ratemycoopApp')
       }
     };
 
-    /**
-     * Simple function to show modal that says 'please log in'.
-     */
-    $scope.showLoginPleaModal = function () {
-      $('#notLoggedInModal').modal('show')
-    };
-
-
+    /************************************************************************************
+     * SUGGEST COMPANY EDIT MODAL DEFINITIONS
+     ************************************************************************************/
+    /* Form data for suggesting a company */
     $scope.suggestCompanyEditForm = {
       name: "",
       description: "",
@@ -292,6 +290,9 @@ angular.module('ratemycoopApp')
       loading: false
     };
 
+    /**
+     * Shows company suggested edit modal
+     */
     $scope.showEditModal = function () {
       $('#companyEditModal').modal('show');
     };
@@ -322,6 +323,16 @@ angular.module('ratemycoopApp')
         }
       );
 
+    };
+
+    /************************************************************************************
+     * HELPER AND UTILITY FUNCTIONS
+     ************************************************************************************/
+    /**
+     * Simple function to show modal that says 'please log in'.
+     */
+    $scope.showLoginPleaModal = function () {
+      $('#notLoggedInModal').modal('show')
     };
 
 
