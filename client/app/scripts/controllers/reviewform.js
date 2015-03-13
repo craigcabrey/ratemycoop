@@ -99,6 +99,7 @@ angular.module('ratemycoopApp')
 
     $scope.formData = {
       error: false,
+      errorMessage: "Something went wrong, try submitting again",
 
       overallRating: 0,
       cultureRating: 0,
@@ -127,8 +128,6 @@ angular.module('ratemycoopApp')
       $scope.loading.main = true;
       $scope.loading.perks = true;
       var pushObject = prepForPush($scope.formData);
-      console.log("final submission object is");
-      console.log(pushObject);
 
       Company.reviews.create(
         {id: $scope.company.id},
@@ -140,7 +139,7 @@ angular.module('ratemycoopApp')
           $location.path('/company/' + $scope.company.name);
         },
         function (error) {
-          console.log(error);
+          $scope.formData.errorMessage = error.data.error.message;
           $scope.formData.error = true;
           $scope.loading.main = false;
           $scope.loading.perks = false;

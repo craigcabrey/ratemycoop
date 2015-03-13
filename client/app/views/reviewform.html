@@ -41,7 +41,7 @@
           <form class="ui attached form segment" ng-class="{error: formData.error}" id="reviewForm">
             <div class="ui error message">
               <div class="header">
-                Whoops, something went wrong.
+                {{formData.errorMessage}}
               </div>
               <p>Sorry about that, try submitting your review again.</p>
             </div>
