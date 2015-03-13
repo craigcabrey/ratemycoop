@@ -154,19 +154,17 @@ angular.module('ratemycoopApp')
      */
     function prepForPush(formData) {
       // Validate pay input - grabs the pure currency as a string, else null
+      var parsedPay = null;
       if (formData.pay !== "") {
         var isValidPay = formData.pay.search(/^\$?[\d,]+(\.\d*)?$/) >= 0;
         if (isValidPay) {
-          formData.pay = formData.pay.replace(/[^0-9\.]/g, '');
-        } else {
-          formData.pay = null;
+          parsedPay = formData.pay.replace(/[^0-9\.]/g, '');
         }
-      } else {
-        formData.pay = null;
       }
 
-      if (formData.jobTitle === "") {
-        formData.jobTitle = null;
+      var parsedJobTitle = null;
+      if (formData.jobTitle !== "") {
+        parsedJobTitle = formData.jobTitle;
       }
 
 
@@ -188,10 +186,10 @@ angular.module('ratemycoopApp')
         overallRating: formData.overallRating,
         cultureRating: formData.cultureRating,
         difficultyRating: formData.cultureRating,
-        pay: formData.pay,
+        pay: parsedPay,
         userId: formData.userId,
         payTypeId: formData.payTypeId,
-        jobTitle: formData.jobTitle,
+        jobTitle: parsedJobTitle,
 
         perks: perksList,
         majors: majorsList,
