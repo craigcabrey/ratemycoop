@@ -10,6 +10,10 @@
 angular.module('ratemycoopApp')
   .controller('MainCtrl', ['$scope', 'Company', '$location', 'User', function ($scope, Company, $location, User) {
 
+    /**
+     * Quick function check if logged in
+     * @returns {boolean}
+     */
     $scope.isLoggedIn = function () {
       return User.isAuthenticated();
     };
