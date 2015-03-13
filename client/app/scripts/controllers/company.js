@@ -145,6 +145,7 @@ angular.module('ratemycoopApp')
       var stipendCount = 0;
 
       angular.forEach(reviewList, function (review) {
+        console.log(review);
         // Count up & calculate stipend pay
         if (review.payTypeId === 3) {
           stipendCount++;
@@ -153,7 +154,7 @@ angular.module('ratemycoopApp')
 
         // Find out if we set anonymous name or user email
         if (!review.anonymous) {
-          getUserNameGivenReview(review);
+          setUserNameGivenReview(review);
         }
 
       });
@@ -239,24 +240,27 @@ angular.module('ratemycoopApp')
         })
     };
 
+    /************************************************************************************
+     * REVIEW MODEL FUNCTIONS
+     ************************************************************************************/
     /**
-     * This is for getting user info
+     * While traversing through reviews, if the review is not anonymous
+     * then get the user email to display on the UI. Else, display anonymous hero
      * @param review - the review object which is being checked for users
      */
-    function getUserNameGivenReview(review) {
-      User.findOne(
-        {
-          filter: {
-            where: {id: review.userId}
+    function setUserNameGivenReview(review) {
+      if (review.userId === null) {
+        review.reviewerName = "Anonymous Hero";
+      } else {
+        User.findOne(
+          {
+            filter: {where: {id: review.userId}}
+          },
+          function (user) {
+            review.reviewerName = user.email;
           }
-        },
-        function (user) {
-          review.reviewerName = user.email;
-        },
-        function () {
-          review.reviewerName = "Anonymous Hero";
-        }
-      );
+        );
+      }
     }
 
 
