@@ -290,12 +290,15 @@
             <div class="content" ng-switch="review.anonymous">
               <div class="summary" ng-switch-when="false">
                 {{review.reviewerName}}
-                <div class="date" am-time-ago="review.created"></div>
+                <div class="date" style="float: right" am-time-ago="review.created"></div>
               </div>
 
               <div class="summary" ng-switch-default="">
                 Anonymous Hero review
-                <div class="date" am-time-ago="review.created"></div>
+                <div class="date" style="float: right" am-time-ago="review.created"></div>
+              </div>
+              <div>
+                <div class="meta" ng-if="review.jobTitle">{{ review.jobTitle }}</div>
               </div>
 
               <div btf-markdown="review.description">
