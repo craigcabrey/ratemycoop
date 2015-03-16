@@ -9,14 +9,18 @@
  */
 angular.module('ratemycoopApp')
   .controller('ReviewformCtrl', function ($scope, Company, Major, City, Perk, PayType, User, $routeParams, $location) {
+    // Setting visual component models for loading
     $scope.loading = {
       main: true, // Promise, must be turned to false somewhere
       perks: true // Promise, must be turned to false somewhere
     };
 
 
+    /************************************************************************************
+     * SETUP AND INITIALIZATION
+     ************************************************************************************/
     /**
-     * Initialize Session
+     * Check if user is authenticated
      */
     if (User.isAuthenticated()) {
       $scope.user = User.getCurrent(
@@ -29,16 +33,6 @@ angular.module('ratemycoopApp')
       $location.path('/login');
       $scope.user = null;
     }
-
-    /**
-     * Used if we want to fetch for pay types, as opposed to using just
-     * $scope.payTypes
-     */
-    $scope.fetchedPayTypes = PayType.find({},
-      function (success) {
-      });
-
-    $scope.payTypes = [{id: 1, name: "Hourly"}, {id: 2, name: "Salary (Monthly)"}, {id: 3, name: "Stipend"}];
 
     /**
      * Get company info on-load
@@ -55,7 +49,18 @@ angular.module('ratemycoopApp')
     );
 
     /**
+     * Used if we want to fetch for pay types, as opposed to using just
+     * $scope.payTypes. This is represented as the menus in the paytype dropdown.
+     */
+    $scope.fetchedPayTypes = PayType.find({},
+      function (success) {
+      });
+    $scope.payTypes = [{id: 1, name: "Hourly"}, {id: 2, name: "Salary (Monthly)"}, {id: 3, name: "Stipend"}];
+
+
+    /**
      * Get major info on-load
+     * and set search for it
      */
     $scope.majors = Major.find({},
       function (successData) {
@@ -64,6 +69,7 @@ angular.module('ratemycoopApp')
           result.description = result.code;
         });
 
+        // This calls on the Semantic search api for activating search.
         $('#majorSearch').search({
           source: $scope.majors,
           maxResults: 4,
@@ -72,7 +78,10 @@ angular.module('ratemycoopApp')
       }
     );
 
-
+    /**
+     * Get perks on load
+     * and set client model fo rit
+     */
     $scope.allPerks = Perk.find({},
       function (successData) {
         angular.forEach(successData, function (value) {
@@ -83,6 +92,10 @@ angular.module('ratemycoopApp')
       }
     );
 
+
+    /************************************************************************************
+     * PERKS TOGGLE FUNCTIONALITY
+     ************************************************************************************/
     $scope.togglePerkAddition = function (perk) {
       if (!perk.isSelected) {
         perk.isSelected = true; //This toggles ui change
@@ -96,7 +109,10 @@ angular.module('ratemycoopApp')
       }
     };
 
-
+    /************************************************************************************
+     * FORM MODEL AND SUBMISSION FUNCTIONS
+     ************************************************************************************/
+      // Initial model declaration for form
     $scope.formData = {
       error: false,
       errorMessage: "Something went wrong, try submitting again",
@@ -111,18 +127,17 @@ angular.module('ratemycoopApp')
       payTypeId: $scope.payTypes[0].id,
       jobTitle: "",
 
-      //userId: $scope.user.id == set when async call to USER returns
+      //userId: explicitly set after callback, see @User
 
       perks: [],
 
       returnOffer: false,
       recommend: false,
       anonymous: true
-
     };
 
     /**
-     * Actual final SERVICE push to Backend.
+     * ACTION: parse the form model and submit/push to backend
      */
     $scope.submitReview = function () {
       $scope.loading.main = true;
@@ -145,7 +160,6 @@ angular.module('ratemycoopApp')
           $scope.loading.perks = false;
         }
       );
-
     };
 
     /**
@@ -162,23 +176,26 @@ angular.module('ratemycoopApp')
         }
       }
 
+      // Set job title, set to null if empty
       var parsedJobTitle = null;
       if (formData.jobTitle !== "") {
         parsedJobTitle = formData.jobTitle;
       }
 
-
+      // Set perks list from
       var perksList = [];
       angular.forEach(formData.perks, function (perk) {
         perksList.push(perk);
       });
 
+      // Set majors list
       var majorsList = [];
       majorsList.push($('#majorSearch').search('get result').id);
 
-      var temploc = $('#locationSearch').search('get result').id;
+      // Set location
+      var tempLocation = $('#locationSearch').search('get result').id;
 
-      var pushObj = {
+      return {
         anonymous: formData.anonymous,
         returnOffer: formData.returnOffer,
         recommend: formData.recommend,
@@ -193,12 +210,14 @@ angular.module('ratemycoopApp')
 
         perks: perksList,
         majors: majorsList,
-        location: temploc
+        location: tempLocation
       };
-
-      return pushObj;
     }
 
+
+    /************************************************************************************
+     * WIZARD CONTROLLING FUNCTIONS
+     ************************************************************************************/
     /**
      * Wizard variables.
      * @type {{currStep: string, s1: string, s2: string, s3: string}}
@@ -210,7 +229,11 @@ angular.module('ratemycoopApp')
       s3: "wizardStepThree"
     };
 
-    // On document ready, wait half a second and to init Semantic UI elements.
+
+    /************************************************************************************
+     * ON DOCUMENT READY FUNCTIONS & SEMANTIC SETUP
+     ************************************************************************************/
+      // On document ready, wait half a second and to init Semantic UI elements.
     angular.element(document).ready(function () {
       // Delay to wait for angular to
       setTimeout(setupSemantic, 100);
@@ -270,7 +293,7 @@ angular.module('ratemycoopApp')
         maxResults: 10
       });
 
-
+      // Form validation for the final submission
       $('#reviewForm').form(
         {
           major: {
