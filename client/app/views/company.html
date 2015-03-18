@@ -295,14 +295,10 @@
 
               <div class="summary" ng-switch-default="">
                 Anonymous Hero
+                <div class="meta" ng-if="review.jobTitle">&bull; {{ review.jobTitle }}</div>
                 <div class="date" style="float: right" am-time-ago="review.created"></div>
               </div>
-              <div>
-                <div class="meta" ng-if="review.jobTitle">{{ review.jobTitle }}</div>
-              </div>
-
-              <div btf-markdown="review.description">
-              </div>
+              <div btf-markdown="review.description"></div>
               <div class="meta" ng-switch="isLoggedIn()">
                 <a class="like" ng-class="{active: review.isLiked}" ng-click="likeReview(review)" ng-switch-when="true">
                   <i class="like icon"></i>{{review.numLikes}} people have found this review helpful.
