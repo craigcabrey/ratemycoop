@@ -18,7 +18,7 @@ angular.module('ratemycoopApp')
     var ben = new Contributor("Ben Kantor", "Developer - UI/Devops", "bkantor01@gmail.com", se, "");
     var piper = new Contributor("Piper Chester", "Developer - UI", "piperchester@gmail.com", se, "");
     var rob = new Contributor("Rob Holt", "Developer - Backend", "holt.r94@gmail.com", se, "");
-    var lexi = new Contributor("Lexi Rich", "Idea Packager", "fill", "Packaging Science", "");
+    var lexi = new Contributor("Lexi Rich", "Idea Packager", "alr8680@rit.edu", "Packaging Science", "");
     var joe = new Contributor("Joseph DeSimpliciis", "Developer", "jcd4790@rit.edu", se, "http://jcdesimp.com");
 
     function Contributor(name, role, email, major, link) {
