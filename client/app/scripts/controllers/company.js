@@ -144,7 +144,6 @@ angular.module('ratemycoopApp')
       var stipendCount = 0;
 
       angular.forEach(reviewList, function (review) {
-        console.log(review);
         // Count up & calculate stipend pay
         if (review.payTypeId === 3) {
           stipendCount++;
