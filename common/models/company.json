@@ -62,6 +62,9 @@
       "dataType": "decimal",
       "precision": "10",
       "scale": "2"
+    },
+    "hidden": {
+      "type": "boolean"
     }
   },
   "validations": [],

@@ -40,8 +40,9 @@ angular.module('ratemycoopApp')
             "seekingFulltime": data.seekingFulltime,
             "seekingCoop": data.seekingCoop,
             "description": data.description,
-            minPay: null,
-            maxPay: null
+            "minPay": null,
+            "maxPay": null,
+            "hidden": true
           },
           function (success) {
             data.loading = false;
