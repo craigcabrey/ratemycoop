@@ -63,7 +63,7 @@
       "precision": "10",
       "scale": "2"
     },
-    "hidden": {
+    "verified": {
       "type": "boolean"
     }
   },
