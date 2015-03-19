@@ -1,0 +1,115 @@
+<div class="ui page grid">
+  <div class="row">
+    <div class="column">
+      <h1 class="ui inverted header">
+        <div class="content">
+          Add a New Company
+        </div>
+      </h1>
+      <div class="ui raised orange segment">
+        <form class="ui form"
+              ng-class="{loading: suggestCompanyEditForm.loading, error: suggestCompanyEditForm.error}"
+              id="newCompanyForm">
+          <div class="ui error message">
+            <div class="header">It seems something went wrong!</div>
+          </div>
+
+          <div class="field">
+            <label>Company Name</label>
+
+            <div class="ui corner labeled input">
+              <input type="text" name="companyEdit-name"
+                     placeholder="Incorporated Inc."
+                     ng-model="suggestCompanyEditForm.name">
+
+              <div class="ui red corner label">
+                <i class="asterisk icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Description</label>
+
+            <div class="ui corner labeled input">
+              <textarea
+                name="companyEdit-description"
+                ng-model="suggestCompanyEditForm.description">
+              </textarea>
+
+              <div class="ui red corner label">
+                <i class="asterisk icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="two fields">
+            <div class="field">
+              <label>Company Page Link</label>
+
+              <div class="ui corner labeled input">
+                <input type="text" name="companyEdit-url"
+                       placeholder="www.incorporatedinc.com"
+                       ng-model="suggestCompanyEditForm.url">
+
+                <div class="ui red corner label">
+                  <i class="asterisk icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Link to Logo</label>
+              <input type="text" name="companyEdit-logo_url" placeholder="logos.com/mylogo.svg"
+                     ng-model="suggestCompanyEditForm.logo">
+            </div>
+          </div>
+          <!-- Social media fields -->
+          <div class="three fields">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="inverted blue twitter icon"></i>
+                <input type="text" name="companyEdit-twitter" placeholder="twitter url"
+                       ng-model="suggestCompanyEditForm.twitter">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="blue facebook icon"></i>
+                <input type="text" name="companyEdit-facebook" placeholder="facebook url"
+                       ng-model="suggestCompanyEditForm.facebook">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="linkedin icon"></i>
+                <input type="text" name="companyEdit-linkedin" placeholder="linkedIn url"
+                       ng-model="suggestCompanyEditForm.linkedin">
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label ng-hide="suggestCompanyEditForm.name === ''">What positions is {{suggestCompanyEditForm.name}}
+              looking to fill?</label>
+            <label ng-show="suggestCompanyEditForm.name === ''">What positions is this company looking to fill?</label>
+
+            <div class="ui checkbox"
+                 ng-click="suggestCompanyEditForm.seekingCoop = !suggestCompanyEditForm.seekingCoop">
+              <input type="checkbox" ng-model="suggestCompanyEditForm.seekingCoop">
+              <label>Co-op</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui checkbox"
+                 ng-click="suggestCompanyEditForm.seekingFulltime = !suggestCompanyEditForm.seekingFulltime">
+              <input type="checkbox" ng-model="suggestCompanyEditForm.seekingFulltime">
+              <label>Full time</label>
+            </div>
+          </div>
+          <div class="ui right floated green icon button" ng-click="submitNewCompany()">
+            <i class="send icon"></i>
+            Submit
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

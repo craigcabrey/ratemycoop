@@ -21,7 +21,8 @@ angular
     'mgo-angular-wizard',
     'btford.markdown',
     'angularMoment',
-    'config'
+    'config',
+    'angularUtils.directives.dirPagination'
   ])
   .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', 'ENV', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider, ENV) {
     $routeProvider
@@ -32,6 +33,10 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/company/create', {
+        templateUrl: 'views/createcompany.html',
+        controller: 'CreatecompanyCtrl'
       })
       .when('/company/:companyname', {
         templateUrl: 'views/company.html',
@@ -53,13 +58,17 @@ angular
         templateUrl: 'views/login.html',
         controller: 'StandaloneLoginCtrl'
       })
+      .when('/feed', {
+        templateUrl: 'views/feed.html',
+        controller: 'FeedCtrl'
+      })
       .otherwise({
         redirectTo: '/404',
         templateUrl: '/404.html'
       });
 
     //$locationProvider.html5Mode({ enabled: true, requireBase: false });
-    
+
     LoopBackResourceProvider.setUrlBase(ENV.apiEndpoint);
 
 

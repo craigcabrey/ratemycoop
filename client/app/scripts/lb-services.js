@@ -159,7 +159,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -276,7 +276,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "prototype$__count__accessTokens": {
           url: urlBase + "/Users/:id/accessTokens/count",
@@ -384,7 +384,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Users/:id/exists",
@@ -580,7 +580,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Users/count",
@@ -658,9 +658,9 @@ module.factory(
          *
          * The response body contains properties of the AccessToken created on login.
          * Depending on the value of `include` parameter, the body may contain additional properties:
-         * 
+         *
          *   - `user` - `{User}` - Data of the currently logged in user. (`include=user`)
-         * 
+         *
          *
          */
         "login": {
@@ -733,11 +733,11 @@ module.factory(
          *
          * @param {Object=} parameters Request parameters.
          *
-         *  - `uid` – `{string}` - 
+         *  - `uid` – `{string}` -
          *
-         *  - `token` – `{string}` - 
+         *  - `token` – `{string}` -
          *
-         *  - `redirect` – `{string=}` - 
+         *  - `redirect` – `{string=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -789,6 +789,38 @@ module.factory(
         "resetPassword": {
           url: urlBase + "/Users/reset",
           method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.User#prototype$resendEmail
+         * @methodOf lbServices.User
+         *
+         * @description
+         *
+         * Resend the verification email for the current user
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - User id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `sent` – `{boolean=}` -
+         */
+        "prototype$resendEmail": {
+          url: urlBase + "/Users/:id/resendEmail",
+          method: "GET"
         },
 
         // INTERNAL. Use Review.user() instead.
@@ -1245,6 +1277,24 @@ module.factory(
           method: "PUT"
         },
 
+        // INTERNAL. Use Company.events.findById() instead.
+        "prototype$__findById__events": {
+          url: urlBase + "/Companies/:id/events/:fk",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Company.events.destroyById() instead.
+        "prototype$__destroyById__events": {
+          url: urlBase + "/Companies/:id/events/:fk",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Company.events.updateById() instead.
+        "prototype$__updateById__events": {
+          url: urlBase + "/Companies/:id/events/:fk",
+          method: "PUT"
+        },
+
         // INTERNAL. Use Company.reviews() instead.
         "prototype$__get__reviews": {
           isArray: true,
@@ -1395,6 +1445,31 @@ module.factory(
           method: "GET"
         },
 
+        // INTERNAL. Use Company.events() instead.
+        "prototype$__get__events": {
+          isArray: true,
+          url: urlBase + "/Companies/:id/events",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Company.events.create() instead.
+        "prototype$__create__events": {
+          url: urlBase + "/Companies/:id/events",
+          method: "POST"
+        },
+
+        // INTERNAL. Use Company.events.destroyAll() instead.
+        "prototype$__delete__events": {
+          url: urlBase + "/Companies/:id/events",
+          method: "DELETE"
+        },
+
+        // INTERNAL. Use Company.events.count() instead.
+        "prototype$__count__events": {
+          url: urlBase + "/Companies/:id/events/count",
+          method: "GET"
+        },
+
         /**
          * @ngdoc method
          * @name lbServices.Company#create
@@ -1496,7 +1571,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Companies/:id/exists",
@@ -1692,7 +1767,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Companies/count",
@@ -1863,6 +1938,12 @@ module.factory(
           url: urlBase + "/SuggestedEdits/:id/company",
           method: "GET"
         },
+
+        // INTERNAL. Use Event.company() instead.
+        "::get::Event::company": {
+          url: urlBase + "/Events/:id/company",
+          method: "GET"
+        },
       }
     );
 
@@ -2027,7 +2108,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2077,7 +2158,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.reviews.count = function() {
           var TargetResource = $injector.get("Review");
@@ -2290,7 +2371,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2340,7 +2421,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.majors.count = function() {
           var TargetResource = $injector.get("Major");
@@ -2662,7 +2743,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2712,7 +2793,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.perks.count = function() {
           var TargetResource = $injector.get("Perk");
@@ -3034,7 +3115,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -3084,7 +3165,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.locations.count = function() {
           var TargetResource = $injector.get("City");
@@ -3406,7 +3487,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -3456,7 +3537,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.industries.count = function() {
           var TargetResource = $injector.get("Industry");
@@ -3778,7 +3859,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -3828,7 +3909,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.suggestedEdits.count = function() {
           var TargetResource = $injector.get("SuggestedEdit");
@@ -4013,6 +4094,269 @@ module.factory(
           var action = TargetResource["::updateById::Company::suggestedEdits"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.Company.events
+     * @header lbServices.Company.events
+     * @object
+     * @description
+     *
+     * The object `Company.events` groups methods
+     * manipulating `Event` instances related to `Company`.
+     *
+     * Call {@link lbServices.Company#events Company.events()}
+     * to query all related instances.
+     */
+
+
+    /**
+     * @ngdoc method
+     * @name lbServices.Company#events
+     * @methodOf lbServices.Company
+     *
+     * @description
+     *
+     * Queries events of Company.
+     *
+     * @param {Object=} parameters Request parameters.
+     *
+     *  - `id` – `{*}` - PersistedModel id
+     *
+     *  - `filter` – `{object=}` -
+     *
+     * @param {function(Array.<Object>,Object)=} successCb
+     *   Success callback with two arguments: `value`, `responseHeaders`.
+     *
+     * @param {function(Object)=} errorCb Error callback with one argument:
+     *   `httpResponse`.
+     *
+     * @returns {Array.<Object>} An empty reference that will be
+     *   populated with the actual data once the response is returned
+     *   from the server.
+     *
+     * <em>
+     * (The remote method definition does not provide any description.
+     * This usually means the response is a `Event` object.)
+     * </em>
+     */
+    R.events = function () {
+      var TargetResource = $injector.get("Event");
+      var action = TargetResource["::get::Company::events"];
+      return action.apply(R, arguments);
+    };
+
+    /**
+     * @ngdoc method
+     * @name lbServices.Company.events#count
+     * @methodOf lbServices.Company.events
+     *
+     * @description
+     *
+     * Counts events of Company.
+     *
+     * @param {Object=} parameters Request parameters.
+     *
+     *  - `id` – `{*}` - PersistedModel id
+     *
+     *  - `where` – `{object=}` - Criteria to match model instances
+     *
+     * @param {function(Object,Object)=} successCb
+     *   Success callback with two arguments: `value`, `responseHeaders`.
+     *
+     * @param {function(Object)=} errorCb Error callback with one argument:
+     *   `httpResponse`.
+     *
+     * @returns {Object} An empty reference that will be
+     *   populated with the actual data once the response is returned
+     *   from the server.
+     *
+     * Data properties:
+     *
+     *  - `count` – `{number=}` -
+     */
+    R.events.count = function () {
+      var TargetResource = $injector.get("Event");
+      var action = TargetResource["::count::Company::events"];
+      return action.apply(R, arguments);
+    };
+
+    /**
+     * @ngdoc method
+     * @name lbServices.Company.events#create
+     * @methodOf lbServices.Company.events
+     *
+     * @description
+     *
+     * Creates a new instance in events of this model.
+     *
+     * @param {Object=} parameters Request parameters.
+     *
+     *  - `id` – `{*}` - PersistedModel id
+     *
+     * @param {Object} postData Request data.
+     *
+     * This method expects a subset of model properties as request parameters.
+     *
+     * @param {function(Object,Object)=} successCb
+     *   Success callback with two arguments: `value`, `responseHeaders`.
+     *
+     * @param {function(Object)=} errorCb Error callback with one argument:
+     *   `httpResponse`.
+     *
+     * @returns {Object} An empty reference that will be
+     *   populated with the actual data once the response is returned
+     *   from the server.
+     *
+     * <em>
+     * (The remote method definition does not provide any description.
+     * This usually means the response is a `Event` object.)
+     * </em>
+     */
+    R.events.create = function () {
+      var TargetResource = $injector.get("Event");
+      var action = TargetResource["::create::Company::events"];
+      return action.apply(R, arguments);
+    };
+
+    /**
+     * @ngdoc method
+     * @name lbServices.Company.events#destroyAll
+     * @methodOf lbServices.Company.events
+     *
+     * @description
+     *
+     * Deletes all events of this model.
+     *
+     * @param {Object=} parameters Request parameters.
+     *
+     *  - `id` – `{*}` - PersistedModel id
+     *
+     * @param {function(Object,Object)=} successCb
+     *   Success callback with two arguments: `value`, `responseHeaders`.
+     *
+     * @param {function(Object)=} errorCb Error callback with one argument:
+     *   `httpResponse`.
+     *
+     * @returns {Object} An empty reference that will be
+     *   populated with the actual data once the response is returned
+     *   from the server.
+     *
+     * This method returns no data.
+     */
+    R.events.destroyAll = function () {
+      var TargetResource = $injector.get("Event");
+      var action = TargetResource["::delete::Company::events"];
+      return action.apply(R, arguments);
+    };
+
+    /**
+     * @ngdoc method
+     * @name lbServices.Company.events#destroyById
+     * @methodOf lbServices.Company.events
+     *
+     * @description
+     *
+     * Delete a related item by id for events
+     *
+     * @param {Object=} parameters Request parameters.
+     *
+     *  - `id` – `{*}` - PersistedModel id
+     *
+     *  - `fk` – `{*}` - Foreign key for events
+     *
+     * @param {function(Object,Object)=} successCb
+     *   Success callback with two arguments: `value`, `responseHeaders`.
+     *
+     * @param {function(Object)=} errorCb Error callback with one argument:
+     *   `httpResponse`.
+     *
+     * @returns {Object} An empty reference that will be
+     *   populated with the actual data once the response is returned
+     *   from the server.
+     *
+     * This method returns no data.
+     */
+    R.events.destroyById = function () {
+      var TargetResource = $injector.get("Event");
+      var action = TargetResource["::destroyById::Company::events"];
+      return action.apply(R, arguments);
+    };
+
+    /**
+     * @ngdoc method
+     * @name lbServices.Company.events#findById
+     * @methodOf lbServices.Company.events
+     *
+     * @description
+     *
+     * Find a related item by id for events
+     *
+     * @param {Object=} parameters Request parameters.
+     *
+     *  - `id` – `{*}` - PersistedModel id
+     *
+     *  - `fk` – `{*}` - Foreign key for events
+     *
+     * @param {function(Object,Object)=} successCb
+     *   Success callback with two arguments: `value`, `responseHeaders`.
+     *
+     * @param {function(Object)=} errorCb Error callback with one argument:
+     *   `httpResponse`.
+     *
+     * @returns {Object} An empty reference that will be
+     *   populated with the actual data once the response is returned
+     *   from the server.
+     *
+     * <em>
+     * (The remote method definition does not provide any description.
+     * This usually means the response is a `Event` object.)
+     * </em>
+     */
+    R.events.findById = function () {
+      var TargetResource = $injector.get("Event");
+      var action = TargetResource["::findById::Company::events"];
+      return action.apply(R, arguments);
+    };
+
+    /**
+     * @ngdoc method
+     * @name lbServices.Company.events#updateById
+     * @methodOf lbServices.Company.events
+     *
+     * @description
+     *
+     * Update a related item by id for events
+     *
+     * @param {Object=} parameters Request parameters.
+     *
+     *  - `id` – `{*}` - PersistedModel id
+     *
+     *  - `fk` – `{*}` - Foreign key for events
+     *
+     * @param {Object} postData Request data.
+     *
+     * This method expects a subset of model properties as request parameters.
+     *
+     * @param {function(Object,Object)=} successCb
+     *   Success callback with two arguments: `value`, `responseHeaders`.
+     *
+     * @param {function(Object)=} errorCb Error callback with one argument:
+     *   `httpResponse`.
+     *
+     * @returns {Object} An empty reference that will be
+     *   populated with the actual data once the response is returned
+     *   from the server.
+     *
+     * <em>
+     * (The remote method definition does not provide any description.
+     * This usually means the response is a `Event` object.)
+     * </em>
+     */
+    R.events.updateById = function () {
+      var TargetResource = $injector.get("Event");
+      var action = TargetResource["::updateById::Company::events"];
+      return action.apply(R, arguments);
+    };
 
     return R;
   }]);
@@ -4173,7 +4517,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -4290,7 +4634,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "prototype$__count__likes": {
           url: urlBase + "/Reviews/:id/likes/count",
@@ -4398,7 +4742,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Reviews/:id/exists",
@@ -4594,7 +4938,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Reviews/count",
@@ -4636,6 +4980,76 @@ module.factory(
         "prototype$updateAttributes": {
           url: urlBase + "/Reviews/:id",
           method: "PUT"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Review#prototype$like
+         * @methodOf lbServices.Review
+         *
+         * @description
+         *
+         * Like or unlike this review as the current user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {Object} postData Request data.
+         *
+         * This method does not accept any data. Supply an empty object.
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `msg` – `{string=}` -
+         *
+         *  - `isLiked` – `{boolean=}` -
+         */
+        "prototype$like": {
+          url: urlBase + "/Reviews/:id/like",
+          method: "POST"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Review#prototype$isLikedByUser
+         * @methodOf lbServices.Review
+         *
+         * @description
+         *
+         * Check if this review was liked by the current user.
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `isLiked` – `{boolean=}` -
+         */
+        "prototype$isLikedByUser": {
+          url: urlBase + "/Reviews/:id/isLikedByUser",
+          method: "GET"
         },
 
         // INTERNAL. Use Company.reviews.findById() instead.
@@ -4830,7 +5244,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -4866,7 +5280,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -5085,7 +5499,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Majors/:id/exists",
@@ -5281,7 +5695,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Majors/count",
@@ -5592,7 +6006,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -5642,7 +6056,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.companies.count = function() {
           var TargetResource = $injector.get("Company");
@@ -5950,7 +6364,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -6163,7 +6577,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Perks/:id/exists",
@@ -6359,7 +6773,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Perks/count",
@@ -6627,7 +7041,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -6677,7 +7091,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.companies.count = function() {
           var TargetResource = $injector.get("Company");
@@ -7144,7 +7558,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Universities/:id/exists",
@@ -7340,7 +7754,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Universities/count",
@@ -7387,6 +7801,12 @@ module.factory(
         // INTERNAL. Use College.university() instead.
         "::get::College::university": {
           url: urlBase + "/Colleges/:id/university",
+          method: "GET"
+        },
+
+        // INTERNAL. Use Event.university() instead.
+        "::get::Event::university": {
+          url: urlBase + "/Events/:id/university",
           method: "GET"
         },
       }
@@ -7553,7 +7973,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -7603,7 +8023,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.colleges.count = function() {
           var TargetResource = $injector.get("College");
@@ -7967,7 +8387,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Colleges/:id/exists",
@@ -8163,7 +8583,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Colleges/count",
@@ -8405,7 +8825,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -8455,7 +8875,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -8505,7 +8925,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.majors.count = function() {
           var TargetResource = $injector.get("Major");
@@ -8863,7 +9283,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Countries/:id/exists",
@@ -9059,7 +9479,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Countries/count",
@@ -9272,7 +9692,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -9322,7 +9742,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.regions.count = function() {
           var TargetResource = $injector.get("Region");
@@ -9686,7 +10106,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Regions/:id/exists",
@@ -9882,7 +10302,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Regions/count",
@@ -10124,7 +10544,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -10174,7 +10594,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -10224,7 +10644,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.cities.count = function() {
           var TargetResource = $injector.get("City");
@@ -10539,7 +10959,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/PayTypes/:id/exists",
@@ -10735,7 +11155,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/PayTypes/count",
@@ -11056,7 +11476,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Cities/:id/exists",
@@ -11252,7 +11672,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Cities/count",
@@ -11309,7 +11729,7 @@ module.factory(
          *
          * @param {Object=} parameters Request parameters.
          *
-         *  - `query` – `{string=}` - 
+         *  - `query` – `{string=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -11323,7 +11743,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `results` – `{object=}` - 
+         *  - `results` – `{object=}` -
          */
         "search": {
           url: urlBase + "/Cities/search",
@@ -11583,7 +12003,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -11735,7 +12155,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/Industries/:id/exists",
@@ -11931,7 +12351,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/Industries/count",
@@ -12331,7 +12751,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `exists` – `{boolean=}` - 
+         *  - `exists` – `{boolean=}` -
          */
         "exists": {
           url: urlBase + "/SuggestedEdits/:id/exists",
@@ -12527,7 +12947,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "count": {
           url: urlBase + "/SuggestedEdits/count",
@@ -12763,7 +13183,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -12813,7 +13233,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `refresh` – `{boolean=}` - 
+         *  - `refresh` – `{boolean=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -12942,6 +13362,681 @@ module.factory(
           var action = TargetResource["::update::SuggestedEdit::user"];
           return action.apply(R, arguments);
         };
+
+    return R;
+  }]);
+
+  /**
+   * @ngdoc object
+   * @name lbServices.Event
+   * @header lbServices.Event
+   * @object
+   *
+   * @description
+   *
+   * A $resource object for interacting with the `Event` model.
+   *
+   * ## Example
+   *
+   * See
+   * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+   * for an example of using this object.
+   *
+   */
+  module.factory(
+    "Event",
+    ['LoopBackResource', 'LoopBackAuth', '$injector', function (Resource, LoopBackAuth, $injector) {
+      var R = Resource(
+        urlBase + "/Events/:id",
+        {'id': '@id'},
+        {
+
+          // INTERNAL. Use Event.company() instead.
+          "prototype$__get__company": {
+            url: urlBase + "/Events/:id/company",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Event.university() instead.
+          "prototype$__get__university": {
+            url: urlBase + "/Events/:id/university",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#create
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Create a new instance of the model and persist it into the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Event` object.)
+           * </em>
+           */
+          "create": {
+            url: urlBase + "/Events",
+            method: "POST"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#upsert
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Update an existing model instance or insert a new one into the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *   This method does not accept any parameters.
+           *   Supply an empty object or omit this argument altogether.
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Event` object.)
+           * </em>
+           */
+          "upsert": {
+            url: urlBase + "/Events",
+            method: "PUT"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#exists
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Check whether a model instance exists in the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * Data properties:
+           *
+           *  - `exists` – `{boolean=}` -
+           */
+          "exists": {
+            url: urlBase + "/Events/:id/exists",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#findById
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Find a model instance by id from the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Event` object.)
+           * </em>
+           */
+          "findById": {
+            url: urlBase + "/Events/:id",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#find
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Find all instances of the model matched by filter from the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `filter` – `{object=}` - Filter defining fields, where, orderBy, offset, and limit
+           *
+           * @param {function(Array.<Object>,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Array.<Object>} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Event` object.)
+           * </em>
+           */
+          "find": {
+            isArray: true,
+            url: urlBase + "/Events",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#findOne
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Find first instance of the model matched by filter from the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `filter` – `{object=}` - Filter defining fields, where, orderBy, offset, and limit
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Event` object.)
+           * </em>
+           */
+          "findOne": {
+            url: urlBase + "/Events/findOne",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#updateAll
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Update instances of the model matched by where from the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `where` – `{object=}` - Criteria to match model instances
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "updateAll": {
+            url: urlBase + "/Events/update",
+            method: "POST"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#deleteById
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Delete a model instance by id from the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - Model id
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * This method returns no data.
+           */
+          "deleteById": {
+            url: urlBase + "/Events/:id",
+            method: "DELETE"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#count
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Count instances of the model matched by where from the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `where` – `{object=}` - Criteria to match model instances
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * Data properties:
+           *
+           *  - `count` – `{number=}` -
+           */
+          "count": {
+            url: urlBase + "/Events/count",
+            method: "GET"
+          },
+
+          /**
+           * @ngdoc method
+           * @name lbServices.Event#prototype$updateAttributes
+           * @methodOf lbServices.Event
+           *
+           * @description
+           *
+           * Update attributes for a model instance and persist it into the data source
+           *
+           * @param {Object=} parameters Request parameters.
+           *
+           *  - `id` – `{*}` - PersistedModel id
+           *
+           * @param {Object} postData Request data.
+           *
+           * This method expects a subset of model properties as request parameters.
+           *
+           * @param {function(Object,Object)=} successCb
+           *   Success callback with two arguments: `value`, `responseHeaders`.
+           *
+           * @param {function(Object)=} errorCb Error callback with one argument:
+           *   `httpResponse`.
+           *
+           * @returns {Object} An empty reference that will be
+           *   populated with the actual data once the response is returned
+           *   from the server.
+           *
+           * <em>
+           * (The remote method definition does not provide any description.
+           * This usually means the response is a `Event` object.)
+           * </em>
+           */
+          "prototype$updateAttributes": {
+            url: urlBase + "/Events/:id",
+            method: "PUT"
+          },
+
+          // INTERNAL. Use Company.events.findById() instead.
+          "::findById::Company::events": {
+            url: urlBase + "/Companies/:id/events/:fk",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Company.events.destroyById() instead.
+          "::destroyById::Company::events": {
+            url: urlBase + "/Companies/:id/events/:fk",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Company.events.updateById() instead.
+          "::updateById::Company::events": {
+            url: urlBase + "/Companies/:id/events/:fk",
+            method: "PUT"
+          },
+
+          // INTERNAL. Use Company.events() instead.
+          "::get::Company::events": {
+            isArray: true,
+            url: urlBase + "/Companies/:id/events",
+            method: "GET"
+          },
+
+          // INTERNAL. Use Company.events.create() instead.
+          "::create::Company::events": {
+            url: urlBase + "/Companies/:id/events",
+            method: "POST"
+          },
+
+          // INTERNAL. Use Company.events.destroyAll() instead.
+          "::delete::Company::events": {
+            url: urlBase + "/Companies/:id/events",
+            method: "DELETE"
+          },
+
+          // INTERNAL. Use Company.events.count() instead.
+          "::count::Company::events": {
+            url: urlBase + "/Companies/:id/events/count",
+            method: "GET"
+          },
+        }
+      );
+
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Event#updateOrCreate
+       * @methodOf lbServices.Event
+       *
+       * @description
+       *
+       * Update an existing model instance or insert a new one into the data source
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *   This method does not accept any parameters.
+       *   Supply an empty object or omit this argument altogether.
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Event` object.)
+       * </em>
+       */
+      R["updateOrCreate"] = R["upsert"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Event#update
+       * @methodOf lbServices.Event
+       *
+       * @description
+       *
+       * Update instances of the model matched by where from the data source
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `where` – `{object=}` - Criteria to match model instances
+       *
+       * @param {Object} postData Request data.
+       *
+       * This method expects a subset of model properties as request parameters.
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["update"] = R["updateAll"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Event#destroyById
+       * @methodOf lbServices.Event
+       *
+       * @description
+       *
+       * Delete a model instance by id from the data source
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - Model id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["destroyById"] = R["deleteById"];
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Event#removeById
+       * @methodOf lbServices.Event
+       *
+       * @description
+       *
+       * Delete a model instance by id from the data source
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - Model id
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * This method returns no data.
+       */
+      R["removeById"] = R["deleteById"];
+
+
+      /**
+       * @ngdoc property
+       * @name lbServices.Event#modelName
+       * @propertyOf lbServices.Event
+       * @description
+       * The name of the model represented by this $resource,
+       * i.e. `Event`.
+       */
+      R.modelName = "Event";
+
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Event#company
+       * @methodOf lbServices.Event
+       *
+       * @description
+       *
+       * Fetches belongsTo relation company
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `refresh` – `{boolean=}` -
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `Company` object.)
+       * </em>
+       */
+      R.company = function () {
+        var TargetResource = $injector.get("Company");
+        var action = TargetResource["::get::Event::company"];
+        return action.apply(R, arguments);
+      };
+
+      /**
+       * @ngdoc method
+       * @name lbServices.Event#university
+       * @methodOf lbServices.Event
+       *
+       * @description
+       *
+       * Fetches belongsTo relation university
+       *
+       * @param {Object=} parameters Request parameters.
+       *
+       *  - `id` – `{*}` - PersistedModel id
+       *
+       *  - `refresh` – `{boolean=}` -
+       *
+       * @param {function(Object,Object)=} successCb
+       *   Success callback with two arguments: `value`, `responseHeaders`.
+       *
+       * @param {function(Object)=} errorCb Error callback with one argument:
+       *   `httpResponse`.
+       *
+       * @returns {Object} An empty reference that will be
+       *   populated with the actual data once the response is returned
+       *   from the server.
+       *
+       * <em>
+       * (The remote method definition does not provide any description.
+       * This usually means the response is a `University` object.)
+       * </em>
+       */
+      R.university = function () {
+        var TargetResource = $injector.get("University");
+        var action = TargetResource["::get::Event::university"];
+          return action.apply(R, arguments);
+        };
+
+    return R;
+  }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.Email
+ * @header lbServices.Email
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Email` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+module.factory(
+  "Email",
+  ['LoopBackResource', 'LoopBackAuth', '$injector', function(Resource, LoopBackAuth, $injector) {
+    var R = Resource(
+      urlBase + "/Emails/:id",
+      { 'id': '@id' },
+      {
+      }
+    );
+
+
+
+
+    /**
+    * @ngdoc property
+    * @name lbServices.Email#modelName
+    * @propertyOf lbServices.Email
+    * @description
+    * The name of the model represented by this $resource,
+    * i.e. `Email`.
+    */
+    R.modelName = "Email";
+
 
     return R;
   }]);

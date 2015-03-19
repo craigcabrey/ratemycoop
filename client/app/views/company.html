@@ -4,7 +4,7 @@
 
       <!-- Main overview content segment -->
       <div class="ui fluid stackable segment">
-        <a class="ui huge red corner label" ng-click="showEditModal()">
+        <a class="ui huge red corner label" ng-click="showEditModal()" ng-if="isLoggedIn()">
           <i class="edit icon"></i>
         </a>
 
@@ -48,9 +48,10 @@
         </div>
 
         <div class="ui vertical segment" ng-show="company.events.length > 0">
-          <div class="ui accordion">
+          <div class="ui accordion" id="eventsAccordion">
             <div class="title">
               <i class="dropdown icon"></i>
+              <i class="calendar icon"></i>
               <b>Upcoming Events</b>
             </div>
             <div class="content">
@@ -58,6 +59,7 @@
                 <div class="card" ng-repeat="event in company.events">
                   <div class="content">
                     <span class="header">{{event.name}}</span>
+
                     <div class="meta">
                       <i class="red marker map icon"></i>
                       {{event.location}},
@@ -210,8 +212,8 @@
                     {{company.reviews.length}}
                   </div>
                   <div class="label" ng-switch="company.reviews.length === 1">
-                    <div ng-switch-when="true">Review</div>
-                    <div ng-switch-default="">Reviews</div>
+                    <div ng-switch-when="true">Rating</div>
+                    <div ng-switch-default="">Ratings</div>
                   </div>
                 </div>
               </div>
@@ -285,19 +287,27 @@
 
           <div class="event" ng-repeat="review in company.reviews | reverse" ng-if="review.description !== ''">
             <div class="label"><i class="user icon"></i></div>
-            <div class="content markdown-preview" >
-              <div class="summary">
-                Anonymous review
-                <div class="date" am-time-ago="review.created">
-                </div>
+            <div class="content" ng-switch="review.anonymous">
+              <div class="summary" ng-switch-when="false">
+                {{review.reviewerName}}
+                <div class="meta" ng-if="review.jobTitle">&bull; {{ review.jobTitle }}</div>
+                <div class="date" style="float: right" am-time-ago="review.created"></div>
               </div>
-              <div btf-markdown="review.description" >
+
+              <div class="summary" ng-switch-default="">
+                Anonymous Hero
+                <div class="meta" ng-if="review.jobTitle">&bull; {{ review.jobTitle }}</div>
+                <div class="date" style="float: right" am-time-ago="review.created"></div>
               </div>
-              <!--<div class="meta">-->
-              <!--<a class="like">-->
-              <!--<i class="like icon"></i>-->
-              <!--</a>-->
-              <!--</div>-->
+              <div btf-markdown="review.description"></div>
+              <div class="meta" ng-switch="isLoggedIn()">
+                <a class="like" ng-class="{active: review.isLiked}" ng-click="likeReview(review)" ng-switch-when="true">
+                  <i class="like icon"></i>{{review.numLikes}} people have found this review helpful.
+                </a>
+                <a class="" ng-switch-default="" ng-click="showLoginPleaModal()">
+                  <i class="disabled like icon"></i>{{review.numLikes}} people have found this review helpful.
+                </a>
+              </div>
             </div>
 
           </div>
@@ -385,7 +395,7 @@
       <img src="images/cooper/cooper_coop_sad.svg" style="max-width: 10em">
     </div>
     <div class="description">
-      <p>You must be logged in to review a company. Click on the <b>top right</b> to Register or Log in
+      <p>You must be logged in to do that. Click on the <b>top right</b> to Register or Log in
         using your RIT email.</p>
     </div>
   </div>

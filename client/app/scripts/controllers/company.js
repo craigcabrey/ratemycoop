@@ -8,17 +8,18 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('CompanyCtrl', function ($scope, $routeParams, Company, User, $location, SuggestedEdit) {
+  .controller('CompanyCtrl', function ($scope, $routeParams, $location, Company, User, Review, SuggestedEdit) {
+    // Setting visual component models
     $scope.loading = true;
     $scope.stipendAverage = null;
 
-
-    // Given the route, set the main company stuff
+    // Given the route, set the main company information
     $scope.company = Company.findOne(
       {
         filter: {
           where: {name: $routeParams.companyname},
-          include: ['perks', 'majors', 'reviews', 'events', {'locations': 'region'}]
+          // Have to make sure we include all company dependies.
+          include: ['perks', 'majors', {'reviews': 'likes'}, 'events', {'locations': 'region'}]
         }
       },
       function (successData) {
@@ -26,9 +27,18 @@ angular.module('ratemycoopApp')
         onCompanySuccess(successData);
       },
       function () {
+        // If we can't get the company, redirect to 404
         $location.path('/404');
       }
     );
+
+    /**
+     * Quick function check if logged in
+     * @returns {boolean}
+     */
+    $scope.isLoggedIn = function () {
+      return User.isAuthenticated();
+    };
 
     /**
      * Runs when company gets retrieved successfully
@@ -42,30 +52,37 @@ angular.module('ratemycoopApp')
       setupModalPreFill(companyData);
       traverseReviews(companyData.reviews);
       setupDisplayPay(companyData.minPay, companyData.maxPay);
+      setupLikes(companyData.reviews);
 
       // Logo & Pay setup
-      $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+      var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+      if (regexp.test(companyData.logo)) {
+        $scope.company['logo_url'] = companyData.logo;
+      } else {
+        $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+      }
     }
 
+    /**
+     * Goes through events and sets the dates for UI to parse and display
+     */
     function setUpEvents() {
-      console.log($scope.company.events);
       var events = $scope.company.events;
       for (var i = 0; i < events.length; i++) {
         var event = events[i];
         event.startDate = new Date(event.startDate);
         event.endDate = new Date(event.endDate);
       }
-
-      $('.ui.accordion').accordion();
     }
 
-    // Pay Rating setup
-    $scope.payScale = [15, 20, 31];
     /**
-     * Set up ratings and pay scale
+     * Set up ratings and pay scale.
+     * This determines the amount of '$' signs to show.
      */
     function setUpRatings() {
-      // Stars Ratings setup
+      // The split is done here
+      $scope.payScale = [15, 20, 31];
+
       $scope.company.overallRating = $scope.company.overallRating / 2;
       $scope.company.difficultyRating = $scope.company.difficultyRating / 2;
       $scope.company.cultureRating = $scope.company.cultureRating / 2;
@@ -77,10 +94,7 @@ angular.module('ratemycoopApp')
         $('#' + id).rating({
           initialRating: Math.round($scope.company[id]),
           maxRating: 5,
-          interactive: false,
-          onRate: function () {
-            //$scope.gotoReview();
-          }
+          interactive: false
         });
       }
     }
@@ -135,10 +149,17 @@ angular.module('ratemycoopApp')
       var stipendCount = 0;
 
       angular.forEach(reviewList, function (review) {
+        // Count up & calculate stipend pay
         if (review.payTypeId === 3) {
           stipendCount++;
           stipendSum += review.pay;
         }
+
+        // Find out if we set anonymous name or user email
+        if (!review.anonymous) {
+          setUserNameGivenReview(review);
+        }
+
       });
 
       if (stipendCount > 0) {
@@ -146,6 +167,13 @@ angular.module('ratemycoopApp')
       }
     }
 
+    /**
+     * For UI purposes, this function will round the decimal for pay
+     * to 2 decimals.
+     * Note: Will only round if not a whole number.
+     * @param min
+     * @param max
+     */
     function setupDisplayPay(min, max) {
       if (min) {
         if (min % 1 !== 0) {
@@ -159,22 +187,102 @@ angular.module('ratemycoopApp')
       }
     }
 
+    /**
+     * Traverse through reviews and setup the like settings for each review
+     * @param reviews to set up
+     */
+    function setupLikes(reviews) {
+      for (var rIndex in reviews) {
+        setupSingleLike($scope.company.reviews[rIndex]);
+      }
+    }
 
+
+    /************************************************************************************
+     * LIKE FEATURE FUNCTIONS
+     ************************************************************************************/
+    /**
+     * Set up a single like, separate function for callback scope control.
+     * @param review to set up
+     */
+    function setupSingleLike(review) {
+      Review.prototype$__count__likes({id: review.id},
+        function (data) {
+          review.numLikes = data.count;
+        },
+        function (err) {
+          console.error(err);
+        });
+
+      Review.prototype$isLikedByUser({id: review.id},
+        function (data) {
+          review.isLiked = data.isLiked;
+        }, function (err) {
+          console.error(err);
+        });
+    }
+
+    /**
+     * ACTION called when liking a review.
+     * @param rev the review you are liking
+     */
+    $scope.likeReview = function (rev) {
+      Review.prototype$like({id: rev.id},
+        function (data) {
+          rev.isLiked = data.isLiked;
+          Review.prototype$__count__likes({id: rev.id},
+            function (data) {
+              rev.numLikes = data.count;
+            },
+            function (err) {
+              console.error(err);
+            });
+        },
+        function (err) {
+          console.error(err);
+        })
+    };
+
+    /************************************************************************************
+     * REVIEW MODEL FUNCTIONS
+     ************************************************************************************/
+    /**
+     * While traversing through reviews, if the review is not anonymous
+     * then get the user email to display on the UI. Else, display anonymous hero
+     * @param review - the review object which is being checked for users
+     */
+    function setUserNameGivenReview(review) {
+      if (review.userId === null) {
+        review.reviewerName = "Anonymous Hero";
+      } else {
+        User.findOne(
+          {
+            filter: {where: {id: review.userId}}
+          },
+          function (user) {
+            review.reviewerName = user.email;
+          }
+        );
+      }
+    }
+
+    /**
+     * ACTION: Function call that will redirect
+     * to review wizard. Will only work if logged in.
+     */
     $scope.gotoReview = function () {
       if (User.isAuthenticated()) {
         var path = "/company/" + $scope.company.name + "/review";
         $location.path(path);
       } else {
-        $('#notLoggedInModal').modal('show')
+        $scope.showLoginPleaModal();
       }
-
     };
 
-    // Semantic Triggers .ready() block.
-    $(document).ready(function () {
-      // Perform on doc ready.
-    });
-
+    /************************************************************************************
+     * SUGGEST COMPANY EDIT MODAL DEFINITIONS
+     ************************************************************************************/
+    /* Form data for suggesting a company */
     $scope.suggestCompanyEditForm = {
       name: "",
       description: "",
@@ -186,6 +294,9 @@ angular.module('ratemycoopApp')
       loading: false
     };
 
+    /**
+     * Shows company suggested edit modal
+     */
     $scope.showEditModal = function () {
       $('#companyEditModal').modal('show');
     };
@@ -217,5 +328,21 @@ angular.module('ratemycoopApp')
       );
 
     };
+
+    /************************************************************************************
+     * HELPER AND UTILITY FUNCTIONS
+     ************************************************************************************/
+    /**
+     * Simple function to show modal that says 'please log in'.
+     */
+    $scope.showLoginPleaModal = function () {
+      $('#notLoggedInModal').modal('show')
+    };
+
+
+    // Semantic Triggers
+    $(document).ready(function () {
+      $('#eventsAccordion').accordion();
+    });
   })
 ;

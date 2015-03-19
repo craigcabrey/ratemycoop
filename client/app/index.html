@@ -52,9 +52,10 @@
         <img src="images/cooper/cooper_coop_cat.svg" height="36px"/>
       </a>
 
-      <div class="item">
-        <div class="ui orange label">BETA</div>
-      </div>
+      <!-- Hidden until feature ready #featureFlag -->
+      <!--<a class="item" ng-href="#/feed">-->
+      <!--Browse-->
+      <!--</a>-->
 
       <div class="item computer only tablet only row">
         <form class="ui search" id="navSearchInput" ng-submit="search()" ng-hide="isHome" ng-cloak>
@@ -87,7 +88,7 @@
           </div>
           <a ng-href="/#/about" class="item">About</a>
           <a ng-href="/#/privacy" class="item">Privacy</a>
-          <a href="http://goo.gl/forms/6uC5TJ9Kvv" class="brand item" target="_blank">Report Issue</a>
+          <a href="https://github.com/craigcabrey/ratemycoop/issues" class="item" target="_blank">Report Issue</a>
 
           <div class="right menu">
             <p class="item">
@@ -146,6 +147,7 @@
 <script src="bower_components/angular-markdown-directive/markdown.js"></script>
 <script src="bower_components/moment/moment.js"></script>
 <script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="bower_components/angular-utils-pagination/dirPagination.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -162,7 +164,9 @@
 <script src="scripts/controllers/privacy.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/lb-services.js"></script>
+<script src="scripts/controllers/feed.js"></script>
 <script src="scripts/config.js"></script>
+<script src="scripts/controllers/createcompany.js"></script>
 <!-- endbuild -->
 
 </body>

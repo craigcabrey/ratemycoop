@@ -62,6 +62,10 @@
       "dataType": "decimal",
       "precision": "10",
       "scale": "2"
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false
     }
   },
   "validations": [],

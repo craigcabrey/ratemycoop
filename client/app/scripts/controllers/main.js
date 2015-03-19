@@ -8,7 +8,15 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('MainCtrl', ['$scope', 'Company', '$location', function ($scope, Company, $location) {
+  .controller('MainCtrl', ['$scope', 'Company', '$location', 'User', function ($scope, Company, $location, User) {
+
+    /**
+     * Quick function check if logged in
+     * @returns {boolean}
+     */
+    $scope.isLoggedIn = function () {
+      return User.isAuthenticated();
+    };
 
     // OMG API TO ACCESS STUFF SO EASY
     $scope.companies = Company.find({},
@@ -24,7 +32,9 @@ angular.module('ratemycoopApp')
           if (value.description === null) { // For when the desciption is null
             newVal['description'] = "";
           }
-          searchable.push(newVal);
+          if (newVal.verified) {
+            searchable.push(newVal);
+          }
         });
         $("#searchInput").search({
           source: searchable,

@@ -1,0 +1,156 @@
+<div class="ui page grid">
+  <div class="row">
+    <div class="column">
+
+      <h1 class="ui inverted header">
+        <div class="content">
+          Browse Companies
+        </div>
+      </h1>
+
+      <div class="ui stackable grid">
+        <div class="six wide column">
+          <div class="ui left icon fluid input">
+            <input type="text" placeholder="Filter by location, name or anything..." ng-model="companyFilterQuery">
+            <i class="building icon"></i>
+          </div>
+        </div>
+
+        <div class="ten wide column">
+          <div class="ui grid">
+            <div class="computer only tablet only fluid row">
+              <div class="three wide column">
+                <h5 class="ui inverted header">
+                  Sort by...
+                </h5>
+              </div>
+
+              <div class="three wide column">
+                <div class="ui tiny blue fluid button" ng-click="filterCompany('filterPay')">
+                  Pay
+                </div>
+              </div>
+              <div class="three wide column">
+                <div class="ui tiny blue fluid button" ng-click="filterCompany('filterRating')">
+                  Rating
+                </div>
+              </div>
+              <!--<div class="three wide column">-->
+              <!--<div class="ui tiny blue fluid button" ng-click="filterCompany('')">-->
+              <!--Reviews-->
+              <!--</div>-->
+              <!--</div>-->
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- Items attempt -->
+      <div class="ui raised blue fluid segment">
+
+        <div class="ui divided items">
+          <div class="item browseItem"
+               dir-paginate="company in companies
+               | itemsPerPage:7
+               | filter:companyFilterQuery
+               | orderBy:predicate:reverse">
+            <div class="image" ng-switch="company.logo !== null">
+              <img class="ui image" ng-src="{{company.logo_url}}" ng-switch-when="true">
+
+              <h1 ng-switch-default="" class="ui fluid center aligned icon header">
+                <i class="massive building outline icon"></i>
+
+                <div class="content">
+                </div>
+              </h1>
+            </div>
+            <div class="content">
+              <a ng-href="{{company.url}}" class="header">{{company.name}}</a>
+
+              <div class="right floated icons">
+                <i class="star icon" ng-repeat="i in company.feedRating track by $index"></i>
+              </div>
+
+              <div class="meta" ng-if="company.locations.length > 0">
+                <i class="red marker icon"></i>
+                {{company.locations[0].name}}
+              </div>
+              <div class="description">
+                <p>{{company.description}}
+                </p>
+              </div>
+              <div class="extra">
+                <div class="ui basic segment">
+                  <div class="ui orange label">
+                  <i class="comment outline icon"></i>
+                  {{company.reviews.length}} reviews
+                </div>
+                <div class="ui green label" ng-if="company.minPay != null;">
+                  ${{company.minPay}}-${{company.maxPay}} hourly
+                </div>
+                <a ng-href="#/company/{{company.name}}" class="ui right floated primary inverted button">
+                  View
+                  <i class="right chevron icon"></i>
+                </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="center aligned column content">
+          <dir-pagination-controls
+            template-url="/views/templates/dirPagination.tpl.html"
+            boundary-links="false"></dir-pagination-controls>
+          <!-- https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination#installation -->
+        </div>
+
+      </div>
+
+
+      <!-- MENU ATTEMPT -->
+      <!--<div class="ui big vertical fluid menu">-->
+      <!--<div class="item" ng-repeat="company in companies">-->
+      <!--<i class="chevron right icon"></i>-->
+
+      <!--<div class="image" ng-switch="company.logo !== null">-->
+      <!--<img class="ui image" ng-src="{{company.logo_url}}" ng-switch-when="true">-->
+
+      <!--<h1 ng-switch-default="" class="ui fluid center aligned icon header">-->
+      <!--<i class="massive building outline icon"></i>-->
+
+      <!--<div class="content">-->
+      <!--</div>-->
+      <!--</h1>-->
+      <!--</div>-->
+      <!--<div class="ui divided items">-->
+      <!--<div class="item browseItem">-->
+      <!--<div class="content">-->
+      <!--<a class="header">{{company.name}}</a>-->
+
+      <!--<div class="meta">-->
+      <!--<span class="cinema">-->
+      <!--<i class="red marker icon"></i>-->
+      <!--{{company.locations[0].name}}-->
+      <!--</span>-->
+      <!--</div>-->
+      <!--<div class="description">-->
+      <!--<p>{{company.description}}</p>-->
+      <!--</div>-->
+      <!--<div class="extra">-->
+      <!--<div class="ui label"><i class="smile icon"></i>{{company.reviews.length}} reviews</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+
+
+    </div>
+  </div>
+</div>
