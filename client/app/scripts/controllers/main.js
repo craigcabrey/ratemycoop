@@ -32,7 +32,7 @@ angular.module('ratemycoopApp')
           if (value.description === null) { // For when the desciption is null
             newVal['description'] = "";
           }
-          if (!newVal.hidden) {
+          if (newVal.verified) {
             searchable.push(newVal);
           }
         });
