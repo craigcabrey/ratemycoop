@@ -55,7 +55,12 @@ angular.module('ratemycoopApp')
       setupLikes(companyData.reviews);
 
       // Logo & Pay setup
-      $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+      var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+      if (regexp.test(companyData.logo)) {
+        $scope.company['logo_url'] = companyData.logo;
+      } else {
+        $scope.company['logo_url'] = "https://ratemycoop.io/logos/" + companyData.logo;
+      }
     }
 
     /**
