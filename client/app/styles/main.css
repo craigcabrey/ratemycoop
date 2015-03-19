@@ -111,3 +111,7 @@ video#mainVideo {
 .markdown-preview {
   word-wrap: break-word;
 }
+
+i.add.icon {
+  cursor: pointer;
+}
