@@ -148,7 +148,7 @@ module.exports = function(Company) {
   Company.beforeRemote(
    'Company.create',
    function (ctx, instance, next) {
-     ctx.args.data.verified = false;
+     delete ctx.args.data.verified;
      next();
    }
   );

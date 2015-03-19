@@ -64,7 +64,8 @@
       "scale": "2"
     },
     "verified": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     }
   },
   "validations": [],
