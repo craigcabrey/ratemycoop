@@ -206,13 +206,7 @@ angular.module('ratemycoopApp')
      * @param review to set up
      */
     function setupSingleLike(review) {
-      Review.prototype$__count__likes({id: review.id},
-        function (data) {
-          review.numLikes = data.count;
-        },
-        function (err) {
-          console.error(err);
-        });
+      review.numLikes = review.likes.length;
 
       Review.prototype$isLikedByUser({id: review.id},
         function (data) {
