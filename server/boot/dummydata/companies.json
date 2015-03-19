@@ -13,7 +13,8 @@
     "difficultyRating": 6,
     "description": "1stdibs is the world's leading curated, luxury marketplace of rare and one-of-a-kind objects. Shop antiques, vintage furniture and design, fine art, estate jewelry, vintage couture and fine homes from over 1,800 prestigious international dealers on 1stdibs.com.",
     "minPay": null,
-    "maxPay": null
+    "maxPay": null,
+    "verified": true
   },
   {
     "name": "companyB",
@@ -29,7 +30,8 @@
     "difficultyRating": 9,
     "description": "Aflac Incorporated is an American insurance company and is the largest provider of supplemental insurance in the United States, founded in 1955 and based in Columbus, Georgia.",
     "minPay": 10,
-    "maxPay": 20
+    "maxPay": 20,
+    "verified": true
   },
   {
     "name": "companyC",
@@ -45,7 +47,8 @@
     "difficultyRating": null,
     "description": "Ahold is an international retailing group based in the Netherlands, with strong local consumer brands in Europe and the United States.",
     "minPay": 5,
-    "maxPay": 10
+    "maxPay": 10,
+    "verified": true
   },
   {
     "name": "companyD",
@@ -61,7 +64,8 @@
     "difficultyRating": null,
     "description": "Alcon incorporated and with corporate headquarters, in Hünenberg, Switzerland, is a global medical company specializing in eye care products.",
     "minPay": 17,
-    "maxPay": 40
+    "maxPay": 40,
+    "verified": true
   },
   {
     "name": "companyE",
@@ -77,7 +81,8 @@
     "difficultyRating": null,
     "description": "Allegheny Coatings is a licensed applicator of corrosion preventative coatings, dry film lubricants, and other performance enhancing materials. We offer a broad range of ...",
     "minPay": 13,
-    "maxPay": 40
+    "maxPay": 40,
+    "verified": true
   },
   {
     "name": "companyF",
@@ -93,7 +98,8 @@
     "difficultyRating": null,
     "description": "The demand for cyberspace talent is increasing rapidly in response to the rising number of intrusions on US military and civilian networks that have become, in President Obama's words, \"one of the most serious economic and national security threats our nation faces.\" Cyberspace is critical to military operations, and Department of Defense information networks are probed millions of times a day by a growing array of increasingly sophisticated threats. The US must have the capability to deter, detect, protect, defend, and respond in cyberspace.\n\nJoin the Army’s first high-tech cyber start-up, where intelligence and technology come to work. Join the elite cyber team.",
     "minPay": null,
-    "maxPay": null
+    "maxPay": null,
+    "verified": true
   },
   {
     "name": "companyG",
@@ -109,7 +115,8 @@
     "difficultyRating": null,
     "description": "ABC Imaging provides print solutions and digital document management services for the AEC and other market sectors around the globe. We bundle services and products to provide commercial clients one place to stop for print solutions. We are expanding our service and products to offer consumers a range of print solutions.",
     "minPay": null,
-    "maxPay": null
+    "maxPay": null,
+    "verified": true
   },
   {
     "name": "companyH",
@@ -125,7 +132,8 @@
     "difficultyRating": null,
     "description": "Acquia is a software-as-a-service company providing products, services, and technical support for open-source web content management platform Drupal.",
     "minPay": null,
-    "maxPay": null
+    "maxPay": null,
+    "verified": true
   },
   {
     "name": "companyI",
@@ -141,7 +149,8 @@
     "difficultyRating": 4,
     "description": "Addison Precision Manufacturing is a world-class manufacturer of precision-machined components. We are fully committed to machining excellence. We strive to equip ourselves with the latest technologies to help meet the high standards of any industry requiring precision machined components, including but not limited to the aerospace, aircraft and medical sectors.",
     "minPay": null,
-    "maxPay": null
+    "maxPay": null,
+    "verified": true
   },
   {
     "name": "companyJ",
@@ -157,7 +166,8 @@
     "difficultyRating": null,
     "description": "Adobe is changing the world through digital experiences. We help our customers create, deliver, and optimize content and applications.",
     "minPay": null,
-    "maxPay": null
+    "maxPay": null,
+    "verified": false
   },
   {
     "name": "Datto, Inc.",
@@ -171,6 +181,7 @@
     "difficultyRating": 7.0,
     "perks": [ 1 ],
     "minPay": 0,
-    "maxPay": 0
+    "maxPay": 0,
+    "verified": true
   }
 ]
