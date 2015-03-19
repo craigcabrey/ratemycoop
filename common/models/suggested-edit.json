@@ -34,7 +34,7 @@
       "foreignKey": ""
     },
     "user": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "User",
       "foreignKey": ""
     }
