@@ -4,7 +4,7 @@
 
       <!-- Main overview content segment -->
       <div class="ui fluid stackable segment">
-        <a class="ui huge red corner label" ng-click="showEditModal()">
+        <a class="ui huge red corner label" ng-click="showEditModal()" ng-if="isLoggedIn()">
           <i class="edit icon"></i>
         </a>
 
@@ -290,6 +290,7 @@
             <div class="content" ng-switch="review.anonymous">
               <div class="summary" ng-switch-when="false">
                 {{review.reviewerName}}
+                <div class="meta" ng-if="review.jobTitle">&bull; {{ review.jobTitle }}</div>
                 <div class="date" style="float: right" am-time-ago="review.created"></div>
               </div>
 
