@@ -88,6 +88,13 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "isLikedByUser"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "like"
     }
   ],
   "methods": []
