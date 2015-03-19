@@ -59,8 +59,8 @@ On sucess, bower should open up your broswer to the default `:9000` port.
 A lot of it is abstracted, so just run:
 
 ```
-npm install
-node server/server.js
+npm install   # To install dependencies
+npm start     # To run the server with sample data in memory
 ```
 
 The result is an in memory local database with limited initial test data on port `:3000`.
