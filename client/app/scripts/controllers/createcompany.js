@@ -29,14 +29,20 @@ angular.module('ratemycoopApp')
       if ($('#newCompanyForm').form('validate form')) {
         var data = $scope.suggestCompanyEditForm;
         data.loading = true;
+
+        var parsedLogo = checkIfEmpty(data.logo);
+        var parsedFacebook = checkIfEmpty(data.facebook);
+        var parsedTwitter = checkIfEmpty(data.twitter);
+        var parsedLinkedin = checkIfEmpty(data.linkedin);
+
         Company.create(
           {
             "name": data.name,
             "url": data.url,
-            "logo": data.logo,
-            "facebook": data.facebook,
-            "twitter": data.twitter,
-            "linkedin": data.linkedin,
+            "logo": parsedLogo,
+            "facebook": parsedFacebook,
+            "twitter": parsedTwitter,
+            "linkedin": parsedLinkedin,
             "seekingFulltime": data.seekingFulltime,
             "seekingCoop": data.seekingCoop,
             "description": data.description,
@@ -54,6 +60,14 @@ angular.module('ratemycoopApp')
         )
       }
     };
+
+    function checkIfEmpty(string) {
+      if (string === "") {
+        return null;
+      } else {
+        return string;
+      }
+    }
 
 
     // Semantic Triggers .ready() block.
