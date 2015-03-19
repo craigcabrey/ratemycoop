@@ -23,7 +23,9 @@ angular.module('ratemycoopApp')
           if (value.description === null) { // For when the desciption is null
             newVal['description'] = "";
           }
-          searchable.push(newVal);
+          if (!newVal.hidden) {
+            searchable.push(newVal);
+          }
         });
 
         $("#navSearchInput").search({
