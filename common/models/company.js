@@ -73,7 +73,7 @@ module.exports = function(Company) {
   */
   Company.prototype.updatePML = function(perks, majors, loc) {
     var self = this;
-    if(perks.length > 0){
+    if (perks.length > 0) {
       perks.forEach(function(perk) {
         if(perk !== null){
           self.perks.findById(perk, function(err, exist_perk) {
@@ -85,9 +85,9 @@ module.exports = function(Company) {
       });
     }
     
-    if(majors.length > 0){
+    if (majors.length > 0) {
       majors.forEach(function(major) {
-        if(major !== null){
+        if (major !== null) {
           self.majors.findById(major, function(err, exist_major) {
             if(exist_major === undefined) {
               self.majors.add(major, function(err, add_major) {});
@@ -97,7 +97,7 @@ module.exports = function(Company) {
       });
     }
     
-    if(loc !== null && loc !== undefined){
+    if (loc !== null && loc !== undefined) {
       self.locations.findById(loc, function(err, exist_loc) {
         if(exist_loc === undefined) {
           self.locations.add(loc, function(err, add_loc) {});
@@ -143,7 +143,18 @@ module.exports = function(Company) {
   );
 
   /**
-   *
+   * Set new companies to verified: false.
+   */
+  Company.beforeRemote(
+   'Company.create',
+   function (ctx, instance, next) {
+     ctx.args.data.verified = false;
+     next();
+   }
+  );
+
+  /**
+   * Prevent userId from being exposed as part of an include.
    */
   Company.afterRemote(
     '*.__get__reviews',
