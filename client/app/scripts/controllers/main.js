@@ -47,7 +47,6 @@ angular.module('ratemycoopApp')
       }
     );
 
-
     /**
      * Check if browser is a mobile device
      * if so don't render the video
@@ -63,8 +62,6 @@ angular.module('ratemycoopApp')
     if(!deviceDetector["raw"]["os"]["ios"] && !deviceDetector["raw"]["os"]["android"] && !deviceDetector["raw"]["os"]["windows-phone"]) {
       $scope.video.show = true;
     }
-
-
 
     /**
      * Searching Functionality
@@ -90,4 +87,3 @@ angular.module('ratemycoopApp')
 
     });
   }]);
-
