@@ -22,7 +22,8 @@ angular
     'btford.markdown',
     'angularMoment',
     'config',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'ng.deviceDetector'
   ])
   .config(['$routeProvider', '$locationProvider', 'LoopBackResourceProvider', '$httpProvider', 'ENV', function ($routeProvider, $locationProvider, LoopBackResourceProvider, $httpProvider, ENV) {
     $routeProvider
