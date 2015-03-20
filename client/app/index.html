@@ -57,8 +57,8 @@
       <!--Browse-->
       <!--</a>-->
 
-      <div class="item computer only tablet only row">
-        <form class="ui search" id="navSearchInput" ng-submit="search()" ng-hide="isHome" ng-cloak>
+      <div class="item computer only tablet only row" ng-hide="isHome" ng-cloak>
+        <form class="ui search" id="navSearchInput" ng-submit="search()">
           <div class="ui icon input search">
             <input class="prompt" type="text" id="navSearchField"
                    ng-model="searchCompanyFieldNav" placeholder="Search companies" autocomplete="off">
