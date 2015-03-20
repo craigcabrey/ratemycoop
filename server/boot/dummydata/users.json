@@ -9,6 +9,7 @@
   },
   {
     "email": "pasta@rit.edu",
-    "password": "pasta"
+    "password": "pasta",
+    "emailVerified": true
   }
 ]
