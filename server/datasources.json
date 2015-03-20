@@ -4,7 +4,6 @@
     "connector": "memory"
   },
   "email": {
-    "connector": "mail",
-    "debug": true
+    "connector": "mail"
   }
 }
