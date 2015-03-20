@@ -144,14 +144,14 @@
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "verified",
+      "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "__create__reviews"
     },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "verified",
+      "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "__create__suggestedEdits"
     }
