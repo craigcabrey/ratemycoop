@@ -111,3 +111,8 @@ video#mainVideo {
 .markdown-preview {
   word-wrap: break-word;
 }
+
+/* Enable hover effect for buttons on perks page */
+i.add.icon {
+  cursor: pointer;
+}
