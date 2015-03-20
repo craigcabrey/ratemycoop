@@ -157,7 +157,7 @@ module.exports = function(Company) {
    * Prevent userId from being exposed as part of an include.
    */
   Company.afterRemote(
-    '*.__get__reviews',
+    '**',
     function(ctx, instance, next) {
       if (instance.reviews) {
         var reviews = instance.reviews();

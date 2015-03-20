@@ -8,7 +8,7 @@
  * Controller of the ratemycoopApp
  */
 angular.module('ratemycoopApp')
-  .controller('MainCtrl', ['$scope', 'Company', '$location', 'User', function ($scope, Company, $location, User) {
+  .controller('MainCtrl', ['$scope', 'Company', '$location', 'User', 'deviceDetector', function ($scope, Company, $location, User, deviceDetector) {
 
     /**
      * Quick function check if logged in
@@ -47,6 +47,21 @@ angular.module('ratemycoopApp')
       }
     );
 
+    /**
+     * Check if browser is a mobile device
+     * if so don't render the video
+     * initially set it to false
+     */
+    $scope.video = {
+      show: false
+    };
+
+    /**
+     * if the device is not
+     */
+    if(!deviceDetector["raw"]["os"]["ios"] && !deviceDetector["raw"]["os"]["android"] && !deviceDetector["raw"]["os"]["windows-phone"]) {
+      $scope.video.show = true;
+    }
 
     /**
      * Searching Functionality
@@ -60,7 +75,6 @@ angular.module('ratemycoopApp')
       }
     };
 
-
     /**
      * Semantic Triggers .ready() block.
      */
@@ -73,4 +87,3 @@ angular.module('ratemycoopApp')
 
     });
   }]);
-

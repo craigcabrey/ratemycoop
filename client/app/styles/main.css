@@ -13,6 +13,10 @@ body {
   border-radius: 0.2857rem;
 }
 
+@media only screen and (max-width: 960px) {
+  video#mainVideo source { display:none; }
+}
+
 video#mainVideo {
   position: fixed;
   right: 0;
@@ -106,4 +110,9 @@ video#mainVideo {
 
 .markdown-preview {
   word-wrap: break-word;
+}
+
+/* Enable hover effect for buttons on perks page */
+i.add.icon {
+  cursor: pointer;
 }
