@@ -11,7 +11,9 @@
       <!-- Header -->
       <div class="ui basic center aligned segment">
         <div class="ui inverted huge header" id="logoTitle">
-          Rate My Co-op
+          <span>
+            Rate My Co-op
+          </span>
         </div>
       </div>
 
@@ -35,10 +37,12 @@
         </div>
         <div class="ui left aligned results segment"></div>
       </form>
-      <h5 class="ui inverted header" ng-if="isLoggedIn()">
-        Can't find your company?
-        <a ng-href="#/company/create">Create one.</a>
-      </h5>
+      <div class="ui inverted header" id="createCompanyContainer" ng-if="isLoggedIn()">
+        <h5>
+          Can't find your company?
+          <a ng-href="#/company/create">Create one.</a>
+        </h5>
+      </div>
     </div>
 
   </div>
