@@ -1,6 +1,6 @@
 module.exports = function (app) {
   var environment = process.env.NODE_ENV;
-  if (typeof(environment) === 'undefined') {
+  if (typeof(environment) === 'undefined' || environment === 'development') {
     console.log('Entering development mode.');
 
     // User instances (with autologin)
@@ -10,16 +10,16 @@ module.exports = function (app) {
      * Helper function
      * @param userobj
      */
-    var mkUser = function(userobj) {
-      app.models.User.create(userobj, function(err, success) {
-        app.models.User.login(userobj, function(err, user) {
+    var mkUser = function (userobj) {
+      app.models.User.create(userobj, function (err, success) {
+        app.models.User.login(userobj, function (err, user) {
           console.log("User: " + userobj["email"] + "    password: " + userobj["password"]);
           console.log("    Autologin token: " + user.id);
         });
       });
     };
 
-    for(var u in testUsers) {
+    for (var u in testUsers) {
       mkUser(testUsers[u]);
     }
 
@@ -75,14 +75,16 @@ module.exports = function (app) {
   }
 };
 
-
 /**
- * Helper funciton for adding a list of data to their corresponding models
+ * Helper function for adding a list of data to their corresponding models
  * @param collection of models to add (list of json objects)
  * @param model of data being added (ex: app.models.Company)
  */
-var addAll = function(collection, model) {
-  for(var d in collection) {
-    model.create(collection[d]);
+var addAll = function (collection, model) {
+  for (var d in collection) {
+    // add each with a delay to prevent memory error when adding lots of dummy data at once.
+    setTimeout(function () {
+      model.create(collection[d]);
+    }, 1);
   }
 };
