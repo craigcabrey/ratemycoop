@@ -28,5 +28,6 @@
   },
   "email": "noreply@ratemycoop.io",
   "verifySubject": "Rate My Co-op: Please verify your email",
-  "hostname": "127.0.0.1"
+  "hostname": "127.0.0.1",
+  "legacyExplorer": false
 }
