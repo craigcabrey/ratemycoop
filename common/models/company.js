@@ -1,5 +1,33 @@
 module.exports = function(Company) {
   /**
+   * /Company/search endpoint definition
+   */
+  Company.search = function(query, callback) {
+    Company.find(
+      {
+        where: {
+          name: {
+            like: '%' + query + '%'
+          }
+        },
+        limit: 50
+      },
+      function(err, results) {
+        callback(results);
+      }
+    );
+  };
+
+  Company.remoteMethod(
+    'search',
+    {
+      http: { verb: 'get' },
+      accepts: { arg: 'query', type: 'string' },
+      returns: { args: 'results', type: [ 'object' ] }
+    }
+  );
+
+  /**
    * Method to recalculate company attributes when a new review has been posted.
    */
   Company.prototype.recalculate = function() {
@@ -12,7 +40,7 @@ module.exports = function(Company) {
     var difficultyRating = 0;
     var difficultyRatingCount = 0;
 
-    self.reviews(null, function(err, reviews){
+    self.reviews(null, function(err, reviews) {
       reviews.forEach(
         function(review) {
           if (review.payTypeId === 2) {
@@ -146,11 +174,11 @@ module.exports = function(Company) {
    * Set new companies to verified: false.
    */
   Company.beforeRemote(
-   'Company.create',
-   function (ctx, instance, next) {
-     delete ctx.args.data.verified;
-     next();
-   }
+    'Company.create',
+    function (ctx, instance, next) {
+      delete ctx.args.data.verified;
+      next();
+    }
   );
 
   /**
