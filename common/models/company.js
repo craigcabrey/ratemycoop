@@ -6,14 +6,23 @@ module.exports = function(Company) {
     Company.find(
       {
         where: {
-          name: {
-            like: '%' + query + '%'
-          }
+          or: [
+            {
+              name: {
+                like: '%' + query + '%'
+              }
+            },
+            {
+              description: {
+                like: '%' + query + '%'
+              }
+            }
+          ]
         },
         limit: 50
       },
       function(err, results) {
-        callback(results);
+        callback(null, results);
       }
     );
   };
@@ -23,7 +32,7 @@ module.exports = function(Company) {
     {
       http: { verb: 'get' },
       accepts: { arg: 'query', type: 'string' },
-      returns: { args: 'results', type: [ 'object' ] }
+      returns: { arg: 'results', type: [ 'object' ] }
     }
   );
 
