@@ -158,7 +158,7 @@
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
-      "princiaplId": "$everyone",
+      "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "search"
     }
