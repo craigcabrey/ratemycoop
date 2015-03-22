@@ -154,6 +154,13 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "__create__suggestedEdits"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "princiaplId": "$everyone",
+      "permission": "ALLOW",
+      "property": "search"
     }
   ],
   "methods": []
