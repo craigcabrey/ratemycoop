@@ -10,6 +10,10 @@
 angular.module('ratemycoopApp')
   .controller('NavCtrl', function ($scope, $location, $rootScope, Company) {
 
+    /**
+     * Pull all companies from API for use in searching. For navbar only.
+     * TODO: Tie this to an endpoint for searching companies.
+     */
     $scope.companies = Company.find({},
       function (success) {// Search trigger
         var searchable = [];
@@ -41,10 +45,16 @@ angular.module('ratemycoopApp')
       }
     );
 
-    // Navbar search binding
+    // Navbar search model binding
     $scope.searchCompanyFieldNav = '';
 
 
+    /**
+     * This is a way to set a boolean switch for whether we are
+     * in the home page or not.
+     * Originally created for hiding/showing the navbar
+     * @type {boolean}
+     */
     $scope.isHome = $location.path() === '/';
     $rootScope.$on("$locationChangeStart", function (event, next, current) {
       $scope.isHome = $location.path() === '/';

@@ -18,7 +18,7 @@ angular.module('ratemycoopApp')
       {
         filter: {
           where: {name: $routeParams.companyname},
-          // Have to make sure we include all company dependies.
+          // Have to make sure we include all company dependencies.
           include: ['perks', 'majors', {'reviews': 'likes'}, 'events', {'locations': 'region'}]
         }
       },
