@@ -77,6 +77,84 @@
               }
             }
           }
+        },
+        {
+          "path": "/Cities/{id}/exists",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/{id}/region",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/count",
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/findOne",
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/search",
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/update",
+          "verbs": {
+            "POST": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
         }
       ]
     }
