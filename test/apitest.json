@@ -1,0 +1,44 @@
+{
+  "baseURL": "/api/v1",
+  "models": [
+    {
+      "name": "City",
+      "tests": [
+        {
+          "path": "/Cities",
+          "verbs": {
+            "POST": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "SomeCity",
+                "regionId": 1
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "SomeCity",
+                "regionId": 1
+              }
+            },
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
