@@ -21,6 +21,28 @@ var
   api = supertest(app);
 
 
+/***************************
+ * Types of authentication
+ ***************************/
+
+var authTypes = {
+  "none": {
+    "name": "Unauthenticated users",
+    "access_token": ''
+  },
+
+  "unverified": {
+    "name": "Unverified users",
+    "access_token": ''
+
+  },
+
+  "verified": {
+    "name": "Verified users",
+    "access_token": ''
+  }
+};
+
 
 /*****************************************************************
  * 'Before' actions that need to complete before testing begins
@@ -42,9 +64,7 @@ before(function (done) {
 });
 
 
-// sign in and obtain access token
-var verified_access_token = '';
-var unverified_access_token = '';
+// sign in and obtain access tokens;
 
 // sign in and obtain access token for a verified user
 before('signing in verified', function (done) {
@@ -56,7 +76,7 @@ before('signing in verified', function (done) {
     })
     .end(function (err, res) {
       if (!err) {
-        verified_access_token = res.body.id;
+        authTypes.verified.access_token = res.body.id;
       } else {
         throw err;
       }
@@ -73,7 +93,7 @@ before('signing in unverified', function (done) {
     })
     .end(function (err, res) {
       if (!err) {
-        unverified_access_token = res.body.id;
+        authTypes.unverified.access_token = res.body.id;
       } else {
         throw err;
       }
@@ -107,149 +127,10 @@ describe('API Authentication', function () {
           if (mTest.verbs.PUT) {
 
           }
-
-
         });
       });
     });
   });
-
-
-//  describe('Unauthenticated users', function () {
-//    it('should not be able to create a review', function (done) {
-//      api.post('/api/v1/Companies/3/reviews')
-//        .send({
-//          "anonymous": false,
-//          "returnOffer": false,
-//          "recommend": false,
-//          "description": "",
-//          "overallRating": 0,
-//          "cultureRating": 0,
-//          "difficultyRating": 0,
-//          "pay": 0,
-//          "jobTitle": "",
-//          "payTypeId": 0
-//        })
-//        .expect(401, done);
-//    });
-//
-//    describe('should not be able to add cities', function () {
-//      it('via post', function (done) {
-//        api.post('/api/v1/Cities')
-//          .send({
-//            "name": "someRandomCity",
-//            "regionId": 2
-//          })
-//          .expect(401, done);
-//      });
-//
-//      it('via put', function (done) {
-//        api.put('/api/v1/Cities')
-//          .send({
-//            "name": "someRandomCity",
-//            "regionId": 2
-//          })
-//          .expect(401, done);
-//      });
-//    }); // end adding cities
-//
-//    describe('should not be able to create a company', function () {
-//      it('via post', function (done) {
-//        api.post('/api/v1/Companies')
-//          .send({
-//            "name": "test",
-//            "url": "http://company.whatevs",
-//            "description": "some company",
-//            "minPay": 0,
-//            "maxPay": 0,
-//            "verified": false
-//          })
-//          .expect(401, done);
-//      });
-//
-//    }); // end creating companies
-//  }); // end Unauthenticated users
-//
-//  describe('Authenticated users', function () {
-//
-//    // sign in and obtain an access token
-//    var access_token = '';
-//
-//    before('signing in', function (done) {
-//      api.post('/api/v1/Users/login')
-//        .send({
-//          email: 'test@rit.edu',
-//          password: 'potato'
-//        })
-//        .end(function (err, res) {
-//          if (!err) {
-//            access_token = res.body.id;
-//          } else {
-//            throw err;
-//          }
-//          done();
-//        });
-//    });
-//
-//    it('should be able to create a review', function (done) {
-//
-//      api.post('/api/v1/Companies/3/reviews')
-//        .set('Authorization', access_token)
-//        .send({
-//          "anonymous": false,
-//          "returnOffer": false,
-//          "recommend": false,
-//          "description": "",
-//          "overallRating": 0,
-//          "cultureRating": 0,
-//          "difficultyRating": 0,
-//          "pay": 0,
-//          "jobTitle": "",
-//          "payTypeId": 0
-//        })
-//        .expect(200, done);
-//
-//
-//    });
-//
-//    describe('should not be able to add cities', function () {
-//      it('via post', function (done) {
-//        api.post('/api/v1/Cities')
-//          .set('Authorization', access_token)
-//          .send({
-//            "name": "someRandomCity",
-//            "regionId": 2
-//          })
-//          .expect(401, done);
-//      });
-//
-//      it('via put', function (done) {
-//        api.put('/api/v1/Cities')
-//          .send({
-//            "name": "someRandomCity",
-//            "regionId": 2
-//          })
-//          .expect(401, done);
-//      });
-//    }); // end adding cities
-//
-//    it('should not be able to create a company', function () {
-//      it('via post', function (done) {
-//        api.post('/api/v1/Companies')
-//          .auth('test@rit.edu', 'potato')
-//          .send({
-//            "name": "test",
-//            "url": "http://company.whatevs",
-//            "description": "some company",
-//            "minPay": 0,
-//            "maxPay": 0,
-//            "verified": false
-//          })
-//          .expect(401, done);
-//      });
-//
-//    }); // end creating companies
-//  }); // end authenticated users
 }); // end API authentication
 
 /******************************
@@ -262,107 +143,80 @@ describe('API Authentication', function () {
  * @param path the endpoint being tested
  */
 function testPost(postInfo, path) {
-  describe('POST method', function () {
+  describe('POST method', function() {
 
-    // Check unauthenticated users
-    if (postInfo.auth.none) {
-      it('Unauthenticated users should be allowed', function(done) {
-        api.post(path)
-          .send(postInfo.data)
-          .expect(200, done);
-      });
-    } else {
-      it('Unauthenticated users should not be allowed', function(done) {
-        api.post(path)
-          .send(postInfo.data)
-          .expect(401, done);
-      });
+    // populate path variables (ex: {id}) if there are any
+    if (postInfo.pathVars) {
+      path = populatePathVars(path, postInfo.pathVars);
     }
 
-    // Check unverified users
-    if (postInfo.auth.unverified) {
-      it('Unverified users should be allowed', function(done) {
-        api.post(path)
-          .set('Authorization', unverified_access_token)
-          .send(postInfo.data)
-          .expect(200, done);
-      })
-    } else {
-      it('Unverified users should not be allowed', function(done) {
-        api.post(path)
-          .set('Authorization', unverified_access_token)
-          .send(postInfo.data)
-          .expect(401, done);
-      });
+    // perform the tests for each authentication type
+    for (var aType in authTypes) {
+      // self-executing function for scope control
+      (function (authType) {
+        if (postInfo.auth[authType]) {
+          it(authTypes[authType].name + ' should be allowed', function (done) {
+            api.post(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .send(postInfo.data)
+              .expect(200, done);
+          });
+        } else {
+          it(authTypes[authType].name + ' should not be allowed', function (done) {
+            api.post(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .send(postInfo.data)
+              .expect(401, done);
+          });
+        }
+      })(aType);
     }
-
-    // Check verified users
-    if (postInfo.auth.verified) {
-      it('Verified users should be allowed', function(done) {
-        api.post(path)
-          .set('Authorization', verified_access_token)
-          .send(postInfo.data)
-          .expect(200, done);
-      });
-    } else {
-      it('Verified users should not be allowed', function(done) {
-        api.post(path)
-          .set('Authorization', verified_access_token)
-          .send(postInfo.data)
-          .expect(401, done);
-      });
-    }
-
   });
-
 }
 
+/**
+ * Test with a "GET" request to the specified endpoint.
+ * @param getInfo the "GET" property of the defined test
+ * @param path the endpoint being tested
+ */
 function testGet(getInfo, path) {
-  describe('GET method', function () {
+  describe('GET method', function() {
 
-    // Check unauthenticated users
-    if (getInfo.auth.none) {
-      it('Unauthenticated users should be allowed', function(done) {
-        api.get(path)
-          .expect(200, done);
-      });
-    } else {
-      it('Unauthenticated users should not be allowed', function(done) {
-        api.get(path)
-          .expect(401, done);
-      });
+    // populate path variables (ex: {id}) if there are any
+    if (getInfo.pathVars) {
+      path = populatePathVars(path, postInfo.pathVars);
     }
 
-    // Check unverified users
-    if (getInfo.auth.unverified) {
-      it('Unverified users should be allowed', function(done) {
-        api.get(path)
-          .set('Authorization', unverified_access_token)
-          .expect(200, done);
-      })
-    } else {
-      it('Unverified users should not be allowed', function(done) {
-        api.get(path)
-          .set('Authorization', unverified_access_token)
-          .expect(401, done);
-      });
+    // perform the tests for each authentication type
+    for (var aType in authTypes) {
+      // closure for iterator scope control
+      (function (authType) {
+        if (getInfo.auth[authType]) {
+          it(authTypes[authType].name + ' should be allowed', function (done) {
+            api.get(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .expect(200, done);
+          });
+        } else {
+          it(authTypes[authType].name + ' should not be allowed', function (done) {
+            api.get(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .expect(401, done);
+          });
+        }
+      })(aType);
     }
-
-    // Check verified users
-    if (getInfo.auth.verified) {
-      it('Verified users should be allowed', function(done) {
-        api.get(path)
-          .set('Authorization', verified_access_token)
-          .expect(200, done);
-      });
-    } else {
-      it('Verified users should not be allowed', function(done) {
-        api.get(path)
-          .set('Authorization', verified_access_token)
-          .expect(401, done);
-      });
-    }
-
   });
+}
 
+
+/***********************
+ * Utility Functions
+ ***********************/
+
+function populatePathVars(path, pathVars) {
+  for (var v in pathVars) {
+    path = path.replace('{' + v + '}', pathVars[b]);
+  }
+  return path;
 }
