@@ -98,7 +98,7 @@ describe('API Authentication', function () {
   var baseTests = require('./apitest.json');
   var baseurl = baseTests.baseURL;
   baseTests.models.forEach(function (model) {
-    describe('endpoints for model ' + model.name, function () {
+    describe('endpoints for model "' + model.name + '"', function () {
       model.tests.forEach(function (mTest) {
         var fullPath = baseurl + mTest.path;
         // populate path variables (ex: {id}) if there are any
@@ -155,7 +155,7 @@ function testPost(postInfo, path) {
               .expect(200, done);
           });
         } else {
-          it(authTypes[authType].name + ' should not be allowed', function (done) {
+          it(authTypes[authType].name + ' should NOT be allowed', function (done) {
             api.post(path)
               .set('Authorization', authTypes[authType].access_token)
               .send(postInfo.data)
@@ -185,7 +185,7 @@ function testGet(getInfo, path) {
               .expect(200, done);
           });
         } else {
-          it(authTypes[authType].name + ' should not be allowed', function (done) {
+          it(authTypes[authType].name + ' should NOT be allowed', function (done) {
             api.get(path)
               .set('Authorization', authTypes[authType].access_token)
               .expect(401, done);
@@ -215,7 +215,7 @@ function testPut(putInfo, path) {
               .expect(200, done);
           });
         } else {
-          it(authTypes[authType].name + ' should not be allowed', function (done) {
+          it(authTypes[authType].name + ' should NOT be allowed', function (done) {
             api.put(path)
               .set('Authorization', authTypes[authType].access_token)
               .send(putInfo.data)
@@ -246,7 +246,7 @@ function testHead(headInfo, path) {
               .expect(200, done);
           });
         } else {
-          it(authTypes[authType].name + ' should not be allowed', function (done) {
+          it(authTypes[authType].name + ' should NOT be allowed', function (done) {
             api.head(path)
               .set('Authorization', authTypes[authType].access_token)
               .expect(401, done);
@@ -276,7 +276,7 @@ function testDelete(deleteInfo, path) {
               .expect(204, done);
           });
         } else {
-          it(authTypes[authType].name + ' should not be allowed', function (done) {
+          it(authTypes[authType].name + ' should NOT be allowed', function (done) {
             api.head(path)
               .set('Authorization', authTypes[authType].access_token)
               .expect(401, done);
@@ -284,7 +284,6 @@ function testDelete(deleteInfo, path) {
         }
       })(aType);
     }
-
   });
 }
 
