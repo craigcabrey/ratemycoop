@@ -125,7 +125,7 @@ describe('API Authentication', function () {
           }
 
           if (mTest.verbs.PUT) {
-
+            testPut(mTest.verbs.PUT, baseurl + mTest.path);
           }
         });
       });
@@ -207,6 +207,38 @@ function testGet(getInfo, path) {
       })(aType);
     }
   });
+}
+
+function testPut(putInfo, path) {
+  describe('PUT methods', function() {
+
+    // populate path variables (ex: {id}) if there are any
+    if (putInfo.pathVars) {
+      path = populatePathVars(path, postInfo.pathVars);
+    }
+    // perform the test for each authentication type
+    for (var aType in authTypes) {
+      // closure for iterator scope control
+      (function (authType) {
+        if (putInfo.auth[authType]) {
+          it(authTypes[authType].name + ' should be allowed', function (done) {
+            api.put(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .send(putInfo.data)
+              .expect(200, done);
+          });
+        } else {
+          it(authTypes[authType].name + ' should not be allowed', function (done) {
+            api.put(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .send(putInfo.data)
+              .expect(401, done);
+          });
+        }
+      })(aType);
+    }
+
+  })
 }
 
 
