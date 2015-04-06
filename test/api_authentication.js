@@ -12,14 +12,12 @@
 process.env.AUTH_ENABLED = "true";
 process.env.MODE_ENV = "test";
 
-
 var
   should = require('chai').should(),
   loopback = require('loopback'),
   supertest = require('supertest'),
   app = require('../server/server'),
   api = supertest(app);
-
 
 /***************************
  * Types of authentication
@@ -43,18 +41,13 @@ var authTypes = {
   }
 };
 
-
 /*****************************************************************
  * 'Before' actions that need to complete before testing begins
  *****************************************************************/
-
-
 // wait for the app to be 'ready' before starting the tests
 before(function (done) {
-
   // set a higher timeout in case server is slow to start up
   this.timeout(10000);
-
   // once the app is done starting up, tests can begin.
   if (app.importing) {
     app.on('import done', done);
@@ -63,12 +56,8 @@ before(function (done) {
   }
 });
 
-
-// sign in and obtain access tokens;
-
 // sign in and obtain access token for a verified user
 before('signing in verified', function (done) {
-
   api.post('/api/v1/Users/login')
     .send({
       email: 'test@rit.edu',
@@ -101,31 +90,41 @@ before('signing in unverified', function (done) {
     });
 });
 
-
 /********************************
  * Start the API endpoint tests
  ********************************/
 describe('API Authentication', function () {
-
   // basic tests from apitest.json
   var baseTests = require('./apitest.json');
-
   var baseurl = baseTests.baseURL;
   baseTests.models.forEach(function (model) {
     describe('endpoints for model ' + model.name, function () {
       model.tests.forEach(function (mTest) {
+        var fullPath = baseurl + mTest.path;
+        // populate path variables (ex: {id}) if there are any
+        if(mTest.pathVars) {
+          fullPath = populatePathVars(fullPath, mTest.pathVars);
+        }
         describe(baseurl + mTest.path, function () {
-
-          if (mTest.verbs.POST) {
-            testPost(mTest.verbs.POST, baseurl + mTest.path);
+          // test POST requests
+          if(mTest.verbs.POST) {
+            testPost(mTest.verbs.POST, fullPath);
           }
-
-          if (mTest.verbs.GET) {
-            testGet(mTest.verbs.GET, baseurl + mTest.path);
+          // test GET requests
+          if(mTest.verbs.GET) {
+            testGet(mTest.verbs.GET, fullPath);
           }
-
-          if (mTest.verbs.PUT) {
-            testPut(mTest.verbs.PUT, baseurl + mTest.path);
+          // test PUT requests
+          if(mTest.verbs.PUT) {
+            testPut(mTest.verbs.PUT, fullPath);
+          }
+          // test HEAD requests
+          if(mTest.verbs.HEAD) {
+            testHead(mTest.verbs.HEAD, fullPath);
+          }
+          // test DELETE requests
+          if(mTest.verbs.DELETE) {
+            testDelete(mTest.verbs.DELETE, fullPath);
           }
         });
       });
@@ -144,12 +143,6 @@ describe('API Authentication', function () {
  */
 function testPost(postInfo, path) {
   describe('POST method', function() {
-
-    // populate path variables (ex: {id}) if there are any
-    if (postInfo.pathVars) {
-      path = populatePathVars(path, postInfo.pathVars);
-    }
-
     // perform the tests for each authentication type
     for (var aType in authTypes) {
       // self-executing function for scope control
@@ -181,12 +174,6 @@ function testPost(postInfo, path) {
  */
 function testGet(getInfo, path) {
   describe('GET method', function() {
-
-    // populate path variables (ex: {id}) if there are any
-    if (getInfo.pathVars) {
-      path = populatePathVars(path, postInfo.pathVars);
-    }
-
     // perform the tests for each authentication type
     for (var aType in authTypes) {
       // closure for iterator scope control
@@ -209,13 +196,13 @@ function testGet(getInfo, path) {
   });
 }
 
+/**
+ * Test with a "PUT" request to the specified endpoint
+ * @param putInfo the "PUT" property of the defined test
+ * @param path the endpoint being tested
+ */
 function testPut(putInfo, path) {
   describe('PUT methods', function() {
-
-    // populate path variables (ex: {id}) if there are any
-    if (putInfo.pathVars) {
-      path = populatePathVars(path, postInfo.pathVars);
-    }
     // perform the test for each authentication type
     for (var aType in authTypes) {
       // closure for iterator scope control
@@ -238,17 +225,85 @@ function testPut(putInfo, path) {
       })(aType);
     }
 
-  })
+  });
 }
 
+/**
+ * Test with a "HEAD" request to the specified endpoint
+ * @param headInfo the "HEAD" property of the defined test
+ * @param path the endpoint being tested
+ */
+function testHead(headInfo, path) {
+  describe('HEAD methods', function() {
+    // perform the test for each authentication type
+    for (var aType in authTypes) {
+      // closure for iterator scope control
+      (function (authType) {
+        if (headInfo.auth[authType]) {
+          it(authTypes[authType].name + ' should be allowed', function (done) {
+            api.head(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .expect(200, done);
+          });
+        } else {
+          it(authTypes[authType].name + ' should not be allowed', function (done) {
+            api.head(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .expect(401, done);
+          });
+        }
+      })(aType);
+    }
+
+  });
+}
+
+/**
+ * Test with a "DELETE" request to the specified endpoint
+ * @param deleteInfo the "DELETE" property of the defined test
+ * @param path the endpoint being tested
+ */
+function testDelete(deleteInfo, path) {
+  describe('DELETE methods', function() {
+    // perform the test for each authentication type
+    for (var aType in authTypes) {
+      // closure for iterator scope control
+      (function (authType) {
+        if (deleteInfo.auth[authType]) {
+          it(authTypes[authType].name + ' should be allowed', function (done) {
+            api.head(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .expect(204, done);
+          });
+        } else {
+          it(authTypes[authType].name + ' should not be allowed', function (done) {
+            api.head(path)
+              .set('Authorization', authTypes[authType].access_token)
+              .expect(401, done);
+          });
+        }
+      })(aType);
+    }
+
+  });
+}
 
 /***********************
  * Utility Functions
  ***********************/
 
+/**
+ * Complete the URL path by filling in inline variables
+ * Ex: "/Cities/{id}" would become "/Cities/1"
+ * @param path the endpoint path that needs variables filled
+ * @param pathVars object of variable names -> values that will be used to fill the path
+ * @returns {String} the constructed URL with variables filled
+ */
 function populatePathVars(path, pathVars) {
   for (var v in pathVars) {
-    path = path.replace('{' + v + '}', pathVars[b]);
+    if(pathVars.hasOwnProperty(v)) {
+      path = path.replace('{' + v + '}', pathVars[v]);
+    }
   }
   return path;
 }

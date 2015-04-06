@@ -37,6 +37,46 @@
               }
             }
           }
+        },
+        {
+          "path": "/Cities/{id}",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "HEAD": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "DELETE": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "SomeCity",
+                "regionId": 1
+              }
+            }
+          }
         }
       ]
     }
