@@ -1,0 +1,512 @@
+{
+  "baseURL": "/api/v1",
+  "models": [
+    {
+      "name": "City",
+      "tests": [
+        {
+          "path": "/Cities",
+          "verbs": {
+            "POST": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "SomeCity",
+                "regionId": 1
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "SomeCity",
+                "regionId": 1
+              }
+            },
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/{id}",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "HEAD": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "DELETE": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "SomeCity",
+                "regionId": 1
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/{id}/exists",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/{id}/region",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/count",
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/findOne",
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/search",
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            }
+          }
+        },
+        {
+          "path": "/Cities/update",
+          "verbs": {
+            "POST": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "College",
+      "tests": [
+        {
+          "path": "/Colleges",
+          "verbs": {
+            "POST": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "something",
+                "code": "1234",
+                "universityId": 0
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "something",
+                "code": "1234",
+                "universityId": 0
+              }
+            },
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/{id}",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "HEAD": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "DELETE": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "something",
+                "code": "1234",
+                "universityId": 0
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/{id}/exists",
+          "pathVars": {
+            "id":1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/{id}/majors",
+          "pathVars": {
+            "id":1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "POST": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "code": "1234",
+                "name": "something",
+                "collegeId": 0
+              }
+            },
+            "DELETE": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/{id}/majors/{fk}",
+          "pathVars": {
+            "id": 1,
+            "fk": 1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "DELETE": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "code": "1234",
+                "name": "hello",
+                "collegeId": 0
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/{id}/majors/count",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/{id}/university",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/count",
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/findOne",
+          "verbs": {
+            "GET": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            }
+          }
+        },
+        {
+          "path": "/Colleges/update",
+          "verbs": {
+            "POST": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "something",
+                "code": "1234",
+                "universityId": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Company",
+      "tests": [
+        {
+          "path":"/Companies",
+          "verbs": {
+            "POST": {
+              "auth": {
+                "none": false,
+                "unverified": true,
+                "verified": true
+              },
+              "data": {
+                "name": "something",
+                "url": "http://something.com",
+                "logo": "none.png",
+                "seekingFulltime": false,
+                "seekingCoop": false,
+                "overallRating": 0,
+                "cultureRating": 0,
+                "difficultyRating": 0,
+                "description": "This is a company.",
+                "minPay": 0,
+                "maxPay": 0,
+                "verified": false
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "",
+                "url": "",
+                "logo": "",
+                "facebook": "",
+                "twitter": "",
+                "linkedin": "",
+                "seekingFulltime": false,
+                "seekingCoop": false,
+                "overallRating": 0,
+                "cultureRating": 0,
+                "difficultyRating": 0,
+                "description": "",
+                "minPay": 0,
+                "maxPay": 0,
+                "verified": false
+              }
+            },
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            }
+
+          }
+        },
+        {
+          "path": "/Companies/{id}",
+          "pathVars": {
+            "id": 1
+          },
+          "verbs": {
+            "HEAD": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "GET": {
+              "auth": {
+                "none": true,
+                "unverified": true,
+                "verified": true
+              }
+            },
+            "DELETE": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              }
+            },
+            "PUT": {
+              "auth": {
+                "none": false,
+                "unverified": false,
+                "verified": false
+              },
+              "data": {
+                "name": "something",
+                "url": "http://something.com",
+                "logo": "none.png",
+                "seekingFulltime": false,
+                "seekingCoop": false,
+                "overallRating": 0,
+                "cultureRating": 0,
+                "difficultyRating": 0,
+                "description": "This is a company.",
+                "minPay": 0,
+                "maxPay": 0,
+                "verified": false
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

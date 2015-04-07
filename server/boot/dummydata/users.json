@@ -1,14 +1,17 @@
 [
   {
     "email": "test@rit.edu",
-    "password": "potato"
+    "password": "potato",
+    "emailVerified": true
   },
   {
     "email": "brotato@rit.edu",
-    "password": "brotato"
+    "password": "brotato",
+    "emailVerified": true
   },
   {
     "email": "pasta@rit.edu",
-    "password": "pasta"
+    "password": "pasta",
+    "emailVerified": false
   }
 ]

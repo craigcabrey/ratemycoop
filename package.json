@@ -4,17 +4,21 @@
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
+    "test": "mocha",
     "start": "node server/server.js"
   },
   "dependencies": {
+    "chai": "^2.1.2",
     "compression": "^1.0.3",
     "errorhandler": "^1.1.1",
     "loopback": "^2.8.0",
     "loopback-boot": "^2.4.0",
     "loopback-connector-mysql": "^1.5.1",
     "loopback-datasource-juggler": "^2.7.0",
+    "mocha": "^2.2.1",
     "morgan": "^1.5.1",
-    "serve-favicon": "^2.0.1"
+    "serve-favicon": "^2.0.1",
+    "supertest": "^0.15.0"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"
