@@ -111,6 +111,11 @@ video#mainVideo {
   word-wrap: break-word;
 }
 
+/* Prevent line wrapping for login button */
+.menu {
+  display: list-item !important;
+}
+
 /* Enable hover effect for buttons on perks page */
 i.add.icon {
   cursor: pointer;
