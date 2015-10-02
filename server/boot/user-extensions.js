@@ -66,7 +66,7 @@ module.exports = function(app) {
       from: config.email,
       subject: config.verifySubject,
       port: '443',
-      host: config.hostname,
+      host: 'ratemycoop.io',
       protocol: 'https',
       template: path.resolve(__dirname, '../../server/templates/' + template)
     };
