@@ -1,6 +1,7 @@
 {
   "name": "ratemycoop.io",
   "version": "1.0.0",
+  "license": "BSD-2-Clause",
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
