@@ -28,7 +28,7 @@ bower install
 grunt serve
 ```
 
-On sucess, bower should open up your broswer to the default `:9000` port. 
+On success, bower should open up your browser to the default `:9000` port. 
 
 ## Backend Setup
 
